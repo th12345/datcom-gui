@@ -22,6 +22,7 @@ public class C3PO {
     private String for005;
     private String for006;
     private String masterPrintCmalpha;
+    private String ultimateMasterPrintCmalpha;
     private String masterPrintCdalpha;
     private String masterPrintClalpha;
     private String masterPrintCnalpha;
@@ -496,6 +497,7 @@ public class C3PO {
     }
 
     public void writeMaster (){
-        getFile.writeFile(masterPath, "MASTER_Cmalpha.txt", masterPrintCmalpha);
+        ultimateMasterPrintCmalpha = ultimateMasterPrintCmalpha + masterPrintCmalpha;
+        getFile.writeFile(masterPath, "MASTER_Cmalpha.txt", ultimateMasterPrintCmalpha);
     }
 }
