@@ -28,6 +28,7 @@ public class C3PO {
     private String masterPrintCaalpha;
     private String masterPrintXcpalpha;
     private String masterPrintClaalpha;
+    private String masterPath;
     private char[] for005array;
     private char[] for006array;
     //private DOMparser parse = new DOMparser();
@@ -301,6 +302,7 @@ public class C3PO {
         initialStart = key;
         MASTER = null;
         getFile = new getFor005();
+        this.masterPath = masterPath;
         
         if (initialStart ==0)
         {
@@ -404,8 +406,8 @@ public class C3PO {
             }
         }
         getFile.writeFile(workingPath, "Cmalpha.txt", print);
-        masterPrintCmalpha = masterPrintCmalpha + print;
-        getFile.writeFile(masterPath, "MASTER_Cmalpha.txt", masterPrintCmalpha);
+        masterPrintCmalpha =  print;
+        //getFile.writeFile(masterPath, "MASTER_Cmalpha.txt", masterPrintCmalpha);
 
         print = null;
         //write tables to files
@@ -491,5 +493,9 @@ public class C3PO {
         //System.out.println(Cdalpha.toString());
 
         //System.out.println(MASTER);
+    }
+
+    public void writeMaster (){
+        getFile.writeFile(masterPath, "MASTER_Cmalpha.txt", masterPrintCmalpha);
     }
 }

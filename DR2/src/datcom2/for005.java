@@ -269,6 +269,7 @@ public class for005 extends javax.swing.JPanel {
             runMore.createMaster(workingPath + "\\" + caseID + "\\C3PO\\" +ALT[i] +"\\"+ MACH[j]+"_" + ALT[i], MACH[j], ALT[i], position,workingPath + "\\" + caseID + "\\C3PO\\MASTER\\" );
             position++;
             }
+            runMore.writeMaster();
             position = 0;
         }
 
