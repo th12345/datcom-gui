@@ -24,11 +24,17 @@ public class C3PO {
     private String masterPrintCmalpha;
     private String ultimateMasterPrintCmalpha;
     private String masterPrintCdalpha;
+    private String ultimateMasterPrintCdalpha;
     private String masterPrintClalpha;
+    private String ultimateMasterPrintClalpha;
     private String masterPrintCnalpha;
+    private String ultimateMasterPrintCnalpha;
     private String masterPrintCaalpha;
+    private String ultimateMasterPrintCaalpha;
     private String masterPrintXcpalpha;
+    private String ultimateMasterPrintXcpalpha;
     private String masterPrintClaalpha;
+    private String ultimateMasterPrintClaalpha;
     private String masterPath;
     private char[] for005array;
     private char[] for006array;
@@ -421,7 +427,8 @@ public class C3PO {
             }
         }
         getFile.writeFile(workingPath, "Cdalpha.txt", print);
-        getFile.writeFile(masterPath, "MASTER_Cdalpha.txt", print);
+        masterPrintCdalpha = print;
+        //getFile.writeFile(masterPath, "MASTER_Cdalpha.txt", print);
 
         print = null;
         //write tables to files
@@ -434,7 +441,8 @@ public class C3PO {
             }
         }
         getFile.writeFile(workingPath, "Clalpha.txt", print);
-        getFile.writeFile(masterPath, "MASTER_Clalpha.txt", print);
+        masterPrintClalpha = print;
+        //getFile.writeFile(masterPath, "MASTER_Clalpha.txt", print);
 
         print = null;
         //write tables to files
@@ -447,7 +455,8 @@ public class C3PO {
             }
         }
         getFile.writeFile(workingPath, "Cnalpha.txt", print);
-        getFile.writeFile(masterPath, "MASTER_Cnalpha.txt", print);
+        masterPrintCnalpha = print;
+        //getFile.writeFile(masterPath, "MASTER_Cnalpha.txt", print);
 
         print = null;
         //write tables to files
@@ -460,7 +469,8 @@ public class C3PO {
             }
         }
         getFile.writeFile(workingPath, "Caalpha.txt", print);
-        getFile.writeFile(masterPath, "MASTER_Caalpha.txt", print);
+        masterPrintCaalpha = print;
+        //getFile.writeFile(masterPath, "MASTER_Caalpha.txt", print);
 
         print = null;
         //write tables to files
@@ -473,7 +483,8 @@ public class C3PO {
             }
         }
         getFile.writeFile(workingPath, "Xcpalpha.txt", print);
-        getFile.writeFile(masterPath, "MASTER_Xcpalpha.txt", print);
+        masterPrintXcpalpha = print;
+        //getFile.writeFile(masterPath, "MASTER_Xcpalpha.txt", print);
 
         print = null;
         //write tables to files
@@ -486,7 +497,8 @@ public class C3PO {
             }
         }
         getFile.writeFile(workingPath, "Claalpha.txt", print);
-        getFile.writeFile(masterPath, "MASTER_Claalpha.txt", print);
+        masterPrintClaalpha = print;
+        //getFile.writeFile(masterPath, "MASTER_Claalpha.txt", print);
 
         
         //System.out.println(Cmalpha.toString());
@@ -497,7 +509,67 @@ public class C3PO {
     }
 
     public void writeMaster (){
-        ultimateMasterPrintCmalpha = ultimateMasterPrintCmalpha + masterPrintCmalpha;
+        //START CmAlpha
+        if (ultimateMasterPrintCmalpha != null){
+            ultimateMasterPrintCmalpha = ultimateMasterPrintCmalpha + masterPrintCmalpha + "\n";
+        }else {
+            ultimateMasterPrintCmalpha = masterPrintCmalpha + "\n";
+        }
         getFile.writeFile(masterPath, "MASTER_Cmalpha.txt", ultimateMasterPrintCmalpha);
+        //END CmAlpha
+
+        //START CdAlpha
+        if (ultimateMasterPrintCdalpha != null){
+            ultimateMasterPrintCdalpha = ultimateMasterPrintCdalpha + masterPrintCdalpha + "\n";
+        }else {
+            ultimateMasterPrintCdalpha = masterPrintCdalpha + "\n";
+        }
+        getFile.writeFile(masterPath, "MASTER_Cdalpha.txt", ultimateMasterPrintCdalpha);
+        //END CdAlpha
+
+        //START ClAlpha
+        if (ultimateMasterPrintClalpha != null){
+            ultimateMasterPrintClalpha = ultimateMasterPrintClalpha + masterPrintClalpha + "\n";
+        }else {
+            ultimateMasterPrintClalpha = masterPrintClalpha + "\n";
+        }
+        getFile.writeFile(masterPath, "MASTER_Clalpha.txt", ultimateMasterPrintClalpha);
+        //END ClAlpha
+
+        //START CnAlpha
+        if (ultimateMasterPrintCnalpha != null){
+            ultimateMasterPrintCnalpha = ultimateMasterPrintCnalpha + masterPrintCnalpha + "\n";
+        }else {
+            ultimateMasterPrintCnalpha = masterPrintCnalpha + "\n";
+        }
+        getFile.writeFile(masterPath, "MASTER_Cnalpha.txt", ultimateMasterPrintCnalpha);
+        //END CnAlpha
+
+        //START CaAlpha
+        if (ultimateMasterPrintCaalpha != null){
+            ultimateMasterPrintCaalpha = ultimateMasterPrintCaalpha + masterPrintCaalpha + "\n";
+        }else {
+            ultimateMasterPrintCaalpha = masterPrintCaalpha + "\n";
+        }
+        getFile.writeFile(masterPath, "MASTER_Caalpha.txt", ultimateMasterPrintCaalpha);
+        //END CaAlpha
+
+        //START XcpAlpha
+        if (ultimateMasterPrintXcpalpha != null){
+            ultimateMasterPrintXcpalpha = ultimateMasterPrintXcpalpha + masterPrintXcpalpha + "\n";
+        }else {
+            ultimateMasterPrintXcpalpha = masterPrintXcpalpha + "\n";
+        }
+        getFile.writeFile(masterPath, "MASTER_Xcpalpha.txt", ultimateMasterPrintXcpalpha);
+        //END XcpAlpha
+
+        //START ClaAlpha
+        if (ultimateMasterPrintClaalpha != null){
+            ultimateMasterPrintClaalpha = ultimateMasterPrintClaalpha + masterPrintClaalpha + "\n";
+        }else {
+            ultimateMasterPrintClaalpha = masterPrintClaalpha + "\n";
+        }
+        getFile.writeFile(masterPath, "MASTER_Claalpha.txt", ultimateMasterPrintClaalpha);
+        //END ClaAlpha
     }
 }
