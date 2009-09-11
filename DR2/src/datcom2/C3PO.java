@@ -21,6 +21,13 @@ public class C3PO {
     
     private String for005;
     private String for006;
+    private String masterPrintCmalpha;
+    private String masterPrintCdalpha;
+    private String masterPrintClalpha;
+    private String masterPrintCnalpha;
+    private String masterPrintCaalpha;
+    private String masterPrintXcpalpha;
+    private String masterPrintClaalpha;
     private char[] for005array;
     private char[] for006array;
     //private DOMparser parse = new DOMparser();
@@ -195,9 +202,7 @@ public class C3PO {
                         }//end else
 
                     }//end for
-                    i = i + j;
-
-                     
+                    i = i + j;                 
 
                     //check for CLB
                     if (temp.equals("CNB")){
@@ -399,7 +404,8 @@ public class C3PO {
             }
         }
         getFile.writeFile(workingPath, "Cmalpha.txt", print);
-        getFile.writeFile(masterPath, "MASTER_Cmalpha.txt", print);
+        masterPrintCmalpha = masterPrintCmalpha + print;
+        getFile.writeFile(masterPath, "MASTER_Cmalpha.txt", masterPrintCmalpha);
 
         print = null;
         //write tables to files
