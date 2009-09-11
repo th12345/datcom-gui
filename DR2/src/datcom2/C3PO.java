@@ -511,63 +511,63 @@ public class C3PO {
     public void writeMaster (){
         //START CmAlpha
         if (ultimateMasterPrintCmalpha != null){
-            ultimateMasterPrintCmalpha = ultimateMasterPrintCmalpha + masterPrintCmalpha + "\n";
+            ultimateMasterPrintCmalpha = ultimateMasterPrintCmalpha + masterPrintCmalpha + "\n</tableData>\n";
         }else {
-            ultimateMasterPrintCmalpha = masterPrintCmalpha + "\n";
+            ultimateMasterPrintCmalpha = masterPrintCmalpha + "\n</tableData>\n";
         }
         getFile.writeFile(masterPath, "MASTER_Cmalpha.txt", ultimateMasterPrintCmalpha);
         //END CmAlpha
 
         //START CdAlpha
         if (ultimateMasterPrintCdalpha != null){
-            ultimateMasterPrintCdalpha = ultimateMasterPrintCdalpha + masterPrintCdalpha + "\n";
+            ultimateMasterPrintCdalpha = ultimateMasterPrintCdalpha + masterPrintCdalpha + "\n</tableData>\n";
         }else {
-            ultimateMasterPrintCdalpha = masterPrintCdalpha + "\n";
+            ultimateMasterPrintCdalpha = masterPrintCdalpha + "\n</tableData>\n";
         }
         getFile.writeFile(masterPath, "MASTER_Cdalpha.txt", ultimateMasterPrintCdalpha);
         //END CdAlpha
 
         //START ClAlpha
         if (ultimateMasterPrintClalpha != null){
-            ultimateMasterPrintClalpha = ultimateMasterPrintClalpha + masterPrintClalpha + "\n";
+            ultimateMasterPrintClalpha = ultimateMasterPrintClalpha + masterPrintClalpha + "\n</tableData>\n";
         }else {
-            ultimateMasterPrintClalpha = masterPrintClalpha + "\n";
+            ultimateMasterPrintClalpha = masterPrintClalpha + "\n</tableData>\n";
         }
         getFile.writeFile(masterPath, "MASTER_Clalpha.txt", ultimateMasterPrintClalpha);
         //END ClAlpha
 
         //START CnAlpha
         if (ultimateMasterPrintCnalpha != null){
-            ultimateMasterPrintCnalpha = ultimateMasterPrintCnalpha + masterPrintCnalpha + "\n";
+            ultimateMasterPrintCnalpha = ultimateMasterPrintCnalpha + masterPrintCnalpha + "\n</tableData>\n";
         }else {
-            ultimateMasterPrintCnalpha = masterPrintCnalpha + "\n";
+            ultimateMasterPrintCnalpha = masterPrintCnalpha + "\n</tableData>\n";
         }
         getFile.writeFile(masterPath, "MASTER_Cnalpha.txt", ultimateMasterPrintCnalpha);
         //END CnAlpha
 
         //START CaAlpha
         if (ultimateMasterPrintCaalpha != null){
-            ultimateMasterPrintCaalpha = ultimateMasterPrintCaalpha + masterPrintCaalpha + "\n";
+            ultimateMasterPrintCaalpha = ultimateMasterPrintCaalpha + masterPrintCaalpha + "\n</tableData>\n";
         }else {
-            ultimateMasterPrintCaalpha = masterPrintCaalpha + "\n";
+            ultimateMasterPrintCaalpha = masterPrintCaalpha + "\n</tableData>\n";
         }
         getFile.writeFile(masterPath, "MASTER_Caalpha.txt", ultimateMasterPrintCaalpha);
         //END CaAlpha
 
         //START XcpAlpha
         if (ultimateMasterPrintXcpalpha != null){
-            ultimateMasterPrintXcpalpha = ultimateMasterPrintXcpalpha + masterPrintXcpalpha + "\n";
+            ultimateMasterPrintXcpalpha = ultimateMasterPrintXcpalpha + masterPrintXcpalpha + "\n</tableData>\n";
         }else {
-            ultimateMasterPrintXcpalpha = masterPrintXcpalpha + "\n";
+            ultimateMasterPrintXcpalpha = masterPrintXcpalpha + "\n</tableData>\n";
         }
         getFile.writeFile(masterPath, "MASTER_Xcpalpha.txt", ultimateMasterPrintXcpalpha);
         //END XcpAlpha
 
         //START ClaAlpha
         if (ultimateMasterPrintClaalpha != null){
-            ultimateMasterPrintClaalpha = ultimateMasterPrintClaalpha + masterPrintClaalpha + "\n";
+            ultimateMasterPrintClaalpha = ultimateMasterPrintClaalpha + masterPrintClaalpha + "\n</tableData>\n";
         }else {
-            ultimateMasterPrintClaalpha = masterPrintClaalpha + "\n";
+            ultimateMasterPrintClaalpha = masterPrintClaalpha + "\n</tableData>\n";
         }
         getFile.writeFile(masterPath, "MASTER_Claalpha.txt", ultimateMasterPrintClaalpha);
         //END ClaAlpha
