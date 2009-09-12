@@ -295,6 +295,7 @@ public class FLTCON extends javax.swing.JPanel {
     public void getInput(){
         String tempALSCHD = jTextField4.getText();
         String tempString = "";
+        ALSCHD = null;
 
         //grab the altitude schedule from the textField
         for (int i=0; i < tempALSCHD.length();i++)
