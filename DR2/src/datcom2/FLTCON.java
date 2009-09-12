@@ -307,7 +307,13 @@ public class FLTCON extends javax.swing.JPanel {
             }
 
             if(tempChar == ','){
-                ALSCHD =  ALSCHD + tempString + ",\n  ";
+                if (ALSCHD == null)
+                {
+                    ALSCHD = "ALSCHD(1)=" + tempString;
+                }
+                else {
+                ALSCHD =  ALSCHD + ",\n  " + tempString;
+                }
                 tempString = "";
             }
         }
@@ -315,7 +321,7 @@ public class FLTCON extends javax.swing.JPanel {
         MACH = "MACH(1)=" + jTextField1.getText();
         ALT = "ALT(1)=" + jTextField2.getText();
         WT  = "WT=" + jTextField3.getText();
-        ALSCHD  = "ALSCHD(1)=" + jTextField4.getText();
+        //ALSCHD  = "ALSCHD(1)=" + jTextField4.getText();
         STMACH = "STMACH=" + jTextField5.getText();
         TSMACH = "TSMACH=" + jTextField6.getText();
         GAMMA = "GAMMA=" + jTextField7.getText();
