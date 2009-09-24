@@ -171,9 +171,10 @@ public class OPTINS extends javax.swing.JPanel {
     }
 
     public void getInput(){
-        SREF = "SREF=" + jTextField1.getText();
-        CBARR = "CBARR=" + jTextField2.getText();
-        BLREF = "BLREF=" + jTextField3.getText();
+        Utilities util = new Utilities();
+        SREF = "SREF=" + util.validateInput(jTextField1.getText());
+        CBARR = "CBARR=" + util.validateInput(jTextField2.getText());
+        BLREF = "BLREF=" + util.validateInput(jTextField3.getText());
 
         OPTINS = new ArrayList<String>();
         OPTINS.add(SREF);

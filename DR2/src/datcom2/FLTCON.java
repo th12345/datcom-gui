@@ -344,18 +344,19 @@ public class FLTCON extends javax.swing.JPanel {
         FLTCON.add(GAMMA);
         FLTCON.add(TR);
 
+        Utilities util = new Utilities();
         FLTCONvalues = new ArrayList<String>();
-        FLTCONvalues.add(jTextField8.getText());
-        FLTCONvalues.add(jTextField1.getText());
-        FLTCONvalues.add(jTextField9.getText());
-        FLTCONvalues.add(jTextField2.getText());
-        FLTCONvalues.add(jTextField3.getText());
-        FLTCONvalues.add(jTextField11.getText());
-        FLTCONvalues.add(jTextField4.getText());
-        FLTCONvalues.add(jTextField5.getText());
-        FLTCONvalues.add(jTextField6.getText());
-        FLTCONvalues.add(jTextField7.getText());
-        FLTCONvalues.add(jTextField10.getText());
+        FLTCONvalues.add(util.validateInput(jTextField8.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField1.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField9.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField2.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField3.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField11.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField4.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField5.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField6.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField7.getText()));
+        FLTCONvalues.add(util.validateInput(jTextField10.getText()));
 
         FLTCONfiltered = new ArrayList<String>();
 

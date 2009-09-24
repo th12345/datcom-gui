@@ -350,20 +350,21 @@ public class HTPLNF extends javax.swing.JPanel {
     }
 
     public void getInput(){
-        CHRDTPH = "CHRDTP=" + jTextField1.getText();
-        SSPNOPH = "SSPNOP=" + jTextField2.getText();
-        SSPNEH  = "SSPNE=" + jTextField3.getText();
-        SSPNH  = "SSPN=" + jTextField4.getText();
-        CHRDBPH = "CHRDBP=" + jTextField5.getText();
-        CHRDRH = "CHRDR=" + jTextField6.getText();
-        SAVSIH = "SAVSI=" + jTextField7.getText();
-        SAVSOH = "SAVSO=" + jTextField8.getText();
-        TWISTAH = "TWISTA=" + jTextField9.getText();
-        CHSTATH = "CHSTAT=" + jTextField10.getText();
-        DHDADIH = "DHDADI=" + jTextField11.getText();
-        DHDADOH = "DHDADO=" + jTextField14.getText();
-        TYPEH = "TYPE=" + jTextField12.getText();
-        NACAH = jTextField13.getText();
+        Utilities util = new Utilities();
+        CHRDTPH = "CHRDTP=" + util.validateInput(jTextField1.getText());
+        SSPNOPH = "SSPNOP=" + util.validateInput(jTextField2.getText());
+        SSPNEH  = "SSPNE=" + util.validateInput(jTextField3.getText());
+        SSPNH  = "SSPN=" + util.validateInput(jTextField4.getText());
+        CHRDBPH = "CHRDBP=" + util.validateInput(jTextField5.getText());
+        CHRDRH = "CHRDR=" + util.validateInput(jTextField6.getText());
+        SAVSIH = "SAVSI=" + util.validateInput(jTextField7.getText());
+        SAVSOH = "SAVSO=" + util.validateInput(jTextField8.getText());
+        TWISTAH = "TWISTA=" + util.validateInput(jTextField9.getText());
+        CHSTATH = "CHSTAT=" + util.validateInput(jTextField10.getText());
+        DHDADIH = "DHDADI=" + util.validateInput(jTextField11.getText());
+        DHDADOH = "DHDADO=" + util.validateInput(jTextField14.getText());
+        TYPEH = "TYPE=" + util.validateInput(jTextField12.getText());
+        NACAH = util.validateInput(jTextField13.getText());
 
         HTPLNF = new ArrayList<String>();
         HTPLNF.add(CHRDTPH);

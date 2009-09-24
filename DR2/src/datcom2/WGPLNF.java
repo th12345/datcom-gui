@@ -357,20 +357,21 @@ public class WGPLNF extends javax.swing.JPanel {
         //DATCOM2App.getInstance().show(view);
     }//GEN-LAST:event_jButton2ActionPerformed
  public void getInput(){
-        CHRDTPW = "CHRDTP=" + jTextField1.getText();
-        SSPNOPW = "SSPNOP=" + jTextField2.getText();
-        SSPNEW  = "SSPNE=" + jTextField3.getText();
-        SSPNW  = "SSPN=" + jTextField4.getText();
-        CHRDBPW = "CHRDBP=" + jTextField5.getText();
-        CHRDRW = "CHRDR=" + jTextField6.getText();
-        SAVSIW = "SAVSI=" + jTextField7.getText();
-        SAVSOW = "SAVSO=" + jTextField8.getText();
-        TWISTAW = "TWISTA=" + jTextField9.getText();
-        CHSTATW = "CHSTAT=" + jTextField10.getText();
-        DHDADIW = "DHDADI=" + jTextField11.getText();
-        DHDADOW = "DHDADO=" + jTextField14.getText();
-        TYPEW = "TYPE=" + jTextField12.getText();
-        NACAW = jTextField13.getText();
+        Utilities util = new Utilities();
+        CHRDTPW = "CHRDTP=" + util.validateInput(jTextField1.getText());
+        SSPNOPW = "SSPNOP=" + util.validateInput(jTextField2.getText());
+        SSPNEW  = "SSPNE=" + util.validateInput(jTextField3.getText());
+        SSPNW  = "SSPN=" + util.validateInput(jTextField4.getText());
+        CHRDBPW = "CHRDBP=" + util.validateInput(jTextField5.getText());
+        CHRDRW = "CHRDR=" + util.validateInput(jTextField6.getText());
+        SAVSIW = "SAVSI=" + util.validateInput(jTextField7.getText());
+        SAVSOW = "SAVSO=" + util.validateInput(jTextField8.getText());
+        TWISTAW = "TWISTA=" + util.validateInput(jTextField9.getText());
+        CHSTATW = "CHSTAT=" + util.validateInput(jTextField10.getText());
+        DHDADIW = "DHDADI=" + util.validateInput(jTextField11.getText());
+        DHDADOW = "DHDADO=" + util.validateInput(jTextField14.getText());
+        TYPEW = "TYPE=" + util.validateInput(jTextField12.getText());
+        NACAW = util.validateInput(jTextField13.getText());
 
         WGPLNF = new ArrayList<String>();
         WGPLNF.add(CHRDTPW);

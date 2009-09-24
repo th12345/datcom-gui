@@ -337,20 +337,20 @@ public class SYNTHS extends javax.swing.JPanel {
     public void getInput(){
         //store the input from the text boxes into corresponding string
         //variables.  This includes the corresponding DATCOM designation.
-        XCG = "XCG=" + jTextField1.getText();
-        ZCG = "ZCG=" + jTextField2.getText();
-        XW  = "XW=" + jTextField3.getText();
-        ZW  = "ZW=" + jTextField4.getText();
-        ALIW = "ALIW=" + jTextField5.getText();
-        XH = "XH=" + jTextField6.getText();
-        ZH = "ZH=" + jTextField7.getText();
-        ALIH = "ALIH=" + jTextField8.getText();
-        XV = "XV=" + jTextField9.getText();
-        ZV = "ZV=" + jTextField10.getText();
-        XVF = "XVF=" + jTextField11.getText();
-        ZVF = "ZVF=" + jTextField12.getText();
-        VERTUP = "VERTUP=." + (String)jComboBox1.getSelectedItem() + ".";
-
+        Utilities util = new Utilities();
+        XCG = "XCG=" + util.validateInput(jTextField1.getText());
+        ZCG = "ZCG=" + util.validateInput(jTextField2.getText());
+        XW  = "XW=" + util.validateInput(jTextField3.getText());
+        ZW  = "ZW=" + util.validateInput(jTextField4.getText());
+        ALIW = "ALIW=" + util.validateInput(jTextField5.getText());
+        XH = "XH=" + util.validateInput(jTextField6.getText());
+        ZH = "ZH=" + util.validateInput(jTextField7.getText());
+        ALIH = "ALIH=" + util.validateInput(jTextField8.getText());
+        XV = "XV=" + util.validateInput(jTextField9.getText());
+        ZV = "ZV=" + util.validateInput(jTextField10.getText());
+        XVF = "XVF=" + util.validateInput(jTextField11.getText());
+        ZVF = "ZVF=" + util.validateInput(jTextField12.getText());
+        VERTUP = "VERTUP=." + util.validateInput(jComboBox1.getSelectedItem().toString());
         //create a string array with all the variables
         SYNTHS = new ArrayList<String>();
         SYNTHS.add(XCG);

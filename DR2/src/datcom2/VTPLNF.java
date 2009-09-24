@@ -357,20 +357,21 @@ public class VTPLNF extends javax.swing.JPanel {
         //DATCOM2App.getInstance().show(view);
     }//GEN-LAST:event_jButton2ActionPerformed
  public void getInput(){
-        CHRDTPV = "CHRDTP=" + jTextField1.getText();
-        SSPNOPV = "SSPNOP=" + jTextField2.getText();
-        SSPNEV  = "SSPNE=" + jTextField3.getText();
-        SSPNV  = "SSPN=" + jTextField4.getText();
-        CHRDBPV = "CHRDBP=" + jTextField5.getText();
-        CHRDRV = "CHRDR=" + jTextField6.getText();
-        SAVSIV = "SAVSI=" + jTextField7.getText();
-        SAVSOV = "SAVSO=" + jTextField8.getText();
-        TWISTAV = "TWISTA=" + jTextField9.getText();
-        CHSTATV = "CHSTAT=" + jTextField10.getText();
-        DHDADIV = "DHDADI=" + jTextField11.getText();
-        DHDADOV = "DHDADO=" + jTextField14.getText();
-        TYPEV = "TYPE=" + jTextField12.getText();
-        NACAV = jTextField13.getText();
+        Utilities util = new Utilities();
+        CHRDTPV = "CHRDTP=" + util.validateInput(jTextField1.getText());
+        SSPNOPV = "SSPNOP=" + util.validateInput(jTextField2.getText());
+        SSPNEV  = "SSPNE=" + util.validateInput(jTextField3.getText());
+        SSPNV  = "SSPN=" + util.validateInput(jTextField4.getText());
+        CHRDBPV = "CHRDBP=" + util.validateInput(jTextField5.getText());
+        CHRDRV = "CHRDR=" + util.validateInput(jTextField6.getText());
+        SAVSIV = "SAVSI=" + util.validateInput(jTextField7.getText());
+        SAVSOV = "SAVSO=" + util.validateInput(jTextField8.getText());
+        TWISTAV = "TWISTA=" + util.validateInput(jTextField9.getText());
+        CHSTATV = "CHSTAT=" + util.validateInput(jTextField10.getText());
+        DHDADIV = "DHDADI=" + util.validateInput(jTextField11.getText());
+        DHDADOV = "DHDADO=" + util.validateInput(jTextField14.getText());
+        TYPEV = "TYPE=" + util.validateInput(jTextField12.getText());
+        NACAV = util.validateInput(jTextField13.getText());
 
         VTPLNF = new ArrayList<String>();
         VTPLNF.add(CHRDTPV);
