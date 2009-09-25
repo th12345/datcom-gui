@@ -293,7 +293,9 @@ public class FLTCON extends javax.swing.JPanel {
     }
 
     public void getInput(){
-        String tempALSCHD = jTextField4.getText();
+        Utilities util = new Utilities();
+
+        String tempALSCHD = util.validateInput(jTextField4.getText());
         String tempString = "";
         ALSCHD = null;
 
@@ -319,7 +321,7 @@ public class FLTCON extends javax.swing.JPanel {
             }
         }
 
-        Utilities util = new Utilities();
+        
         MACH = "MACH(1)=" + util.processTextField(jTextField1);
         ALT = "ALT(1)=" + util.processTextField(jTextField2);
         WT  = "WT=" + util.processTextField(jTextField3);

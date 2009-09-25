@@ -1,5 +1,9 @@
 CASEID ---------test-------------
- $SYNTHS VERTUP=.TRUE.$
+ $FLTCON ALSCHD(1)=1.0,
+   2.3,
+   4.0,
+  LOOP=1.0$
+ $SYNTHS VERTUP=.TRUE.0$
  $WGPLNF CHSTAT=0.25$
 TYPE=1.0
  $HTPLNF CHSTAT=0.25$
