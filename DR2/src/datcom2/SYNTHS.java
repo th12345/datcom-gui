@@ -338,18 +338,18 @@ public class SYNTHS extends javax.swing.JPanel {
         //store the input from the text boxes into corresponding string
         //variables.  This includes the corresponding DATCOM designation.
         Utilities util = new Utilities();
-        XCG = "XCG=" + util.validateInput(jTextField1.getText());
-        ZCG = "ZCG=" + util.validateInput(jTextField2.getText());
-        XW  = "XW=" + util.validateInput(jTextField3.getText());
-        ZW  = "ZW=" + util.validateInput(jTextField4.getText());
-        ALIW = "ALIW=" + util.validateInput(jTextField5.getText());
-        XH = "XH=" + util.validateInput(jTextField6.getText());
-        ZH = "ZH=" + util.validateInput(jTextField7.getText());
-        ALIH = "ALIH=" + util.validateInput(jTextField8.getText());
-        XV = "XV=" + util.validateInput(jTextField9.getText());
-        ZV = "ZV=" + util.validateInput(jTextField10.getText());
-        XVF = "XVF=" + util.validateInput(jTextField11.getText());
-        ZVF = "ZVF=" + util.validateInput(jTextField12.getText());
+        XCG = "XCG=" + util.processTextField(jTextField1);
+        ZCG = "ZCG=" + util.processTextField(jTextField2);
+        XW  = "XW=" + util.processTextField(jTextField3);
+        ZW  = "ZW=" + util.processTextField(jTextField4);
+        ALIW = "ALIW=" + util.processTextField(jTextField5);
+        XH = "XH=" + util.processTextField(jTextField6);
+        ZH = "ZH=" + util.processTextField(jTextField7);
+        ALIH = "ALIH=" + util.processTextField(jTextField8);
+        XV = "XV=" + util.processTextField(jTextField9);
+        ZV = "ZV=" + util.processTextField(jTextField10);
+        XVF = "XVF=" + util.processTextField(jTextField11);
+        ZVF = "ZVF=" + util.processTextField(jTextField12);
         VERTUP = "VERTUP=." + util.validateInput(jComboBox1.getSelectedItem().toString());
         //create a string array with all the variables
         SYNTHS = new ArrayList<String>();

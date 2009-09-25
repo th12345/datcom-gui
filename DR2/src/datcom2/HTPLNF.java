@@ -351,20 +351,20 @@ public class HTPLNF extends javax.swing.JPanel {
 
     public void getInput(){
         Utilities util = new Utilities();
-        CHRDTPH = "CHRDTP=" + util.validateInput(jTextField1.getText());
-        SSPNOPH = "SSPNOP=" + util.validateInput(jTextField2.getText());
-        SSPNEH  = "SSPNE=" + util.validateInput(jTextField3.getText());
-        SSPNH  = "SSPN=" + util.validateInput(jTextField4.getText());
-        CHRDBPH = "CHRDBP=" + util.validateInput(jTextField5.getText());
-        CHRDRH = "CHRDR=" + util.validateInput(jTextField6.getText());
-        SAVSIH = "SAVSI=" + util.validateInput(jTextField7.getText());
-        SAVSOH = "SAVSO=" + util.validateInput(jTextField8.getText());
-        TWISTAH = "TWISTA=" + util.validateInput(jTextField9.getText());
-        CHSTATH = "CHSTAT=" + util.validateInput(jTextField10.getText());
-        DHDADIH = "DHDADI=" + util.validateInput(jTextField11.getText());
-        DHDADOH = "DHDADO=" + util.validateInput(jTextField14.getText());
-        TYPEH = "TYPE=" + util.validateInput(jTextField12.getText());
-        NACAH = util.validateInput(jTextField13.getText());
+        CHRDTPH = "CHRDTP=" + util.processTextField(jTextField1);
+        SSPNOPH = "SSPNOP=" + util.processTextField(jTextField2);
+        SSPNEH  = "SSPNE=" + util.processTextField(jTextField3);
+        SSPNH  = "SSPN=" + util.processTextField(jTextField4);
+        CHRDBPH = "CHRDBP=" + util.processTextField(jTextField5);
+        CHRDRH = "CHRDR=" + util.processTextField(jTextField6);
+        SAVSIH = "SAVSI=" + util.processTextField(jTextField7);
+        SAVSOH = "SAVSO=" + util.processTextField(jTextField8);
+        TWISTAH = "TWISTA=" + util.processTextField(jTextField9);
+        CHSTATH = "CHSTAT=" + util.processTextField(jTextField10);
+        DHDADIH = "DHDADI=" + util.processTextField(jTextField11);
+        DHDADOH = "DHDADO=" + util.processTextField(jTextField14);
+        TYPEH = "TYPE=" + util.processTextField(jTextField12);
+        NACAH = util.processTextField(jTextField13);
 
         HTPLNF = new ArrayList<String>();
         HTPLNF.add(CHRDTPH);

@@ -319,17 +319,18 @@ public class FLTCON extends javax.swing.JPanel {
             }
         }
 
-        MACH = "MACH(1)=" + jTextField1.getText();
-        ALT = "ALT(1)=" + jTextField2.getText();
-        WT  = "WT=" + jTextField3.getText();
-        //ALSCHD  = "ALSCHD(1)=" + jTextField4.getText();
-        STMACH = "STMACH=" + jTextField5.getText();
-        TSMACH = "TSMACH=" + jTextField6.getText();
-        GAMMA = "GAMMA=" + jTextField7.getText();
-        NMACH = "NMACH=" + jTextField8.getText();
-        NALT = "NALT=" + jTextField9.getText();
-        TR =  "TR=" + jTextField10.getText();
-        NALPHA = "NALPHA=" + jTextField11.getText();
+        Utilities util = new Utilities();
+        MACH = "MACH(1)=" + util.processTextField(jTextField1);
+        ALT = "ALT(1)=" + util.processTextField(jTextField2);
+        WT  = "WT=" + util.processTextField(jTextField3);
+        //ALSCHD  = "ALSCHD(1)=" + util.processTextField(jTextField4);
+        STMACH = "STMACH=" + util.processTextField(jTextField5);
+        TSMACH = "TSMACH=" + util.processTextField(jTextField6);
+        GAMMA = "GAMMA=" + util.processTextField(jTextField7);
+        NMACH = "NMACH=" + util.processTextField(jTextField8);
+        NALT = "NALT=" + util.processTextField(jTextField9);
+        TR =  "TR=" + util.processTextField(jTextField10);
+        NALPHA = "NALPHA=" + util.processTextField(jTextField11);
 
         FLTCON = new ArrayList<String>();
         FLTCON.add(NMACH);
@@ -344,19 +345,18 @@ public class FLTCON extends javax.swing.JPanel {
         FLTCON.add(GAMMA);
         FLTCON.add(TR);
 
-        Utilities util = new Utilities();
         FLTCONvalues = new ArrayList<String>();
-        FLTCONvalues.add(util.validateInput(jTextField8.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField1.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField9.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField2.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField3.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField11.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField4.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField5.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField6.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField7.getText()));
-        FLTCONvalues.add(util.validateInput(jTextField10.getText()));
+        FLTCONvalues.add(jTextField8.getText());
+        FLTCONvalues.add(jTextField1.getText());
+        FLTCONvalues.add(jTextField9.getText());
+        FLTCONvalues.add(jTextField2.getText());
+        FLTCONvalues.add(jTextField3.getText());
+        FLTCONvalues.add(jTextField11.getText());
+        FLTCONvalues.add(jTextField4.getText());
+        FLTCONvalues.add(jTextField5.getText());
+        FLTCONvalues.add(jTextField6.getText());
+        FLTCONvalues.add(jTextField7.getText());
+        FLTCONvalues.add(jTextField10.getText());
 
         FLTCONfiltered = new ArrayList<String>();
 

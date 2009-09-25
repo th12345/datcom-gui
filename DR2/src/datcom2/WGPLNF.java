@@ -358,20 +358,20 @@ public class WGPLNF extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
  public void getInput(){
         Utilities util = new Utilities();
-        CHRDTPW = "CHRDTP=" + util.validateInput(jTextField1.getText());
-        SSPNOPW = "SSPNOP=" + util.validateInput(jTextField2.getText());
-        SSPNEW  = "SSPNE=" + util.validateInput(jTextField3.getText());
-        SSPNW  = "SSPN=" + util.validateInput(jTextField4.getText());
-        CHRDBPW = "CHRDBP=" + util.validateInput(jTextField5.getText());
-        CHRDRW = "CHRDR=" + util.validateInput(jTextField6.getText());
-        SAVSIW = "SAVSI=" + util.validateInput(jTextField7.getText());
-        SAVSOW = "SAVSO=" + util.validateInput(jTextField8.getText());
-        TWISTAW = "TWISTA=" + util.validateInput(jTextField9.getText());
-        CHSTATW = "CHSTAT=" + util.validateInput(jTextField10.getText());
-        DHDADIW = "DHDADI=" + util.validateInput(jTextField11.getText());
-        DHDADOW = "DHDADO=" + util.validateInput(jTextField14.getText());
-        TYPEW = "TYPE=" + util.validateInput(jTextField12.getText());
-        NACAW = util.validateInput(jTextField13.getText());
+        CHRDTPW = "CHRDTP=" + util.processTextField(jTextField1);
+        SSPNOPW = "SSPNOP=" + util.processTextField(jTextField2);
+        SSPNEW  = "SSPNE=" + util.processTextField(jTextField3);
+        SSPNW  = "SSPN=" + util.processTextField(jTextField4);
+        CHRDBPW = "CHRDBP=" + util.processTextField(jTextField5);
+        CHRDRW = "CHRDR=" + util.processTextField(jTextField6);
+        SAVSIW = "SAVSI=" + util.processTextField(jTextField7);
+        SAVSOW = "SAVSO=" + util.processTextField(jTextField8);
+        TWISTAW = "TWISTA=" + util.processTextField(jTextField9);
+        CHSTATW = "CHSTAT=" + util.processTextField(jTextField10);
+        DHDADIW = "DHDADI=" + util.processTextField(jTextField11);
+        DHDADOW = "DHDADO=" + util.processTextField(jTextField14);
+        TYPEW = "TYPE=" + util.processTextField(jTextField12);
+        NACAW = util.processTextField(jTextField13);
 
         WGPLNF = new ArrayList<String>();
         WGPLNF.add(CHRDTPW);

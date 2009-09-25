@@ -358,20 +358,20 @@ public class VTPLNF extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
  public void getInput(){
         Utilities util = new Utilities();
-        CHRDTPV = "CHRDTP=" + util.validateInput(jTextField1.getText());
-        SSPNOPV = "SSPNOP=" + util.validateInput(jTextField2.getText());
-        SSPNEV  = "SSPNE=" + util.validateInput(jTextField3.getText());
-        SSPNV  = "SSPN=" + util.validateInput(jTextField4.getText());
-        CHRDBPV = "CHRDBP=" + util.validateInput(jTextField5.getText());
-        CHRDRV = "CHRDR=" + util.validateInput(jTextField6.getText());
-        SAVSIV = "SAVSI=" + util.validateInput(jTextField7.getText());
-        SAVSOV = "SAVSO=" + util.validateInput(jTextField8.getText());
-        TWISTAV = "TWISTA=" + util.validateInput(jTextField9.getText());
-        CHSTATV = "CHSTAT=" + util.validateInput(jTextField10.getText());
-        DHDADIV = "DHDADI=" + util.validateInput(jTextField11.getText());
-        DHDADOV = "DHDADO=" + util.validateInput(jTextField14.getText());
-        TYPEV = "TYPE=" + util.validateInput(jTextField12.getText());
-        NACAV = util.validateInput(jTextField13.getText());
+        CHRDTPV = "CHRDTP=" + util.processTextField(jTextField1);
+        SSPNOPV = "SSPNOP=" + util.processTextField(jTextField2);
+        SSPNEV  = "SSPNE=" + util.processTextField(jTextField3);
+        SSPNV  = "SSPN=" + util.processTextField(jTextField4);
+        CHRDBPV = "CHRDBP=" + util.processTextField(jTextField5);
+        CHRDRV = "CHRDR=" + util.processTextField(jTextField6);
+        SAVSIV = "SAVSI=" + util.processTextField(jTextField7);
+        SAVSOV = "SAVSO=" + util.processTextField(jTextField8);
+        TWISTAV = "TWISTA=" + util.processTextField(jTextField9);
+        CHSTATV = "CHSTAT=" + util.processTextField(jTextField10);
+        DHDADIV = "DHDADI=" + util.processTextField(jTextField11);
+        DHDADOV = "DHDADO=" + util.processTextField(jTextField14);
+        TYPEV = "TYPE=" + util.processTextField(jTextField12);
+        NACAV = util.processTextField(jTextField13);
 
         VTPLNF = new ArrayList<String>();
         VTPLNF.add(CHRDTPV);
