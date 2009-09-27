@@ -102,4 +102,28 @@ private String processButtonTextArray(String input)
     input = input.replaceFirst(", ", "");
     return input;
 }
+
+public String removeComments(String input)
+{
+    String temp[];
+    String output = "";
+    temp = input.split("\\n");
+    int trimPoint = -1;
+    for(int i = 0; i < temp.length; i++)
+    {
+        if(temp[i].contains("#"))
+        {
+            // eventually find the point the comment starts at
+            trimPoint = temp[i].indexOf('#');
+            temp[i] = temp[i].substring(0, trimPoint);
+        }
+        else
+        {
+            // add back to the output string, !!! MAKE SURE TO ADD THE \n BACK
+            // IN !!! The split command removes it.
+            output += temp[i] + "\\n";
+        }
+    }
+    return output;
+}
 }
