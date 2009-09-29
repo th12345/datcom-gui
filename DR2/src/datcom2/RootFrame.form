@@ -2,6 +2,8 @@
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="WingDrawButtonGroup">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <Properties>
         <Property name="name" type="java.lang.String" value="menuBar" noResource="true"/>
@@ -126,37 +128,22 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" min="-2" pref="870" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="283" max="-2" attributes="0"/>
-                  <Component id="jPanel18" min="-2" max="-2" attributes="1"/>
-                  <EmptySpace pref="284" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jTabs" pref="1021" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="640" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
-                  <Component id="jPanel18" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="168" max="32767" attributes="0"/>
-              </Group>
+              <Component id="jTabs" min="-2" pref="691" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+    <Container class="javax.swing.JTabbedPane" name="jTabs">
       <Properties>
         <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
@@ -181,7 +168,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel10" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -192,8 +179,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="479" max="32767" attributes="0"/>
+                      <Component id="jPanel10" min="-2" pref="73" max="-2" attributes="0"/>
+                      <EmptySpace pref="579" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -240,7 +227,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel5" pref="805" max="32767" attributes="0"/>
+                              <Component id="jLabel5" pref="956" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -248,9 +235,8 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" pref="50" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="22" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -318,21 +304,19 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="865" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="141" max="32767" attributes="0"/>
+                      <EmptySpace pref="292" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="612" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel13" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="284" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -720,7 +704,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Wing and Tail">
+              <JTabbedPaneConstraints tabName="Wing">
                 <Property name="tabTitle" type="java.lang.String" resourceKey="jWingTab.TabConstraints.tabTitle"/>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -731,8 +715,1800 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="142" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel55" alignment="0" max="32767" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jPanel52" min="-2" pref="538" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jPanel18" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jPanel16" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel55" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="jPanel18" min="-2" pref="125" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel52" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel52">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jPanel52" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel54" min="-2" max="-2" attributes="1"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel53" min="-2" max="-2" attributes="1"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jPanel53" alignment="0" max="32767" attributes="1"/>
+                              <Component id="jPanel54" alignment="0" max="32767" attributes="1"/>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel53">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Vertical Planform">
+                          <Property name="titleX" resourceKey="jPanel53.border.title"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jPanel53" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel181" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel177" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel178" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel180" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel176" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel179" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel182" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel183" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel184" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel185" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel186" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel187" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel188" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel189" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jMachText48" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText47" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText24" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText44" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jGammaText14" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText24" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText23" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jTsMachText15" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jAlshdText18" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jWtText18" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText23" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText43" alignment="0" pref="143" max="32767" attributes="1"/>
+                                  <Component id="jMachText46" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jMachText45" alignment="1" max="32767" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText43" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel181" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jAltText23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel180" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jWtText18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel178" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jAlshdText18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel177" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTsMachText15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel176" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JTrText23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel179" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JTrText24" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel182" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jGammaText14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel183" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel184" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText44" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel185" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jAltText24" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel186" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText45" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel187" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText46" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText47" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel188" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText48" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel189" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel176">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel176.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel176.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel176" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel177">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel177.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel177.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel177" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel178">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel178.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel178.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel178" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel179">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel179.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel179.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel179" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel180">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel180.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel180.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel180" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel181">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel181.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel181.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel181" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText43">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText43" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAltText23">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAltText23" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jWtText18">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jWtText18" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAlshdText18">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAlshdText18" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTsMachText15">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jTsMachText15" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="JTrText23">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="JTrText23" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="JTrText24">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="JTrText24" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel182">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel182.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel182.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel182" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel183">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel183.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel183.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel183" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jGammaText14">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jGammaText14" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText44">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText44" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel184">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel184.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel184.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel184" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel185">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel185.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel185.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel185" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAltText24">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAltText24" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText45">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText45" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel186">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel186.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel186.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel186" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText46">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText46" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel187">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel187.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel187.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel187" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel188">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel188.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel188.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel188" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText47">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText47" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel189">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel189.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel189.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel189" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText48">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText48" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="jPanel54">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Horizontal Planform">
+                          <Property name="titleX" resourceKey="jPanel54.border.title"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jPanel54" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel209" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel205" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel206" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel208" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel204" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel207" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel210" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel211" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel212" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel213" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel214" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel215" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel216" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel217" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jMachText60" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText59" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText28" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText56" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jGammaText16" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText28" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText27" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jTsMachText17" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jAlshdText20" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jWtText20" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText27" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText55" alignment="0" pref="143" max="32767" attributes="1"/>
+                                  <Component id="jMachText58" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jMachText57" alignment="1" max="32767" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText55" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel209" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jAltText27" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel208" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jWtText20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel206" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jAlshdText20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel205" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTsMachText17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel204" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JTrText27" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel207" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JTrText28" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel210" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jGammaText16" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel211" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel212" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText56" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel213" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jAltText28" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel214" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText57" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel215" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText58" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText59" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel216" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText60" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel217" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel204">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel204.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel204.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel204" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel205">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel205.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel205.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel205" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel206">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel206.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel206.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel206" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel207">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel207.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel207.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel207" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel208">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel208.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel208.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel208" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel209">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel209.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel209.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel209" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText55">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText55" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAltText27">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAltText27" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jWtText20">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jWtText20" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAlshdText20">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAlshdText20" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTsMachText17">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jTsMachText17" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="JTrText27">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="JTrText27" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="JTrText28">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="JTrText28" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel210">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel210.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel210.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel210" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel211">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel211.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel211.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel211" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jGammaText16">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jGammaText16" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText56">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText56" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel212">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel212.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel212.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel212" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel213">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel213.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel213.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel213" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAltText28">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAltText28" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText57">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText57" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel214">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel214.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel214.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel214" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText58">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText58" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel215">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel215.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel215.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel215" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel216">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel216.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel216.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel216" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText59">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText59" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel217">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel217.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel217.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel217" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText60">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText60" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel16">
+              <Properties>
+                <Property name="background" type="java.awt.Color" resourceKey="jPanel16.background"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+                <Property name="name" type="java.lang.String" value="jPanel16" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="436" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="427" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel18">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Draw Controls">
+                      <Property name="titleX" resourceKey="jPanel18.border.title"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+                <Property name="name" type="java.lang.String" value="jPanel18" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel20" pref="286" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="WingLogo1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="WingLogo1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel20">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="jPanel20" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jButton8" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jButton7" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jButton6" alignment="0" pref="161" max="32767" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jRadioButton3" alignment="1" min="-2" max="-2" attributes="1"/>
+                                  <Component id="jRadioButton4" alignment="1" min="-2" pref="97" max="-2" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jRadioButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton8" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JButton" name="jButton6">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jButton6.text"/>
+                        <Property name="name" type="java.lang.String" value="jButton6" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton7">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jButton7.text"/>
+                        <Property name="name" type="java.lang.String" value="jButton7" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="jRadioButton3">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="WingDrawButtonGroup"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" resourceKey="jRadioButton3.text"/>
+                        <Property name="name" type="java.lang.String" value="jRadioButton3" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="jRadioButton4">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="WingDrawButtonGroup"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" resourceKey="jRadioButton4.text"/>
+                        <Property name="name" type="java.lang.String" value="jRadioButton4" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton8">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jButton8.text"/>
+                        <Property name="name" type="java.lang.String" value="jButton8" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="WingLogo1">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" resourceKey="WingLogo1.background"/>
+                    <Property name="name" type="java.lang.String" value="WingLogo1" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="84" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel55">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jPanel55" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel218" pref="976" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel218" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel218">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" resourceKey="jLabel218.font"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel218.text"/>
+                    <Property name="name" type="java.lang.String" value="jLabel218" noResource="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jTailTab">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="jTailTab" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Tail">
+                <Property name="tabTitle" type="java.lang.String" resourceKey="jTailTab.TabConstraints.tabTitle"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jPanel49" alignment="0" max="32767" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jPanel48" min="-2" pref="538" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jPanel5" max="32767" attributes="0"/>
+                                  <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel49" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="jPanel5" min="-2" pref="125" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel48" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel48">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jPanel48" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel51" min="-2" max="-2" attributes="1"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel50" min="-2" max="-2" attributes="1"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jPanel50" alignment="0" max="32767" attributes="1"/>
+                              <Component id="jPanel51" alignment="0" max="32767" attributes="1"/>
+                          </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel50">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Vertical Planform">
+                          <Property name="titleX" resourceKey="jPanel50.border.title"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jPanel50" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel167" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel163" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel164" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel166" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel162" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel165" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel168" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel169" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel170" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel171" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel172" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel173" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel174" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel175" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jMachText42" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText41" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText22" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText38" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jGammaText13" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText22" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText21" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jTsMachText14" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jAlshdText17" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jWtText17" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText21" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText37" alignment="0" pref="143" max="32767" attributes="1"/>
+                                  <Component id="jMachText40" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jMachText39" alignment="1" max="32767" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText37" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel167" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jAltText21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel166" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jWtText17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel164" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jAlshdText17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel163" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTsMachText14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel162" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JTrText21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel165" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JTrText22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel168" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jGammaText13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel169" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel170" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText38" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel171" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jAltText22" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel172" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText39" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel173" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText40" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText41" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel174" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText42" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel175" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel162">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel162.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel162.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel162" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel163">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel163.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel163.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel163" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel164">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel164.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel164.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel164" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel165">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel165.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel165.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel165" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel166">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel166.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel166.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel166" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel167">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel167.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel167.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel167" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText37">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText37" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAltText21">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAltText21" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jWtText17">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jWtText17" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAlshdText17">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAlshdText17" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTsMachText14">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jTsMachText14" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="JTrText21">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="JTrText21" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="JTrText22">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="JTrText22" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel168">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel168.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel168.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel168" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel169">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel169.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel169.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel169" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jGammaText13">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jGammaText13" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText38">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText38" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel170">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel170.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel170.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel170" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel171">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel171.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel171.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel171" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAltText22">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAltText22" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText39">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText39" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel172">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel172.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel172.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel172" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText40">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText40" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel173">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel173.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel173.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel173" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel174">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel174.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel174.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel174" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText41">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText41" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel175">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel175.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel175.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel175" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText42">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText42" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="jPanel51">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder title="Horizontal Planform">
+                          <Property name="titleX" resourceKey="jPanel51.border.title"/>
+                        </TitledBorder>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jPanel51" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel195" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel191" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel192" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel194" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel190" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel193" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel196" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel197" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel198" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel199" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel200" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel201" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel202" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel203" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="32" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jMachText54" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText53" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText26" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText50" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jGammaText15" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText26" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText25" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jTsMachText16" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jAlshdText19" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jWtText19" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText25" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText49" alignment="0" pref="143" max="32767" attributes="1"/>
+                                  <Component id="jMachText52" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jMachText51" alignment="1" max="32767" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText49" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel195" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jAltText25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel194" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jWtText19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel192" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jAlshdText19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel191" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jTsMachText16" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel190" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JTrText25" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel193" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="JTrText26" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel196" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jGammaText15" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel197" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel198" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText50" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel199" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jAltText26" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel200" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText51" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel201" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText52" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText53" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel202" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jMachText54" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel203" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel190">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel190.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel190.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel190" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel191">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel191.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel191.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel191" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel192">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel192.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel192.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel192" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel193">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel193.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel193.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel193" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel194">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel194.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel194.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel194" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel195">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel195.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel195.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel195" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText49">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText49" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAltText25">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAltText25" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jWtText19">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jWtText19" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAlshdText19">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAlshdText19" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jTsMachText16">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jTsMachText16" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="JTrText25">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="JTrText25" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="JTrText26">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="JTrText26" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel196">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel196.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel196.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel196" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel197">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel197.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel197.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel197" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jGammaText15">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jGammaText15" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText50">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText50" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel198">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel198.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel198.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel198" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel199">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel199.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel199.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel199" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jAltText26">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jAltText26" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText51">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText51" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel200">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel200.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel200.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel200" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText52">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText52" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel201">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel201.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel201.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel201" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel202">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel202.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel202.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel202" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText53">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText53" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel203">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel203.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel203.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel203" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="jMachText54">
+                      <Properties>
+                        <Property name="name" type="java.lang.String" value="jMachText54" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel4">
+              <Properties>
+                <Property name="background" type="java.awt.Color" resourceKey="jPanel4.background"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+                <Property name="name" type="java.lang.String" value="jPanel4" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="436" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="427" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel5">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Draw Controls">
+                      <Property name="titleX" resourceKey="jPanel5.border.title"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+                <Property name="name" type="java.lang.String" value="jPanel5" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jPanel6" pref="286" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="WingLogo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="WingLogo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel6">
+                  <Properties>
+                    <Property name="name" type="java.lang.String" value="jPanel6" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jButton5" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jButton1" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jButton4" alignment="0" pref="161" max="32767" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jRadioButton1" min="-2" max="-2" attributes="1"/>
+                                  <Component id="jRadioButton2" min="-2" pref="97" max="-2" attributes="1"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JButton" name="jButton4">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jButton4.text"/>
+                        <Property name="name" type="java.lang.String" value="jButton4" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
+                        <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="WingDrawButtonGroup"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" resourceKey="jRadioButton1.text"/>
+                        <Property name="name" type="java.lang.String" value="jRadioButton1" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+                      <Properties>
+                        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                          <ComponentRef name="WingDrawButtonGroup"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" resourceKey="jRadioButton2.text"/>
+                        <Property name="name" type="java.lang.String" value="jRadioButton2" noResource="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton5">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" resourceKey="jButton5.text"/>
+                        <Property name="name" type="java.lang.String" value="jButton5" noResource="true"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="WingLogo">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" resourceKey="jPanel7.background"/>
+                    <Property name="name" type="java.lang.String" value="jPanel7" noResource="true"/>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="84" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel49">
+              <Properties>
+                <Property name="name" type="java.lang.String" value="jPanel49" noResource="true"/>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel161" pref="976" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLabel161" min="-2" pref="32" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel161">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" resourceKey="jLabel161.font"/>
+                    <Property name="horizontalAlignment" type="int" value="0"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel161.text"/>
+                    <Property name="name" type="java.lang.String" value="jLabel161" noResource="true"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jSynthesisTab">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="jSynthesisTab" noResource="true"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Synthesis">
+                <Property name="tabTitle" type="java.lang.String" resourceKey="jSynthesisTab.TabConstraints.tabTitle"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel32" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="293" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -740,29 +2516,29 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel5" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
+                      <Component id="jPanel32" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="722" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel5">
+            <Container class="javax.swing.JPanel" name="jPanel32">
               <Properties>
-                <Property name="name" type="java.lang.String" value="jPanel5" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="jPanel32" noResource="true"/>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanel16" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPanel33" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jPanel6" max="32767" attributes="1"/>
+                                  <Component id="jPanel34" max="32767" attributes="1"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jPanel7" max="32767" attributes="1"/>
+                                  <Component id="jPanel35" max="32767" attributes="1"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -773,11 +2549,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel16" min="-2" max="-2" attributes="0"/>
+                          <Component id="jPanel33" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel35" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel34" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -785,9 +2561,9 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JPanel" name="jPanel16">
+                <Container class="javax.swing.JPanel" name="jPanel33">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="jPanel16" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="jPanel33" noResource="true"/>
                   </Properties>
 
                   <Layout>
@@ -795,7 +2571,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel26" pref="673" max="32767" attributes="0"/>
+                              <Component id="jLabel103" pref="673" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -804,60 +2580,53 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel103" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel26">
+                    <Component class="javax.swing.JLabel" name="jLabel103">
                       <Properties>
-                        <Property name="font" type="java.awt.Font" resourceKey="jLabel26.font"/>
+                        <Property name="font" type="java.awt.Font" resourceKey="jLabel103.font"/>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel26.text"/>
-                        <Property name="name" type="java.lang.String" value="jLabel26" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel103.text"/>
+                        <Property name="name" type="java.lang.String" value="jLabel103" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="jPanel6">
+                <Container class="javax.swing.JPanel" name="jPanel34">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="jPanel6" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="jPanel34" noResource="true"/>
                   </Properties>
 
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel30" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                      <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel109" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel105" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel106" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel108" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel104" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel107" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel110" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel111" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="111" max="32767" attributes="0"/>
+                              <EmptySpace pref="133" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jGammaText3" max="32767" attributes="1"/>
-                                  <Component id="JTrText2" alignment="1" max="32767" attributes="1"/>
-                                  <Component id="JTrText1" alignment="1" max="32767" attributes="1"/>
-                                  <Component id="jTsMachText1" alignment="1" max="32767" attributes="1"/>
-                                  <Component id="jAlshdText1" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jWtText1" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jAltText1" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jMachText1" alignment="0" pref="143" max="32767" attributes="1"/>
+                                  <Component id="jGammaText9" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText14" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="JTrText13" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jTsMachText11" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jAlshdText13" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jWtText13" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText13" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText13" alignment="0" pref="143" max="32767" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -868,43 +2637,43 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jMachText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel109" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jAltText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jAltText13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel108" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jWtText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jWtText13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel106" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jAlshdText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jAlshdText13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel105" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTsMachText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTsMachText11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel104" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="JTrText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JTrText13" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel107" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="JTrText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel30" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="JTrText14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel110" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jGammaText3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jGammaText9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel111" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="29" max="32767" attributes="0"/>
                           </Group>
@@ -912,107 +2681,107 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel17">
+                    <Component class="javax.swing.JLabel" name="jLabel104">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel17.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel17.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel17" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel104.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel104.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel104" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel19">
+                    <Component class="javax.swing.JLabel" name="jLabel105">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel19.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel19.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel19" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel105.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel105.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel105" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel20">
+                    <Component class="javax.swing.JLabel" name="jLabel106">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel20.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel20.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel20" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel106.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel106.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel106" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel21">
+                    <Component class="javax.swing.JLabel" name="jLabel107">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel21.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel21.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel21" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel107.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel107.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel107" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel22">
+                    <Component class="javax.swing.JLabel" name="jLabel108">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel22.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel22.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel22" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel108.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel108.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel108" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel23">
+                    <Component class="javax.swing.JLabel" name="jLabel109">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel23.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel23.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel23" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel109.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel109.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel109" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jMachText1">
+                    <Component class="javax.swing.JTextField" name="jMachText13">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jMachText1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jMachText13" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jAltText1">
+                    <Component class="javax.swing.JTextField" name="jAltText13">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jAltText1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jAltText13" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jWtText1">
+                    <Component class="javax.swing.JTextField" name="jWtText13">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jWtText1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jWtText13" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jAlshdText1">
+                    <Component class="javax.swing.JTextField" name="jAlshdText13">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jAlshdText1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jAlshdText13" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTsMachText1">
+                    <Component class="javax.swing.JTextField" name="jTsMachText11">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jTsMachText1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jTsMachText11" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="JTrText1">
+                    <Component class="javax.swing.JTextField" name="JTrText13">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="JTrText1" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="JTrText13" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="JTrText2">
+                    <Component class="javax.swing.JTextField" name="JTrText14">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="JTrText2" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="JTrText14" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel30">
+                    <Component class="javax.swing.JLabel" name="jLabel110">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel30.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel30.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel30" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel110.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel110.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel110" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel33">
+                    <Component class="javax.swing.JLabel" name="jLabel111">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel33.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel33.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel33" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel111.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel111.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel111" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jGammaText3">
+                    <Component class="javax.swing.JTextField" name="jGammaText9">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jGammaText3" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jGammaText9" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="jPanel7">
+                <Container class="javax.swing.JPanel" name="jPanel35">
                   <Properties>
-                    <Property name="name" type="java.lang.String" value="jPanel7" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="jPanel35" noResource="true"/>
                   </Properties>
 
                   <Layout>
@@ -1021,23 +2790,17 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel32" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel27" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel28" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel29" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel31" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel117" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel114" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel115" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel116" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="167" max="32767" attributes="0"/>
+                              <EmptySpace pref="182" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTsMachText2" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jAlshdText2" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jWtText2" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jAltText2" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jMachText2" alignment="0" pref="143" max="32767" attributes="1"/>
-                                  <Component id="jStmachText2" alignment="0" max="32767" attributes="1"/>
-                                  <Component id="jGammaText2" alignment="1" max="32767" attributes="1"/>
+                                  <Component id="jAlshdText14" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jWtText14" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jAltText14" alignment="0" max="32767" attributes="1"/>
+                                  <Component id="jMachText14" alignment="0" pref="143" max="32767" attributes="1"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1048,127 +2811,76 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jMachText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jMachText14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel117" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jAltText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jAltText14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel116" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jWtText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel29" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jWtText14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel115" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jAlshdText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel28" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jAlshdText14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel114" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jStmachText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTsMachText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jGammaText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="69" max="32767" attributes="0"/>
+                              <EmptySpace pref="181" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel24">
+                    <Component class="javax.swing.JLabel" name="jLabel114">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel24.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel24.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel24" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel114.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel114.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel114" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel25">
+                    <Component class="javax.swing.JLabel" name="jLabel115">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel25.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel25.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel25" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel115.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel115.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel115" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel27">
+                    <Component class="javax.swing.JLabel" name="jLabel116">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel27.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel27.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel27" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel116.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel116.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel116" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel28">
+                    <Component class="javax.swing.JLabel" name="jLabel117">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel28.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel28.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel28" noResource="true"/>
+                        <Property name="text" type="java.lang.String" resourceKey="jLabel117.text"/>
+                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel117.toolTipText"/>
+                        <Property name="name" type="java.lang.String" value="jLabel117" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel29">
+                    <Component class="javax.swing.JTextField" name="jMachText14">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel29.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel29.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel29" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jMachText14" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel31">
+                    <Component class="javax.swing.JTextField" name="jAltText14">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel31.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel31.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel31" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jAltText14" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel32">
+                    <Component class="javax.swing.JTextField" name="jWtText14">
                       <Properties>
-                        <Property name="text" type="java.lang.String" resourceKey="jLabel32.text"/>
-                        <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel32.toolTipText"/>
-                        <Property name="name" type="java.lang.String" value="jLabel32" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jWtText14" noResource="true"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jMachText2">
+                    <Component class="javax.swing.JTextField" name="jAlshdText14">
                       <Properties>
-                        <Property name="name" type="java.lang.String" value="jMachText2" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jAltText2">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="jAltText2" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jWtText2">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="jWtText2" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jAlshdText2">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="jAlshdText2" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jStmachText2">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="jStmachText2" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jTsMachText2">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="jTsMachText2" noResource="true"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jGammaText2">
-                      <Properties>
-                        <Property name="name" type="java.lang.String" value="jGammaText2" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="jAlshdText14" noResource="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -1195,21 +2907,21 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel8" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanel9" alignment="0" min="-2" max="32767" attributes="0"/>
-                          <Component id="jPanel8" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jPanel9" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jPanel8" alignment="0" max="32767" attributes="1"/>
                       </Group>
-                      <EmptySpace min="-2" pref="316" max="-2" attributes="0"/>
+                      <EmptySpace pref="175" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1228,12 +2940,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="448" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="635" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="491" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="475" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -1250,23 +2962,21 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel1" alignment="0" min="-2" pref="312" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-                                      <Component id="jButton3" pref="84" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="321" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="jButton3" pref="84" max="32767" attributes="0"/>
                               </Group>
+                              <Component id="jScrollPane2" alignment="0" min="-2" pref="321" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="40" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                          <EmptySpace pref="20" max="32767" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="26" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="385" max="-2" attributes="0"/>
@@ -1352,56 +3062,6 @@
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jLiftTab">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jLiftTab" noResource="true"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="High Lift and Control">
-                <Property name="tabTitle" type="java.lang.String" resourceKey="jLiftTab.TabConstraints.tabTitle"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="865" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="612" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-        </Container>
-        <Container class="javax.swing.JPanel" name="jOtherTab">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jOtherTab" noResource="true"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Other">
-                <Property name="tabTitle" type="java.lang.String" resourceKey="jOtherTab.TabConstraints.tabTitle"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="865" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="612" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-        </Container>
         <Container class="javax.swing.JPanel" name="jOutputTab">
           <Properties>
             <Property name="name" type="java.lang.String" value="outputPane" noResource="true"/>
@@ -1424,7 +3084,7 @@
                           <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="671" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="746" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1438,10 +3098,10 @@
                               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="365" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jScrollPane1" pref="590" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="641" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1570,8 +3230,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jManualRefresh2" alignment="0" pref="132" max="32767" attributes="1"/>
-                              <Component id="jManualRefresh1" alignment="0" pref="132" max="32767" attributes="1"/>
+                              <Component id="jManualRefresh2" alignment="0" pref="208" max="32767" attributes="1"/>
+                              <Component id="jManualRefresh1" alignment="0" pref="208" max="32767" attributes="1"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -1605,190 +3265,6 @@
             </Container>
           </SubComponents>
         </Container>
-      </SubComponents>
-    </Container>
-    <Container class="javax.swing.JPanel" name="jPanel18">
-      <Properties>
-        <Property name="name" type="java.lang.String" value="jPanel18" noResource="true"/>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel49" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel50" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel51" alignment="0" min="-2" max="-2" attributes="1"/>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jLabel52" alignment="0" max="32767" attributes="1"/>
-                          <Component id="jLabel48" alignment="0" max="32767" attributes="1"/>
-                      </Group>
-                      <Component id="jLabel53" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel54" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="118" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jGammaText5" alignment="1" max="32767" attributes="1"/>
-                      <Component id="JTrText6" alignment="1" max="32767" attributes="1"/>
-                      <Component id="JTrText5" alignment="1" max="32767" attributes="1"/>
-                      <Component id="jTsMachText4" alignment="1" max="32767" attributes="1"/>
-                      <Component id="jAlshdText5" alignment="0" max="32767" attributes="1"/>
-                      <Component id="jWtText5" alignment="0" max="32767" attributes="1"/>
-                      <Component id="jAltText5" alignment="0" max="32767" attributes="1"/>
-                      <Component id="jMachText5" alignment="0" pref="143" max="32767" attributes="1"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jMachText5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel52" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jAltText5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel51" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jWtText5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel49" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jAlshdText5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTsMachText4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JTrText5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel50" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="JTrText6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel53" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jGammaText5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel54" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel47">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel47.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel47.toolTipText"/>
-            <Property name="name" type="java.lang.String" value="jLabel47" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel48">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel48.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel48.toolTipText"/>
-            <Property name="name" type="java.lang.String" value="jLabel48" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel49">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel49.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel49.toolTipText"/>
-            <Property name="name" type="java.lang.String" value="jLabel49" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel50">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel50.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel50.toolTipText"/>
-            <Property name="name" type="java.lang.String" value="jLabel50" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel51">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel51.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel51.toolTipText"/>
-            <Property name="name" type="java.lang.String" value="jLabel51" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel52">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel52.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel52.toolTipText"/>
-            <Property name="name" type="java.lang.String" value="jLabel52" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jMachText5">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jMachText5" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jAltText5">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jAltText5" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jWtText5">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jWtText5" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jAlshdText5">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jAlshdText5" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTsMachText4">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jTsMachText4" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="JTrText5">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="JTrText5" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="JTrText6">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="JTrText6" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel53">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel53.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel53.toolTipText"/>
-            <Property name="name" type="java.lang.String" value="jLabel53" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel54">
-          <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jLabel54.text"/>
-            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel54.toolTipText"/>
-            <Property name="name" type="java.lang.String" value="jLabel54" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jGammaText5">
-          <Properties>
-            <Property name="name" type="java.lang.String" value="jGammaText5" noResource="true"/>
-          </Properties>
-        </Component>
       </SubComponents>
     </Container>
   </SubComponents>
