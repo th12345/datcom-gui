@@ -304,7 +304,7 @@ public class RootFrame extends javax.swing.JFrame {
                             .addComponent(jDefaultFlightConditions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
                             .addComponent(jSetFlightConditions))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel14.border.title"))); // NOI18N
@@ -370,7 +370,7 @@ public class RootFrame extends javax.swing.JFrame {
             jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFlightHeaderTextLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jFlightHeaderTextLayout.setVerticalGroup(
@@ -1050,7 +1050,7 @@ public class RootFrame extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 904, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jOutputTabLayout.setVerticalGroup(
@@ -1179,7 +1179,7 @@ public class RootFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JComboBox jDefaultFlightConditions;
+    private static javax.swing.JComboBox jDefaultFlightConditions;
     private javax.swing.JTextArea jFlightHeader;
     private javax.swing.JPanel jFlightHeaderText;
     private javax.swing.JPanel jFlightTab;
@@ -1196,19 +1196,16 @@ public class RootFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel212;
     private javax.swing.JLabel jLabel213;
     private javax.swing.JLabel jLabel214;
-    private javax.swing.JLabel jLabel215;
     private javax.swing.JLabel jLabel216;
     private javax.swing.JLabel jLabel217;
     private javax.swing.JLabel jLabel218;
     private javax.swing.JLabel jLabel219;
-    private javax.swing.JLabel jLabel220;
     private javax.swing.JLabel jLabel221;
     private javax.swing.JLabel jLabel222;
     private javax.swing.JLabel jLabel223;
     private javax.swing.JLabel jLabel224;
     private javax.swing.JLabel jLabel231;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jLoopText;
     private javax.swing.JTextField jLoopText1;
     private javax.swing.JTextArea jMachText;
     private javax.swing.JTextField jMachText55;
@@ -1229,7 +1226,6 @@ public class RootFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
@@ -1256,7 +1252,6 @@ public class RootFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabs;
     private javax.swing.JTextField jTsMachText17;
     private javax.swing.JTextField jTsMachText18;
-    private javax.swing.JTextField jWeightText;
     private javax.swing.JTextField jWeightText1;
     private javax.swing.JPanel jWingTab;
     private javax.swing.JTextField jWtText20;
