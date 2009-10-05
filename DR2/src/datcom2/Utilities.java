@@ -5,6 +5,7 @@
 
 package datcom2;
 
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -16,19 +17,49 @@ import javax.swing.JTextField;
  */
 public class Utilities {
 
+
+ public String processHeader(JTextArea target)
+ {
+     String temp = target.getText();
+     temp.replaceAll("\n", "\n#");
+     return temp;
+ }
  /**
-  * Takes the text from the target text field, processes it for the correct
+  * Takes the text from the target text field/Area, processes it for the correct
   * format, and then sets the text back to the corrected data. It also returns
-  * the corrected string.
+  * the corrected string. This function returns SINGLE values.
   * @param target
   * @return The corrected string
   */
  public String processTextField(JTextField target)
  {
+     String [] targetText = null;
+     String temp = target.getText();
+     if(temp.contains(","))
+     {
+        targetText = temp.split(",");
+        target.setText(validateInput(targetText[0]));
+     }
+     else
+     {
+         target.setText(validateInput(temp));
+     }
+     
+     return target.getText();
+ }
+ 
+ /**
+  * Takes the text from the target text field/Area, processes it for the correct
+  * format, and then sets the text back to the corrected data. It also returns
+  * the corrected string. This function returns MULTIPLE values.
+  * @param target
+  * @return The corrected string
+  */
+ public String processTextField(JTextArea target)
+ {
      target.setText(validateInput(target.getText()));
      return target.getText();
  }
-
 /**
  * Function checks the input string for the decimal point required
  * by DATCOM, if it is missing it appends it to the end.
@@ -43,7 +74,10 @@ public String validateInput(String input)
     {
         return "";
     }
+
+    // Remove junk characters
     input = input.replaceAll(" ", "");
+    input = input.replaceAll("\t", "");
 
     // Check for comma delimited arrays
     if(input.contains(","))
