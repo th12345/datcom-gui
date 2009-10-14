@@ -63,17 +63,27 @@ public class BodyController {
         for(int i = 0; i < xValues.length; i++)
         {
             temp += xValues[i] + ", ";
+            // Wrap around neatly
+            if(i%4 == 0)
+            {
+                temp += "\n  ";
+            }
         }
         temp += "\n" + "R(1)=\t";
         for(int i = 0; i < xValues.length; i++)
         {
             temp+= radii[i] + ", ";
+            // Wrap around neatly
+            if(i%4 == 0)
+            {
+                temp += "\n  ";
+            }
         }
 
         // Trim off the extra comma
         temp = temp.substring(0, temp.length() - 2);
-        temp += "$\n#End of BODY Parameters\n";
-        model.setOutputData(temp);
+        temp += "$\n#End of BODY Parameters\n\n";
+        view.setOutputData(temp);
     }
 
     /**

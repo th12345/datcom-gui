@@ -79,10 +79,10 @@ public class SynthesisController {
             // Trim off the extra comma
             temp = temp.substring(0, temp.length() - 2);
             temp = "#Start of Synthesis data\n$SYNTH\n" + temp;
-            temp += "$\n#End of Synthesis data";
+            temp += "$\n#End of Synthesis data\n\n";
 
             // Set the output back to the model
-            model.setOutput(temp);
+            view.setOutputData(temp);
         }
     }
 

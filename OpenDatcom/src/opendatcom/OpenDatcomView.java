@@ -30,6 +30,7 @@ public class OpenDatcomView extends FrameView {
     SynthesisView synth;
     FlightConditionsView fcon;
     FlightSurfaceView wing, hTail, vTail;
+    OutputView  output;
 
     // Temp variables
     FlightSurfaceModel ht, hw;
@@ -51,6 +52,8 @@ public class OpenDatcomView extends FrameView {
         jHTailTab.add(hTail);
         vTail = new FlightSurfaceView(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
         jVTailTab.add(vTail);
+        output = new OutputView();
+        jOutputTab.add(output);
 
         /*
         for(int i = 0; i < globals.getDefaultFlightProfileNames().size(); i++)
@@ -156,16 +159,6 @@ public class OpenDatcomView extends FrameView {
         jVTailTab = new javax.swing.JPanel();
         jBodyTab = new javax.swing.JPanel();
         jOutputTab = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jOutputText = new javax.swing.JTextPane();
-        jPanel1 = new javax.swing.JPanel();
-        jManualSave = new javax.swing.JButton();
-        jManualEdit = new javax.swing.JButton();
-        jManualRevert = new javax.swing.JButton();
-        jManualRefresh = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jManualRefresh1 = new javax.swing.JButton();
-        jManualRefresh2 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -228,7 +221,7 @@ public class OpenDatcomView extends FrameView {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 475, Short.MAX_VALUE)
         );
 
         jPanel14.setName("jPanel14"); // NOI18N
@@ -310,7 +303,7 @@ public class OpenDatcomView extends FrameView {
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
+                .addContainerGap(267, Short.MAX_VALUE)
                 .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -376,7 +369,7 @@ public class OpenDatcomView extends FrameView {
         jTabs.addTab(resourceMap.getString("jHTailTab.TabConstraints.tabTitle"), jHTailTab); // NOI18N
 
         jVTailTab.setName("jVTailTab"); // NOI18N
-        jVTailTab.setLayout(new java.awt.GridLayout());
+        jVTailTab.setLayout(new java.awt.GridLayout(1, 0));
         jTabs.addTab(resourceMap.getString("jVTailTab.TabConstraints.tabTitle"), jVTailTab); // NOI18N
 
         jBodyTab.setName("jBodyTab"); // NOI18N
@@ -384,114 +377,7 @@ public class OpenDatcomView extends FrameView {
         jTabs.addTab(resourceMap.getString("jBodyTab.TabConstraints.tabTitle"), jBodyTab); // NOI18N
 
         jOutputTab.setName("outputPane"); // NOI18N
-
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-        jOutputText.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("jOutputText.border.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION))); // NOI18N
-        jOutputText.setEditable(false);
-        jOutputText.setFocusable(false);
-        jOutputText.setName("jOutputText"); // NOI18N
-        jScrollPane1.setViewportView(jOutputText);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel1.border.title"))); // NOI18N
-        jPanel1.setName("jPanel1"); // NOI18N
-
-        jManualSave.setText(resourceMap.getString("jManualSave.text")); // NOI18N
-        jManualSave.setEnabled(false);
-        jManualSave.setName("jManualSave"); // NOI18N
-
-        jManualEdit.setText(resourceMap.getString("jManualEdit.text")); // NOI18N
-        jManualEdit.setName("jManualEdit"); // NOI18N
-
-        jManualRevert.setText(resourceMap.getString("jManualRevert.text")); // NOI18N
-        jManualRevert.setEnabled(false);
-        jManualRevert.setName("jManualRevert"); // NOI18N
-
-        jManualRefresh.setText(resourceMap.getString("jManualRefresh.text")); // NOI18N
-        jManualRefresh.setName("jManualRefresh"); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jManualRefresh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jManualEdit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addComponent(jManualSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jManualRevert, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jManualEdit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jManualSave)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jManualRevert)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jManualRefresh)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel2.border.title"))); // NOI18N
-        jPanel2.setName("jPanel2"); // NOI18N
-
-        jManualRefresh1.setText(resourceMap.getString("jManualRefresh1.text")); // NOI18N
-        jManualRefresh1.setName("jManualRefresh1"); // NOI18N
-
-        jManualRefresh2.setText(resourceMap.getString("jManualRefresh2.text")); // NOI18N
-        jManualRefresh2.setName("jManualRefresh2"); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jManualRefresh2, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                    .addComponent(jManualRefresh1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jManualRefresh2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jManualRefresh1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jOutputTabLayout = new javax.swing.GroupLayout(jOutputTab);
-        jOutputTab.setLayout(jOutputTabLayout);
-        jOutputTabLayout.setHorizontalGroup(
-            jOutputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jOutputTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jOutputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jOutputTabLayout.setVerticalGroup(
-            jOutputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jOutputTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jOutputTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jOutputTabLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(757, 757, 757))
-        );
-
+        jOutputTab.setLayout(new java.awt.GridLayout());
         jTabs.addTab(resourceMap.getString("outputPane.TabConstraints.tabTitle"), jOutputTab); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -507,8 +393,8 @@ public class OpenDatcomView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabs, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -575,7 +461,14 @@ public class OpenDatcomView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabsFocusGained
-        System.out.println("Focus Gained");        // TODO add your handling code here:
+        String blah = "";
+        blah += fcon.getOutputData();
+        blah += synth.getOutputData();
+        blah += wing.getOutputData();
+        blah += hTail.getOutputData();
+        blah += vTail.getOutputData();
+        blah += body.getOutputData();
+        output.setOutputData(blah);
     }//GEN-LAST:event_jTabsFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -586,24 +479,14 @@ public class OpenDatcomView extends FrameView {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jMainTab;
-    private javax.swing.JButton jManualEdit;
-    private javax.swing.JButton jManualRefresh;
-    private javax.swing.JButton jManualRefresh1;
-    private javax.swing.JButton jManualRefresh2;
-    private javax.swing.JButton jManualRevert;
-    private javax.swing.JButton jManualSave;
     private javax.swing.JPanel jOutputTab;
-    private javax.swing.JTextPane jOutputText;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jSynthTab;
     private javax.swing.JTabbedPane jTabs;
     private javax.swing.JComboBox jUnitsSelect;

@@ -68,17 +68,17 @@ public class FlightSurfaceController {
     private void createOutput()
     {
         String temp = "";
-        safeAdd("CHRDTP=", model.getCHRDTP());
-        safeAdd("SSPNOP=", model.getSSPNOP());
-        safeAdd("SSPNE=", model.getSSPNE());
-        safeAdd("SSPN=", model.getSSPN());
-        safeAdd("CHRDBP=", model.getCHRDBP());
-        safeAdd("CHRDR=", model.getCHRDR());
-        safeAdd("SAVSI=", model.getSAVSI());
-        safeAdd("CHSTAT=", model.getCHSTAT());
-        safeAdd("TWISTA=", model.getTWISTA());
-        safeAdd("DHDADI=", model.getDHDADI());
-        safeAdd("TYPE=", model.getTYPE());
+        temp += safeAdd("CHRDTP=", model.getCHRDTP());
+        temp += safeAdd("SSPNOP=", model.getSSPNOP());
+        temp += safeAdd("SSPNE=", model.getSSPNE());
+        temp += safeAdd("SSPN=", model.getSSPN());
+        temp += safeAdd("CHRDBP=", model.getCHRDBP());
+        temp += safeAdd("CHRDR=", model.getCHRDR());
+        temp += safeAdd("SAVSI=", model.getSAVSI());
+        temp += safeAdd("CHSTAT=", model.getCHSTAT());
+        temp += safeAdd("TWISTA=", model.getTWISTA());
+        temp += safeAdd("DHDADI=", model.getDHDADI());
+        temp += safeAdd("TYPE=", model.getTYPE());
        
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
@@ -86,10 +86,10 @@ public class FlightSurfaceController {
             // Trim off the extra comma
             temp = temp.substring(0, temp.length() - 2);
             temp = "#Start of " + wingType + " data\n$" + wingType + "\n" + temp;
-            temp += "$\n#End of " + wingType + " data";
+            temp += "$\n#End of " + wingType + " data\n\n";
 
             // Set the output back to the model
-            model.setOutput(temp);
+            view.setOutputData(temp);
         }
     }
 

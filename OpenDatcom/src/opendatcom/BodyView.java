@@ -21,6 +21,7 @@ import javax.swing.JTable;
 public class BodyView extends javax.swing.JPanel {
 
     BodyController controller;
+    String outputData;
     /** Creates new form BodyView */
     public BodyView() {
         controller = new BodyController(this);
@@ -205,6 +206,14 @@ public class BodyView extends javax.swing.JPanel {
 
     public JTable getjBodyTable() {
         return jBodyTable;
+    }
+
+    public String getOutputData() {
+        return outputData;
+    }
+
+    public void setOutputData(String outputData) {
+        this.outputData = outputData;
     }
 
     public void setjBodyTable(JTable jBodyTable) {

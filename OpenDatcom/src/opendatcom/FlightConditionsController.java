@@ -36,6 +36,7 @@ public class FlightConditionsController {
     private void gatherData()
     {
         model.setFlightHeader(util.processHeader(view.getjFlightHeader()));
+
         model.setMachs(util.processTextField(view.getjMachText()));
         model.setAltitudes(util.processTextField(view.getjAltText()));
         model.setAoas(util.processTextField(view.getjAOAText()));
@@ -43,6 +44,7 @@ public class FlightConditionsController {
         model.setStMach(util.processDataField(view.getjSTMachText()));
         model.setTsMach(util.processDataField(view.getjTSMachText()));
         model.setGamma(util.processDataField(view.getjGammaText()));
+
     }
 
     /**
@@ -61,14 +63,14 @@ public class FlightConditionsController {
     private void createOutput()
     {
         String temp = "";
-        safeAdd("NMACH=", model.getnMach());
-        safeAdd("MACH(1)= " , model.getMachs());
-        safeAdd("NALPHA=" , model.getnAOA());
-        safeAdd("ALSCHD(1)= ", model.getAoas());
-        safeAdd("NALT=", model.getnAlt());
-        safeAdd("ALT(1)= ", model.getAltitudes());
-        safeAdd("WT= ", model.getWeight());
-        safeAdd("LOOP= ", model.getLoop());
+        temp += safeAdd("NMACH=", model.getnMach());
+        temp += safeAdd("MACH(1)= " , model.getMachs());
+        temp += safeAdd("NALPHA=" , model.getnAOA());
+        temp += safeAdd("ALSCHD(1)= ", model.getAoas());
+        temp += safeAdd("NALT=", model.getnAlt());
+        temp += safeAdd("ALT(1)= ", model.getAltitudes());
+        temp += safeAdd("WT= ", model.getWeight());
+        temp += safeAdd("LOOP= ", model.getLoop());
 
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
@@ -76,10 +78,10 @@ public class FlightConditionsController {
             // Trim off the extra comma
             temp = temp.substring(0, temp.length() - 2);
             temp = "#Start of Flight Condition data\n$FLTCON\n" + temp;
-            temp += "$\n#End of Flight Condition data";
+            temp += "$\n#End of Flight Condition data\n\n";
 
             // Set the output back to the model
-            model.setOutput(temp);
+            view.setOutputData(temp);
         }
     }
     

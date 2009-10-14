@@ -20,6 +20,7 @@ import javax.swing.JTextField;
  * @author -B-
  */
 public class FlightConditionsView extends javax.swing.JPanel {
+    String outputData;
     FlightConditionsController controller;
     /** Creates new form FlightConditionsView */
     public FlightConditionsView() {
@@ -382,6 +383,7 @@ public class FlightConditionsView extends javax.swing.JPanel {
 
     private void jSetFlightConditionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSetFlightConditionsActionPerformed
         controller.refresh();
+        System.out.println("Button Fires\n" + outputData);
 }//GEN-LAST:event_jSetFlightConditionsActionPerformed
 
     private void jWeightTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWeightTextActionPerformed
@@ -463,5 +465,14 @@ public class FlightConditionsView extends javax.swing.JPanel {
     public JTextField getjTSMachText() {
         return jTSMachText;
     }
+
+    public String getOutputData() {
+        return outputData;
+    }
+
+    public void setOutputData(String outputData) {
+        this.outputData = outputData;
+    }
+
 
 }
