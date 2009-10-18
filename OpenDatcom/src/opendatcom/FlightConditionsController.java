@@ -9,7 +9,7 @@ package opendatcom;
  *
  * @author -B-
  */
-public class FlightConditionsController {
+public class FlightConditionsController implements AbstractController {
 
     // Utilities
     ParserUtility util = new ParserUtility();
@@ -25,18 +25,18 @@ public class FlightConditionsController {
      * Standard constructor, set the model, view, controller references
      * @param view
      */
-    public FlightConditionsController(FlightConditionsView view) {
-        this.view = view;
+    public FlightConditionsController() {
+        this.view = new FlightConditionsView(this);
         this.model = FlightConditionsModel.getInstance();
     }
 
     /**
      * Gathers input data from the view and updates the model
      */
-    private void gatherData()
+    @Override
+    public void gatherData()
     {
         model.setFlightHeader(util.processHeader(view.getjFlightHeader()));
-
         model.setMachs(util.processTextField(view.getjMachText()));
         model.setAltitudes(util.processTextField(view.getjAltText()));
         model.setAoas(util.processTextField(view.getjAOAText()));
@@ -51,16 +51,18 @@ public class FlightConditionsController {
      * Refreshes the entire model/view/controllers links & formats the datcom
      * output data.
      */
+    @Override
     public void refresh()
     {
         gatherData();
-        createOutput();
+        generateOutput();
     }
 
     /**
      * Creates and formats the datcom data.
      */
-    private void createOutput()
+    @Override
+    public String generateOutput()
     {
         String temp = "";
         temp += safeAdd("NMACH=", model.getnMach());
@@ -83,6 +85,7 @@ public class FlightConditionsController {
             // Set the output back to the model
             view.setOutputData(temp);
         }
+        return temp;
     }
     
     /**
@@ -122,4 +125,14 @@ public class FlightConditionsController {
         temp += Header + "\t" + Data + ",\n";
         return temp;
     }
+
+    public FlightConditionsModel getModel() {
+        return model;
+    }
+
+    public FlightConditionsView getView() {
+        return view;
+    }
+
+    
 }

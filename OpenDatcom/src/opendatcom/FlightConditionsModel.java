@@ -35,6 +35,10 @@ public class FlightConditionsModel {
      * Private constructor as per singleton implementation.
      */
     private FlightConditionsModel() {
+        machs = "";
+        altitudes = "";
+        aoas = "";
+
     }
 
     /**

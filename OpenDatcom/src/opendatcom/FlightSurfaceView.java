@@ -23,9 +23,9 @@ public class FlightSurfaceView extends javax.swing.JPanel {
     String outputData;
     FlightSurfaceController controller;
     /** Creates new form FlightSurfaceView */
-    public FlightSurfaceView(FlightSurfaceModel.SURFACE_TYPE type) {
+    public FlightSurfaceView(FlightSurfaceModel.SURFACE_TYPE type, FlightSurfaceController controller) {
         initComponents();
-        controller = new FlightSurfaceController(this,type);
+        this.controller = controller;
     }
 
     /** This method is called from within the constructor to
@@ -600,6 +600,4 @@ public class FlightSurfaceView extends javax.swing.JPanel {
     public void setOutputData(String outputData) {
         this.outputData = outputData;
     }
-
-
 }

@@ -26,9 +26,10 @@ public class SynthesisView extends javax.swing.JPanel {
     String outputData;
     SynthesisController controller;
     /** Creates new form SynthesisView */
-    public SynthesisView() {
+
+    SynthesisView(SynthesisController controller) {
         initComponents();
-        controller = new SynthesisController(this);
+        this.controller = controller;
     }
 
     /** This method is called from within the constructor to

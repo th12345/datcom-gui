@@ -11,6 +11,7 @@
 
 package opendatcom;
 
+import java.util.LinkedList;
 import javax.swing.JTextPane;
 
 /**
@@ -20,10 +21,39 @@ import javax.swing.JTextPane;
 public class OutputView extends javax.swing.JPanel {
 
     String outputData;
+    LinkedList<AbstractController> controllers;
     /** Creates new form OutputView */
     public OutputView() {
         initComponents();
         outputData = "";
+        controllers = new LinkedList<AbstractController>();
+    }
+
+    /**
+     * Registers a controller with the view. The order matters! Controllers will
+     * be accessed in the order they are added.
+     * @param control The controller to register.
+     */
+    public void registerController(AbstractController control)
+    {
+        controllers.add(control);
+    }
+
+    /**
+     * Updates the text in the output's view
+     * @return
+     */
+    public String getControllerOutput()
+    {
+        String temp = "";
+        
+        for(int x = 0; x < controllers.size(); x++)
+        {
+            controllers.get(x).refresh();
+            temp += controllers.get(x).generateOutput();
+        }
+
+        return temp;
     }
 
     /** This method is called from within the constructor to
@@ -41,8 +71,8 @@ public class OutputView extends javax.swing.JPanel {
         jManualRefresh1 = new javax.swing.JButton();
         jManualRefresh2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jManualSave = new javax.swing.JButton();
-        jManualEdit = new javax.swing.JButton();
+        jShowDatcomReadable = new javax.swing.JButton();
+        jShowHumanReadable = new javax.swing.JButton();
         jManualRevert = new javax.swing.JButton();
         jSetData = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -91,13 +121,21 @@ public class OutputView extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel1.border.title"))); // NOI18N
         jPanel1.setName("jPanel1"); // NOI18N
 
-        jManualSave.setText(resourceMap.getString("jManualSave.text")); // NOI18N
-        jManualSave.setEnabled(false);
-        jManualSave.setName("jManualSave"); // NOI18N
+        jShowDatcomReadable.setText(resourceMap.getString("jShowDatcomReadable.text")); // NOI18N
+        jShowDatcomReadable.setName("jShowDatcomReadable"); // NOI18N
+        jShowDatcomReadable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jShowDatcomReadableActionPerformed(evt);
+            }
+        });
 
-        jManualEdit.setText(resourceMap.getString("jManualEdit.text")); // NOI18N
-        jManualEdit.setEnabled(false);
-        jManualEdit.setName("jManualEdit"); // NOI18N
+        jShowHumanReadable.setText(resourceMap.getString("jShowHumanReadable.text")); // NOI18N
+        jShowHumanReadable.setName("jShowHumanReadable"); // NOI18N
+        jShowHumanReadable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jShowHumanReadableActionPerformed(evt);
+            }
+        });
 
         jManualRevert.setText(resourceMap.getString("jManualRevert.text")); // NOI18N
         jManualRevert.setEnabled(false);
@@ -120,17 +158,17 @@ public class OutputView extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jManualRevert, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                     .addComponent(jSetData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                    .addComponent(jManualSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                    .addComponent(jManualEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                    .addComponent(jShowDatcomReadable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jShowHumanReadable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jManualEdit)
+                .addComponent(jShowHumanReadable)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jManualSave)
+                .addComponent(jShowDatcomReadable)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jManualRevert)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -205,20 +243,104 @@ public class OutputView extends javax.swing.JPanel {
         jOutputText.setText(outputData);
     }//GEN-LAST:event_jSetDataActionPerformed
 
+    private void jShowHumanReadableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowHumanReadableActionPerformed
+        String temp = getControllerOutput();
+        jOutputText.setText(temp);
+    }//GEN-LAST:event_jShowHumanReadableActionPerformed
+
+    private void jShowDatcomReadableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowDatcomReadableActionPerformed
+        String temp = getControllerOutput();
+        temp = removeComments(temp);
+        temp = temp.replaceAll("\t", "");
+        temp = consolidateSpacing(temp);
+        temp = datcomFormat(temp);
+        jOutputText.setText(temp);
+    }//GEN-LAST:event_jShowDatcomReadableActionPerformed
+
+    public String datcomFormat(String target)
+    {
+        String [] section = target.split("$");
+        String [] subsection = null;
+        target = "";
+        
+        for(int x = 0; x < section.length; x++)
+        {
+            subsection = section[x].split("\n");
+            for(int y = 0; y < subsection.length; y++)
+            {
+                target += " " + subsection[y];
+            }
+        }
+        return target;
+    }
+    
+    /**
+     * Removes all the comment lines from the input data.
+     * @param target The input data.
+     * @return The The input data - any # comments.
+     */
+    public String removeComments(String target)
+    {
+        String [] temp = target.split("\n");
+        target = "";
+
+        for(int x = 0; x < temp.length; x++)
+        {
+            temp[x] += "\n";
+            if(temp[x].charAt(0) == '#')
+            {
+                temp[x] = "";
+            }
+            target += temp[x];
+        }
+        return target;
+    }
+
+    public String consolidateSpacing(String target)
+    {
+        String [] temp = target.split("\n");
+        target = "";
+        int currentSpacing = 0;
+        int potentialSpacing = 0;
+        int maxLineSize = 50;
+        
+        for(int x = 0; x < temp.length; x++)
+        {
+            currentSpacing = temp[x].length();
+            target += temp[x] + " ";
+            for(int y = (x+1); y < temp.length; y++)
+            {
+               potentialSpacing = currentSpacing + temp[y].length();
+               if(potentialSpacing <= maxLineSize)
+                {
+                    currentSpacing = potentialSpacing;
+                    target += temp[y];
+                    temp[y] = "";
+                }
+               else
+               {
+                   target += "\n";
+                   break;
+               }
+            }
+           currentSpacing = 0;
+        }
+        return target;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jDrawPane;
-    private javax.swing.JButton jManualEdit;
     private javax.swing.JButton jManualRefresh1;
     private javax.swing.JButton jManualRefresh2;
     private javax.swing.JButton jManualRevert;
-    private javax.swing.JButton jManualSave;
     private javax.swing.JTextPane jOutputText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jSetData;
+    private javax.swing.JButton jShowDatcomReadable;
+    private javax.swing.JButton jShowHumanReadable;
     // End of variables declaration//GEN-END:variables
 
     public JTextPane getjOutputText() {

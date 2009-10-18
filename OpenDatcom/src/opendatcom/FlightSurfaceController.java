@@ -9,7 +9,7 @@ package opendatcom;
  *
  * @author -B-
  */
-public class FlightSurfaceController {
+public class FlightSurfaceController implements AbstractController {
     
     // Utilities
     ParserUtility util = new ParserUtility();
@@ -25,8 +25,8 @@ public class FlightSurfaceController {
      * Standard constructor, set the model, view, controller references
      * @param view
      */
-    public FlightSurfaceController(FlightSurfaceView view, FlightSurfaceModel.SURFACE_TYPE type) {
-        this.view = view;
+    public FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE type) {
+        this.view = new FlightSurfaceView(type, this);
         this.model = new FlightSurfaceModel(type);
         wingType = getSurfaceType();
     }
@@ -34,7 +34,8 @@ public class FlightSurfaceController {
     /**
      * Gathers input data from the view and updates the model
      */
-    private void gatherData()
+    @Override
+    public void gatherData()
     {
         model.setAirfoil(util.processTextField(view.getjAirfoil_Text()));
         model.setCHRDBP(util.processDataField(view.getjCHRDBP_Text()));
@@ -56,16 +57,18 @@ public class FlightSurfaceController {
      * Refreshes the entire model/view/controllers links & formats the datcom
      * output data.
      */
+    @Override
     public void refresh()
     {
         gatherData();
-        createOutput();
+        generateOutput();
     }
 
     /**
      * Creates and formats the datcom data.
      */
-    private void createOutput()
+    @Override
+    public String generateOutput()
     {
         String temp = "";
         temp += safeAdd("CHRDTP=", model.getCHRDTP());
@@ -91,6 +94,7 @@ public class FlightSurfaceController {
             // Set the output back to the model
             view.setOutputData(temp);
         }
+        return temp;
     }
 
     private String getSurfaceType()
@@ -141,5 +145,13 @@ public class FlightSurfaceController {
         }
         output += Header + "\t" +  Data + ",\n";
         return output;
+    }
+
+    public FlightSurfaceModel getModel() {
+        return model;
+    }
+
+    public FlightSurfaceView getView() {
+        return view;
     }
 }

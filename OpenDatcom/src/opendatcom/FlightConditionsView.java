@@ -23,9 +23,9 @@ public class FlightConditionsView extends javax.swing.JPanel {
     String outputData;
     FlightConditionsController controller;
     /** Creates new form FlightConditionsView */
-    public FlightConditionsView() {
+    public FlightConditionsView(FlightConditionsController controller) {
         initComponents();
-        controller = new FlightConditionsController(this);
+        this.controller = controller;
     }
 
     /** This method is called from within the constructor to

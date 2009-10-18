@@ -7,7 +7,8 @@ import javax.swing.JPanel;
  * @author -B-
  */
 public class DrawPanel extends JPanel {
-    public void DrawPanel()
+    public DrawPanel()
     {
+        super();
     }
 }

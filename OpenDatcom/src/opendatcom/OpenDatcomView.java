@@ -25,12 +25,14 @@ public class OpenDatcomView extends FrameView {
     Constants globals = new Constants();
     ParserUtility util = new ParserUtility();
 
-    // Individual panels
-    BodyView body;
-    SynthesisView synth;
-    FlightConditionsView fcon;
-    FlightSurfaceView wing, hTail, vTail;
-    OutputView  output;
+    // Controllers
+    BodyController bodyC;
+    SynthesisController synthC;
+    FlightConditionsController flightC;
+    FlightSurfaceController wingC, hTailC, vTailC;
+
+    //
+    OutputView output;
 
     // Temp variables
     FlightSurfaceModel ht, hw;
@@ -38,23 +40,39 @@ public class OpenDatcomView extends FrameView {
 
     public OpenDatcomView(SingleFrameApplication app) {
         super(app);
-
         initComponents();
-        fcon = new FlightConditionsView();
-        jFlightTab.add(fcon);
-        body = new BodyView();
-        jBodyTab.add(body);
-        synth = new SynthesisView();
-        jSynthTab.add(synth);
-        wing = new FlightSurfaceView(FlightSurfaceModel.SURFACE_TYPE.MAIN_WING);
-        jHWingTab.add(wing);
-        hTail = new FlightSurfaceView(FlightSurfaceModel.SURFACE_TYPE.HORIZONTAL_TAIL);
-        jHTailTab.add(hTail);
-        vTail = new FlightSurfaceView(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
-        jVTailTab.add(vTail);
+        bodyC = new BodyController();
+        flightC = new FlightConditionsController();
+        synthC = new SynthesisController();
+        wingC = new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.MAIN_WING);
+        hTailC = new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.HORIZONTAL_TAIL);
+        vTailC = new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
         output = new OutputView();
+
+        output.registerController(flightC);
+        output.registerController(bodyC);
+        output.registerController(synthC);
+        output.registerController(wingC);
+        output.registerController(hTailC);
+        output.registerController(vTailC);
+        
+        jFlightTab.add(flightC.getView());
+        jBodyTab.add(bodyC.getView());
+        jSynthTab.add(synthC.getView());
+        jHWingTab.add(wingC.getView());
+        jHTailTab.add(hTailC.getView());
+        jVTailTab.add(vTailC.getView());
         jOutputTab.add(output);
 
+        /**
+        // Registration
+        output.registerController(fcon);
+        output.registerController(body);
+        output.registerController();
+        output.registerController(wingC);
+        output.registerController(hTailC);
+        output.registerController(vTailC);
+        */
         /*
         for(int i = 0; i < globals.getDefaultFlightProfileNames().size(); i++)
         {
@@ -461,14 +479,7 @@ public class OpenDatcomView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabsFocusGained
-        String blah = "";
-        blah += fcon.getOutputData();
-        blah += synth.getOutputData();
-        blah += wing.getOutputData();
-        blah += hTail.getOutputData();
-        blah += vTail.getOutputData();
-        blah += body.getOutputData();
-        output.setOutputData(blah);
+
     }//GEN-LAST:event_jTabsFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

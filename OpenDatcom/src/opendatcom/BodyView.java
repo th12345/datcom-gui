@@ -23,8 +23,8 @@ public class BodyView extends javax.swing.JPanel {
     BodyController controller;
     String outputData;
     /** Creates new form BodyView */
-    public BodyView() {
-        controller = new BodyController(this);
+    public BodyView(BodyController controller) {
+        this.controller = controller;
         initComponents();
     }
 

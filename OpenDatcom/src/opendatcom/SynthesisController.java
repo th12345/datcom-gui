@@ -9,7 +9,7 @@ package opendatcom;
  *
  * @author -B-
  */
-public class SynthesisController {
+public class SynthesisController implements AbstractController{
 
     // Utilities
     ParserUtility util = new ParserUtility();
@@ -22,15 +22,15 @@ public class SynthesisController {
      * Standard constructor, set the model, view, controller references
      * @param view
      */
-    public SynthesisController(SynthesisView view) {
-        this.view = view;
+    public SynthesisController() {
+        this.view = new SynthesisView(this);
         this.model = SynthesisModel.getInstance();
     }
 
     /**
      * Gathers input data from the view and updates the model
      */
-    private void gatherData()
+    public void gatherData()
     {
         model.setALIH(util.processDataField(view.getjALIHText()));
         model.setALIW(util.processDataField(view.getjALIWText()));
@@ -53,13 +53,13 @@ public class SynthesisController {
     public void refresh()
     {
         gatherData();
-        createOutput();
+        generateOutput();
     }
 
     /**
      * Creates and formats the datcom data. 
      */
-    private void createOutput()
+    public String generateOutput()
     {
         String temp;
         temp = safeAdd("XCG=", model.getXCG());
@@ -84,6 +84,7 @@ public class SynthesisController {
             // Set the output back to the model
             view.setOutputData(temp);
         }
+        return temp;
     }
 
     /**
@@ -103,5 +104,13 @@ public class SynthesisController {
         }
         output += Header + "\t" +  Data + ",\n";
         return output;
+    }
+
+    public SynthesisModel getModel() {
+        return model;
+    }
+
+    public SynthesisView getView() {
+        return view;
     }
 }

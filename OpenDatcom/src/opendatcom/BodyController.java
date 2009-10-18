@@ -4,7 +4,7 @@ package opendatcom;
  * Controller method for the BodyModel model and the BodyModel View.
  * @author -B-
  */
-public class BodyController {
+public class BodyController implements AbstractController {
 
     // Utilities
     ParserUtility util = new ParserUtility();
@@ -17,15 +17,16 @@ public class BodyController {
      * Standard constructor, set the model, view, controller references
      * @param view
      */
-    public BodyController(BodyView view) {
-        this.view = view;
+    public BodyController() {
+        this.view = new BodyView(this);
         this.model = BodyModel.getInstance();
     }
 
     /**
      * Gathers input data from the view and updates the model
      */
-    private void gatherData()
+    @Override
+    public void gatherData()
     {
         double [][] temp = util.processBodyTable(view.getjBodyTable());
         model.setxValues(temp[0]);
@@ -36,21 +37,23 @@ public class BodyController {
      * Refreshes the entire model/view/controllers links & formats the datcom
      * output data.
      */
+    @Override
     public void refresh()
     {
         gatherData();
-        createOutput();
+        generateOutput();
     }
 
     /**
      * Creates and formats the datcom data. 
      */
-    private void createOutput()
+    @Override
+    public String generateOutput()
     {
         // Make sure the body parameters are defined, if not abort
         if(model.getRadii().length == 0 || model.getxValues().length == 0)
         {
-            return;
+            return "";
         }
         String temp = "";
         double [] xValues = model.getxValues();
@@ -84,6 +87,7 @@ public class BodyController {
         temp = temp.substring(0, temp.length() - 2);
         temp += "$\n#End of BODY Parameters\n\n";
         view.setOutputData(temp);
+        return temp;
     }
 
     /**
@@ -93,5 +97,13 @@ public class BodyController {
         model.setRadii(null);
         model.setxValues(null);
         view.getjBodyTable().removeAll();
+    }
+
+    public BodyModel getModel() {
+        return model;
+    }
+
+    public BodyView getView() {
+        return view;
     }
 }
