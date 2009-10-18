@@ -9,7 +9,7 @@ package opendatcom;
  * Class that serves as the model class for all flight surfaces.
  * @author -B-
  */
-public class FlightSurfaceModel {
+public class FlightSurfaceModel extends AbstractModel {
     public enum SURFACE_TYPE
     {
         MAIN_WING, HORIZONTAL_TAIL, VERTICAL_TAIL, OTHER, NUM_SURFACE_TYPES

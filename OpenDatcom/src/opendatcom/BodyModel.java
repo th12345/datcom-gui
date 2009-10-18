@@ -9,7 +9,7 @@ package opendatcom;
  *
  * @author -B-
  */
-public class BodyModel {
+public class BodyModel extends AbstractModel {
 
     // Self Reference
     static BodyModel selfReference;
@@ -18,9 +18,6 @@ public class BodyModel {
     private double xValues[];
     private double radii[];
     private double sectionCount;
-
-    // Formatted Data
-    String outputData = "";
     
     /**
      * Private constructor as per singleton implementation.
@@ -42,16 +39,6 @@ public class BodyModel {
             selfReference = new BodyModel();
         }
         return selfReference;
-    }
-
-    // Auto-generated code below this point
-    public String getOutputData() {
-        return outputData;
-    }
-
-    public void setOutputData(String outputData) {
-        this.outputData = outputData;
-        System.out.println(outputData);
     }
 
     public double[] getRadii() {
@@ -77,6 +64,4 @@ public class BodyModel {
     public void setxValues(double[] xValues) {
         this.xValues = xValues;
     }
-
-
 }

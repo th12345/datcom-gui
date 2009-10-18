@@ -9,14 +9,13 @@ package opendatcom;
  *
  * @author -B-
  */
-public class SynthesisController implements AbstractController{
+public class SynthesisController extends AbstractController{
 
     // Utilities
     ParserUtility util = new ParserUtility();
 
-    // References
-    SynthesisView view;
     SynthesisModel model;
+    SynthesisView view;
 
     /**
      * Standard constructor, set the model, view, controller references

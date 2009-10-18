@@ -9,10 +9,21 @@ package opendatcom;
  *
  * @author -B-
  */
-public abstract interface AbstractController {
-    String output = "";
+public abstract class AbstractController {
+
+    String outputText = "";
+    AbstractModel model;
+    AbstractView view;
     
     public abstract void gatherData();
     public abstract String generateOutput();
     public abstract void refresh();
+
+    public String getOutput() {
+        return outputText;
+    }
+
+    public void setOutput(String output) {
+        this.outputText = output;
+    }
 }

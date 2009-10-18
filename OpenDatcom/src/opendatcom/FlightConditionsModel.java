@@ -10,7 +10,7 @@ package opendatcom;
  * implemented as a singleton.
  * @author -B-
  */
-public class FlightConditionsModel {
+public class FlightConditionsModel extends AbstractModel {
 
     // Self Reference
     static FlightConditionsModel selfReference;

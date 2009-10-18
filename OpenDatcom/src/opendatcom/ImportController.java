@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author -B-
  */
-public class ImportController implements AbstractController{
+public class ImportController extends AbstractController{
     BufferedReader in;
 
     @Override

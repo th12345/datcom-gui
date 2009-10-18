@@ -9,17 +9,16 @@ package opendatcom;
  *
  * @author -B-
  */
-public class FlightSurfaceController implements AbstractController {
+public class FlightSurfaceController extends AbstractController {
     
     // Utilities
     ParserUtility util = new ParserUtility();
 
-    // References
-    FlightSurfaceView view;
-    FlightSurfaceModel model;
-
     // Variables
     String wingType;
+
+    FlightSurfaceModel model;
+    FlightSurfaceView view;
 
     /**
      * Standard constructor, set the model, view, controller references
@@ -92,7 +91,6 @@ public class FlightSurfaceController implements AbstractController {
             temp += "$\n#End of " + wingType + " data\n\n";
 
             // Set the output back to the model
-            view.setOutputData(temp);
         }
         return temp;
     }

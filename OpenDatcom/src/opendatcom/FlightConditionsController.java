@@ -9,17 +9,16 @@ package opendatcom;
  *
  * @author -B-
  */
-public class FlightConditionsController implements AbstractController {
+public class FlightConditionsController extends AbstractController {
 
     // Utilities
     ParserUtility util = new ParserUtility();
 
-    // References
-    FlightConditionsView view;
-    FlightConditionsModel model;
-
     // Variables
     String wingType;
+
+    FlightConditionsModel model;
+    FlightConditionsView view;
 
     /**
      * Standard constructor, set the model, view, controller references
@@ -133,6 +132,4 @@ public class FlightConditionsController implements AbstractController {
     public FlightConditionsView getView() {
         return view;
     }
-
-    
 }

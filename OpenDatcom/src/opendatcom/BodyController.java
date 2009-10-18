@@ -4,15 +4,13 @@ package opendatcom;
  * Controller method for the BodyModel model and the BodyModel View.
  * @author -B-
  */
-public class BodyController implements AbstractController {
+public class BodyController extends AbstractController {
 
     // Utilities
     ParserUtility util = new ParserUtility();
-
-    // References
-    BodyView view;
     BodyModel model;
-
+    BodyView view;
+    
     /**
      * Standard constructor, set the model, view, controller references
      * @param view
