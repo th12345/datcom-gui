@@ -28,6 +28,7 @@ public class FlightConditionsModel extends AbstractModel {
     private double nAOA;
     private double stMach;
     private double tsMach;
+    private double tr;
     private double gamma;
     private String output;
 
@@ -167,5 +168,13 @@ public class FlightConditionsModel extends AbstractModel {
 
     public String getOutput() {
         return output;
+    }
+
+    public double getTr() {
+        return tr;
+    }
+
+    public void setTr(double tr) {
+        this.tr = tr;
     }
 }

@@ -18,6 +18,7 @@ public class BodyController extends AbstractController {
     public BodyController() {
         this.view = new BodyView(this);
         this.model = BodyModel.getInstance();
+        this.xmlTag = "BODY";
     }
 
     /**
@@ -64,21 +65,12 @@ public class BodyController extends AbstractController {
         for(int i = 0; i < xValues.length; i++)
         {
             temp += xValues[i] + ", ";
-            // Wrap around neatly
-            if(i%4 == 0)
-            {
-                temp += "\n  ";
-            }
         }
         temp += "\n" + "R(1)=\t";
         for(int i = 0; i < xValues.length; i++)
         {
             temp+= radii[i] + ", ";
             // Wrap around neatly
-            if(i%4 == 0)
-            {
-                temp += "\n  ";
-            }
         }
 
         // Trim off the extra comma
@@ -103,5 +95,66 @@ public class BodyController extends AbstractController {
 
     public BodyView getView() {
         return view;
+    }
+
+    @Override
+    public void refreshFromSaved(String data) {
+        String section = util.xmlParse(xmlTag, data);
+        if(section.isEmpty())
+        {
+            return;
+        }
+        String radii = util.xmlParse("RADII", section);
+        String xValues = util.xmlParse("XVALUES", section);
+
+        radii = radii.replaceAll(" ", "");
+        String [] radiiValues = radii.split(",");
+        String [] XValues = xValues.split(",");
+        for(int x = 0; x < XValues.length; x++)
+        {
+            view.getjBodyTable().setValueAt(Double.parseDouble(XValues[x]), x, 0);
+            view.getjBodyTable().setValueAt(Double.parseDouble(radiiValues[x]), x, 1);
+        }
+        refresh();
+    }
+
+    @Override
+    public String generateXML()
+    {
+        // Init temps
+        String temp = "";
+        String array = "";
+        double [] radii = model.getRadii();
+        double [] xValues = model.getxValues();
+
+        if(radii.length == 0 || xValues.length == 0)
+        {
+            return "";
+        }
+
+        // Start of xml formatting
+        temp += "<" + xmlTag + ">\n";
+
+        // Fill in temp with values then parse
+        for(int i = 0; i < xValues.length; i++)
+        {
+            array += xValues[i] + ", ";
+        }
+        
+        // Get rid of extra comma
+        array = array.substring(0, array.length() - 2);
+        temp += util.xmlWrite("XVALUES", array);
+        array = "";
+        // Fill in temp with values then parse
+        for(int i = 0; i < xValues.length; i++)
+        {
+            array += radii[i] + ", ";
+        }
+
+        // Get rid of extra comma
+        array = array.substring(0, array.length() - 2);
+        temp += util.xmlWrite("RADII", array);
+        temp += "</" + xmlTag + ">\n";
+        return temp;
     }
 }

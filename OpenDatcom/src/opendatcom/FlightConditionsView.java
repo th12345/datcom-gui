@@ -94,6 +94,7 @@ public class FlightConditionsView extends javax.swing.JPanel implements Abstract
         jScrollPane3.setName("jScrollPane3"); // NOI18N
 
         jMachText.setColumns(20);
+        jMachText.setLineWrap(true);
         jMachText.setRows(5);
         jMachText.setName("jMachText"); // NOI18N
         jScrollPane3.setViewportView(jMachText);
@@ -101,6 +102,7 @@ public class FlightConditionsView extends javax.swing.JPanel implements Abstract
         jScrollPane4.setName("jScrollPane4"); // NOI18N
 
         jAltText.setColumns(20);
+        jAltText.setLineWrap(true);
         jAltText.setRows(5);
         jAltText.setName("jAltText"); // NOI18N
         jScrollPane4.setViewportView(jAltText);
@@ -108,6 +110,7 @@ public class FlightConditionsView extends javax.swing.JPanel implements Abstract
         jScrollPane5.setName("jScrollPane5"); // NOI18N
 
         jAOAText.setColumns(20);
+        jAOAText.setLineWrap(true);
         jAOAText.setRows(5);
         jAOAText.setName("jAOAText"); // NOI18N
         jScrollPane5.setViewportView(jAOAText);

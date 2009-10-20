@@ -11,9 +11,11 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 /**
@@ -24,12 +26,15 @@ public class OpenDatcomView extends FrameView {
     instanceData g_Data = new instanceData();
     Constants globals = new Constants();
     ParserUtility util = new ParserUtility();
+    JFileChooser fc;
+    File currentFile;
 
     // Controllers
     BodyController bodyC;
     SynthesisController synthC;
     FlightConditionsController flightC;
     FlightSurfaceController wingC, hTailC, vTailC;
+    ImportExportService in;
 
     //
     OutputView output;
@@ -41,21 +46,37 @@ public class OpenDatcomView extends FrameView {
     public OpenDatcomView(SingleFrameApplication app) {
         super(app);
         initComponents();
-        bodyC = new BodyController();
-        flightC = new FlightConditionsController();
-        synthC = new SynthesisController();
-        wingC = new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.MAIN_WING);
-        hTailC = new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.HORIZONTAL_TAIL);
-        vTailC = new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
-        output = new OutputView();
 
+        // Init the file chooser
+        fc = new JFileChooser();
+        fc.setFileFilter(new xmlFilter());
+
+        // Init the panels
+        bodyC   =   new BodyController();
+        flightC =   new FlightConditionsController();
+        synthC  =   new SynthesisController();
+        wingC   =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.MAIN_WING);
+        hTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.HORIZONTAL_TAIL);
+        vTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
+
+        // Register the controllers as needed
+        in = new ImportExportService();
+        in.RegisterController(flightC);
+        in.RegisterController(synthC);
+        in.RegisterController(wingC);
+        in.RegisterController(hTailC);
+        in.RegisterController(vTailC);
+        in.RegisterController(bodyC);
+        
+        output = new OutputView();
         output.registerController(flightC);
         output.registerController(bodyC);
         output.registerController(synthC);
         output.registerController(wingC);
         output.registerController(hTailC);
         output.registerController(vTailC);
-        
+
+        // Add the views to the tabbed pane
         jFlightTab.add(flightC.getView());
         jBodyTab.add(bodyC.getView());
         jSynthTab.add(synthC.getView());
@@ -64,29 +85,12 @@ public class OpenDatcomView extends FrameView {
         jVTailTab.add(vTailC.getView());
         jOutputTab.add(output);
 
-        /**
-        // Registration
-        output.registerController(fcon);
-        output.registerController(body);
-        output.registerController();
-        output.registerController(wingC);
-        output.registerController(hTailC);
-        output.registerController(vTailC);
-        */
-        /*
-        for(int i = 0; i < globals.getDefaultFlightProfileNames().size(); i++)
-        {
-            jDefaultFlightConditions.addItem(globals.getDefaultFlightProfileNames().get(i));
-        }
-        g_Data.setMachs(util.processTextField(jMachText));
-        g_Data.setAltitudes(util.processTextField(jAltText));
-        g_Data.setAoas(util.processTextField(jAOAText));
-
-        */
+        
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
             }
@@ -97,6 +101,7 @@ public class OpenDatcomView extends FrameView {
             busyIcons[i] = resourceMap.getIcon("StatusBar.busyIcons[" + i + "]");
         }
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
                 statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
@@ -109,6 +114,7 @@ public class OpenDatcomView extends FrameView {
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());
         taskMonitor.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            @Override
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 String propertyName = evt.getPropertyName();
                 if ("started".equals(propertyName)) {
@@ -178,7 +184,12 @@ public class OpenDatcomView extends FrameView {
         jBodyTab = new javax.swing.JPanel();
         jOutputTab = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
-        javax.swing.JMenu fileMenu = new javax.swing.JMenu();
+        javax.swing.JMenu jOpenMenu = new javax.swing.JMenu();
+        jOpen = new javax.swing.JMenuItem();
+        jLoadTemplate = new javax.swing.JMenuItem();
+        JSaveMenu = new javax.swing.JMenuItem();
+        jSaveAs = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JSeparator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
@@ -239,7 +250,7 @@ public class OpenDatcomView extends FrameView {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 457, Short.MAX_VALUE)
         );
 
         jPanel14.setName("jPanel14"); // NOI18N
@@ -321,7 +332,7 @@ public class OpenDatcomView extends FrameView {
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(267, Short.MAX_VALUE)
+                .addContainerGap(249, Short.MAX_VALUE)
                 .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -395,7 +406,7 @@ public class OpenDatcomView extends FrameView {
         jTabs.addTab(resourceMap.getString("jBodyTab.TabConstraints.tabTitle"), jBodyTab); // NOI18N
 
         jOutputTab.setName("outputPane"); // NOI18N
-        jOutputTab.setLayout(new java.awt.GridLayout());
+        jOutputTab.setLayout(new java.awt.GridLayout(1, 0));
         jTabs.addTab(resourceMap.getString("outputPane.TabConstraints.tabTitle"), jOutputTab); // NOI18N
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -411,21 +422,68 @@ public class OpenDatcomView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                .addComponent(jTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
         menuBar.setName("menuBar"); // NOI18N
 
-        fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
-        fileMenu.setName("fileMenu"); // NOI18N
+        jOpenMenu.setText(resourceMap.getString("jOpenMenu.text")); // NOI18N
+        jOpenMenu.setName("jOpenMenu"); // NOI18N
+        jOpenMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jOpenMenuActionPerformed(evt);
+            }
+        });
+
+        jOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jOpen.setText(resourceMap.getString("jOpen.text")); // NOI18N
+        jOpen.setName("jOpen"); // NOI18N
+        jOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jOpenActionPerformed(evt);
+            }
+        });
+        jOpenMenu.add(jOpen);
+
+        jLoadTemplate.setText(resourceMap.getString("jLoadTemplate.text")); // NOI18N
+        jLoadTemplate.setName("jLoadTemplate"); // NOI18N
+        jLoadTemplate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLoadTemplateActionPerformed(evt);
+            }
+        });
+        jOpenMenu.add(jLoadTemplate);
+
+        JSaveMenu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        JSaveMenu.setText(resourceMap.getString("JSaveMenu.text")); // NOI18N
+        JSaveMenu.setName("JSaveMenu"); // NOI18N
+        JSaveMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JSaveMenuActionPerformed(evt);
+            }
+        });
+        jOpenMenu.add(JSaveMenu);
+
+        jSaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jSaveAs.setText(resourceMap.getString("jSaveAs.text")); // NOI18N
+        jSaveAs.setName("jSaveAs"); // NOI18N
+        jSaveAs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSaveAsActionPerformed(evt);
+            }
+        });
+        jOpenMenu.add(jSaveAs);
+
+        jSeparator1.setName("jSeparator1"); // NOI18N
+        jOpenMenu.add(jSeparator1);
 
         javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomApp.class).getContext().getActionMap(OpenDatcomView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
-        fileMenu.add(exitMenuItem);
+        jOpenMenu.add(exitMenuItem);
 
-        menuBar.add(fileMenu);
+        menuBar.add(jOpenMenu);
 
         helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
         helpMenu.setName("helpMenu"); // NOI18N
@@ -482,14 +540,107 @@ public class OpenDatcomView extends FrameView {
 
     }//GEN-LAST:event_jTabsFocusGained
 
+    private void jOpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenMenuActionPerformed
+        
+    }//GEN-LAST:event_jOpenMenuActionPerformed
+
+    /**
+     * Save dialog
+     * @param evt
+     */
+    private void JSaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JSaveMenuActionPerformed
+
+        fc.setDialogTitle("Save:");
+        // Check if user has saved to a file before
+        if(currentFile == null)
+        {
+            int check = fc.showSaveDialog(this.getComponent());
+            if(check == JFileChooser.APPROVE_OPTION)
+            {
+                currentFile = fc.getSelectedFile();
+                in.writeXML(currentFile);
+            }
+            else if(check == JFileChooser.CANCEL_OPTION)
+            {
+                return;
+            }
+        }
+        // If user has already saved, don't display the select file box
+        else
+        {
+            in.writeXML(currentFile);
+        }
+        
+    }//GEN-LAST:event_JSaveMenuActionPerformed
+
+    /**
+     * Open/Load dialog
+     * @param evt
+     */
+    private void jOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenActionPerformed
+        fc.setDialogTitle("Open Project:");
+        int check = fc.showOpenDialog(this.getComponent());
+        if(check == JFileChooser.APPROVE_OPTION)
+        {
+            currentFile = fc.getSelectedFile();
+            in.importFile(currentFile);
+        }
+        else if(check == JFileChooser.CANCEL_OPTION)
+        {
+            return;
+        }
+    }//GEN-LAST:event_jOpenActionPerformed
+
+    /**
+     * Save As dialog
+     * @param evt
+     */
+    private void jSaveAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveAsActionPerformed
+
+        fc.setDialogTitle("Save As:");
+        int check = fc.showSaveDialog(this.getComponent());
+        if(check == JFileChooser.APPROVE_OPTION)
+        {
+            currentFile = fc.getSelectedFile();
+            in.writeXML(currentFile);
+        }
+        else if(check == JFileChooser.CANCEL_OPTION)
+        {
+            return;
+        }
+    }//GEN-LAST:event_jSaveAsActionPerformed
+
+    /**
+     * Loads a file but does not set the currentFile flag which means that that
+     * program will not default save to the template file, instead the user will
+     * be prompted to save as a new file.
+     * @param evt
+     */
+    private void jLoadTemplateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoadTemplateActionPerformed
+        fc.setDialogTitle("Select Template:");
+        int check = fc.showOpenDialog(this.getComponent());
+        if(check == JFileChooser.APPROVE_OPTION)
+        {
+            File target = fc.getSelectedFile();
+            in.importFile(target);
+        }
+        else if(check == JFileChooser.CANCEL_OPTION)
+        {
+
+        }
+    }//GEN-LAST:event_jLoadTemplateActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem JSaveMenu;
     private javax.swing.JPanel jBodyTab;
     private javax.swing.JPanel jFlightTab;
     private javax.swing.JPanel jHTailTab;
     private javax.swing.JPanel jHWingTab;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JMenuItem jLoadTemplate;
     private javax.swing.JPanel jMainTab;
+    private javax.swing.JMenuItem jOpen;
     private javax.swing.JPanel jOutputTab;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel14;
@@ -498,6 +649,8 @@ public class OpenDatcomView extends FrameView {
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JMenuItem jSaveAs;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jSynthTab;
     private javax.swing.JTabbedPane jTabs;
     private javax.swing.JComboBox jUnitsSelect;

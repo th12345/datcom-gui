@@ -144,7 +144,6 @@ public class ParserUtility {
             temp = String.valueOf(target.getValueAt(r, c));
             // Clear the table value to get rid of any input errors
             target.setValueAt(null, r, c);
-            System.out.println(temp);
 
             // Prepare for strange Java behavior:
             // The JTable sets the value in temp to "null" and not actually the null
@@ -157,7 +156,6 @@ public class ParserUtility {
             else
             {
                 count[c]++;
-                System.out.println("Fires");
                 data[c][r] = Double.parseDouble((String.valueOf(temp)));
                 temp = null;
             }
@@ -317,4 +315,54 @@ public String removeComments(String input)
     }
     return output;
 }
+    public String xmlParse(String targetElement, String data)
+    {
+        String temp = "";
+        String startXml = "<" + targetElement + ">";
+        String endXml = "</" + targetElement + ">";
+        int start = data.indexOf(startXml);
+        int end = data.indexOf(endXml);
+
+        if(start == -1)
+        {
+            System.out.println(targetElement + " not found in save file");
+            return "";
+        }
+        else if(end == -1)
+        {
+            System.out.println("Found non-terminated XML tag");
+            return "";
+        }
+
+        temp = data.substring(start, end);
+        temp = temp.replaceAll(startXml, "");
+        temp = temp.replaceAll(endXml, "");
+        System.out.println(temp);
+        return temp;
+    }
+
+    public String xmlWrite(String elementTag, String data)
+    {
+        String temp = "";
+        if(data.isEmpty())
+        {
+            return "";
+        }
+        String startXML = "<" + elementTag + ">";
+        String endXML = "</" + elementTag + ">";
+        return startXML + data + endXML + "\n";
+    }
+
+    public String xmlWrite(String elementTag, double data)
+    {
+        String temp = "";
+        if(Double.isNaN(data))
+        {
+            return "";
+        }
+        String startXML = "<" + elementTag + ">";
+        String endXML = "</" + elementTag + ">";
+
+        return startXML + String.valueOf(data) + endXML + "\n";
+    }
 }

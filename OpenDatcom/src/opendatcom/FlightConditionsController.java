@@ -27,6 +27,7 @@ public class FlightConditionsController extends AbstractController {
     public FlightConditionsController() {
         this.view = new FlightConditionsView(this);
         this.model = FlightConditionsModel.getInstance();
+        this.xmlTag = "FLTCON";
     }
 
     /**
@@ -43,7 +44,7 @@ public class FlightConditionsController extends AbstractController {
         model.setStMach(util.processDataField(view.getjSTMachText()));
         model.setTsMach(util.processDataField(view.getjTSMachText()));
         model.setGamma(util.processDataField(view.getjGammaText()));
-
+        model.setTr(util.processDataField(view.getjTRText()));
     }
 
     /**
@@ -131,5 +132,41 @@ public class FlightConditionsController extends AbstractController {
 
     public FlightConditionsView getView() {
         return view;
+    }
+
+    @Override
+    public void refreshFromSaved(String data)
+    {
+        String section = util.xmlParse(xmlTag, data);
+        if(section.isEmpty())
+        {
+            return;
+        }
+        view.getjMachText().setText(util.xmlParse("MACH", section));
+        view.getjAOAText().setText(util.xmlParse("AOA", section));
+        view.getjAltText().setText(util.xmlParse("ALT", section));
+        view.getjSTMachText().setText(util.xmlParse("ST", section));
+        view.getjTSMachText().setText(util.xmlParse("TS", section));
+        view.getjTRText().setText(util.xmlParse("TR", section));
+        view.getjGammaText().setText(util.xmlParse("GAMMA", section));
+        view.getjWeightText().setText(util.xmlParse("WEIGHT", section));
+        refresh();
+    }
+
+    @Override
+    public String generateXML() {
+        String temp = "";
+        temp += "<" + xmlTag + ">\n";
+
+        temp+= util.xmlWrite("ALT", model.getAltitudes());
+        temp+= util.xmlWrite("AOA", model.getAoas());
+        temp+= util.xmlWrite("MACH", model.getMachs());
+        temp+= util.xmlWrite("GAMMA", model.getGamma());
+        temp+= util.xmlWrite("ST", model.getStMach());
+        temp+= util.xmlWrite("TS", model.getTsMach());
+        temp+= util.xmlWrite("TR", model.getTr());
+        temp+= util.xmlWrite("WEIGHT", model.getWeight());
+        temp += "</" + xmlTag + ">\n";
+        return temp;
     }
 }
