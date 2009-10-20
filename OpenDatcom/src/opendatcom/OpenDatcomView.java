@@ -50,6 +50,7 @@ public class OpenDatcomView extends FrameView {
         // Init the file chooser
         fc = new JFileChooser();
         fc.setFileFilter(new xmlFilter());
+        fc.setCurrentDirectory(new java.io.File("."));
 
         // Init the panels
         bodyC   =   new BodyController();
