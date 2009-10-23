@@ -5,6 +5,9 @@
 
 package opendatcom;
 
+import java.util.LinkedList;
+import javax.swing.JPanel;
+
 /**
  *
  * @author -B-
@@ -12,11 +15,28 @@ package opendatcom;
 public abstract class AbstractController {
 
     String outputText = "";
+    String name = "Undefined";
     String xmlTag = "";
     AbstractModel model;
-    AbstractView view;
-    ParserUtility util = new ParserUtility();
+    JPanel view;
+    LinkedList<AbstractController> otherControllers;
+    ParserUtility util = ParserUtility.getInstance();
+    OpenDatcomView parent = OpenDatcomView.getInstance();
+    
+    /**
+     * Registers the module with the main app interface. Sets all internal and
+     * external references and initializes runtime variables.
+     */
+    public void registerForMe()
+    {
+        otherControllers = new LinkedList<AbstractController>();
+        parent.registerModule(this);
+    }
 
+    public boolean registerWithService(String serviceName)
+    {
+        return parent.registerToService(serviceName, this);
+    }
     /**
      * Pulls data from the view and stores it in the model.
      */
@@ -78,5 +98,13 @@ public abstract class AbstractController {
      */
     public void setXmlTag(String xmlTag) {
         this.xmlTag = xmlTag;
+    }
+
+    public JPanel getView() {
+        return view;
+    }
+
+    public String getName() {
+        return name;
     }
 }

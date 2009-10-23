@@ -11,9 +11,6 @@ package opendatcom;
  */
 public class SynthesisController extends AbstractController{
 
-    // Utilities
-    ParserUtility util = new ParserUtility();
-
     SynthesisModel model;
     SynthesisView view;
 
@@ -25,11 +22,15 @@ public class SynthesisController extends AbstractController{
         this.view = new SynthesisView(this);
         this.model = SynthesisModel.getInstance();
         this.xmlTag = "SYNTHESIS";
+        this.name = "Synthesis";
+        registerWithService("ImportExport");
+        registerForMe();
     }
 
     /**
      * Gathers input data from the view and updates the model
      */
+    @Override
     public void gatherData()
     {
         model.setALIH(util.processDataField(view.getjALIHText()));
@@ -50,6 +51,7 @@ public class SynthesisController extends AbstractController{
      * Refreshes the entire model/view/controllers links & formats the datcom
      * output data.
      */
+    @Override
     public void refresh()
     {
         gatherData();
@@ -59,19 +61,20 @@ public class SynthesisController extends AbstractController{
     /**
      * Creates and formats the datcom data. 
      */
+    @Override
     public String generateOutput()
     {
         String temp;
-        temp = safeAdd("XCG=", model.getXCG());
-        temp += safeAdd("ZCG=", model.getZCG());
-        temp += safeAdd("XW=", model.getXW());
-        temp += safeAdd("ZW=", model.getZW());
-        temp += safeAdd("ALIH=", model.getALIH());
-        temp += safeAdd("ALIW=", model.getALIW());
-        temp += safeAdd("XH=", model.getXH());
-        temp += safeAdd("ZH=", model.getZH());
-        temp += safeAdd("XV=", model.getXV());
-        temp += safeAdd("ZV=", model.getZV());
+        temp = util.safeAdd("XCG=", model.getXCG());
+        temp += util.safeAdd("ZCG=", model.getZCG());
+        temp += util.safeAdd("XW=", model.getXW());
+        temp += util.safeAdd("ZW=", model.getZW());
+        temp += util.safeAdd("ALIH=", model.getALIH());
+        temp += util.safeAdd("ALIW=", model.getALIW());
+        temp += util.safeAdd("XH=", model.getXH());
+        temp += util.safeAdd("ZH=", model.getZH());
+        temp += util.safeAdd("XV=", model.getXV());
+        temp += util.safeAdd("ZV=", model.getZV());
 
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
@@ -85,25 +88,6 @@ public class SynthesisController extends AbstractController{
             view.setOutputData(temp);
         }
         return temp;
-    }
-
-    /**
-     * All the safeAdd functions take the input data and format  it the following
-     * way: <  Header \t Data, \n >. The input data is checked for error conditions
-     * (empty string or NaN double) and rejected if invalid. If valid, it is
-     * appended to the end of the aggragateData string.
-     * @param Header
-     * @param Data
-     */
-    private String safeAdd(String Header, double Data)
-    {
-        String output = "";
-        if(Double.isNaN(Data))
-        {
-            return output;
-        }
-        output += Header + "\t" +  Data + ",\n";
-        return output;
     }
 
     public SynthesisModel getModel() {

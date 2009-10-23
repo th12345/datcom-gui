@@ -4,6 +4,10 @@
 
 package opendatcom;
 
+import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -17,15 +21,23 @@ import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import java.util.LinkedList;
+import javax.swing.JPanel;
+
 
 /**
  * The application's main frame.
  */
 public class OpenDatcomView extends FrameView {
+    private static OpenDatcomView self;
     // Golbal Stuff
     instanceData g_Data = new instanceData();
     Constants globals = new Constants();
-    ParserUtility util = new ParserUtility();
+    int numTabs = 5;
+    ParserUtility util = ParserUtility.getInstance();
+    LinkedList<AbstractController> controllers;
+    LinkedList<AbstractService> services;
+    LinkedList<JPanel> tabs;
     JFileChooser fc;
     File currentFile;
 
@@ -46,46 +58,57 @@ public class OpenDatcomView extends FrameView {
     public OpenDatcomView(SingleFrameApplication app) {
         super(app);
         initComponents();
+        self = this;
 
         // Init the file chooser
         fc = new JFileChooser();
         fc.setFileFilter(new xmlFilter());
         fc.setCurrentDirectory(new java.io.File("."));
 
-        // Init the panels
-        bodyC   =   new BodyController();
+        // Init variables required for MVC registration
+        controllers = new LinkedList<AbstractController>();
+        services    = new LinkedList<AbstractService>();
+        tabs        = new LinkedList<JPanel>();
+
+        // Init services
+        in = new ImportExportService();
+
+        // Initialize the panels. Note that the order matters here, the initialization
+        // order determines the tab order
         flightC =   new FlightConditionsController();
         synthC  =   new SynthesisController();
+        bodyC   =   new BodyController();
         wingC   =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.MAIN_WING);
         hTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.HORIZONTAL_TAIL);
         vTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
-
-        // Register the controllers as needed
-        in = new ImportExportService();
-        in.RegisterController(flightC);
-        in.RegisterController(synthC);
-        in.RegisterController(wingC);
-        in.RegisterController(hTailC);
-        in.RegisterController(vTailC);
-        in.RegisterController(bodyC);
+        output  =   new OutputView();
         
-        output = new OutputView();
+        // Iterate through and add the modules to the tab frame.
+        JPanel tempJPanel;
+        for(int x = 0; x < controllers.size(); x++)
+        {
+            tempJPanel = new JPanel();
+            tempJPanel.setLayout(new GridLayout(1,0));
+            tempJPanel.setName(controllers.get(x).getName());
+            tempJPanel.add((controllers.get(x)).getView());
+            tabs.add(tempJPanel);
+            jTabs.addTab(tempJPanel.getName(), tempJPanel);
+        }
+
+        // Add the output panel since it doesnt have a controller.
+        tempJPanel = new JPanel();
+        tempJPanel.setLayout(new GridLayout(1,0));
+        tempJPanel.setName("Output");
+        tempJPanel.add(output);
+        jTabs.addTab("Output", tempJPanel);
+
+        // Register the controllers to services as needed
         output.registerController(flightC);
-        output.registerController(bodyC);
         output.registerController(synthC);
+        output.registerController(bodyC);
         output.registerController(wingC);
         output.registerController(hTailC);
         output.registerController(vTailC);
-
-        // Add the views to the tabbed pane
-        jFlightTab.add(flightC.getView());
-        jBodyTab.add(bodyC.getView());
-        jSynthTab.add(synthC.getView());
-        jHWingTab.add(wingC.getView());
-        jHTailTab.add(hTailC.getView());
-        jVTailTab.add(vTailC.getView());
-        jOutputTab.add(output);
-
         
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -177,13 +200,6 @@ public class OpenDatcomView extends FrameView {
         jLabel3 = new javax.swing.JLabel();
         jUnitsSelect = new javax.swing.JComboBox();
         jPanel29 = new javax.swing.JPanel();
-        jFlightTab = new javax.swing.JPanel();
-        jSynthTab = new javax.swing.JPanel();
-        jHWingTab = new javax.swing.JPanel();
-        jHTailTab = new javax.swing.JPanel();
-        jVTailTab = new javax.swing.JPanel();
-        jBodyTab = new javax.swing.JPanel();
-        jOutputTab = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu jOpenMenu = new javax.swing.JMenu();
         jOpen = new javax.swing.JMenuItem();
@@ -382,34 +398,6 @@ public class OpenDatcomView extends FrameView {
 
         jTabs.addTab(resourceMap.getString("jMainTab.TabConstraints.tabTitle"), jMainTab); // NOI18N
 
-        jFlightTab.setName("jFlightTab"); // NOI18N
-        jFlightTab.setLayout(new java.awt.GridLayout(1, 0));
-        jTabs.addTab(resourceMap.getString("jFlightTab.TabConstraints.tabTitle"), jFlightTab); // NOI18N
-
-        jSynthTab.setName("jSynthTab"); // NOI18N
-        jSynthTab.setLayout(new java.awt.GridLayout(1, 0));
-        jTabs.addTab(resourceMap.getString("jSynthTab.TabConstraints.tabTitle"), jSynthTab); // NOI18N
-
-        jHWingTab.setName("jHWingTab"); // NOI18N
-        jHWingTab.setLayout(new java.awt.GridLayout(1, 0));
-        jTabs.addTab(resourceMap.getString("jHWingTab.TabConstraints.tabTitle"), jHWingTab); // NOI18N
-
-        jHTailTab.setName("jHTailTab"); // NOI18N
-        jHTailTab.setLayout(new java.awt.GridLayout(1, 0));
-        jTabs.addTab(resourceMap.getString("jHTailTab.TabConstraints.tabTitle"), jHTailTab); // NOI18N
-
-        jVTailTab.setName("jVTailTab"); // NOI18N
-        jVTailTab.setLayout(new java.awt.GridLayout(1, 0));
-        jTabs.addTab(resourceMap.getString("jVTailTab.TabConstraints.tabTitle"), jVTailTab); // NOI18N
-
-        jBodyTab.setName("jBodyTab"); // NOI18N
-        jBodyTab.setLayout(new java.awt.GridLayout(1, 0));
-        jTabs.addTab(resourceMap.getString("jBodyTab.TabConstraints.tabTitle"), jBodyTab); // NOI18N
-
-        jOutputTab.setName("outputPane"); // NOI18N
-        jOutputTab.setLayout(new java.awt.GridLayout(1, 0));
-        jTabs.addTab(resourceMap.getString("outputPane.TabConstraints.tabTitle"), jOutputTab); // NOI18N
-
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -537,10 +525,6 @@ public class OpenDatcomView extends FrameView {
         setStatusBar(statusPanel);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTabsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabsFocusGained
-
-    }//GEN-LAST:event_jTabsFocusGained
-
     private void jOpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenMenuActionPerformed
         
     }//GEN-LAST:event_jOpenMenuActionPerformed
@@ -555,15 +539,17 @@ public class OpenDatcomView extends FrameView {
         // Check if user has saved to a file before
         if(currentFile == null)
         {
-            int check = fc.showSaveDialog(this.getComponent());
-            if(check == JFileChooser.APPROVE_OPTION)
-            {
+           try {
                 currentFile = fc.getSelectedFile();
+                if (!currentFile.getName().contains(".xml"))
+                {
+
+                    currentFile = new File(currentFile.getName() + ".xml");
+                }
+                currentFile.createNewFile();
                 in.writeXML(currentFile);
-            }
-            else if(check == JFileChooser.CANCEL_OPTION)
-            {
-                return;
+            } catch (IOException ex) {
+                Logger.getLogger(OpenDatcomView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         // If user has already saved, don't display the select file box
@@ -602,8 +588,18 @@ public class OpenDatcomView extends FrameView {
         int check = fc.showSaveDialog(this.getComponent());
         if(check == JFileChooser.APPROVE_OPTION)
         {
-            currentFile = fc.getSelectedFile();
-            in.writeXML(currentFile);
+            try {
+                currentFile = fc.getSelectedFile();
+                if (!currentFile.getName().contains(".xml"))
+                {
+
+                    currentFile = new File(currentFile.getName() + ".xml");
+                }
+                currentFile.createNewFile();
+                in.writeXML(currentFile);
+            } catch (IOException ex) {
+                Logger.getLogger(OpenDatcomView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         else if(check == JFileChooser.CANCEL_OPTION)
         {
@@ -631,18 +627,17 @@ public class OpenDatcomView extends FrameView {
         }
     }//GEN-LAST:event_jLoadTemplateActionPerformed
 
+    private void jTabsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabsFocusGained
+
+}//GEN-LAST:event_jTabsFocusGained
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JSaveMenu;
-    private javax.swing.JPanel jBodyTab;
-    private javax.swing.JPanel jFlightTab;
-    private javax.swing.JPanel jHTailTab;
-    private javax.swing.JPanel jHWingTab;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuItem jLoadTemplate;
     private javax.swing.JPanel jMainTab;
     private javax.swing.JMenuItem jOpen;
-    private javax.swing.JPanel jOutputTab;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel27;
@@ -652,10 +647,8 @@ public class OpenDatcomView extends FrameView {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JMenuItem jSaveAs;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JPanel jSynthTab;
     private javax.swing.JTabbedPane jTabs;
     private javax.swing.JComboBox jUnitsSelect;
-    private javax.swing.JPanel jVTailTab;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
@@ -672,4 +665,39 @@ public class OpenDatcomView extends FrameView {
 
     private JDialog aboutBox;
 
+
+    public void registerService(AbstractService target)
+    {
+        services.add(target);
+    }
+
+    void registerModule(AbstractController target)
+    {
+        controllers.add(target);
+    }
+
+    /**
+     * Registers a controller with a service by the services's name.
+     * @param serviceName The service to register to.
+     * @param self Reference to the controller to register (this)
+     * @return True if the service is found and successfully registered.
+     */
+    boolean registerToService(String serviceName, AbstractController self)
+    {
+        for(int i = 0; i < services.size(); i++)
+        {
+            if(services.get(i).getName().equalsIgnoreCase(serviceName))
+            {
+                //TODO: prevent duplicate registrations here
+                services.get(i).registerController(self);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static OpenDatcomView getInstance()
+    {
+        return self;
+    }
 }

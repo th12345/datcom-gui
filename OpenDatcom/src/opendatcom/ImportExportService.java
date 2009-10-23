@@ -21,19 +21,15 @@ import java.util.logging.Logger;
  * also allows retroing parsed data back into the correct form/text fields.
  * @author -B-
  */
-public class ImportExportService{
+public class ImportExportService extends AbstractService{
     BufferedReader in;
-    LinkedList<AbstractController> controllers;
     String xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
 
     public ImportExportService()
     {
+        name = "ImportExport";
         controllers = new LinkedList<AbstractController>();
-    }
-
-    public void RegisterController(AbstractController target)
-    {
-        controllers.add(target);
+        registerForMe();
     }
 
     public void importFile(File inputFile)
@@ -58,10 +54,14 @@ public class ImportExportService{
     }
 
     public void writeXML(File inputFile)
-    {
+    {        
         String temp = "";
         System.out.println("Writing XML");
         try {
+           if(!inputFile.exists())
+           {
+                inputFile.createNewFile();
+           } 
            BufferedWriter output = new BufferedWriter(new FileWriter(inputFile));
            for(int x = 0; x < controllers.size(); x++)
            {

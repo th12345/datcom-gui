@@ -19,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author -B-
  */
-public class FlightConditionsView extends javax.swing.JPanel implements AbstractView{
+public class FlightConditionsView extends javax.swing.JPanel{
     String outputData;
     FlightConditionsController controller;
     /** Creates new form FlightConditionsView */

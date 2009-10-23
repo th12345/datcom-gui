@@ -11,8 +11,6 @@ package opendatcom;
  */
 public class FlightSurfaceController extends AbstractController {
     
-    // Utilities
-    ParserUtility util = new ParserUtility();
 
     // Variables
     String wingType;
@@ -28,6 +26,8 @@ public class FlightSurfaceController extends AbstractController {
         this.model = new FlightSurfaceModel(type);
         wingType = getSurfaceType();
         this.xmlTag = wingType;
+        registerWithService("ImportExport");
+        registerForMe();
     }
 
     /**
@@ -36,7 +36,7 @@ public class FlightSurfaceController extends AbstractController {
     @Override
     public void gatherData()
     {
-        model.setAirfoil(util.processTextField(view.getjAirfoil_Text()));
+        model.setAirfoil(view.getjAirfoil_Text().getText());
         model.setCHRDBP(util.processDataField(view.getjCHRDBP_Text()));
         model.setCHRDR(util.processDataField(view.getjCHRDR_Text()));
         model.setCHRDTP(util.processDataField(view.getjCHRDTP_Text()));
@@ -70,26 +70,31 @@ public class FlightSurfaceController extends AbstractController {
     public String generateOutput()
     {
         String temp = "";
-        temp += safeAdd("CHRDTP=", model.getCHRDTP());
-        temp += safeAdd("SSPNOP=", model.getSSPNOP());
-        temp += safeAdd("SSPNE=", model.getSSPNE());
-        temp += safeAdd("SSPN=", model.getSSPN());
-        temp += safeAdd("CHRDBP=", model.getCHRDBP());
-        temp += safeAdd("CHRDR=", model.getCHRDR());
-        temp += safeAdd("SAVSI=", model.getSAVSI());
-        temp += safeAdd("CHSTAT=", model.getCHSTAT());
-        temp += safeAdd("TWISTA=", model.getTWISTA());
-        temp += safeAdd("DHDADI=", model.getDHDADI());
-        temp += safeAdd("TYPE=", model.getTYPE());
+        temp += util.safeAdd("CHRDTP=", model.getCHRDTP());
+        temp += util.safeAdd("SSPNOP=", model.getSSPNOP());
+        temp += util.safeAdd("SSPNE=", model.getSSPNE());
+        temp += util.safeAdd("SSPN=", model.getSSPN());
+        temp += util.safeAdd("CHRDBP=", model.getCHRDBP());
+        temp += util.safeAdd("CHRDR=", model.getCHRDR());
+        temp += util.safeAdd("SAVSI=", model.getSAVSI());
+        temp += util.safeAdd("CHSTAT=", model.getCHSTAT());
+        temp += util.safeAdd("TWISTA=", model.getTWISTA());
+        temp += util.safeAdd("DHDADI=", model.getDHDADI());
+        temp += util.safeAdd("TYPE=", model.getTYPE());
        
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
-        {
-            // Trim off the extra comma
+        {            
             temp = temp.substring(0, temp.length() - 2);
-            temp = "#Start of " + wingType + " data\n$" + wingType + "\n" + temp;
+            String header = "#Start of " + wingType + " data\n";
+            if(!model.getAirfoil().isEmpty())
+            {
+                // Double space everything as per datcom standard
+                temp = temp.replace(" ", "  ");
+                header += model.getAirfoil() + "\n";
+            }
+            temp = header +  " $" + wingType + "\n" + temp;
             temp += "$\n#End of " + wingType + " data\n\n";
-
             // Set the output back to the model
         }
         return temp;
@@ -103,45 +108,29 @@ public class FlightSurfaceController extends AbstractController {
             case MAIN_WING:
             {
                 output = "WGPLNF";
+                this.name = "Wing";
                 break;
             }
             case HORIZONTAL_TAIL:
             {
                 output = "HTPLNF";
+                this.name = "Horizontal Tail";
                 break;
             }
             case VERTICAL_TAIL:
             {
                 output = "VTPLNF";
+                this.name = "Vertical Tail";
                 break;
             }
             case OTHER:
             {
                 //TODO: Define the rest of the planform types
-                output = "undefinted";
+                output = "undefined";
                 break;
             }
         }
         view.setjTitle(output + " Parameters");
-        return output;
-    }
-
-    /**
-     * All the safeAdd functions take the input data and format  it the following
-     * way: <  Header \t Data, \n >. The input data is checked for error conditions
-     * (empty string or NaN double) and rejected if invalid. If valid, it is
-     * appended to the end of the aggragateData string.
-     * @param Header
-     * @param Data
-     */
-    private String safeAdd(String Header, double Data)
-    {
-        String output = "";
-        if(Double.isNaN(Data))
-        {
-            return output;
-        }
-        output += Header + "\t" +  Data + ",\n";
         return output;
     }
 

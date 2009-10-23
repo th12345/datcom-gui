@@ -6,8 +6,6 @@ package opendatcom;
  */
 public class BodyController extends AbstractController {
 
-    // Utilities
-    ParserUtility util = new ParserUtility();
     BodyModel model;
     BodyView view;
     
@@ -19,6 +17,9 @@ public class BodyController extends AbstractController {
         this.view = new BodyView(this);
         this.model = BodyModel.getInstance();
         this.xmlTag = "BODY";
+        this.name = "Body";
+        registerWithService("ImportExport");
+        registerForMe();
     }
 
     /**
@@ -60,13 +61,13 @@ public class BodyController extends AbstractController {
         
         temp += "# Start of Body Parameters\n";
         temp += "$BODY\n";
-        temp += "NX=\t" + xValues.length + "\n";
-        temp += "X(1)=\t";
+        temp += " NX=\t" + xValues.length + "\n";
+        temp += " X(1)=\t";
         for(int i = 0; i < xValues.length; i++)
         {
             temp += xValues[i] + ", ";
         }
-        temp += "\n" + "R(1)=\t";
+        temp += "\n R(1)=\t";
         for(int i = 0; i < xValues.length; i++)
         {
             temp+= radii[i] + ", ";

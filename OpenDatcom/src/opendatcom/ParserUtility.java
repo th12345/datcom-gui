@@ -13,10 +13,23 @@ import javax.swing.JTextField;
  * Class that is really more of a set of like functions. The main purpose of the
  * class is parsing data from the user and making sure that input will not break
  * the program or the DATCOM. All inputs come through their respected function and
- * must eventually be run through the validate() method where applicable.
+ * must eventually be run through the validate() method where applicable. Class is
+ * a singleton. Call getInstance to create instead of constructor.
  * @author -B-
  */
 public class ParserUtility {
+
+    static ParserUtility self;
+    public static ParserUtility getInstance()
+    {
+        if(self == null)
+        {
+            self = new ParserUtility();
+        }
+        return self;
+    }
+
+    private ParserUtility() {}
 
   /**
    * Takes the text from the target text field/Area, processes it for the correct
@@ -236,7 +249,11 @@ public String validate(String input)
     }
 
     // Not an array then check/add decimal
-    if(input.contains("."))
+    if(input.isEmpty())
+    {
+        return "";
+    }
+    else if(input.contains("."))
     {
         // Check for leading zeros
         if(input.toCharArray()[0] == '.')
@@ -258,7 +275,7 @@ public String validate(String input)
  * @param input The input string
  * @return The input string checked and corrected for decimals
  */
-private String processButtonTextArray(String input)
+public String processButtonTextArray(String input)
 {
     // Split the input into arrays based on the comma
     String arrayHolder[] = input.split(",");
@@ -267,7 +284,11 @@ private String processButtonTextArray(String input)
     // Iterate through and add decimals as necessary
     for(int i = 0; i < arrayHolder.length; i++)
     {
-        if(!arrayHolder[i].contains("."))
+        if(arrayHolder[i].isEmpty())
+        {
+            // Do... nothing
+        }
+        else if(!arrayHolder[i].contains("."))
         {
             arrayHolder[i] += ".0";
         }
@@ -294,27 +315,28 @@ private String processButtonTextArray(String input)
  */
 public String removeComments(String input)
 {
-    String temp[];
-    String output = "";
-    temp = input.split("\\n");
-    int trimPoint = -1;
-    for(int i = 0; i < temp.length; i++)
-    {
-        if(temp[i].contains("#"))
+        String temp[];
+        String output = "";
+        temp = input.split("\\n");
+        int trimPoint = -1;
+        for(int i = 0; i < temp.length; i++)
         {
-            // eventually find the point the comment starts at
-            trimPoint = temp[i].indexOf('#');
-            temp[i] = temp[i].substring(0, trimPoint);
+            if(temp[i].contains("#"))
+            {
+                // eventually find the point the comment starts at
+                trimPoint = temp[i].indexOf('#');
+                temp[i] = temp[i].substring(0, trimPoint);
+            }
+            else
+            {
+                // add back to the output string, !!! MAKE SURE TO ADD THE \n BACK
+                // IN !!! The split command removes it.
+                output += temp[i] + "\\n";
+            }
         }
-        else
-        {
-            // add back to the output string, !!! MAKE SURE TO ADD THE \n BACK
-            // IN !!! The split command removes it.
-            output += temp[i] + "\\n";
-        }
-    }
     return output;
-}
+    }
+
     public String xmlParse(String targetElement, String data)
     {
         String temp = "";
@@ -341,9 +363,16 @@ public String removeComments(String input)
         return temp;
     }
 
+    /**
+     * Formats and returns a string containing the correctly formatted xml data
+     * using the given tag and data. If the data value is blank, NaN, or null the
+     * function returns an empty string "".
+     * @param elementTag The xml tag, without < >
+     * @param data The element data
+     * @return A string containing the properly-formatted xml element.
+     */
     public String xmlWrite(String elementTag, String data)
     {
-        String temp = "";
         if(data.isEmpty())
         {
             return "";
@@ -353,9 +382,16 @@ public String removeComments(String input)
         return startXML + data + endXML + "\n";
     }
 
+    /**
+     * Formats and returns a string containing the correctly formatted xml data
+     * using the given tag and data. If the data value is blank, NaN, or null the
+     * function returns an empty string "".
+     * @param elementTag The xml tag, without < >
+     * @param data The element data
+     * @return A string containing the properly-formatted xml element.
+     */
     public String xmlWrite(String elementTag, double data)
     {
-        String temp = "";
         if(Double.isNaN(data))
         {
             return "";
@@ -364,5 +400,43 @@ public String removeComments(String input)
         String endXML = "</" + elementTag + ">";
 
         return startXML + String.valueOf(data) + endXML + "\n";
+    }
+
+     /**
+     * All the safeAdd functions take the input data and format  it the following
+     * way: <  Header \t Data, \n >. The input data is checked for error conditions
+     * (empty string or NaN double) and rejected if invalid. If valid, it is
+     * appended to the end of the aggragateData string.
+     * @param Header
+     * @param Data
+     */
+    public String safeAdd(String Header, double Data)
+    {
+        String output = "";
+        if(Double.isNaN(Data))
+        {
+            return output;
+        }
+        output +=  " " + Header + "\t" +  Data + ",\n";
+        return output;
+    }
+
+    /**
+     * All the safeAdd functions take the input data and format  it the following
+     * way: <  Header \t Data, \n >. The input data is checked for error conditions
+     * (empty string or NaN double) and rejected if invalid. If valid, it is
+     * appended to the end of the aggragateData string.
+     * @param Header
+     * @param Data
+     */
+    public String safeAdd(String Header, String Data)
+    {
+        String output = "";
+        if(Data.isEmpty())
+        {
+            return output;
+        }
+        output += " " + Header + "\t" +  Data + ",\n";
+        return output;
     }
 }

@@ -11,9 +11,6 @@ package opendatcom;
  */
 public class FlightConditionsController extends AbstractController {
 
-    // Utilities
-    ParserUtility util = new ParserUtility();
-
     // Variables
     String wingType;
 
@@ -28,6 +25,9 @@ public class FlightConditionsController extends AbstractController {
         this.view = new FlightConditionsView(this);
         this.model = FlightConditionsModel.getInstance();
         this.xmlTag = "FLTCON";
+        this.name = "Flight Conditions";
+        registerWithService("ImportExport");
+        registerForMe();
     }
 
     /**
@@ -65,14 +65,14 @@ public class FlightConditionsController extends AbstractController {
     public String generateOutput()
     {
         String temp = "";
-        temp += safeAdd("NMACH=", model.getnMach());
-        temp += safeAdd("MACH(1)= " , model.getMachs());
-        temp += safeAdd("NALPHA=" , model.getnAOA());
-        temp += safeAdd("ALSCHD(1)= ", model.getAoas());
-        temp += safeAdd("NALT=", model.getnAlt());
-        temp += safeAdd("ALT(1)= ", model.getAltitudes());
-        temp += safeAdd("WT= ", model.getWeight());
-        temp += safeAdd("LOOP= ", model.getLoop());
+        temp += util.safeAdd("NMACH=", model.getnMach());
+        temp += util.safeAdd("MACH(1)= " , model.getMachs());
+        temp += util.safeAdd("NALPHA=" , model.getnAOA());
+        temp += util.safeAdd("ALSCHD(1)= ", model.getAoas());
+        temp += util.safeAdd("NALT=", model.getnAlt());
+        temp += util.safeAdd("ALT(1)= ", model.getAltitudes());
+        temp += util.safeAdd("WT= ", model.getWeight());
+        temp += util.safeAdd("LOOP= ", model.getLoop());
 
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
@@ -85,44 +85,6 @@ public class FlightConditionsController extends AbstractController {
             // Set the output back to the model
             view.setOutputData(temp);
         }
-        return temp;
-    }
-    
-    /**
-     * All the safeAdd functions take the input data and format  it the following
-     * way: <  Header \t Data, \n >. The input data is checked for error conditions
-     * (empty string or NaN double) and review.getjected if invalid. If valid, it is
-     * appended to the end of the aggragateData string.
-     * @param Header
-     * @param Data
-     */
-    private String safeAdd(String Header, double Data)
-    {
-        String output = "";
-        if(Double.isNaN(Data))
-        {
-            return output;
-        }
-        output += Header + "\t" +  Data + ",\n";
-        return output;
-    }
-
-    /**
-     * All the safeAdd functions take the input data and format  it the following
-     * way: <  Header \t Data, \n >. The input data is checked for error conditions
-     * (empty string or NaN double) and rejected if invalid. If valid, it is
-     * appended to the end of the aggragateData string.
-     * @param Header
-     * @param Data
-     */
-    private String safeAdd(String Header, String Data)
-    {
-        String temp = "";
-        if(Data.isEmpty())
-        {
-            return "";
-        }
-        temp += Header + "\t" + Data + ",\n";
         return temp;
     }
 
