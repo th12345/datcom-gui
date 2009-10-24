@@ -22,6 +22,7 @@ public class OutputView extends javax.swing.JPanel {
 
     String outputData;
     LinkedList<AbstractController> controllers;
+
     /** Creates new form OutputView */
     public OutputView() {
         initComponents();
@@ -360,5 +361,29 @@ public class OutputView extends javax.swing.JPanel {
         jOutputText.setText(outputData);
     }
 
+    public void runDATCOM(String target, String workingPath, String sectionHeader){
+       //declare classes needed for writing output file, creating a batch file,
+       //and running the program.
+        runDatcom runBabyRun = new runDatcom();
+        getFor005 printFile = new getFor005();
+        writeBAT createBatchFile = new writeBAT();
 
+       // If user selects to run DATCOM
+        String[] openDatcom = {workingPath + "\\Datcom.bat"};
+        String mkDir = "cmd /c mkdir " + workingPath + "\\" + sectionHeader;
+
+        runBabyRun.executeDatcom(mkDir);
+
+        printFile.writeFile(workingPath + "\\" + sectionHeader, "for005.dat", target);
+
+        createBatchFile.writeFile(workingPath, sectionHeader);
+
+        runBabyRun.executeDatcom(openDatcom);
+
+        /*Review Panel Commands - TODO:
+        for005panel =  this;
+        reviewPanel = new REVIEW(workingPath + "\\" + sectionHeader + "\\for006.dat", for005panel, mainClass);
+        reviewPanel.showFor006();
+        */
+    }
 }
