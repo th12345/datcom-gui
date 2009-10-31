@@ -31,6 +31,9 @@ public class FlightConditionsModel extends AbstractModel {
     private double tr;
     private double gamma;
     private String output;
+    private double sref;
+    private double cbarr;
+    private double blref;
 
     /**
      * Private constructor as per singleton implementation.
@@ -39,6 +42,7 @@ public class FlightConditionsModel extends AbstractModel {
         machs = "";
         altitudes = "";
         aoas = "";
+        loop = 1;
 
     }
 
@@ -176,5 +180,29 @@ public class FlightConditionsModel extends AbstractModel {
 
     public void setTr(double tr) {
         this.tr = tr;
+    }
+
+    public double getBlref() {
+        return blref;
+    }
+
+    public void setBlref(double blref) {
+        this.blref = blref;
+    }
+
+    public double getCbarr() {
+        return cbarr;
+    }
+
+    public void setCbarr(double cbarr) {
+        this.cbarr = cbarr;
+    }
+
+    public double getSref() {
+        return sref;
+    }
+
+    public void setSref(double sref) {
+        this.sref = sref;
     }
 }

@@ -17,7 +17,7 @@ public class AbstractService
 {
     String name = "default";
     LinkedList<AbstractController> controllers;
-    OpenDatcomView parent = OpenDatcomView.getInstance();
+    OpenDatcomController parent = OpenDatcomController.getInstance();
 
     /**
      * Registers the service with the main app & initializes all variables. Should

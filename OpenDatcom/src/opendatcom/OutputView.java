@@ -1,9 +1,4 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
  * OutputView.java
  *
  * Created on Oct 14, 2009, 2:09:07 AM
@@ -11,23 +6,40 @@
 
 package opendatcom;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FilePermission;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextPane;
+import sun.management.FileSystem;
 
 /**
- *
+ * 
  * @author -B-
  */
 public class OutputView extends javax.swing.JPanel {
 
     String outputData;
     LinkedList<AbstractController> controllers;
+    OpenDatcomController parent;
+    ExecService exec;
+    ProjectService ps;
+
 
     /** Creates new form OutputView */
     public OutputView() {
         initComponents();
         outputData = "";
         controllers = new LinkedList<AbstractController>();
+        parent = OpenDatcomController.getInstance();
+        exec = ExecService.getInstance();
+        ps = ProjectService.getInstance();
     }
 
     /**
@@ -69,8 +81,8 @@ public class OutputView extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jOutputText = new javax.swing.JTextPane();
         jPanel2 = new javax.swing.JPanel();
-        jManualRefresh1 = new javax.swing.JButton();
-        jManualRefresh2 = new javax.swing.JButton();
+        jRunDatcom = new javax.swing.JButton();
+        jGenerateDatFile = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jShowDatcomReadable = new javax.swing.JButton();
         jShowHumanReadable = new javax.swing.JButton();
@@ -83,7 +95,7 @@ public class OutputView extends javax.swing.JPanel {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomApp.class).getContext().getResourceMap(OutputView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getResourceMap(OutputView.class);
         jOutputText.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("jOutputText.border.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION))); // NOI18N
         jOutputText.setEditable(false);
         jOutputText.setFocusable(false);
@@ -93,11 +105,21 @@ public class OutputView extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel2.border.title"))); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
 
-        jManualRefresh1.setText(resourceMap.getString("jManualRefresh1.text")); // NOI18N
-        jManualRefresh1.setName("jManualRefresh1"); // NOI18N
+        jRunDatcom.setText(resourceMap.getString("jRunDatcom.text")); // NOI18N
+        jRunDatcom.setName("jRunDatcom"); // NOI18N
+        jRunDatcom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRunDatcomActionPerformed(evt);
+            }
+        });
 
-        jManualRefresh2.setText(resourceMap.getString("jManualRefresh2.text")); // NOI18N
-        jManualRefresh2.setName("jManualRefresh2"); // NOI18N
+        jGenerateDatFile.setText(resourceMap.getString("jGenerateDatFile.text")); // NOI18N
+        jGenerateDatFile.setName("jGenerateDatFile"); // NOI18N
+        jGenerateDatFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jGenerateDatFileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -106,16 +128,16 @@ public class OutputView extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jManualRefresh2, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jManualRefresh1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                    .addComponent(jGenerateDatFile, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jRunDatcom, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jManualRefresh2)
+                .addComponent(jGenerateDatFile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jManualRefresh1)
+                .addComponent(jRunDatcom)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -143,6 +165,7 @@ public class OutputView extends javax.swing.JPanel {
         jManualRevert.setName("jManualRevert"); // NOI18N
 
         jSetData.setText(resourceMap.getString("jSetData.text")); // NOI18N
+        jSetData.setEnabled(false);
         jSetData.setName("jSetData"); // NOI18N
         jSetData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +209,7 @@ public class OutputView extends javax.swing.JPanel {
         jDrawPane.setLayout(jDrawPaneLayout);
         jDrawPaneLayout.setHorizontalGroup(
             jDrawPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 163, Short.MAX_VALUE)
+            .addGap(0, 167, Short.MAX_VALUE)
         );
         jDrawPaneLayout.setVerticalGroup(
             jDrawPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +252,7 @@ public class OutputView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -247,97 +270,59 @@ public class OutputView extends javax.swing.JPanel {
     private void jShowHumanReadableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowHumanReadableActionPerformed
         String temp = getControllerOutput();
         jOutputText.setText(temp);
+        parent.getUnits();
     }//GEN-LAST:event_jShowHumanReadableActionPerformed
 
     private void jShowDatcomReadableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowDatcomReadableActionPerformed
         String temp = getControllerOutput();
-        temp = removeComments(temp);
-        temp = temp.replaceAll("\t", "");
-        temp = consolidateSpacing(temp);
         temp = datcomFormat(temp);
         jOutputText.setText(temp);
     }//GEN-LAST:event_jShowDatcomReadableActionPerformed
 
-    public String datcomFormat(String target)
-    {
-        String [] section = target.split("$");
-        String [] subsection = null;
-        target = "";
-        
-        for(int x = 0; x < section.length; x++)
-        {
-            subsection = section[x].split("\n");
-            for(int y = 0; y < subsection.length; y++)
-            {
-                target += " " + subsection[y];
-            }
-        }
-        return target;
-    }
-    
+    private void jGenerateDatFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGenerateDatFileActionPerformed
+        generateDat();
+    }//GEN-LAST:event_jGenerateDatFileActionPerformed
+
+    private void jRunDatcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRunDatcomActionPerformed
+        generateDat();
+        runDatcom();
+    }//GEN-LAST:event_jRunDatcomActionPerformed
+
     /**
-     * Removes all the comment lines from the input data.
+     * Removes all the comments & blank lines from the input data.
      * @param target The input data.
      * @return The The input data - any # comments.
      */
-    public String removeComments(String target)
+    public String datcomFormat(String target)
     {
         String [] temp = target.split("\n");
         target = "";
-
         for(int x = 0; x < temp.length; x++)
         {
-            temp[x] += "\n";
-            if(temp[x].charAt(0) == '#')
+            if(!temp[x].isEmpty())
             {
-                temp[x] = "";
-            }
-            target += temp[x];
-        }
-        return target;
-    }
-
-    public String consolidateSpacing(String target)
-    {
-        String [] temp = target.split("\n");
-        target = "";
-        int currentSpacing = 0;
-        int potentialSpacing = 0;
-        int maxLineSize = 50;
-        
-        for(int x = 0; x < temp.length; x++)
-        {
-            currentSpacing = temp[x].length();
-            target += temp[x] + " ";
-            for(int y = (x+1); y < temp.length; y++)
-            {
-               potentialSpacing = currentSpacing + temp[y].length();
-               if(potentialSpacing <= maxLineSize)
+                temp[x] += "\n";
+                if(temp[x].charAt(0) == '#')
                 {
-                    currentSpacing = potentialSpacing;
-                    target += temp[y];
-                    temp[y] = "";
+                    temp[x] = "";
                 }
-               else
-               {
-                   target += "\n";
-                   break;
-               }
+                target += temp[x];
             }
-           currentSpacing = 0;
         }
+        target = target.replaceAll("\t", "");
+        target += parent.getUnits() + "\nBUILD\nPLOT\nNEXT CASE";
         return target;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jDrawPane;
-    private javax.swing.JButton jManualRefresh1;
-    private javax.swing.JButton jManualRefresh2;
+    private javax.swing.JButton jGenerateDatFile;
     private javax.swing.JButton jManualRevert;
     private javax.swing.JTextPane jOutputText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton jRunDatcom;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jSetData;
     private javax.swing.JButton jShowDatcomReadable;
@@ -361,29 +346,76 @@ public class OutputView extends javax.swing.JPanel {
         jOutputText.setText(outputData);
     }
 
-    public void runDATCOM(String target, String workingPath, String sectionHeader){
-       //declare classes needed for writing output file, creating a batch file,
-       //and running the program.
-        runDatcom runBabyRun = new runDatcom();
-        getFor005 printFile = new getFor005();
-        writeBAT createBatchFile = new writeBAT();
 
-       // If user selects to run DATCOM
-        String[] openDatcom = {workingPath + "\\Datcom.bat"};
-        String mkDir = "cmd /c mkdir " + workingPath + "\\" + sectionHeader;
+    public void generateDat()
+    {
+        File datFile = new File(parent.getWorkingDirectory().getAbsolutePath() +"\\for005.dat");
+        String temp = getControllerOutput();
+        temp = datcomFormat(temp);
+        try
+        {
+           datFile.createNewFile();
+           BufferedWriter output = new BufferedWriter(new FileWriter(datFile));
+           String [] newlineTempCauseJavaSucks = temp.split("\n");
+           for(int x = 0; x < newlineTempCauseJavaSucks.length; x++)
+           {
+               output.write(newlineTempCauseJavaSucks[x]);
+               output.newLine();
+           }
+           output.close();
 
-        runBabyRun.executeDatcom(mkDir);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(OutputView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
-        printFile.writeFile(workingPath + "\\" + sectionHeader, "for005.dat", target);
+    private void runDatcom()
+    {
+        generateDat();
+        String path = System.getProperty("user.dir") + "\\Bin\\Datcom\\datcom.exe";
+        try {
+            // Execute the datcom and wait until it returns
+            Process p = new ProcessBuilder(path).start();
+            p.waitFor();
 
-        createBatchFile.writeFile(workingPath, sectionHeader);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(OutputView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(OutputView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        moveForFiles();
+    }
 
-        runBabyRun.executeDatcom(openDatcom);
+    /**
+     * Moves the datcom-generated for00X files from the working space to the user's
+     * project directory.
+     */
+    private void moveForFiles()
+    {
+        File moveForSource = null;
+        File moveForDest = null;
 
-        /*Review Panel Commands - TODO:
-        for005panel =  this;
-        reviewPanel = new REVIEW(workingPath + "\\" + sectionHeader + "\\for006.dat", for005panel, mainClass);
-        reviewPanel.showFor006();
-        */
+
+        for(int i = 5; i < 15; i++)
+        {
+            if(i < 10)
+            {
+                moveForSource = new File("for00" + i + ".dat");
+                moveForDest = new File(ps.getProjectPath() + "\\for00" + i +".dat");
+            }
+            else
+            {
+                moveForSource = new File("for0" + i + ".dat");
+                moveForDest = new File(ps.getProjectPath() + "\\for0" + i +".dat");
+            }
+            System.out.println("Source: " + moveForSource.getAbsoluteFile());
+            System.out.println("Dest: " + moveForDest.getAbsoluteFile());
+            if(moveForSource != null)
+            {
+                //moveForDest.createNewFile();
+                moveForSource.renameTo(moveForDest);
+            }
+        }
     }
 }

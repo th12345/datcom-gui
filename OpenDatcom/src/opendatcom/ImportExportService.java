@@ -22,17 +22,23 @@ import java.util.logging.Logger;
  * @author -B-
  */
 public class ImportExportService extends AbstractService{
+    private static ImportExportService self;
     BufferedReader in;
     String xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
 
-    public ImportExportService()
+    private ImportExportService()
     {
         name = "ImportExport";
         controllers = new LinkedList<AbstractController>();
         registerForMe();
     }
 
-    public void importFile(File inputFile)
+    /**
+     * Parses a text file into a string.
+     * @param inputFile The file to parse.
+     * @return A string containing all parsed data.
+     */
+    public String importFile(File inputFile)
     {
        String temp = "";
         try {
@@ -50,7 +56,7 @@ public class ImportExportService extends AbstractService{
         {
             Logger.getLogger(ImportExportService.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Parse(temp);
+        return temp;
     }
 
     public void writeXML(File inputFile)
@@ -63,6 +69,7 @@ public class ImportExportService extends AbstractService{
                 inputFile.createNewFile();
            } 
            BufferedWriter output = new BufferedWriter(new FileWriter(inputFile));
+           temp += parent.generateXML();
            for(int x = 0; x < controllers.size(); x++)
            {
                 controllers.get(x).refresh();
@@ -91,11 +98,12 @@ public class ImportExportService extends AbstractService{
         
     }
 
-    private void Parse(String target)
+    public static ImportExportService getInstance()
     {
-        for(int x = 0; x < controllers.size(); x++)
+        if(self == null)
         {
-            controllers.get(x).refreshFromSaved(target);
+            self = new ImportExportService();
         }
+        return self;
     }
 }

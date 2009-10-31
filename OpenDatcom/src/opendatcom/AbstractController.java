@@ -21,7 +21,7 @@ public abstract class AbstractController {
     JPanel view;
     LinkedList<AbstractController> otherControllers;
     ParserUtility util = ParserUtility.getInstance();
-    OpenDatcomView parent = OpenDatcomView.getInstance();
+    OpenDatcomController parent = OpenDatcomController.getInstance();
     
     /**
      * Registers the module with the main app interface. Sets all internal and

@@ -126,8 +126,9 @@ public class ParserUtility {
   */
  public String processTextField(JTextArea target)
  {
-     target.setText(validate(target.getText()));
-     return target.getText();
+     String temp = validate(target.getText());
+     target.setText(temp.replaceAll("\t", " "));
+     return temp;
  }
 
  /**
@@ -296,10 +297,10 @@ public String processButtonTextArray(String input)
             }
         }
         // Rebuild the original input
-        input += ", " + arrayHolder[i];
+        input += ",\t" + arrayHolder[i];
     }
     // Get rid of the first comma, cause it just has to be done :)
-    input = input.replaceFirst(", ", "");
+    input = input.replaceFirst(",\t", "");
     return input;
 }
 
@@ -412,7 +413,7 @@ public String removeComments(String input)
         {
             return output;
         }
-        output +=  " " + Header + "\t" +  Data + ",\n";
+        output += Header + "\t" +  Data + ",\n";
         return output;
     }
 
@@ -431,7 +432,7 @@ public String removeComments(String input)
         {
             return output;
         }
-        output += " " + Header + "\t" +  Data + ",\n";
+        output += Header + "\t" +  Data + ",\n";
         return output;
     }
 }

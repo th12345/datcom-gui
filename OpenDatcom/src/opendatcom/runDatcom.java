@@ -13,10 +13,9 @@ public class runDatcom {
 
     String[] opensesame = null;
     String s = null;
-
     public runDatcom(){}
 
-    public void executeDatcom(String[] opensesame){
+    public void executeDatcom(){
 
         try {
 

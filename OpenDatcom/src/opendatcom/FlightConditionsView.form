@@ -16,9 +16,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanel55" alignment="0" max="32767" attributes="1"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
@@ -30,13 +31,9 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jPanel55" max="32767" attributes="1"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -45,15 +42,15 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel55" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jFlightHeaderText" max="32767" attributes="1"/>
-                          <Component id="jPanel17" alignment="1" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jFlightHeaderText" min="0" pref="174" max="32767" attributes="1"/>
+                          <Component id="jPanel17" alignment="0" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPanel4" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jPanel13" max="32767" attributes="1"/>
               </Group>
@@ -104,34 +101,29 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel221" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                  <Component id="jLabel219" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                  <Component id="jLabel223" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jScrollPane3" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel221" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
-                          <Component id="jLabel219" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
-                          <Component id="jLabel223" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane3" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="130" pref="130" max="130" attributes="0"/>
-                                  <Component id="jScrollPane4" min="-2" pref="112" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jScrollPane5" min="-2" pref="112" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jDefaultFlightConditions" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jSetFlightConditions" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="130" pref="130" max="130" attributes="0"/>
+                          <Component id="jScrollPane4" min="-2" pref="112" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jScrollPane5" min="-2" pref="112" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jDefaultFlightConditions" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jSetFlightConditions" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -268,13 +260,13 @@
                       <Component id="jLabel237" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel238" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTRText" alignment="0" pref="110" max="32767" attributes="1"/>
-                      <Component id="jGammaText" alignment="0" pref="110" max="32767" attributes="1"/>
-                      <Component id="jTSMachText" alignment="0" pref="110" max="32767" attributes="1"/>
-                      <Component id="jSTMachText" alignment="0" pref="110" max="32767" attributes="1"/>
-                      <Component id="jWeightText" alignment="0" pref="110" max="32767" attributes="1"/>
+                  <EmptySpace pref="85" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jWeightText" max="32767" attributes="1"/>
+                      <Component id="jSTMachText" alignment="1" max="32767" attributes="1"/>
+                      <Component id="jTSMachText" alignment="1" max="32767" attributes="1"/>
+                      <Component id="jGammaText" alignment="1" max="32767" attributes="1"/>
+                      <Component id="jTRText" alignment="1" pref="146" max="32767" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -308,7 +300,6 @@
                       <Component id="jLabel230" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTRText" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -394,7 +385,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Section Header">
+            <TitledBorder title="Opts">
               <Property name="titleX" resourceKey="jFlightHeaderText.border.title"/>
             </TitledBorder>
           </Border>
@@ -407,7 +398,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane6" pref="323" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel229" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel228" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel240" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel239" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jRoughness" max="32767" attributes="1"/>
+                      <Component id="jSrefText" alignment="1" max="32767" attributes="1"/>
+                      <Component id="jCbarrText" alignment="1" max="32767" attributes="1"/>
+                      <Component id="jBlrefText" alignment="1" pref="142" max="32767" attributes="1"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -415,33 +418,103 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jScrollPane6" pref="162" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jBlrefText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel240" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jSrefText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel239" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel229" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCbarrText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel228" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jRoughness" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+        <Component class="javax.swing.JLabel" name="jLabel228">
           <Properties>
-            <Property name="name" type="java.lang.String" value="jScrollPane6" noResource="true"/>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel228.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel228.toolTipText"/>
+            <Property name="name" type="java.lang.String" value="jLabel228" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel229">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel229.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel229.toolTipText"/>
+            <Property name="name" type="java.lang.String" value="jLabel229" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel239">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel239.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel239.toolTipText"/>
+            <Property name="name" type="java.lang.String" value="jLabel239" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel240">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jLabel240.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="jLabel240.toolTipText"/>
+            <Property name="name" type="java.lang.String" value="jLabel240" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jBlrefText">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="11"/>
+            <Property name="text" type="java.lang.String" resourceKey="jBlrefText.text"/>
+            <Property name="name" type="java.lang.String" value="jBlrefText" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBlrefTextActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jSrefText">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="11"/>
+            <Property name="name" type="java.lang.String" value="jSrefText" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jCbarrText">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="11"/>
+            <Property name="name" type="java.lang.String" value="jCbarrText" noResource="true"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jRoughness">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="10">
+                <StringItem index="0" value="Smooth"/>
+                <StringItem index="1" value="Polished Metal"/>
+                <StringItem index="2" value="Wood"/>
+                <StringItem index="3" value="Sheet Metal"/>
+                <StringItem index="4" value="Matte Paint"/>
+                <StringItem index="5" value="Military Camoflauge, Standard"/>
+                <StringItem index="6" value="Mliitary Camo, Spayed"/>
+                <StringItem index="7" value="Dip-Galvanized Metal"/>
+                <StringItem index="8" value="Cast Iron"/>
+                <StringItem index="9" value=" "/>
+              </StringArray>
+            </Property>
+            <Property name="name" type="java.lang.String" value="jRoughness" noResource="true"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
           </AuxValues>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-          <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jFlightHeader">
-              <Properties>
-                <Property name="columns" type="int" value="20"/>
-                <Property name="lineWrap" type="boolean" value="true"/>
-                <Property name="rows" type="int" value="5"/>
-                <Property name="name" type="java.lang.String" value="jFlightHeader" noResource="true"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel4">
@@ -457,12 +530,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jDrawPanel" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <Component id="jDrawPanel" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jDrawPanel" alignment="1" max="32767" attributes="0"/>
+              <Component id="jDrawPanel" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -476,12 +552,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="586" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="592" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="286" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="247" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
@@ -498,7 +574,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTitle" pref="1078" max="32767" attributes="0"/>
+                  <Component id="jTitle" pref="1100" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -507,8 +583,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTitle" min="-2" pref="32" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="jTitle" pref="42" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

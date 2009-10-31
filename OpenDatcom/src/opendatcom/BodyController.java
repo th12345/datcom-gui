@@ -60,17 +60,17 @@ public class BodyController extends AbstractController {
         double [] radii = model.getRadii();
         
         temp += "# Start of Body Parameters\n";
-        temp += "$BODY\n";
-        temp += " NX=\t" + xValues.length + "\n";
-        temp += " X(1)=\t";
+        temp += " $BODY\n";
+        temp += "  NX=\t" + xValues.length + ".0,\n";
+        temp += "  X(1)=\t";
         for(int i = 0; i < xValues.length; i++)
         {
-            temp += xValues[i] + ", ";
+            temp += xValues[i] + ",\t";
         }
-        temp += "\n R(1)=\t";
+        temp += "\n  R(1)=\t";
         for(int i = 0; i < xValues.length; i++)
         {
-            temp+= radii[i] + ", ";
+            temp+= radii[i] + ",\t";
             // Wrap around neatly
         }
 

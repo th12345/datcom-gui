@@ -85,7 +85,7 @@ public class SynthesisView extends javax.swing.JPanel {
 
         jPanel53.setName("jPanel53"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomApp.class).getContext().getResourceMap(SynthesisView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getResourceMap(SynthesisView.class);
         jPanel56.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel56.border.title"))); // NOI18N
         jPanel56.setName("jPanel56"); // NOI18N
 

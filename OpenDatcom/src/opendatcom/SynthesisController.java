@@ -65,23 +65,23 @@ public class SynthesisController extends AbstractController{
     public String generateOutput()
     {
         String temp;
-        temp = util.safeAdd("XCG=", model.getXCG());
-        temp += util.safeAdd("ZCG=", model.getZCG());
-        temp += util.safeAdd("XW=", model.getXW());
-        temp += util.safeAdd("ZW=", model.getZW());
-        temp += util.safeAdd("ALIH=", model.getALIH());
-        temp += util.safeAdd("ALIW=", model.getALIW());
-        temp += util.safeAdd("XH=", model.getXH());
-        temp += util.safeAdd("ZH=", model.getZH());
-        temp += util.safeAdd("XV=", model.getXV());
-        temp += util.safeAdd("ZV=", model.getZV());
+        temp =  util.safeAdd("  XCG=", model.getXCG());
+        temp += util.safeAdd("  ZCG=", model.getZCG());
+        temp += util.safeAdd("  XW=", model.getXW());
+        temp += util.safeAdd("  ZW=", model.getZW());
+        temp += util.safeAdd("  ALIH=", model.getALIH());
+        temp += util.safeAdd("  ALIW=", model.getALIW());
+        temp += util.safeAdd("  XH=", model.getXH());
+        temp += util.safeAdd("  ZH=", model.getZH());
+        temp += util.safeAdd("  XV=", model.getXV());
+        temp += util.safeAdd("  ZV=", model.getZV());
 
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
         {
             // Trim off the extra comma
             temp = temp.substring(0, temp.length() - 2);
-            temp = "#Start of Synthesis data\n$SYNTH\n" + temp;
+            temp = "#Start of Synthesis data\n $SYNTHS\n" + temp;
             temp += "$\n#End of Synthesis data\n\n";
 
             // Set the output back to the model

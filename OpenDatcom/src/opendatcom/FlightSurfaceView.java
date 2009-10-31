@@ -80,7 +80,7 @@ public class FlightSurfaceView extends javax.swing.JPanel {
         jPanel55 = new javax.swing.JPanel();
         jTitle = new javax.swing.JLabel();
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomApp.class).getContext().getResourceMap(FlightSurfaceView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getResourceMap(FlightSurfaceView.class);
         jPanel54.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel54.border.title"))); // NOI18N
         jPanel54.setName("jPanel54"); // NOI18N
 

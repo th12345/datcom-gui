@@ -4,10 +4,8 @@
 
 package opendatcom;
 
-import java.awt.GridLayout;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -19,7 +17,6 @@ import java.io.File;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import java.util.LinkedList;
 import javax.swing.JPanel;
@@ -30,85 +27,27 @@ import javax.swing.JPanel;
  */
 public class OpenDatcomView extends FrameView {
     private static OpenDatcomView self;
-    // Golbal Stuff
-    instanceData g_Data = new instanceData();
-    Constants globals = new Constants();
-    int numTabs = 5;
-    ParserUtility util = ParserUtility.getInstance();
-    LinkedList<AbstractController> controllers;
-    LinkedList<AbstractService> services;
-    LinkedList<JPanel> tabs;
-    JFileChooser fc;
-    File currentFile;
+    private static OpenDatcomController controller;
 
-    // Controllers
-    BodyController bodyC;
-    SynthesisController synthC;
-    FlightConditionsController flightC;
-    FlightSurfaceController wingC, hTailC, vTailC;
-    ImportExportService in;
+    // Golbal Stuff
+    ParserUtility util = ParserUtility.getInstance();
+    LinkedList<JPanel> tabs;
+
+    // Files
+    File currentFile;
+    File ouputDatFile;
+    File workingDirectory;
 
     //
-    OutputView output;
-
-    // Temp variables
-    FlightSurfaceModel ht, hw;
-    double temp [][];
+    ImportExportService in;
 
     public OpenDatcomView(SingleFrameApplication app) {
         super(app);
         initComponents();
-        self = this;
-
-        // Init the file chooser
-        fc = new JFileChooser();
-        fc.setFileFilter(new xmlFilter());
-        fc.setCurrentDirectory(new java.io.File("."));
-
-        // Init variables required for MVC registration
-        controllers = new LinkedList<AbstractController>();
-        services    = new LinkedList<AbstractService>();
+        self        = this;
+        controller  = OpenDatcomController.getInstance();
+        in          = ImportExportService.getInstance();
         tabs        = new LinkedList<JPanel>();
-
-        // Init services
-        in = new ImportExportService();
-
-        // Initialize the panels. Note that the order matters here, the initialization
-        // order determines the tab order
-        flightC =   new FlightConditionsController();
-        synthC  =   new SynthesisController();
-        bodyC   =   new BodyController();
-        wingC   =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.MAIN_WING);
-        hTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.HORIZONTAL_TAIL);
-        vTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
-        output  =   new OutputView();
-        
-        // Iterate through and add the modules to the tab frame.
-        JPanel tempJPanel;
-        for(int x = 0; x < controllers.size(); x++)
-        {
-            tempJPanel = new JPanel();
-            tempJPanel.setLayout(new GridLayout(1,0));
-            tempJPanel.setName(controllers.get(x).getName());
-            tempJPanel.add((controllers.get(x)).getView());
-            tabs.add(tempJPanel);
-            jTabs.addTab(tempJPanel.getName(), tempJPanel);
-        }
-
-        // Add the output panel since it doesnt have a controller.
-        tempJPanel = new JPanel();
-        tempJPanel.setLayout(new GridLayout(1,0));
-        tempJPanel.setName("Output");
-        tempJPanel.add(output);
-        jTabs.addTab("Output", tempJPanel);
-
-        // Register the controllers to services as needed
-        output.registerController(flightC);
-        output.registerController(synthC);
-        output.registerController(bodyC);
-        output.registerController(wingC);
-        output.registerController(hTailC);
-        output.registerController(vTailC);
         
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
@@ -168,14 +107,20 @@ public class OpenDatcomView extends FrameView {
         });
     }
 
+    public void addTab(JPanel target)
+    {
+        tabs.add(target);
+        jTabs.addTab(target.getName(), target);
+    }
+
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
-            JFrame mainFrame = OpenDatcomApp.getApplication().getMainFrame();
+            JFrame mainFrame = OpenDatcomController.getInstance().getMainFrame();
             aboutBox = new OpenDatcomAboutBox(mainFrame);
             aboutBox.setLocationRelativeTo(mainFrame);
         }
-        OpenDatcomApp.getApplication().show(aboutBox);
+        OpenDatcomController.getInstance().show(aboutBox);
     }
 
     /** This method is called from within the constructor to
@@ -194,12 +139,12 @@ public class OpenDatcomView extends FrameView {
         jLabel5 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
         jPanel27 = new javax.swing.JPanel();
         jPanel28 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jUnitsSelect = new javax.swing.JComboBox();
-        jPanel29 = new javax.swing.JPanel();
+        jCaseName = new javax.swing.JTextField();
+        jLabel232 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu jOpenMenu = new javax.swing.JMenu();
         jOpen = new javax.swing.JMenuItem();
@@ -230,7 +175,7 @@ public class OpenDatcomView extends FrameView {
 
         jPanel10.setName("jPanel10"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomApp.class).getContext().getResourceMap(OpenDatcomView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getResourceMap(OpenDatcomView.class);
         jLabel5.setFont(resourceMap.getFont("jLabel5.font")); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
@@ -242,7 +187,7 @@ public class OpenDatcomView extends FrameView {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1078, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1203, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
@@ -263,14 +208,12 @@ public class OpenDatcomView extends FrameView {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1068, Short.MAX_VALUE)
+            .addGap(0, 1184, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 246, Short.MAX_VALUE)
+            .addGap(0, 306, Short.MAX_VALUE)
         );
-
-        jPanel14.setName("jPanel14"); // NOI18N
 
         jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel27.border.title"))); // NOI18N
         jPanel27.setName("jPanel27"); // NOI18N
@@ -283,38 +226,39 @@ public class OpenDatcomView extends FrameView {
         jUnitsSelect.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Imperial", "Metric" }));
         jUnitsSelect.setName("jUnitsSelect"); // NOI18N
 
+        jCaseName.setName("jCaseName"); // NOI18N
+
+        jLabel232.setText(resourceMap.getString("jLabel232.text")); // NOI18N
+        jLabel232.setToolTipText(resourceMap.getString("jLabel232.toolTipText")); // NOI18N
+        jLabel232.setName("jLabel232"); // NOI18N
+
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
         jPanel28Layout.setHorizontalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel28Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jUnitsSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel232))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jCaseName)
+                    .addComponent(jUnitsSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                .addContainerGap(125, Short.MAX_VALUE)
+                .addContainerGap(96, Short.MAX_VALUE)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel232)
+                    .addComponent(jCaseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jUnitsSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-        );
-
-        jPanel29.setName("jPanel29"); // NOI18N
-
-        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
-        jPanel29.setLayout(jPanel29Layout);
-        jPanel29Layout.setHorizontalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 291, Short.MAX_VALUE)
-        );
-        jPanel29Layout.setVerticalGroup(
-            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 158, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
@@ -322,35 +266,14 @@ public class OpenDatcomView extends FrameView {
         jPanel27Layout.setHorizontalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -359,20 +282,20 @@ public class OpenDatcomView extends FrameView {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(496, 496, 496))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout jMainTabLayout = new javax.swing.GroupLayout(jMainTab);
@@ -384,8 +307,8 @@ public class OpenDatcomView extends FrameView {
                 .addGroup(jMainTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jMainTabLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jMainTabLayout.setVerticalGroup(
@@ -406,15 +329,15 @@ public class OpenDatcomView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1123, Short.MAX_VALUE)
+                .addComponent(jTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE)
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -469,7 +392,7 @@ public class OpenDatcomView extends FrameView {
         jSeparator1.setName("jSeparator1"); // NOI18N
         jOpenMenu.add(jSeparator1);
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomApp.class).getContext().getActionMap(OpenDatcomView.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getActionMap(OpenDatcomView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         jOpenMenu.add(exitMenuItem);
@@ -500,11 +423,11 @@ public class OpenDatcomView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 1143, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 969, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1098, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -536,30 +459,7 @@ public class OpenDatcomView extends FrameView {
      * @param evt
      */
     private void JSaveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JSaveMenuActionPerformed
-
-        fc.setDialogTitle("Save:");
-        // Check if user has saved to a file before
-        if(currentFile == null)
-        {
-           try {
-                currentFile = fc.getSelectedFile();
-                if (!currentFile.getName().contains(".xml"))
-                {
-
-                    currentFile = new File(currentFile.getName() + ".xml");
-                }
-                currentFile.createNewFile();
-                in.writeXML(currentFile);
-            } catch (IOException ex) {
-                Logger.getLogger(OpenDatcomView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        // If user has already saved, don't display the select file box
-        else
-        {
-            in.writeXML(currentFile);
-        }
-        
+        controller.save();
     }//GEN-LAST:event_JSaveMenuActionPerformed
 
     /**
@@ -567,17 +467,7 @@ public class OpenDatcomView extends FrameView {
      * @param evt
      */
     private void jOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenActionPerformed
-        fc.setDialogTitle("Open Project:");
-        int check = fc.showOpenDialog(this.getComponent());
-        if(check == JFileChooser.APPROVE_OPTION)
-        {
-            currentFile = fc.getSelectedFile();
-            in.importFile(currentFile);
-        }
-        else if(check == JFileChooser.CANCEL_OPTION)
-        {
-            return;
-        }
+        controller.open();
     }//GEN-LAST:event_jOpenActionPerformed
 
     /**
@@ -585,28 +475,7 @@ public class OpenDatcomView extends FrameView {
      * @param evt
      */
     private void jSaveAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveAsActionPerformed
-
-        fc.setDialogTitle("Save As:");
-        int check = fc.showSaveDialog(this.getComponent());
-        if(check == JFileChooser.APPROVE_OPTION)
-        {
-            try {
-                currentFile = fc.getSelectedFile();
-                if (!currentFile.getName().contains(".xml"))
-                {
-
-                    currentFile = new File(currentFile.getName() + ".xml");
-                }
-                currentFile.createNewFile();
-                in.writeXML(currentFile);
-            } catch (IOException ex) {
-                Logger.getLogger(OpenDatcomView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else if(check == JFileChooser.CANCEL_OPTION)
-        {
-            return;
-        }
+        controller.saveAs();
     }//GEN-LAST:event_jSaveAsActionPerformed
 
     /**
@@ -616,17 +485,7 @@ public class OpenDatcomView extends FrameView {
      * @param evt
      */
     private void jLoadTemplateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLoadTemplateActionPerformed
-        fc.setDialogTitle("Select Template:");
-        int check = fc.showOpenDialog(this.getComponent());
-        if(check == JFileChooser.APPROVE_OPTION)
-        {
-            File target = fc.getSelectedFile();
-            in.importFile(target);
-        }
-        else if(check == JFileChooser.CANCEL_OPTION)
-        {
-
-        }
+        controller.openTemplate();
     }//GEN-LAST:event_jLoadTemplateActionPerformed
 
     private void jTabsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTabsFocusGained
@@ -635,16 +494,16 @@ public class OpenDatcomView extends FrameView {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JSaveMenu;
+    private javax.swing.JTextField jCaseName;
+    private javax.swing.JLabel jLabel232;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuItem jLoadTemplate;
     private javax.swing.JPanel jMainTab;
     private javax.swing.JMenuItem jOpen;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JMenuItem jSaveAs;
@@ -666,40 +525,45 @@ public class OpenDatcomView extends FrameView {
     private int busyIconIndex = 0;
 
     private JDialog aboutBox;
-
-
-    public void registerService(AbstractService target)
-    {
-        services.add(target);
-    }
-
-    void registerModule(AbstractController target)
-    {
-        controllers.add(target);
-    }
-
-    /**
-     * Registers a controller with a service by the services's name.
-     * @param serviceName The service to register to.
-     * @param self Reference to the controller to register (this)
-     * @return True if the service is found and successfully registered.
-     */
-    boolean registerToService(String serviceName, AbstractController self)
-    {
-        for(int i = 0; i < services.size(); i++)
-        {
-            if(services.get(i).getName().equalsIgnoreCase(serviceName))
-            {
-                //TODO: prevent duplicate registrations here
-                services.get(i).registerController(self);
-                return true;
-            }
-        }
-        return false;
-    }
-
+    
     public static OpenDatcomView getInstance()
     {
         return self;
+    }
+
+    public File getOuputDatFile() {
+        return ouputDatFile;
+    }
+
+    public void setOuputDatFile(File ouputDatFile) {
+        this.ouputDatFile = ouputDatFile;
+    }
+
+    public void setWorkingDirectory(File workingDirectory) {
+        this.workingDirectory = workingDirectory;
+    }
+
+    public String getUnits()
+    {
+        String temp = jUnitsSelect.getSelectedItem().toString();
+        if(temp.equalsIgnoreCase("Imperial"))
+        {
+            return "DIM FT";
+        }
+        //TODO: Not sure what the correct syntax is for metric data
+        return "DIM M";
+    }
+
+    public String getCaseName()
+    {
+        return jCaseName.getText();
+    }
+
+    public JTextField getjCaseName() {
+        return jCaseName;
+    }
+
+    public JComboBox getjUnitsSelect() {
+        return jUnitsSelect;
     }
 }

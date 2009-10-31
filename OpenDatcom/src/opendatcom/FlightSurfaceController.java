@@ -11,7 +11,6 @@ package opendatcom;
  */
 public class FlightSurfaceController extends AbstractController {
     
-
     // Variables
     String wingType;
     FlightSurfaceModel model;
@@ -24,6 +23,7 @@ public class FlightSurfaceController extends AbstractController {
     public FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE type) {
         this.view = new FlightSurfaceView(type, this);
         this.model = new FlightSurfaceModel(type);
+        this.name = "FlightSurface";
         wingType = getSurfaceType();
         this.xmlTag = wingType;
         registerWithService("ImportExport");
@@ -70,17 +70,17 @@ public class FlightSurfaceController extends AbstractController {
     public String generateOutput()
     {
         String temp = "";
-        temp += util.safeAdd("CHRDTP=", model.getCHRDTP());
-        temp += util.safeAdd("SSPNOP=", model.getSSPNOP());
-        temp += util.safeAdd("SSPNE=", model.getSSPNE());
-        temp += util.safeAdd("SSPN=", model.getSSPN());
-        temp += util.safeAdd("CHRDBP=", model.getCHRDBP());
-        temp += util.safeAdd("CHRDR=", model.getCHRDR());
-        temp += util.safeAdd("SAVSI=", model.getSAVSI());
-        temp += util.safeAdd("CHSTAT=", model.getCHSTAT());
-        temp += util.safeAdd("TWISTA=", model.getTWISTA());
-        temp += util.safeAdd("DHDADI=", model.getDHDADI());
-        temp += util.safeAdd("TYPE=", model.getTYPE());
+        temp += util.safeAdd(" CHRDTP=", model.getCHRDTP());
+        temp += util.safeAdd(" SSPNOP=", model.getSSPNOP());
+        temp += util.safeAdd(" SSPNE=", model.getSSPNE());
+        temp += util.safeAdd(" SSPN=", model.getSSPN());
+        temp += util.safeAdd(" CHRDBP=", model.getCHRDBP());
+        temp += util.safeAdd(" CHRDR=", model.getCHRDR());
+        temp += util.safeAdd(" SAVSI=", model.getSAVSI());
+        temp += util.safeAdd(" CHSTAT=", model.getCHSTAT());
+        temp += util.safeAdd(" TWISTA=", model.getTWISTA());
+        temp += util.safeAdd(" DHDADI=", model.getDHDADI());
+        temp += util.safeAdd(" TYPE=", model.getTYPE());
        
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
@@ -92,10 +92,15 @@ public class FlightSurfaceController extends AbstractController {
                 // Double space everything as per datcom standard
                 temp = temp.replace(" ", "  ");
                 header += model.getAirfoil() + "\n";
+                temp = header +  " $" + wingType + "\n" + temp;
+                temp += "$\n#End of " + wingType + " data\n\n";
+                // Set the output back to the model
             }
-            temp = header +  " $" + wingType + "\n" + temp;
-            temp += "$\n#End of " + wingType + " data\n\n";
-            // Set the output back to the model
+            else
+            {
+                temp = header +  "$" + wingType + "\n" + temp;
+                temp += "$\n#End of " + wingType + " data\n\n";
+            }
         }
         return temp;
     }
@@ -138,6 +143,7 @@ public class FlightSurfaceController extends AbstractController {
         return model;
     }
 
+    @Override
     public FlightSurfaceView getView() {
         return view;
     }
@@ -186,6 +192,15 @@ public class FlightSurfaceController extends AbstractController {
         temp+= util.xmlWrite("TWISTA", model.getTWISTA());
         temp+= util.xmlWrite("TYPE", model.getTYPE());
         temp += "</" + xmlTag + ">\n";
+        return temp;
+    }
+
+    public String generateTemplate()
+    {
+        String hack = this.xmlTag;
+        xmlTag = this.name + "_TEMPLATE";
+        String temp = generateXML();
+        this.xmlTag = hack;
         return temp;
     }
 }
