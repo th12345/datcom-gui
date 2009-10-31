@@ -28,7 +28,6 @@ public class OutputView extends javax.swing.JPanel {
     String outputData;
     LinkedList<AbstractController> controllers;
     OpenDatcomController parent;
-    ExecService exec;
     ProjectService ps;
 
 
@@ -38,7 +37,6 @@ public class OutputView extends javax.swing.JPanel {
         outputData = "";
         controllers = new LinkedList<AbstractController>();
         parent = OpenDatcomController.getInstance();
-        exec = ExecService.getInstance();
         ps = ProjectService.getInstance();
     }
 

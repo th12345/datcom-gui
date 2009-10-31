@@ -46,7 +46,6 @@ public class OpenDatcomController extends SingleFrameApplication{
     private ImportExportService in;
 
     // Services
-    private ExecService exec;
     private OutputView output;
     private ProjectService ps;
 
@@ -61,7 +60,6 @@ public class OpenDatcomController extends SingleFrameApplication{
     private void initServices()
     {
         in   = ImportExportService.getInstance();
-        exec = ExecService.getInstance();
         ps = ProjectService.getInstance();
         ps.startProject();
     }
