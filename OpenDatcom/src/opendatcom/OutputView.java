@@ -8,16 +8,12 @@ package opendatcom;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FilePermission;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextPane;
-import sun.management.FileSystem;
 
 /**
  * 
@@ -368,6 +364,9 @@ public class OutputView extends javax.swing.JPanel {
         }
     }
 
+    /**
+     *
+     */
     private void runDatcom()
     {
         generateDat();
@@ -394,24 +393,30 @@ public class OutputView extends javax.swing.JPanel {
         File moveForSource = null;
         File moveForDest = null;
 
-
+        // Loop through and move the files
         for(int i = 5; i < 15; i++)
         {
+            // Set the file names correctly
             if(i < 10)
             {
                 moveForSource = new File("for00" + i + ".dat");
-                moveForDest = new File(ps.getProjectPath() + "\\for00" + i +".dat");
+                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + " for00" + i +".dat");
             }
             else
             {
                 moveForSource = new File("for0" + i + ".dat");
-                moveForDest = new File(ps.getProjectPath() + "\\for0" + i +".dat");
+                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + " for0" + i +".dat");
             }
-            System.out.println("Source: " + moveForSource.getAbsoluteFile());
-            System.out.println("Dest: " + moveForDest.getAbsoluteFile());
+
+            // Delete old files so the move can be executed
+            if(moveForDest.exists())
+            {
+                moveForDest.delete();
+            }
+
+            // only move the
             if(moveForSource != null)
             {
-                //moveForDest.createNewFile();
                 moveForSource.renameTo(moveForDest);
             }
         }

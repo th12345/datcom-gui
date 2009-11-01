@@ -33,9 +33,7 @@ public class OpenDatcomController extends SingleFrameApplication{
 
     // Files
     private File currentFile;
-    private File ouputDatFile;
-    private File workingDirectory = new File(".");
-    private File userFolder;
+    private File workingDirectory = new File(System.getProperty("user.dir"));
     private JFileChooser fc;
 
     // Controllers
@@ -44,6 +42,7 @@ public class OpenDatcomController extends SingleFrameApplication{
     private FlightConditionsController flightC;
     private FlightSurfaceController wingC, hTailC, vTailC;
     private ImportExportService in;
+    private FileViewerController fviewC;
 
     // Services
     private OutputView output;
@@ -51,6 +50,8 @@ public class OpenDatcomController extends SingleFrameApplication{
 
     private void initModule()
     {
+        makeDirs();
+        
         // Init the file chooser
         fc = new JFileChooser();
         fc.setFileFilter(new xmlFilter());
@@ -75,6 +76,7 @@ public class OpenDatcomController extends SingleFrameApplication{
         hTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.HORIZONTAL_TAIL);
         vTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
         output  =   new OutputView();
+        fviewC  =   new FileViewerController();
 
         // Iterate through and add the modules to the tab frame.
         JPanel tempJPanel;
@@ -323,6 +325,14 @@ public class OpenDatcomController extends SingleFrameApplication{
      */
     public static void main(String[] args) {
         launch(OpenDatcomController.class, args);
+    }
+
+    private void makeDirs()
+    {
+        File tempF = new File(System.getProperty("user.dir") + "\\Saves");
+        tempF.mkdirs();
+        tempF = new File(System.getProperty("user.dir") + "\\Projects");
+        tempF.mkdirs();
     }
 
     public String getUnits()

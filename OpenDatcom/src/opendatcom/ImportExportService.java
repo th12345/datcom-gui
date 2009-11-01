@@ -45,7 +45,7 @@ public class ImportExportService extends AbstractService{
             BufferedReader input = new BufferedReader(new FileReader(inputFile));
             while(input.ready())
             {
-                temp += input.readLine();
+                temp += input.readLine() + "\n";
             }
         }
 

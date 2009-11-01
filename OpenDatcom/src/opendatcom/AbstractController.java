@@ -68,6 +68,8 @@ public abstract class AbstractController {
      */
     public abstract String generateXML();
 
+    public abstract JPanel getView();
+
     /**
      * Gets the controller's datcom output data.
      * @return
@@ -98,10 +100,6 @@ public abstract class AbstractController {
      */
     public void setXmlTag(String xmlTag) {
         this.xmlTag = xmlTag;
-    }
-
-    public JPanel getView() {
-        return view;
     }
 
     public String getName() {
