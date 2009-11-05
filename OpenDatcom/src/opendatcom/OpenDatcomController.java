@@ -7,6 +7,7 @@ package opendatcom;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,11 +48,11 @@ public class OpenDatcomController extends SingleFrameApplication{
     // Services
     private OutputView output;
     private ProjectService ps;
+    private ScreenResolution sr;
 
     private void initModule()
     {
         makeDirs();
-        
         // Init the file chooser
         fc = new JFileChooser();
         fc.setFileFilter(new xmlFilter());
@@ -63,10 +64,14 @@ public class OpenDatcomController extends SingleFrameApplication{
         in   = ImportExportService.getInstance();
         ps = ProjectService.getInstance();
         ps.startProject();
+        sr = ScreenResolution.getInstance();
     }
 
     private void initModules()
     {
+        // Set the initial frame size to the system max res
+        view.getFrame().setBounds(0, 0, sr.getWidth(), sr.getHeight());
+        
         // Initialize the panels. Note that the order matters here, the initialization
         // order determines the tab order
         flightC =   new FlightConditionsController();
@@ -86,11 +91,13 @@ public class OpenDatcomController extends SingleFrameApplication{
             tempJPanel.setLayout(new GridLayout(1,0));
             tempJPanel.setName(controllers.get(x).getName());
             tempJPanel.add((controllers.get(x)).getView());
+            tempJPanel.setBounds(0, 0, 200, 200);
             view.addTab(tempJPanel);
         }
 
         tempJPanel = new JPanel();
         tempJPanel.setLayout(new GridLayout(1,0));
+        tempJPanel.setBounds(0, 0, 200, 200);
         tempJPanel.setName("Output");
         tempJPanel.add(output);
 
@@ -102,6 +109,7 @@ public class OpenDatcomController extends SingleFrameApplication{
         output.registerController(vTailC);
         
         view.addTab(tempJPanel);
+
 
     }
 
@@ -299,8 +307,8 @@ public class OpenDatcomController extends SingleFrameApplication{
     @Override protected void startup() {
         show(new OpenDatcomView(this));
         view = OpenDatcomView.getInstance();
-        initModule();
         initServices();
+        initModule();
         initModules();
     }
 

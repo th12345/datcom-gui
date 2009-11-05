@@ -31,6 +31,7 @@ public class OpenDatcomView extends FrameView {
 
     // Golbal Stuff
     ParserUtility util = ParserUtility.getInstance();
+    ScreenResolution sr = ScreenResolution.getInstance();
     LinkedList<JPanel> tabs;
 
     // Files
@@ -44,6 +45,8 @@ public class OpenDatcomView extends FrameView {
     public OpenDatcomView(SingleFrameApplication app) {
         super(app);
         initComponents();
+        this.getFrame().setPreferredSize(null);
+        this.getFrame().setSize(sr.getWidth(), sr.getHeight());
         self        = this;
         controller  = OpenDatcomController.getInstance();
         in          = ImportExportService.getInstance();
@@ -162,9 +165,9 @@ public class OpenDatcomView extends FrameView {
         progressBar = new javax.swing.JProgressBar();
 
         mainPanel.setName("mainPanel"); // NOI18N
+        mainPanel.setPreferredSize(new java.awt.Dimension(40, 689));
 
         jTabs.setName(""); // NOI18N
-        jTabs.setPreferredSize(new java.awt.Dimension(1000, 1000));
         jTabs.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTabsFocusGained(evt);
@@ -199,6 +202,7 @@ public class OpenDatcomView extends FrameView {
         );
 
         jPanel5.setName("jPanel5"); // NOI18N
+        jPanel5.setPreferredSize(new java.awt.Dimension(1204, 533));
 
         jPanel6.setBackground(resourceMap.getColor("jPanel6.background")); // NOI18N
         jPanel6.setForeground(resourceMap.getColor("jPanel6.foreground")); // NOI18N
@@ -208,11 +212,11 @@ public class OpenDatcomView extends FrameView {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1184, Short.MAX_VALUE)
+            .addGap(0, 1193, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGap(0, 303, Short.MAX_VALUE)
         );
 
         jPanel27.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel27.border.title"))); // NOI18N
@@ -295,7 +299,7 @@ public class OpenDatcomView extends FrameView {
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGap(70, 70, 70))
         );
 
         javax.swing.GroupLayout jMainTabLayout = new javax.swing.GroupLayout(jMainTab);
@@ -307,7 +311,7 @@ public class OpenDatcomView extends FrameView {
                 .addGroup(jMainTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jMainTabLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1213, Short.MAX_VALUE))
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -317,7 +321,7 @@ public class OpenDatcomView extends FrameView {
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -336,7 +340,7 @@ public class OpenDatcomView extends FrameView {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+                .addComponent(jTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -447,7 +451,7 @@ public class OpenDatcomView extends FrameView {
 
         setComponent(mainPanel);
         setMenuBar(menuBar);
-        setStatusBar(statusPanel);
+        setStatusBar(progressBar);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jOpenMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenMenuActionPerformed

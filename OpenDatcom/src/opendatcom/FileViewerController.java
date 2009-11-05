@@ -39,6 +39,7 @@ public class FileViewerController extends AbstractController{
      */
     public void populateFileSelect()
     {
+        files = null;
         view.getjFileSelect().removeAllItems();
         root = new File(ps.getProjectPath());
         if (root == null)
@@ -57,9 +58,15 @@ public class FileViewerController extends AbstractController{
      */
     public void changeOutputView()
     {
+        if(files == null)
+        {
+            System.out.println("No Files to Select");
+            return;
+        }
         File tempF = files[view.getjFileSelect().getSelectedIndex()];
         String tS = ies.importFile(tempF);
         view.getjShow().setText(tS);
+        view.getjShow().setCaretPosition(0);
     }
 
 

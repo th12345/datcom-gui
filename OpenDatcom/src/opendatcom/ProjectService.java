@@ -14,6 +14,7 @@ import java.io.File;
 public class ProjectService extends AbstractService
 {
     static ProjectService self;
+    ImportExportService ies;
     String projectName;
     String projectPath;
     File workingFolder;
@@ -22,6 +23,7 @@ public class ProjectService extends AbstractService
     private ProjectService()
     {
         registerForMe();
+        ies = ImportExportService.getInstance();
         workingFolder = null;
         projectFile = null;
         projectName = null;
@@ -48,6 +50,11 @@ public class ProjectService extends AbstractService
         System.out.println("Path: " + projectPath);
         projectFile = new File(projectPath);
         projectFile.mkdirs();
+    }
+
+    public void saveProject()
+    {
+
     }
 
     //////////////////////////////////////////////////
