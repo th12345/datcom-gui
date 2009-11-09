@@ -98,6 +98,46 @@ public class ImportExportService extends AbstractService{
         
     }
 
+    /**
+     * Writes data to the destination file.
+     * @param destination
+     * @param data
+     */
+
+    public void writeFile(File destination, String data)
+    {
+        BufferedWriter out = null;
+        String[] temp = data.split("\n");
+       
+        try {
+           BufferedWriter output = new BufferedWriter(new FileWriter(destination));
+           for (int i = 0; i < temp.length; i++) {
+                out.write(temp[i]);
+                out.newLine();
+            }
+        }
+
+        catch (FileNotFoundException ex) // Catch file not found errors
+        {
+            Logger.getLogger(ImportExportService.class.getName()).log(Level.SEVERE, null, ex);
+        }        catch (IOException ex)  // Catch IO errors reading the stream
+        {
+            Logger.getLogger(ImportExportService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Compatability wrapper for Aleksey's JSBSim stuff.
+     * @param path
+     * @param fileName
+     * @param data
+     */
+    public void writeFile(String path, String fileName, String data)
+    {
+        File destination = new File(path + "\\" + fileName);
+        writeFile(destination, data);
+    }
+
     public static ImportExportService getInstance()
     {
         if(self == null)

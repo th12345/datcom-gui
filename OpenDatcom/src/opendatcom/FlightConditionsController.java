@@ -97,7 +97,7 @@ public class FlightConditionsController extends AbstractController {
     private String generateOPTS()
     {
         String temp = "";
-        temp += util.safeAdd("  ROUGFC=", roughValues[view.getjRoughness().getSelectedIndex()]);
+        //temp += util.safeAdd("  ROUGFC=", roughValues[view.getjRoughness().getSelectedIndex()]);
         temp += util.safeAdd("  SREF=", model.getSref());
         temp += util.safeAdd("  CBARR=", model.getCbarr());
         temp += util.safeAdd("  BLREF=", model.getBlref());

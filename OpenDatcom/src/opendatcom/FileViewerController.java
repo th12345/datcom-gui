@@ -39,13 +39,19 @@ public class FileViewerController extends AbstractController{
      */
     public void populateFileSelect()
     {
+        if(!ps.isValid)
+        {
+            return;
+        }
         files = null;
         view.getjFileSelect().removeAllItems();
         root = new File(ps.getProjectPath());
+
         if (root == null)
         {
             return;
         }
+        
         files = root.listFiles();
         for(int i = 0; i < files.length; i++)
         {
@@ -67,34 +73,6 @@ public class FileViewerController extends AbstractController{
         String tS = ies.importFile(tempF);
         view.getjShow().setText(tS);
         view.getjShow().setCaretPosition(0);
-    }
-
-
-    @Override
-    public void gatherData() {
-        // Not used
-    }
-
-    @Override
-    public String generateOutput() {
-        // Not used
-        return "";
-    }
-
-    @Override
-    public void refresh() {
-        // Not used
-    }
-
-    @Override
-    public void refreshFromSaved(String data) {
-        // Not used
-    }
-
-    @Override
-    public String generateXML() {
-        // Not used
-        return "";
     }
 
     @Override

@@ -6,6 +6,9 @@
 package opendatcom;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,13 +22,15 @@ public class ProjectService extends AbstractService
     String projectPath;
     File workingFolder;
     File projectFile;
+    boolean isValid = false;
 
     private ProjectService()
     {
         registerForMe();
         ies = ImportExportService.getInstance();
-        workingFolder = null;
-        projectFile = null;
+        workingFolder = new File(System.getProperty("user.dir"));
+        projectFile = new File(System.getProperty("user.dir"));
+        projectPath = System.getProperty("user.dir");
         projectName = null;
     }
 
@@ -41,15 +46,28 @@ public class ProjectService extends AbstractService
     public void startProject()
     {
         projectName = javax.swing.JOptionPane.showInputDialog("Project Name:");
-        if(projectName == null)
-        {
-            return;
-        }
+        startProject(projectName);
+    }
 
-        projectPath = System.getProperty("user.dir") + "\\Projects\\" + projectName;
-        System.out.println("Path: " + projectPath);
-        projectFile = new File(projectPath);
-        projectFile.mkdirs();
+    void startProject(String text) {
+        try {
+            if (text == null)
+            {
+                return;
+            }
+            projectName = text;
+            parent.setCaseName(projectName);
+            projectPath = System.getProperty("user.dir") + "\\Projects\\" + projectName;
+            System.out.println("Path: " + projectPath);
+            projectFile = new File(projectPath + "\\" + projectName + ".xml");
+            new File(projectPath).mkdirs();
+            projectFile.createNewFile();
+            System.out.println("Project File:" + projectFile.getName());
+            projectFile.mkdirs();
+            isValid = true;
+        } catch (IOException ex) {
+            Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void saveProject()
@@ -83,5 +101,9 @@ public class ProjectService extends AbstractService
         return projectPath;
     }
 
+    public Boolean isValid()
+    {
+        return isValid;
+    }
 
 }

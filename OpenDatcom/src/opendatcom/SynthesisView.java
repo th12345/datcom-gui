@@ -69,19 +69,12 @@ public class SynthesisView extends javax.swing.JPanel {
         jZHText = new javax.swing.JTextField();
         jLabel239 = new javax.swing.JLabel();
         jLabel243 = new javax.swing.JLabel();
-        jPanel22 = new javax.swing.JPanel();
-        jPanel23 = new javax.swing.JPanel();
-        jSetValues = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jShowReference = new javax.swing.JButton();
         jFlightHeaderText4 = new javax.swing.JPanel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jSynthHeader = new javax.swing.JTextArea();
-        jSynthDrawPane = new javax.swing.JPanel();
         jPanel58 = new javax.swing.JPanel();
         jLabel240 = new javax.swing.JLabel();
 
         setName("Form"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jPanel53.setName("jPanel53"); // NOI18N
 
@@ -141,14 +134,14 @@ public class SynthesisView extends javax.swing.JPanel {
                     .addComponent(jLabel241)
                     .addComponent(jLabel242))
                 .addGap(64, 64, 64)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jZCGText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jXCGText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                    .addComponent(jXWText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jZWText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jALIWText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jALIHText, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jZCGText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(jXWText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(jZWText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(jALIWText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(jALIHText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                    .addComponent(jXCGText, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,13 +225,13 @@ public class SynthesisView extends javax.swing.JPanel {
                     .addComponent(jLabel243)
                     .addComponent(jLabel239))
                 .addGap(75, 75, 75)
-                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jZHText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jXHText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
-                    .addComponent(jXVFText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jZVFText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jXVText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jZVText, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jZHText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jXVFText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jZVFText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jXVText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jZVText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jXHText, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
@@ -275,11 +268,12 @@ public class SynthesisView extends javax.swing.JPanel {
         jPanel56.setLayout(jPanel56Layout);
         jPanel56Layout.setHorizontalGroup(
             jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel56Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel56Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel56Layout.setVerticalGroup(
             jPanel56Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,90 +281,17 @@ public class SynthesisView extends javax.swing.JPanel {
             .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel22.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel22.border.title"))); // NOI18N
-        jPanel22.setName("jPanel22"); // NOI18N
-
-        jPanel23.setName("jPanel23"); // NOI18N
-
-        jSetValues.setText(resourceMap.getString("jSetValues.text")); // NOI18N
-        jSetValues.setName("jSetValues"); // NOI18N
-        jSetValues.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSetValuesActionPerformed(evt);
-            }
-        });
-
-        jButton10.setText(resourceMap.getString("jButton10.text")); // NOI18N
-        jButton10.setEnabled(false);
-        jButton10.setName("jButton10"); // NOI18N
-
-        jShowReference.setText(resourceMap.getString("jShowReference.text")); // NOI18N
-        jShowReference.setName("jShowReference"); // NOI18N
-
-        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
-        jPanel23.setLayout(jPanel23Layout);
-        jPanel23Layout.setHorizontalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSetValues, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                    .addComponent(jShowReference, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel23Layout.setVerticalGroup(
-            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSetValues)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jShowReference))
-        );
-
-        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
-        jPanel22.setLayout(jPanel22Layout);
-        jPanel22Layout.setHorizontalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel22Layout.setVerticalGroup(
-            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
-                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jFlightHeaderText4.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jFlightHeaderText4.border.title"))); // NOI18N
         jFlightHeaderText4.setName("jFlightHeaderText4"); // NOI18N
-
-        jScrollPane10.setName("jScrollPane10"); // NOI18N
-
-        jSynthHeader.setColumns(20);
-        jSynthHeader.setRows(5);
-        jSynthHeader.setName("jSynthHeader"); // NOI18N
-        jScrollPane10.setViewportView(jSynthHeader);
 
         javax.swing.GroupLayout jFlightHeaderText4Layout = new javax.swing.GroupLayout(jFlightHeaderText4);
         jFlightHeaderText4.setLayout(jFlightHeaderText4Layout);
         jFlightHeaderText4Layout.setHorizontalGroup(
             jFlightHeaderText4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFlightHeaderText4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 760, Short.MAX_VALUE)
         );
         jFlightHeaderText4Layout.setVerticalGroup(
             jFlightHeaderText4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFlightHeaderText4Layout.createSequentialGroup()
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 228, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel53Layout = new javax.swing.GroupLayout(jPanel53);
@@ -380,11 +301,8 @@ public class SynthesisView extends javax.swing.JPanel {
             .addGroup(jPanel53Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel53Layout.createSequentialGroup()
-                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFlightHeaderText4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jFlightHeaderText4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel56, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel53Layout.setVerticalGroup(
@@ -393,25 +311,8 @@ public class SynthesisView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jFlightHeaderText4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jFlightHeaderText4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-        );
-
-        jSynthDrawPane.setBackground(resourceMap.getColor("jSynthDrawPane.background")); // NOI18N
-        jSynthDrawPane.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jSynthDrawPane.setName("jSynthDrawPane"); // NOI18N
-
-        javax.swing.GroupLayout jSynthDrawPaneLayout = new javax.swing.GroupLayout(jSynthDrawPane);
-        jSynthDrawPane.setLayout(jSynthDrawPaneLayout);
-        jSynthDrawPaneLayout.setHorizontalGroup(
-            jSynthDrawPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 522, Short.MAX_VALUE)
-        );
-        jSynthDrawPaneLayout.setVerticalGroup(
-            jSynthDrawPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 472, Short.MAX_VALUE)
         );
 
         jPanel58.setName("jPanel58"); // NOI18N
@@ -427,7 +328,7 @@ public class SynthesisView extends javax.swing.JPanel {
             jPanel58Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel58Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel240, javax.swing.GroupLayout.DEFAULT_SIZE, 1054, Short.MAX_VALUE)
+                .addComponent(jLabel240, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel58Layout.setVerticalGroup(
@@ -445,38 +346,25 @@ public class SynthesisView extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel58, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSynthDrawPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel53, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel58, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel58, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSynthDrawPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(26, 26, 26))))
+                .addComponent(jPanel53, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jSetValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSetValuesActionPerformed
-        controller.refresh();
-    }//GEN-LAST:event_jSetValuesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jALIHText;
     private javax.swing.JTextField jALIWText;
-    private javax.swing.JButton jButton10;
     private javax.swing.JPanel jFlightHeaderText4;
     private javax.swing.JLabel jLabel220;
     private javax.swing.JLabel jLabel228;
@@ -493,16 +381,9 @@ public class SynthesisView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel243;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel53;
     private javax.swing.JPanel jPanel56;
     private javax.swing.JPanel jPanel58;
-    private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JButton jSetValues;
-    private javax.swing.JButton jShowReference;
-    private javax.swing.JPanel jSynthDrawPane;
-    private javax.swing.JTextArea jSynthHeader;
     private javax.swing.JTextField jXCGText;
     private javax.swing.JTextField jXHText;
     private javax.swing.JTextField jXVFText;
@@ -523,32 +404,8 @@ public class SynthesisView extends javax.swing.JPanel {
         return jALIWText;
     }
 
-    public JButton getjButton10() {
-        return jButton10;
-    }
-
-    public JButton getjButton11() {
-        return jShowReference;
-    }
-
-    public JButton getjButton9() {
-        return jSetValues;
-    }
-
     public JPanel getjFlightHeaderText4() {
         return jFlightHeaderText4;
-    }
-
-    public JScrollPane getjScrollPane10() {
-        return jScrollPane10;
-    }
-
-    public JPanel getjSynthDrawPane() {
-        return jSynthDrawPane;
-    }
-
-    public JTextArea getjSynthHeader() {
-        return jSynthHeader;
     }
 
     public JTextField getjXCGText() {

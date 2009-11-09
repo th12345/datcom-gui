@@ -6,10 +6,9 @@
 package opendatcom;
 
 /**
- * Dummy class to conform to system design. Not actually used anywhere.
+ *
  * @author -B-
  */
-class FileViewerModel
-{
+class CheckModel {
 
 }

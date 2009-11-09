@@ -355,7 +355,6 @@ public String removeComments(String input)
         temp = data.substring(start, end);
         temp = temp.replaceAll(startXml, "");
         temp = temp.replaceAll(endXml, "");
-        System.out.println(temp);
         return temp;
     }
 

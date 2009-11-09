@@ -16,14 +16,16 @@ public class JSBSimService extends AbstractService
     static JSBSimService self;
     ImportExportService ies;
     ParserUtility pu;
+    ProjectService ps;
 
     private JSBSimService()
     {
         ies = ImportExportService.getInstance();
         pu = ParserUtility.getInstance();
+        ps = ProjectService.getInstance();
     }
 
-    public JSBSimService getInstance()
+    public static JSBSimService getInstance()
     {
         if(self == null)
         {
@@ -31,10 +33,5 @@ public class JSBSimService extends AbstractService
         }
         return self;
     }
-
-    public void generateOutput()
-    {
-        String data = ies.importFile(new File(parent.getWorkingDirectory() + "\\for006.dat"));
-        
-    }
 }
+   

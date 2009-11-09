@@ -94,6 +94,7 @@ public class SynthesisController extends AbstractController{
         return model;
     }
 
+    @Override
     public SynthesisView getView() {
         return view;
     }

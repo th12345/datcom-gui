@@ -40,33 +40,33 @@ public abstract class AbstractController {
     /**
      * Pulls data from the view and stores it in the model.
      */
-    public abstract void gatherData();
+    public void gatherData(){}
 
     /**
      * Generates datcom-formatted output from the controller's variables.
      * @return String containing datcom-formatted data.
      */
-    public abstract String generateOutput();
+    public String generateOutput() { return "";}
 
     /**
      * Refreshes the data in the controller. Cascades down and updates the model
      * and the view. Methods called: gather data, generate output, & view.refresh.
      */
-    public abstract void refresh();
+    public void refresh(){};
 
     /**
      * Parses variable data from the input data. The input data should be in
      * XML format.
      * @param data XML-formatted controller node.
      */
-    public abstract void refreshFromSaved(String data);
+    public void refreshFromSaved(String data) {};
 
     /**
      * Generates the XML data for the controller's variables. Outputs the data
      * in a formatted string.
      * @return A string containing the XML-formatted variable data.
      */
-    public abstract String generateXML();
+    public String generateXML() { return "";}
 
     public abstract JPanel getView();
 

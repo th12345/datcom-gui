@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -44,11 +45,17 @@ public class OpenDatcomController extends SingleFrameApplication{
     private FlightSurfaceController wingC, hTailC, vTailC;
     private ImportExportService in;
     private FileViewerController fviewC;
+    private MainScreenController mainC;
 
     // Services
-    private OutputView output;
+    private DatcomService output;
     private ProjectService ps;
     private ScreenResolution sr;
+    private JSBSimService jSim;
+
+    // Variables
+    String caseName;
+    String units;
 
     private void initModule()
     {
@@ -56,32 +63,36 @@ public class OpenDatcomController extends SingleFrameApplication{
         // Init the file chooser
         fc = new JFileChooser();
         fc.setFileFilter(new xmlFilter());
-        fc.setCurrentDirectory(new java.io.File(".\\Saves"));
+        fc.setCurrentDirectory(new java.io.File(".\\Projects"));
     }
 
     private void initServices()
     {
         in   = ImportExportService.getInstance();
         ps = ProjectService.getInstance();
-        ps.startProject();
         sr = ScreenResolution.getInstance();
+        jSim = JSBSimService.getInstance();
     }
 
     private void initModules()
     {
         // Set the initial frame size to the system max res
-        view.getFrame().setBounds(0, 0, sr.getWidth(), sr.getHeight());
+        view.getFrame().setBounds(0, 0, 1200, 700);
+        view.getFrame().setResizable(false);
         
         // Initialize the panels. Note that the order matters here, the initialization
         // order determines the tab order
+        mainC   =   new MainScreenController();
         flightC =   new FlightConditionsController();
         synthC  =   new SynthesisController();
         bodyC   =   new BodyController();
         wingC   =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.MAIN_WING);
         hTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.HORIZONTAL_TAIL);
         vTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
-        output  =   new OutputView();
+        output  =   new DatcomService();
         fviewC  =   new FileViewerController();
+        caseName = "";
+        units = "DIM FT";
 
         // Iterate through and add the modules to the tab frame.
         JPanel tempJPanel;
@@ -91,13 +102,11 @@ public class OpenDatcomController extends SingleFrameApplication{
             tempJPanel.setLayout(new GridLayout(1,0));
             tempJPanel.setName(controllers.get(x).getName());
             tempJPanel.add((controllers.get(x)).getView());
-            tempJPanel.setBounds(0, 0, 200, 200);
             view.addTab(tempJPanel);
         }
 
         tempJPanel = new JPanel();
         tempJPanel.setLayout(new GridLayout(1,0));
-        tempJPanel.setBounds(0, 0, 200, 200);
         tempJPanel.setName("Output");
         tempJPanel.add(output);
 
@@ -174,15 +183,6 @@ public class OpenDatcomController extends SingleFrameApplication{
      */
     public void refreshFromSave(String input)
     {
-        String temp = util.xmlParse("Units", input);
-        if(temp.equalsIgnoreCase("Metric"))
-        {
-            view.getjUnitsSelect().setSelectedIndex(1);
-        }
-
-        temp = util.xmlParse("Case", input);
-        view.getjCaseName().setText(temp);
-
         for(int x = 0; x < controllers.size(); x++)
         {
             controllers.get(x).refreshFromSaved(input);
@@ -194,8 +194,8 @@ public class OpenDatcomController extends SingleFrameApplication{
     public String generateXML()
     {
         String temp = "";
-        temp += util.xmlWrite("Case", view.getjCaseName().getText());
-        temp += util.xmlWrite("Units", view.getjUnitsSelect().getSelectedItem().toString());
+        temp += util.xmlWrite("CASE_NAME", caseName);
+        temp +=util.xmlWrite("UNITS", units);
         return temp;
     }
 
@@ -234,25 +234,17 @@ public class OpenDatcomController extends SingleFrameApplication{
      */
     public void saveAs()
     {
-        fc.setDialogTitle("Save:");
-        int check = fc.showSaveDialog(view.getComponent());
-        if(check == JFileChooser.APPROVE_OPTION)
+        // If the project service has been initialized save to the default location
+        if(ps.isValid)
         {
             try {
-                currentFile = fc.getSelectedFile();
-                if (!currentFile.getName().contains(".xml"))
-                {
-                    currentFile = new File(currentFile.getAbsoluteFile() + ".xml");
-                }
+                currentFile = new File(ps.getProjectPath() + "//data.xml");
                 currentFile.createNewFile();
                 in.writeXML(currentFile);
+                return;
             } catch (IOException ex) {
-                Logger.getLogger(OpenDatcomView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(OpenDatcomController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        else if(check == JFileChooser.CANCEL_OPTION)
-        {
-            return;
         }
     }
 
@@ -268,7 +260,11 @@ public class OpenDatcomController extends SingleFrameApplication{
         if(check == JFileChooser.APPROVE_OPTION)
         {
             currentFile = fc.getSelectedFile();
+            ps.startProject(currentFile.getName().replace(".xml", ""));
             refreshFromSave(in.importFile(currentFile));
+
+            // Set current file to the correct project path
+            currentFile = ps.getProjectFile();
         }
         else if(check == JFileChooser.CANCEL_OPTION)
         {
@@ -283,7 +279,7 @@ public class OpenDatcomController extends SingleFrameApplication{
      */
     public void openTemplate()
     {
-        fc.setDialogTitle("Select Template:");
+        fc.setDialogTitle("Select Template Data:");
         int check = fc.showOpenDialog(view.getComponent());
         if(check == JFileChooser.APPROVE_OPTION)
         {
@@ -335,6 +331,9 @@ public class OpenDatcomController extends SingleFrameApplication{
         launch(OpenDatcomController.class, args);
     }
 
+    /**
+     * Makes any required directories if they dont already exist
+     */
     private void makeDirs()
     {
         File tempF = new File(System.getProperty("user.dir") + "\\Saves");
@@ -343,14 +342,19 @@ public class OpenDatcomController extends SingleFrameApplication{
         tempF.mkdirs();
     }
 
-    public String getUnits()
+    /**
+     * Starts the new Project process. Uses projectService routines.
+     */
+    public void newProject()
     {
-        return view.getUnits();
+        ps.startProject();
+        caseName = ps.getName();
+        units = "DIM FT";
     }
 
     public String getCaseName()
     {
-        return view.getCaseName();
+        return caseName;
     }
 
     public File getWorkingDirectory() {
@@ -359,5 +363,21 @@ public class OpenDatcomController extends SingleFrameApplication{
 
     public JFileChooser getFc() {
         return fc;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
+    }
+
+    public void setCaseName(String caseName) {
+        this.caseName = caseName;
+    }
+
+    public void runJSBSimTranslator()
+    {
     }
 }
