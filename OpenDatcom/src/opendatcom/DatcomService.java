@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextPane;
+import sun.java2d.DestSurfaceProvider;
 
 /**
  * 
@@ -25,7 +26,11 @@ public class DatcomService extends javax.swing.JPanel {
     LinkedList<AbstractController> controllers;
     OpenDatcomController parent;
     ProjectService ps;
+    ImportExportService ies;
 
+    // Regex constants
+    String regexHeader = "0 ALPHA     ";
+    String regexFooter = "0                                    ALPHA     ";
 
     /** Creates new form DatcomService */
     public DatcomService() {
@@ -34,6 +39,7 @@ public class DatcomService extends javax.swing.JPanel {
         controllers = new LinkedList<AbstractController>();
         parent = OpenDatcomController.getInstance();
         ps = ProjectService.getInstance();
+        ies = ImportExportService.getInstance();
     }
 
     /**
@@ -60,11 +66,327 @@ public class DatcomService extends javax.swing.JPanel {
             temp += controllers.get(x).generateOutput();
         }
         temp += parent.getUnits();
-        temp += "\nBUILD\nPLOT\nNEXT CASE";
+        temp += "\nNEXT CASE";
 
         return temp;
     }
 
+
+    /**
+     * Removes all the comments & blank lines from the input data.
+     * @param target The input data.
+     * @return The The input data - any # comments.
+     */
+    public String datcomFormat(String target)
+    {
+        String [] temp = target.split("\n");
+        target = "";
+        for(int x = 0; x < temp.length; x++)
+        {
+            if(!temp[x].isEmpty())
+            {
+                temp[x] += "\n";
+                if(temp[x].charAt(0) == '#')
+                {
+                    temp[x] = "";
+                }
+                target += temp[x];
+            }
+        }
+        target = target.replaceAll("\t", "");
+        //target += parent.getUnits() + "\nBUILD\nPLOT\nNEXT CASE";
+        return target;
+    }
+
+
+    /**
+     * Start of the monolithic Datcom->JSBSim process. This is one of the slowest
+     * functions I have ever created and calls datcom.exe nAlpha * nMach * nAOA times.
+     * It is broken up into helper functions to make it (slightly) more readable.
+     */
+    private void runDatcom()
+    {
+        FlightConditionsController fcc = (FlightConditionsController)parent.getController("Flight Conditions");
+        if(fcc == null)
+        {
+            return;
+        }
+        String alts = fcc.getModel().getAltitudes();
+        alts = alts.replaceAll("\t", "");
+        String machs = fcc.getModel().getMachs();
+        machs = machs.replaceAll("\t", "");
+        String aoas = fcc.getModel().getAoas();
+        aoas = aoas.replaceAll("\t", "");
+        String [] sAlts = alts.split(",");
+        String [] sMachs = machs.split(",");
+        String [] sAoas = aoas.split(",");
+        String path = System.getProperty("user.dir") + "\\Bin\\Datcom\\datcom.exe";
+        String tempPath = "";
+        try {
+        for(int a = 0; a < sAlts.length; a++)
+        {
+            fcc.getView().getjAltText().setText(sAlts[a]);
+            for(int m = 0; m < sMachs.length; m++)
+            {
+                fcc.getView().getjMachText().setText(sMachs[a]);
+                fcc.getModel().setMachs(sMachs[m]);
+                for(int x = 0; x < sAoas.length; x++)
+                {
+                        tempPath = ps.getProjectPath() + "\\Table_Data\\" + sAlts[a] 
+                                + "\\" + sMachs[m] + "_" + sAlts[a];
+                        File destF = new File(tempPath + "\\for006.dat");
+                        destF.mkdirs();
+                        generateDat();
+                        Process p = new ProcessBuilder(path).start();
+                        p.waitFor();
+                        moveForFiles(tempPath, sAlts[a]);
+                        processJSBSimData(destF, sAlts[a]);
+                }// Angles
+            }// Machs
+        }// Altitudes
+
+        fcc.getView().getjAltText().setText(alts);
+        fcc.getView().getjMachText().setText(machs);
+        Process p = new ProcessBuilder(path).start();
+        moveForFiles();
+
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
+            fcc.getView().getjAltText().setText(alts);
+            fcc.getView().getjMachText().setText(machs);
+        }
+    }
+
+    /**
+     * Generates a for005.dat file from all the user's entered data. The file is
+     * created in the working directory, which is in the OpenDatcom folder.
+     */
+    public void generateDat()
+    {
+        File datFile = new File(parent.getWorkingDirectory().getAbsolutePath() +"\\for005.dat");
+        String temp = getControllerOutput();
+        temp = datcomFormat(temp);
+        try
+        {
+           datFile.createNewFile();
+           BufferedWriter output = new BufferedWriter(new FileWriter(datFile));
+           String [] newlineTempCauseJavaSucks = temp.split("\n");
+           for(int x = 0; x < newlineTempCauseJavaSucks.length; x++)
+           {
+               output.write(newlineTempCauseJavaSucks[x]);
+               output.newLine();
+           }
+           output.close();
+
+        } catch (IOException ex)
+        {
+            Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Moves the datcom-generated for00X files from the working space to the user's
+     * project directory.
+     */
+    private void moveForFiles()
+    {
+        File moveForSource = null;
+        File moveForDest = null;
+
+        // Loop through and move the files
+        for(int i = 5; i < 15; i++)
+        {
+            // Set the file names correctly
+            if(i < 10)
+            {
+                moveForSource = new File("for00" + i + ".dat");
+                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + " for00" + i +".dat");
+            }
+            else
+            {
+                moveForSource = new File("for0" + i + ".dat");
+                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + " for0" + i +".dat");
+            }
+
+            // Delete old files so the move can be executed
+            if(moveForDest.exists())
+            {
+                moveForDest.delete();
+            }
+
+            // only move the
+            if(moveForSource != null)
+            {
+                moveForSource.renameTo(moveForDest);
+            }
+        }
+    }
+
+     /**
+      * Moves all for0XX.dat files to the destionation path. Deletes originals.
+      * @param dest The destination path.
+      */
+    private void moveForFiles(String dest, String Alt)
+    {
+
+        File moveForSource = null;
+        File moveForDest = null;
+
+        // Loop through and move the files
+        for(int i = 5; i < 15; i++)
+        {
+            // Set the file names correctly
+            if(i < 10)
+            {
+                moveForSource = new File("for00" + i + ".dat");
+                moveForDest = new File(dest + "\\for00" + i +".dat");
+            }
+            else
+            {
+                moveForSource = new File("for0" + i + ".dat");
+                moveForDest = new File(dest + "\\for0" + i +".dat");
+            }
+
+            // Delete old files so the move can be executed
+            if(moveForDest.exists())
+            {
+                moveForDest.delete();
+            }
+
+            if(moveForSource != null)
+            {
+                moveForSource.renameTo(moveForDest);
+            }
+        }
+    }
+
+    /**
+     * Takes a for006.dat file and rip out the table with the JSBSim data out. Calls
+     * several helper functions in the process. Warning, this function is a hog, it
+     * uses 12 linked lists, relies mainley on regex expressions and executes a
+     * ton of file i/o. Function is a potential target for future optimization
+     * @param target Target for006 file, everything else will error immediately.
+     */
+    private void processJSBSimData(File target, String Alt)
+    {
+        try {
+            LinkedList<Double> CD = new LinkedList<Double>();
+            LinkedList<Double> CL = new LinkedList<Double>();
+            LinkedList<Double> CM = new LinkedList<Double>();
+            LinkedList<Double> CN = new LinkedList<Double>();
+            LinkedList<Double> CA = new LinkedList<Double>();
+            LinkedList<Double> XCP = new LinkedList<Double>();
+            LinkedList<Double> CLA = new LinkedList<Double>();
+            LinkedList<Double> CMA = new LinkedList<Double>();
+            LinkedList<Double> CYB = new LinkedList<Double>();
+            LinkedList<Double> CNB = new LinkedList<Double>();
+            LinkedList<Double> CLB = new LinkedList<Double>();
+            LinkedList<Double> alpha = new LinkedList<Double>();
+
+            String data = ies.importFile(target);
+            data = data.split(regexHeader)[1];
+            data = data.split(regexFooter)[0];
+
+            // At this point data is just 2 lines of header followed by the table
+            String[] lines = data.split("\n");
+            String[] values;
+
+            for (int i = 2; i < lines.length; i++) {
+                // this junk eliminates the whitespace and replaces it with commas
+                lines[i] = lines[i].replaceAll(" * ", ",");
+                lines[i] = lines[i].replaceAll("NDM", "-1");
+                // and now the commas are gone!
+                values = lines[i].split(",");
+                alpha.add(Double.valueOf(values[1]));
+
+                // Switch off the number of values and add as approprate
+                if (values.length == 13)
+                {
+                    CD.add(Double.valueOf(values[2]));
+                    CL.add(Double.valueOf(values[3]));
+                    CM.add(Double.valueOf(values[4]));
+                    CN.add(Double.valueOf(values[5]));
+                    CA.add(Double.valueOf(values[6]));
+                    XCP.add(Double.valueOf(values[7]));
+                    CLA.add(Double.valueOf(values[8]));
+                    CMA.add(Double.valueOf(values[9]));
+                    CYB.add(Double.valueOf(values[10]));
+                    CNB.add(Double.valueOf(values[11]));
+                    CLB.add(Double.valueOf(values[12]));
+                }
+                else if (values.length == 11)
+                {
+                    CD.add(Double.valueOf(values[2]));
+                    CL.add(Double.valueOf(values[3]));
+                    CM.add(Double.valueOf(values[4]));
+                    CN.add(Double.valueOf(values[5]));
+                    CA.add(Double.valueOf(values[6]));
+                    XCP.add(Double.valueOf(values[7]));
+                    CLA.add(Double.valueOf(values[8]));
+                    CMA.add(Double.valueOf(values[9]));
+                    CLB.add(Double.valueOf(values[10]));
+                }
+            }
+            writeLinkedList(CD, alpha, target.getParent(), "CD.txt", Alt);
+            writeLinkedList(CL, alpha, target.getParent(), "CL.txt", Alt);
+            writeLinkedList(CN, alpha, target.getParent(), "CN.txt", Alt);
+            writeLinkedList(CM, alpha, target.getParent(), "CM.txt", Alt);
+            writeLinkedList(CA, alpha, target.getParent(), "CA.txt", Alt);
+            writeLinkedList(XCP, alpha, target.getParent(), "XCP.txt", Alt);
+            writeLinkedList(CLA, alpha, target.getParent(), "CLA.txt", Alt);
+            writeLinkedList(CMA, alpha, target.getParent(), "CMA.txt", Alt);
+            writeLinkedList(CYB, alpha, target.getParent(), "CYB.txt", Alt);
+            writeLinkedList(CNB, alpha, target.getParent(), "CNB.txt", Alt);
+            writeLinkedList(CLB, alpha, target.getParent(), "CLB.txt", Alt);
+
+        } catch (IOException ex) {
+            Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     * Helper function to make everything a bit more readable; called in processJSBSim.
+     * Function takes in the data linked list and the alpha values and writes it to
+     * the file specified.
+     * @param in The data to write
+     * @param alpha The corespoinding alpha values
+     * @param Path Path to write the data too.
+     * @param fileName Filename to write the data to.
+     * @param Alt The current altitude value
+     * @throws IOException IOException handled in processJSBSim.
+     */
+    private void writeLinkedList(LinkedList<Double> in, LinkedList<Double> alpha,
+            String Path, String fileName, String Alt) throws IOException
+    {
+        String output = Path + "\\" + fileName;
+        File dest = new File(output);
+        output = "<tableData breakPoint=\"" + Alt + "\">\n";
+        dest.createNewFile();
+        for (int i = 0; i < in.size(); i++) {
+            output += in.get(i) + "\t" + in.get(i) + "\n";
+        }
+        ies.writeFile(dest, output);
+    }
+
+    public JTextPane getjOutputText() {
+        return jOutputText;
+    }
+
+    public void setjOutputText(JTextPane jOutputText) {
+        this.jOutputText = jOutputText;
+    }
+
+    public String getOutputData() {
+        return outputData;
+    }
+
+    public void setOutputData(String outputData) {
+        this.outputData = outputData;
+        jOutputText.setText(outputData);
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -223,31 +545,6 @@ public class DatcomService extends javax.swing.JPanel {
         runDatcom();
     }//GEN-LAST:event_jRunDatcomActionPerformed
 
-    /**
-     * Removes all the comments & blank lines from the input data.
-     * @param target The input data.
-     * @return The The input data - any # comments.
-     */
-    public String datcomFormat(String target)
-    {
-        String [] temp = target.split("\n");
-        target = "";
-        for(int x = 0; x < temp.length; x++)
-        {
-            if(!temp[x].isEmpty())
-            {
-                temp[x] += "\n";
-                if(temp[x].charAt(0) == '#')
-                {
-                    temp[x] = "";
-                }
-                target += temp[x];
-            }
-        }
-        target = target.replaceAll("\t", "");
-        //target += parent.getUnits() + "\nBUILD\nPLOT\nNEXT CASE";
-        return target;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jDrawPane;
@@ -260,102 +557,4 @@ public class DatcomService extends javax.swing.JPanel {
     private javax.swing.JButton jShowHumanReadable;
     // End of variables declaration//GEN-END:variables
 
-    public JTextPane getjOutputText() {
-        return jOutputText;
-    }
-
-    public void setjOutputText(JTextPane jOutputText) {
-        this.jOutputText = jOutputText;
-    }
-
-    public String getOutputData() {
-        return outputData;
-    }
-
-    public void setOutputData(String outputData) {
-        this.outputData = outputData;
-        jOutputText.setText(outputData);
-    }
-
-
-    public void generateDat()
-    {
-        File datFile = new File(parent.getWorkingDirectory().getAbsolutePath() +"\\for005.dat");
-        String temp = getControllerOutput();
-        temp = datcomFormat(temp);
-        try
-        {
-           datFile.createNewFile();
-           BufferedWriter output = new BufferedWriter(new FileWriter(datFile));
-           String [] newlineTempCauseJavaSucks = temp.split("\n");
-           for(int x = 0; x < newlineTempCauseJavaSucks.length; x++)
-           {
-               output.write(newlineTempCauseJavaSucks[x]);
-               output.newLine();
-           }
-           output.close();
-
-        } catch (IOException ex)
-        {
-            Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     *
-     */
-    private void runDatcom()
-    {
-        generateDat();
-        String path = System.getProperty("user.dir") + "\\Bin\\Datcom\\datcom.exe";
-        try {
-            // Execute the datcom and wait until it returns
-            Process p = new ProcessBuilder(path).start();
-            p.waitFor();
-
-        } catch (InterruptedException ex) {
-            Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        moveForFiles();
-    }
-
-    /**
-     * Moves the datcom-generated for00X files from the working space to the user's
-     * project directory.
-     */
-    private void moveForFiles()
-    {
-        File moveForSource = null;
-        File moveForDest = null;
-
-        // Loop through and move the files
-        for(int i = 5; i < 15; i++)
-        {
-            // Set the file names correctly
-            if(i < 10)
-            {
-                moveForSource = new File("for00" + i + ".dat");
-                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + " for00" + i +".dat");
-            }
-            else
-            {
-                moveForSource = new File("for0" + i + ".dat");
-                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + " for0" + i +".dat");
-            }
-
-            // Delete old files so the move can be executed
-            if(moveForDest.exists())
-            {
-                moveForDest.delete();
-            }
-
-            // only move the
-            if(moveForSource != null)
-            {
-                moveForSource.renameTo(moveForDest);
-            }
-        }
-    }
 }

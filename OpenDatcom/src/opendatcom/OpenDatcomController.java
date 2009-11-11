@@ -149,6 +149,24 @@ public class OpenDatcomController extends SingleFrameApplication{
          return temp;
      }
 
+     /**
+      * Gets a registered controller by name.
+      * @param serviceName
+      * @return
+      */
+     public AbstractController getController(String serviceName)
+     {
+         AbstractController temp = null;
+         for(int i = 0; i < services.size(); i++)
+         {
+             if(controllers.get(i).getName().equalsIgnoreCase(serviceName))
+             {
+                 return controllers.get(i);
+             }
+         }
+         return temp;
+     }
+
     /**
      * Registers a module with the application. Modules must be registered during 
      * @param target

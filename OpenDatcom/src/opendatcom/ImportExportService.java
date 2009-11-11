@@ -106,15 +106,17 @@ public class ImportExportService extends AbstractService{
 
     public void writeFile(File destination, String data)
     {
-        BufferedWriter out = null;
         String[] temp = data.split("\n");
        
         try {
-           BufferedWriter output = new BufferedWriter(new FileWriter(destination));
-           for (int i = 0; i < temp.length; i++) {
-                out.write(temp[i]);
-                out.newLine();
+            destination.mkdirs();
+            destination.createNewFile();
+            BufferedWriter output = new BufferedWriter(new FileWriter(destination));
+            for (int i = 0; i < temp.length; i++) {
+                output.write(temp[i]);
+                output.newLine();
             }
+            output.close();
         }
 
         catch (FileNotFoundException ex) // Catch file not found errors
