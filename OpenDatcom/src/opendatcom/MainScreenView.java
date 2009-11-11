@@ -11,10 +11,7 @@
 
 package opendatcom;
 
-import com.sun.org.apache.xml.internal.dtm.ref.DTMDefaultBaseIterators.ParentIterator;
 import java.awt.image.BufferedImage;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
 
 /**
  *

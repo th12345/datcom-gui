@@ -6,7 +6,6 @@
 package opendatcom;
 
 import javax.swing.JPanel;
-import sun.security.jca.GetInstance;
 
 /**
  *
