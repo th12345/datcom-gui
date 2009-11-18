@@ -68,6 +68,8 @@ public class FlightConditionsView extends javax.swing.JPanel{
         jSrefText = new javax.swing.JTextField();
         jCbarrText = new javax.swing.JTextField();
         jRoughness = new javax.swing.JComboBox();
+        jLabel231 = new javax.swing.JLabel();
+        jLoop = new javax.swing.JTextField();
         jPanel55 = new javax.swing.JPanel();
         jTitle = new javax.swing.JLabel();
 
@@ -280,6 +282,14 @@ public class FlightConditionsView extends javax.swing.JPanel{
         jRoughness.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Smooth", "Polished Metal", "Wood", "Sheet Metal", "Matte Paint", "Military Camoflauge, Standard", "Mliitary Camo, Spayed", "Dip-Galvanized Metal", "Cast Iron", " " }));
         jRoughness.setName("jRoughness"); // NOI18N
 
+        jLabel231.setText(resourceMap.getString("jLabel231.text")); // NOI18N
+        jLabel231.setToolTipText(resourceMap.getString("jLabel231.toolTipText")); // NOI18N
+        jLabel231.setName("jLabel231"); // NOI18N
+
+        jLoop.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jLoop.setText(resourceMap.getString("jLoop.text")); // NOI18N
+        jLoop.setName("jLoop"); // NOI18N
+
         javax.swing.GroupLayout jFlightHeaderTextLayout = new javax.swing.GroupLayout(jFlightHeaderText);
         jFlightHeaderText.setLayout(jFlightHeaderTextLayout);
         jFlightHeaderTextLayout.setHorizontalGroup(
@@ -290,13 +300,15 @@ public class FlightConditionsView extends javax.swing.JPanel{
                     .addComponent(jLabel229)
                     .addComponent(jLabel228)
                     .addComponent(jLabel240)
-                    .addComponent(jLabel239))
+                    .addComponent(jLabel239)
+                    .addComponent(jLabel231))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jRoughness, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSrefText)
-                    .addComponent(jCbarrText)
-                    .addComponent(jBlrefText, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLoop)
+                    .addComponent(jRoughness, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSrefText, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jCbarrText, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBlrefText, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jFlightHeaderTextLayout.setVerticalGroup(
@@ -317,7 +329,10 @@ public class FlightConditionsView extends javax.swing.JPanel{
                 .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel228)
                     .addComponent(jRoughness, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLoop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel231)))
         );
 
         jPanel55.setName("jPanel55"); // NOI18N
@@ -398,11 +413,13 @@ public class FlightConditionsView extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel228;
     private javax.swing.JLabel jLabel229;
     private javax.swing.JLabel jLabel230;
+    private javax.swing.JLabel jLabel231;
     private javax.swing.JLabel jLabel236;
     private javax.swing.JLabel jLabel237;
     private javax.swing.JLabel jLabel238;
     private javax.swing.JLabel jLabel239;
     private javax.swing.JLabel jLabel240;
+    private javax.swing.JTextField jLoop;
     private javax.swing.JTextArea jMachText;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel17;
@@ -474,4 +491,10 @@ public class FlightConditionsView extends javax.swing.JPanel{
     public JComboBox getjRoughness() {
         return jRoughness;
     }
+
+    public JTextField getjLoop() {
+        return jLoop;
+    }
+    
 }
+

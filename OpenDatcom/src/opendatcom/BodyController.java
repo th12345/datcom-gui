@@ -8,6 +8,7 @@ public class BodyController extends AbstractController {
 
     BodyModel model;
     BodyView view;
+    private int wrapNum = 4;
     
     /**
      * Standard constructor, set the model, view, controller references
@@ -66,12 +67,20 @@ public class BodyController extends AbstractController {
         for(int i = 0; i < xValues.length; i++)
         {
             temp += xValues[i] + ",\t";
+            if(i%5 == wrapNum)
+            {
+                temp += "\n   ";
+            }
         }
         temp += "\n  R(1)=\t";
         for(int i = 0; i < xValues.length; i++)
         {
             temp+= radii[i] + ",\t";
             // Wrap around neatly
+            if(i%5 == wrapNum)
+            {
+                temp += "\n   ";
+            }
         }
 
         // Trim off the extra comma
@@ -157,5 +166,14 @@ public class BodyController extends AbstractController {
         temp += util.xmlWrite("RADII", array);
         temp += "</" + xmlTag + ">\n";
         return temp;
+    }
+
+    private double calculateSurfaceArea()
+    {
+        return 0.0;
+    }
+    private double calculateZValuesD()
+    {
+        return 0.0;
     }
 }

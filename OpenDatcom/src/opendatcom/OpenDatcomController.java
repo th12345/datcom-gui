@@ -197,7 +197,7 @@ public class OpenDatcomController extends SingleFrameApplication{
     }
 
     /**
-     * Refreshes the application from an xml save file.
+     * Refreshes the application from an .od save file.
      */
     public void refreshFromSave(String input)
     {
@@ -256,7 +256,7 @@ public class OpenDatcomController extends SingleFrameApplication{
         if(ps.isValid)
         {
             try {
-                currentFile = new File(ps.getProjectPath() + "//data.xml");
+                currentFile = new File(ps.getProjectPath() + "//data.od");
                 currentFile.createNewFile();
                 in.writeXML(currentFile);
                 return;
@@ -278,7 +278,7 @@ public class OpenDatcomController extends SingleFrameApplication{
         if(check == JFileChooser.APPROVE_OPTION)
         {
             currentFile = fc.getSelectedFile();
-            ps.startProject(currentFile.getName().replace(".xml", ""));
+            ps.startProject(currentFile.getName().replace(".od", ""));
             refreshFromSave(in.importFile(currentFile));
 
             // Set current file to the correct project path

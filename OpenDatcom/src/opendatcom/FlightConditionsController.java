@@ -60,6 +60,7 @@ public class FlightConditionsController extends AbstractController {
         model.setBlref(util.processDataField(view.getjBlrefText()));
         model.setCbarr(util.processDataField(view.getjCbarrText()));
         model.setSref(util.processDataField(view.getjSrefText()));
+        model.setLoop(util.processDataField(view.getjLoop()));
 
 
         String [] temp = model.getMachs().split(",");
@@ -158,6 +159,7 @@ public class FlightConditionsController extends AbstractController {
             view.getjTRText().setText(util.xmlParse("TR", section));
             view.getjGammaText().setText(util.xmlParse("GAMMA", section));
             view.getjWeightText().setText(util.xmlParse("WEIGHT", section));
+            view.getjLoop().setText(util.xmlParse("LOOP", section));
         }
 
         // Parse the options section
@@ -202,6 +204,7 @@ public class FlightConditionsController extends AbstractController {
         temp+= util.xmlWrite("TS", model.getTsMach());
         temp+= util.xmlWrite("TR", model.getTr());
         temp+= util.xmlWrite("WEIGHT", model.getWeight());
+        temp+= util.xmlWrite("LOOP", model.getLoop());
         temp += "</" + xmlTag + ">\n";
         return temp;
     }

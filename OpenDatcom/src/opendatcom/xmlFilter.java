@@ -17,11 +17,11 @@ public class xmlFilter extends FileFilter {
 
     @Override
     public boolean accept(File pathname) {
-       return pathname.isDirectory() || pathname.getName().toLowerCase().endsWith(".xml");
+       return pathname.isDirectory() || pathname.getName().toLowerCase().endsWith(".od");
     }
 
     @Override
     public String getDescription() {
-        return ".xml";
+        return ".od";
     }
 }
