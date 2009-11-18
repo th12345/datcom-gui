@@ -31,6 +31,7 @@ public class DatcomService extends javax.swing.JPanel {
     // Regex constants
     String regexHeader = "0 ALPHA     ";
     String regexFooter = "0                                    ALPHA     ";
+    String datcomPath = System.getProperty("user.dir") + "\\Bin\\Datcom\\datcom.exe";
 
     /** Creates new form DatcomService */
     public DatcomService() {
@@ -98,13 +99,31 @@ public class DatcomService extends javax.swing.JPanel {
         return target;
     }
 
+    /**
+     * Runs the Datcom a single time.
+     */
+    private void runDatcom()
+    {
+        try {
+            generateDat();
+            Process p = new ProcessBuilder(datcomPath).start();
+            p.waitFor();
+            moveForFiles();
+            getjOutputText().setText(getjOutputText().getText() + "Datcom completely succesfully, " +
+                    "data saved to: " + ps.getProjectPath());
+        } catch (IOException ex) {
+            Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Start of the monolithic Datcom->JSBSim process. This is one of the slowest
      * functions I have ever created and calls datcom.exe nAlpha * nMach * nAOA times.
      * It is broken up into helper functions to make it (slightly) more readable.
      */
-    private void runDatcom()
+    private void generateJSBSim()
     {
         FlightConditionsController fcc = (FlightConditionsController)parent.getController("Flight Conditions");
         if(fcc == null)
@@ -120,36 +139,33 @@ public class DatcomService extends javax.swing.JPanel {
         String [] sAlts = alts.split(",");
         String [] sMachs = machs.split(",");
         String [] sAoas = aoas.split(",");
-        String path = System.getProperty("user.dir") + "\\Bin\\Datcom\\datcom.exe";
         String tempPath = "";
         try {
-        for(int a = 0; a < sAlts.length; a++)
-        {
-            fcc.getView().getjAltText().setText(sAlts[a]);
-            for(int m = 0; m < sMachs.length; m++)
+            for(int a = 0; a < sAlts.length; a++)
             {
-                fcc.getView().getjMachText().setText(sMachs[a]);
-                fcc.getModel().setMachs(sMachs[m]);
-                for(int x = 0; x < sAoas.length; x++)
+                fcc.getView().getjAltText().setText(sAlts[a]);
+                for(int m = 0; m < sMachs.length; m++)
                 {
-                        tempPath = ps.getProjectPath() + "\\Table_Data\\" + sAlts[a] 
-                                + "\\" + sMachs[m] + "_" + sAlts[a];
-                        File destF = new File(tempPath + "\\for006.dat");
-                        destF.mkdirs();
-                        generateDat();
-                        Process p = new ProcessBuilder(path).start();
-                        p.waitFor();
-                        moveForFiles(tempPath, sAlts[a]);
-                        processJSBSimData(destF, sAlts[a]);
-                }// Angles
-            }// Machs
-        }// Altitudes
+                    fcc.getView().getjMachText().setText(sMachs[a]);
+                    fcc.getModel().setMachs(sMachs[m]);
+                    tempPath = ps.getProjectPath() + "\\Table_Data\\" + sAlts[a]
+                            + "\\" + sMachs[m] + "_" + sAlts[a];
+                    File destF = new File(tempPath + "\\for006.dat");
+                    destF.mkdirs();
+                    generateDat();
+                    getjOutputText().setText(getjOutputText().getText() + "Generating JSBSim data for " +
+                        "Altitude: " + sAlts[a] + " Mach: " + sMachs[m] + "\n");
+                    Process p = new ProcessBuilder(datcomPath).start();
+                    p.waitFor();
+                    moveForFiles(tempPath, sAlts[a]);
+                    processJSBSimData(destF, sAlts[a]);
+                }// Machs
+            }// Altitudes
 
-        fcc.getView().getjAltText().setText(alts);
-        fcc.getView().getjMachText().setText(machs);
-        Process p = new ProcessBuilder(path).start();
-        moveForFiles();
-
+            fcc.getView().getjAltText().setText(alts);
+            fcc.getView().getjMachText().setText(machs);
+            getjOutputText().setText(getjOutputText().getText() + "JSBSim table generation " +
+                    "completed. Data saved to " + ps.getProjectPath() + "\\Table_Data");
         } catch (InterruptedException ex) {
             Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -365,7 +381,7 @@ public class DatcomService extends javax.swing.JPanel {
         output = "<tableData breakPoint=\"" + Alt + "\">\n";
         dest.createNewFile();
         for (int i = 0; i < in.size(); i++) {
-            output += in.get(i) + "\t" + in.get(i) + "\n";
+            output += alpha.get(i) + "\t" + in.get(i) + "\n";
         }
         ies.writeFile(dest, output);
     }
@@ -402,6 +418,7 @@ public class DatcomService extends javax.swing.JPanel {
         jShowDatcomReadable = new javax.swing.JButton();
         jShowHumanReadable = new javax.swing.JButton();
         jRunDatcom = new javax.swing.JButton();
+        jRunJSBSim = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jDrawPane = new javax.swing.JPanel();
 
@@ -444,6 +461,14 @@ public class DatcomService extends javax.swing.JPanel {
             }
         });
 
+        jRunJSBSim.setText(resourceMap.getString("jRunJSBSim.text")); // NOI18N
+        jRunJSBSim.setName("jRunJSBSim"); // NOI18N
+        jRunJSBSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRunJSBSimActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -453,7 +478,8 @@ public class DatcomService extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jShowDatcomReadable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                     .addComponent(jShowHumanReadable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
-                    .addComponent(jRunDatcom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
+                    .addComponent(jRunDatcom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(jRunJSBSim, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -465,6 +491,8 @@ public class DatcomService extends javax.swing.JPanel {
                 .addComponent(jShowDatcomReadable)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRunDatcom)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRunJSBSim)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -481,7 +509,7 @@ public class DatcomService extends javax.swing.JPanel {
         );
         jDrawPaneLayout.setVerticalGroup(
             jDrawPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -495,9 +523,9 @@ public class DatcomService extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDrawPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(jDrawPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -508,8 +536,8 @@ public class DatcomService extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                 .addContainerGap())
@@ -520,9 +548,9 @@ public class DatcomService extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -541,9 +569,14 @@ public class DatcomService extends javax.swing.JPanel {
     }//GEN-LAST:event_jShowDatcomReadableActionPerformed
 
     private void jRunDatcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRunDatcomActionPerformed
-        generateDat();
+        getjOutputText().setText("Running Datcom\n");
         runDatcom();
     }//GEN-LAST:event_jRunDatcomActionPerformed
+
+    private void jRunJSBSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRunJSBSimActionPerformed
+        getjOutputText().setText("Starting JSBSim generation (This can take a while).\n");
+        generateJSBSim();
+    }//GEN-LAST:event_jRunJSBSimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -552,6 +585,7 @@ public class DatcomService extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JButton jRunDatcom;
+    private javax.swing.JButton jRunJSBSim;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jShowDatcomReadable;
     private javax.swing.JButton jShowHumanReadable;
