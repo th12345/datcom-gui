@@ -72,12 +72,13 @@ public class BodyController extends AbstractController {
                 temp += "\n   ";
             }
         }
+
         temp += "\n  R(1)=\t";
         for(int i = 0; i < xValues.length; i++)
         {
             temp+= radii[i] + ",\t";
             // Wrap around neatly
-            if(i%5 == wrapNum)
+            if(i%5 == wrapNum && !(i == xValues.length - 1))
             {
                 temp += "\n   ";
             }
