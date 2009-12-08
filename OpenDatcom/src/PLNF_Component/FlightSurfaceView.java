@@ -9,7 +9,7 @@
  * Created on Oct 13, 2009, 11:20:36 PM
  */
 
-package opendatcom;
+package PLNF_Component;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;

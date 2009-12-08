@@ -9,7 +9,7 @@
  * Created on Oct 14, 2009, 12:03:47 AM
  */
 
-package opendatcom;
+package FLTCON_Component;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;

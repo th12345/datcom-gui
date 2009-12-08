@@ -1,4 +1,4 @@
-package opendatcom;
+package BODY_Component;
 
 
 import javax.swing.JTable;

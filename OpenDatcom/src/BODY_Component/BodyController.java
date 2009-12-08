@@ -1,4 +1,8 @@
-package opendatcom;
+package BODY_Component;
+
+import Abstracts.AbstractController;
+import opendatcom.*;
+import javax.swing.JTable;
 
 /**
  * Controller method for the BodyModel model and the BodyModel View.
@@ -29,7 +33,7 @@ public class BodyController extends AbstractController {
     @Override
     public void gatherData()
     {
-        double [][] temp = util.processBodyTable(view.getjBodyTable());
+        double [][] temp = processBodyTable(view.getjBodyTable());
         model.setxValues(temp[0]);
         model.setRadii(temp[1]);
     }
@@ -168,6 +172,94 @@ public class BodyController extends AbstractController {
         temp += "</" + xmlTag + ">\n";
         return temp;
     }
+
+    /**
+  * Takes the data from the BODY table, processes it for the correct
+  * format, and then sets the table to the corrected and sorted data. It also returns
+  * an 2d array containg the x values and the radii, respectively.
+  * NOTE: This function is really thrown together and could use some optimization.
+  * @param target The BODY data table
+  * @return 2D array, array[0][i] is the x values, array[1][i] is the radii values
+  */
+ public double[][] processBodyTable(JTable target)
+ {
+     //TODO: Make processBodyTable run faster
+     String temp = null;
+     double [][] data= new double[2][20];
+     double [] count  = new double [2];
+
+     for(int c = 0; c < 2; c++) // Column... C++ hahahaha
+     {
+         for(int r = 0; r < 20; r++ ) // Row
+         {
+            temp = String.valueOf(target.getValueAt(r, c));
+            // Clear the table value to get rid of any input errors
+            target.setValueAt(null, r, c);
+
+            // Prepare for strange Java behavior:
+            // The JTable sets the value in temp to "null" and not actually the null
+            // value if a box is left empty so the == null & isEmpty methods
+            // do not work. So that leads to the strange syntax below.
+            if(temp.equals("null"))
+            {
+                r = 20;
+            }
+            else
+            {
+                count[c]++;
+                data[c][r] = Double.parseDouble((String.valueOf(temp)));
+                temp = null;
+            }
+         }
+     }
+
+     // Check for radii values w/o associated x values and vis-a-vis
+     if(count[0] > count[1])
+     {
+         count[0] = count[1];
+     }
+
+     // The data at this point can have null values still, remove them
+     double [][] trimmedData;
+     trimmedData = new double[2][(int)count[0]];
+
+     // Fill the correctly-sized array in and set the values back to the table
+     // & abs the radii cause they cant be negative.
+     for(int i = 0; i < count[0]; i++)
+     {
+       target.setValueAt(data[0][i], i, 0);
+       target.setValueAt(Math.abs(data[1][i]), i, 1);
+       trimmedData[0][i] = data[0][i];
+       trimmedData[1][i] = Math.abs(data[1][i]);
+     }
+
+     // and then (bubble) sort....
+     for(int i = 0; i < count[0]; i++)
+     {
+         for(int j = i; j < count[0]; j++)
+         {
+             if(trimmedData[0][j] < trimmedData[0][i] )
+             {
+                 // recycling data as a temp variable
+                 data[0][0] = trimmedData[0][i];
+                 data[1][0] = trimmedData[1][i];
+                 trimmedData[0][i] = trimmedData[0][j];
+                 trimmedData[1][i] = trimmedData[1][j];
+                 trimmedData[0][j] = data[0][0];
+                 trimmedData[1][j] = data[1][0];
+             }
+         }
+     }
+
+     // Fill the table back in
+     for(int i = 0; i < count[0]; i++)
+     {
+       target.setValueAt(trimmedData[0][i], i, 0);
+       target.setValueAt(trimmedData[1][i], i, 1);
+     }
+
+     return trimmedData;
+ }
 
     private double calculateSurfaceArea()
     {

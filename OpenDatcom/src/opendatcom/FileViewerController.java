@@ -5,6 +5,9 @@
 
 package opendatcom;
 
+import Abstracts.AbstractController;
+import Services.ImportExportService;
+import Services.ProjectService;
 import java.io.File;
 import java.util.LinkedList;
 import javax.swing.JApplet;
@@ -39,7 +42,7 @@ public class FileViewerController extends AbstractController{
      */
     public void populateFileSelect()
     {
-        if(!ps.isValid)
+        if(!ps.isValid())
         {
             return;
         }

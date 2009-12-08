@@ -3,8 +3,10 @@
  * and open the template in the editor.
  */
 
-package opendatcom;
+package Abstracts;
 
+import Abstracts.AbstractController;
+import opendatcom.*;
 import java.util.LinkedList;
 
 /**
@@ -15,9 +17,9 @@ import java.util.LinkedList;
  */
 public class AbstractService
 {
-    String name = "default";
-    LinkedList<AbstractController> controllers;
-    OpenDatcomController parent = OpenDatcomController.getInstance();
+    public String name = "default";
+    public LinkedList<AbstractController> controllers;
+    public OpenDatcomController parent = OpenDatcomController.getInstance();
 
     /**
      * Registers the service with the main app & initializes all variables. Should

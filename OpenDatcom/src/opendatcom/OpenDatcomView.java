@@ -4,6 +4,8 @@
 
 package opendatcom;
 
+import Services.ImportExportService;
+import Services.ParserUtility;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -29,7 +31,6 @@ public class OpenDatcomView extends FrameView {
 
     // Golbal Stuff
     ParserUtility util = ParserUtility.getInstance();
-    ScreenResolution sr = ScreenResolution.getInstance();
     LinkedList<JPanel> tabs;
 
     // Files

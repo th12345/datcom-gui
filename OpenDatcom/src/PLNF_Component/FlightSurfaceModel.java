@@ -3,7 +3,10 @@
  * and open the template in the editor.
  */
 
-package opendatcom;
+package PLNF_Component;
+
+import Abstracts.AbstractModel;
+import opendatcom.*;
 
 /**
  * Class that serves as the model class for all flight surfaces.

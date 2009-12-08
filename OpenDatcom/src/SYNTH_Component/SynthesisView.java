@@ -9,7 +9,7 @@
  * Created on Oct 13, 2009, 11:01:58 PM
  */
 
-package opendatcom;
+package SYNTH_Component;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;

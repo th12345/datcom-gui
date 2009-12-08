@@ -4,6 +4,17 @@
 
 package opendatcom;
 
+import Services.xmlFilter;
+import Abstracts.AbstractController;
+import SYNTH_Component.SynthesisController;
+import PLNF_Component.FlightSurfaceController;
+import PLNF_Component.FlightSurfaceModel;
+import FLTCON_Component.FlightConditionsController;
+import BODY_Component.BodyController;
+import Abstracts.AbstractService;
+import Services.ImportExportService;
+import Services.ProjectService;
+import Services.ParserUtility;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +61,6 @@ public class OpenDatcomController extends SingleFrameApplication{
     // Services
     private DatcomService output;
     private ProjectService ps;
-    private ScreenResolution sr;
     private JSBSimService jSim;
 
     // Variables
@@ -70,7 +80,6 @@ public class OpenDatcomController extends SingleFrameApplication{
     {
         in   = ImportExportService.getInstance();
         ps = ProjectService.getInstance();
-        sr = ScreenResolution.getInstance();
         jSim = JSBSimService.getInstance();
     }
 
@@ -171,7 +180,7 @@ public class OpenDatcomController extends SingleFrameApplication{
      * Registers a module with the application. Modules must be registered during 
      * @param target
      */
-    void registerModule(AbstractController target)
+    public void registerModule(AbstractController target)
     {
         controllers.add(target);
     }
@@ -182,7 +191,7 @@ public class OpenDatcomController extends SingleFrameApplication{
      * @param self Reference to the controller to register (this)
      * @return True if the service is found and successfully registered.
      */
-    boolean registerToService(String serviceName, AbstractController self)
+    public boolean registerToService(String serviceName, AbstractController self)
     {
         for(int i = 0; i < services.size(); i++)
         {
@@ -253,7 +262,7 @@ public class OpenDatcomController extends SingleFrameApplication{
     public void saveAs()
     {
         // If the project service has been initialized save to the default location
-        if(ps.isValid)
+        if(ps.isValid())
         {
             try {
                 currentFile = new File(ps.getProjectPath() + "//data.od");

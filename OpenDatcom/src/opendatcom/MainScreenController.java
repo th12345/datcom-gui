@@ -5,6 +5,7 @@
 
 package opendatcom;
 
+import Abstracts.AbstractController;
 import javax.swing.JPanel;
 
 /**

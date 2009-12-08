@@ -3,8 +3,10 @@
  * and open the template in the editor.
  */
 
-package opendatcom;
+package Services;
 
+import Abstracts.AbstractService;
+import opendatcom.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -49,14 +51,13 @@ public class ProjectService extends AbstractService
         startProject(projectName);
     }
 
-    void startProject(String text) {
+    public void startProject(String text) {
         try {
             if (text == null)
             {
                 return;
             }
             projectName = text;
-            parent.setCaseName(projectName);
             projectPath = System.getProperty("user.dir") + "\\Projects\\" + projectName;
             System.out.println("Path: " + projectPath);
             projectFile = new File(projectPath + "\\" + projectName + ".xml");

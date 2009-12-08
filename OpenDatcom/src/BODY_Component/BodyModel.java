@@ -3,7 +3,10 @@
  * and open the template in the editor.
  */
 
-package opendatcom;
+package BODY_Component;
+
+import Abstracts.AbstractModel;
+import opendatcom.*;
 
 /**
  *

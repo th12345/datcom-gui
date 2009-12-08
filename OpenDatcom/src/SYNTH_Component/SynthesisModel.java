@@ -1,4 +1,4 @@
-package opendatcom;
+package SYNTH_Component;
 
 /**
  * Model class that stores the synthesis information. The class is implemented as

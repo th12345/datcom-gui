@@ -3,8 +3,10 @@
  * and open the template in the editor.
  */
 
-package opendatcom;
+package Abstracts;
 
+import opendatcom.*;
+import Services.ParserUtility;
 import java.util.LinkedList;
 import javax.swing.JPanel;
 
@@ -14,14 +16,14 @@ import javax.swing.JPanel;
  */
 public abstract class AbstractController {
 
-    String outputText = "";
-    String name = "Undefined";
-    String xmlTag = "";
-    AbstractModel model;
-    JPanel view;
-    LinkedList<AbstractController> otherControllers;
-    ParserUtility util = ParserUtility.getInstance();
-    OpenDatcomController parent = OpenDatcomController.getInstance();
+    public String outputText = "";
+    public String name = "Undefined";
+    public String xmlTag = "";
+    public AbstractModel model;
+    public JPanel view;
+    public LinkedList<AbstractController> otherControllers;
+    public ParserUtility util = ParserUtility.getInstance();
+    public OpenDatcomController parent = OpenDatcomController.getInstance();
     
     /**
      * Registers the module with the main app interface. Sets all internal and

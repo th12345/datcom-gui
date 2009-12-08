@@ -3,7 +3,10 @@
  * and open the template in the editor.
  */
 
-package opendatcom;
+package FLTCON_Component;
+
+import Abstracts.AbstractModel;
+import opendatcom.*;
 
 /**
  * Model class that stores the flight condition information. The class is
