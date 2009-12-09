@@ -76,6 +76,7 @@ public class ImportExportService extends AbstractService{
            for(int x = 0; x < controllers.size(); x++)
            {
                 controllers.get(x).refresh();
+                System.out.println("Saving: " + controllers.get(x).getName());
                 temp += controllers.get(x).generateXML();
            }
            String [] newlineTempCauseJavaSucks = temp.split("\n");
@@ -87,6 +88,7 @@ public class ImportExportService extends AbstractService{
                output.write(newlineTempCauseJavaSucks[x]);
                output.newLine();
            }
+           System.out.println("Saved as: " + inputFile.getName());
            output.write("</DATCOM>");
            output.close();
         }

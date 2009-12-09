@@ -6,6 +6,7 @@
 package BODY_Component;
 
 import Abstracts.AbstractModel;
+import java.util.LinkedList;
 import opendatcom.*;
 
 /**
@@ -18,16 +19,28 @@ public class BodyModel extends AbstractModel {
     static BodyModel selfReference;
 
     // BodyModel Parameters
-    private double xValues[];
-    private double radii[];
+    LinkedList<Double> x;                   // Longitidunal Distance from LOCN
+    private double s[];                   // Cross-sectional Area at x
+    private double p[];                   // Perimeter at x
+    private double r[];                   // Planform half width at x
+    private double zu[];                  // Z-coordinate of upper surface
+    private double zl[];                  // Z-coordinate of lower surface
     private double sectionCount;
+    private double bnose;               // Nose roundness
+    private double btail;               // Tail roundness
+    private double bln;                 // Length of nose
+    private double bla;                 // Length of tail
     
     /**
      * Private constructor as per singleton implementation.
      */
     private BodyModel() {
-        xValues = new double[20];
-        radii = new double[20];
+        x = new LinkedList<Double>();
+        s = new double[20];
+        p = new double[20];
+        r = new double[20];
+        zu = new double[20];
+        zl = new double[20]; 
     }
 
     /**
@@ -44,14 +57,6 @@ public class BodyModel extends AbstractModel {
         return selfReference;
     }
 
-    public double[] getRadii() {
-        return radii;
-    }
-
-    public void setRadii(double[] radii) {
-        this.radii = radii;
-    }
-
     public double getSectionCount() {
         return sectionCount;
     }
@@ -60,11 +65,84 @@ public class BodyModel extends AbstractModel {
         this.sectionCount = sectionCount;
     }
 
-    public double[] getxValues() {
-        return xValues;
+    public double getBla() {
+        return bla;
     }
 
-    public void setxValues(double[] xValues) {
-        this.xValues = xValues;
+    public void setBla(double bla) {
+        this.bla = bla;
     }
+
+    public double getBln() {
+        return bln;
+    }
+
+    public void setBln(double bln) {
+        this.bln = bln;
+    }
+
+    public double getBnose() {
+        return bnose;
+    }
+
+    public void setBnose(double bnose) {
+        this.bnose = bnose;
+    }
+
+    public double getBtail() {
+        return btail;
+    }
+
+    public void setBtail(double btail) {
+        this.btail = btail;
+    }
+
+    public double[] getP() {
+        return p;
+    }
+
+    public void setP(double[] p) {
+        this.p = p;
+    }
+
+    public double[] getR() {
+        return r;
+    }
+
+    public void setR(double[] r) {
+        this.r = r;
+    }
+
+    public double[] getS() {
+        return s;
+    }
+
+    public void setS(double[] s) {
+        this.s = s;
+    }
+
+    public LinkedList<Double> getX() {
+        return x;
+    }
+
+    public void setX(LinkedList<Double> x) {
+        this.x = x;
+    }
+
+    public double[] getZl() {
+        return zl;
+    }
+
+    public void setZl(double[] zl) {
+        this.zl = zl;
+    }
+
+    public double[] getZu() {
+        return zu;
+    }
+
+    public void setZu(double[] zu) {
+        this.zu = zu;
+    }
+
 }

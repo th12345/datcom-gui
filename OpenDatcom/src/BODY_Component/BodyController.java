@@ -1,8 +1,7 @@
 package BODY_Component;
 
 import Abstracts.AbstractController;
-import opendatcom.*;
-import javax.swing.JTable;
+import java.util.LinkedList;
 
 /**
  * Controller method for the BodyModel model and the BodyModel View.
@@ -12,7 +11,22 @@ public class BodyController extends AbstractController {
 
     BodyModel model;
     BodyView view;
-    private int wrapNum = 4;
+    private int wrapNum = 3;
+    INPUT_CHOICE inputMode;
+    LinkedList<BodyTableEntry> tableEntries;
+    LinkedList<Double> x;
+
+
+    public enum INPUT_CHOICE
+     {
+         USING_S,
+         USING_P,
+         USING_R,
+         USING_SP,
+         USING_PR,
+         USING_SR,
+         USING_Z
+     }
     
     /**
      * Standard constructor, set the model, view, controller references
@@ -25,6 +39,13 @@ public class BodyController extends AbstractController {
         this.name = "Body";
         registerWithService("ImportExport");
         registerForMe();
+        tableEntries = new LinkedList<BodyTableEntry>();
+        x = new LinkedList<Double>();
+        
+        for (int i = 0; i < 20; i++)
+        {
+            tableEntries.add(new BodyTableEntry(i, this, view.getjBodyTable()));
+        }
     }
 
     /**
@@ -33,10 +54,60 @@ public class BodyController extends AbstractController {
     @Override
     public void gatherData()
     {
-        double [][] temp = processBodyTable(view.getjBodyTable());
-        model.setxValues(temp[0]);
-        model.setRadii(temp[1]);
+        inputMode = view.getInputMode();
+        model.getX().clear();
+        double [] p = new double[20];
+        double [] r = new double[20];
+        double [] s = new double[20];
+        double [] zl = new double[20];
+        double [] zu = new double[20];
+
+        model.setBla(util.processDataField(view.getjBLA()));
+        model.setBln(util.processDataField(view.getjBLN()));
+        model.setBnose(util.processDataField(view.getjBNOSE()));
+        model.setBtail(util.processDataField(view.getjBTAIL()));
+
+        // Update the table entries
+        for (int i = 0; i < 20; i++)
+        {
+            tableEntries.get(i).refresh();
+            if(tableEntries.get(i).isValid)
+            {
+                x.add(tableEntries.get(i).x);
+                r[i]  = tableEntries.get(i).r;
+                p[i]  = tableEntries.get(i).p;
+                s[i]  = tableEntries.get(i).s;
+                zl[i] = tableEntries.get(i).zl;
+                zu[i] = tableEntries.get(i).zu;
+            }
+        }
+
+        // Update the model
+        model.setX(x);
+        model.setP(p);
+        model.setS(s);
+        model.setR(r);
+        model.setZl(zl);
+        model.setZu(zu);
     }
+
+     void sortTable()
+     {
+         BodyTableEntry temp;
+         // Bubblesort....
+         for (int i = 0; i < 20; i++)
+         {
+             for(int j = i; j < 20; j++)
+             {
+                 if(!tableEntries.get(i).compare(tableEntries.get(j)) & tableEntries.get(j).isValid)
+                 {
+                     temp = tableEntries.get(i);
+                     tableEntries.set(i, tableEntries.get(j));
+                     tableEntries.set(j, temp);
+                 }
+             }
+         }
+     }
 
     /**
      * Refreshes the entire model/view/controllers links & formats the datcom
@@ -45,8 +116,10 @@ public class BodyController extends AbstractController {
     @Override
     public void refresh()
     {
+        view.getjBodyTable().clearSelection();
         gatherData();
         generateOutput();
+        sortTable();
     }
 
     /**
@@ -56,60 +129,99 @@ public class BodyController extends AbstractController {
     public String generateOutput()
     {
         // Make sure the body parameters are defined, if not abort
-        if(model.getRadii().length == 0 || model.getxValues().length == 0)
+        if(model.getX().size() == 0)
         {
             return "";
         }
+        
         String temp = "";
-        double [] xValues = model.getxValues();
-        double [] radii = model.getRadii();
+        x = model.getX();
+        double [] zl = model.getZl();
+        double [] zu = model.getZu();
+        double [] r = model.getR();
+        double [] p = model.getP();
+        double [] s = model.getS();
+        int length = x.size();
         
         temp += "# Start of Body Parameters\n";
         temp += " $BODY\n";
-        temp += "  NX=\t" + xValues.length + ".0,\n";
+        temp += util.safeAdd("  BLN=", model.getBln());
+        temp += util.safeAdd("  BLA=", model.getBla());
+        temp += util.safeAdd("  BNOSE=", model.getBnose());
+        temp += util.safeAdd("  BTAIL=", model.getBtail());
+        temp += "  NX=\t" + length + ".0,\n";
+        
         temp += "  X(1)=\t";
-        for(int i = 0; i < xValues.length; i++)
+        for(int i = 0; i < length; i++)
         {
-            temp += xValues[i] + ",\t";
+            temp += x.get(i) + ",\t";
             if(i%5 == wrapNum)
             {
                 temp += "\n   ";
             }
         }
 
-        temp += "\n  R(1)=\t";
-        for(int i = 0; i < xValues.length; i++)
+        temp += "\n  S(1)=\t";
+        for(int i = 0; i < length; i++)
         {
-            temp+= radii[i] + ",\t";
+            temp+= s[i] + ",\t";
             // Wrap around neatly
-            if(i%5 == wrapNum && !(i == xValues.length - 1))
+            if(i%5 == wrapNum && !(i == length - 1))
             {
                 temp += "\n   ";
             }
         }
+
+        temp += "\n  P(1)=\t";
+        for(int i = 0; i < length; i++)
+        {
+            temp+= p[i] + ",\t";
+            // Wrap around neatly
+            if(i%5 == wrapNum && !(i == length - 1))
+            {
+                temp += "\n   ";
+            }
+        }
+
+        temp += "\n  R(1)=\t";
+        for(int i = 0; i < length; i++)
+        {
+            temp+= r[i] + ",\t";
+            // Wrap around neatly
+            if(i%5 == wrapNum && !(i == length - 1))
+            {
+                temp += "\n   ";
+            }
+        }
+
+        temp += "\n  ZU(1)=\t";
+        for(int i = 0; i < length; i++)
+        {
+            temp+= zu[i] + ",\t";
+            // Wrap around neatly
+            if(i%5 == wrapNum && !(i == length - 1))
+            {
+                temp += "\n   ";
+            }
+        }
+
+        temp += "\n  ZL(1)=\t";
+        for(int i = 0; i < length; i++)
+        {
+            temp+= zl[i] + ",\t";
+            // Wrap around neatly
+            if(i%5 == wrapNum && !(i == length - 1))
+            {
+                temp += "\n   ";
+            }
+        }
+
 
         // Trim off the extra comma
         temp = temp.substring(0, temp.length() - 2);
         temp += "$\n#End of BODY Parameters\n\n";
         view.setOutputData(temp);
         return temp;
-    }
-
-    /**
-     * Clears the data from the BodyModel Table and nulls the old values in the model.
-     */
-    public void clearTable() {
-        model.setRadii(null);
-        model.setxValues(null);
-        view.getjBodyTable().removeAll();
-    }
-
-    public BodyModel getModel() {
-        return model;
-    }
-
-    public BodyView getView() {
-        return view;
     }
 
     @Override
@@ -119,16 +231,23 @@ public class BodyController extends AbstractController {
         {
             return;
         }
+
+        view.getjBLA().setText(util.xmlParse("BLA", section));
+        view.getjBLN().setText(util.xmlParse("BLN", section));
+        view.getjBNOSE().setText(util.xmlParse("BNOSE", section));
+        view.getjBTAIL().setText(util.xmlParse("BTAIL", section));
+        
         String radii = util.xmlParse("RADII", section);
         String xValues = util.xmlParse("XVALUES", section);
-
+        
         radii = radii.replaceAll(" ", "");
         String [] radiiValues = radii.split(",");
         String [] XValues = xValues.split(",");
-        for(int x = 0; x < XValues.length; x++)
+
+        for(int i = 0; i < XValues.length; i++)
         {
-            view.getjBodyTable().setValueAt(Double.parseDouble(XValues[x]), x, 0);
-            view.getjBodyTable().setValueAt(Double.parseDouble(radiiValues[x]), x, 1);
+            view.getjBodyTable().setValueAt(Double.parseDouble(XValues[i]), i, 0);
+            view.getjBodyTable().setValueAt(Double.parseDouble(radiiValues[i]), i, 1);
         }
         refresh();
     }
@@ -139,21 +258,25 @@ public class BodyController extends AbstractController {
         // Init temps
         String temp = "";
         String array = "";
-        double [] radii = model.getRadii();
-        double [] xValues = model.getxValues();
+        double [] radii = model.getR();
+        x = model.getX();
 
-        if(radii.length == 0 || xValues.length == 0)
+        if(radii.length == 0 || x.size() == 0)
         {
             return "";
         }
 
+
         // Start of xml formatting
         temp += "<" + xmlTag + ">\n";
-
+        temp += util.xmlWrite("BLN", model.getBln());
+        temp += util.xmlWrite("BLA", model.getBla());
+        temp += util.xmlWrite("BNOSE", model.getBnose());
+        temp += util.xmlWrite("BTAIL", model.getBtail());
         // Fill in temp with values then parse
-        for(int i = 0; i < xValues.length; i++)
+        for(int i = 0; i < x.size(); i++)
         {
-            array += xValues[i] + ", ";
+            array += x.get(i) + ", ";
         }
         
         // Get rid of extra comma
@@ -161,7 +284,7 @@ public class BodyController extends AbstractController {
         temp += util.xmlWrite("XVALUES", array);
         array = "";
         // Fill in temp with values then parse
-        for(int i = 0; i < xValues.length; i++)
+        for(int i = 0; i < x.size(); i++)
         {
             array += radii[i] + ", ";
         }
@@ -173,94 +296,6 @@ public class BodyController extends AbstractController {
         return temp;
     }
 
-    /**
-  * Takes the data from the BODY table, processes it for the correct
-  * format, and then sets the table to the corrected and sorted data. It also returns
-  * an 2d array containg the x values and the radii, respectively.
-  * NOTE: This function is really thrown together and could use some optimization.
-  * @param target The BODY data table
-  * @return 2D array, array[0][i] is the x values, array[1][i] is the radii values
-  */
- public double[][] processBodyTable(JTable target)
- {
-     //TODO: Make processBodyTable run faster
-     String temp = null;
-     double [][] data= new double[2][20];
-     double [] count  = new double [2];
-
-     for(int c = 0; c < 2; c++) // Column... C++ hahahaha
-     {
-         for(int r = 0; r < 20; r++ ) // Row
-         {
-            temp = String.valueOf(target.getValueAt(r, c));
-            // Clear the table value to get rid of any input errors
-            target.setValueAt(null, r, c);
-
-            // Prepare for strange Java behavior:
-            // The JTable sets the value in temp to "null" and not actually the null
-            // value if a box is left empty so the == null & isEmpty methods
-            // do not work. So that leads to the strange syntax below.
-            if(temp.equals("null"))
-            {
-                r = 20;
-            }
-            else
-            {
-                count[c]++;
-                data[c][r] = Double.parseDouble((String.valueOf(temp)));
-                temp = null;
-            }
-         }
-     }
-
-     // Check for radii values w/o associated x values and vis-a-vis
-     if(count[0] > count[1])
-     {
-         count[0] = count[1];
-     }
-
-     // The data at this point can have null values still, remove them
-     double [][] trimmedData;
-     trimmedData = new double[2][(int)count[0]];
-
-     // Fill the correctly-sized array in and set the values back to the table
-     // & abs the radii cause they cant be negative.
-     for(int i = 0; i < count[0]; i++)
-     {
-       target.setValueAt(data[0][i], i, 0);
-       target.setValueAt(Math.abs(data[1][i]), i, 1);
-       trimmedData[0][i] = data[0][i];
-       trimmedData[1][i] = Math.abs(data[1][i]);
-     }
-
-     // and then (bubble) sort....
-     for(int i = 0; i < count[0]; i++)
-     {
-         for(int j = i; j < count[0]; j++)
-         {
-             if(trimmedData[0][j] < trimmedData[0][i] )
-             {
-                 // recycling data as a temp variable
-                 data[0][0] = trimmedData[0][i];
-                 data[1][0] = trimmedData[1][i];
-                 trimmedData[0][i] = trimmedData[0][j];
-                 trimmedData[1][i] = trimmedData[1][j];
-                 trimmedData[0][j] = data[0][0];
-                 trimmedData[1][j] = data[1][0];
-             }
-         }
-     }
-
-     // Fill the table back in
-     for(int i = 0; i < count[0]; i++)
-     {
-       target.setValueAt(trimmedData[0][i], i, 0);
-       target.setValueAt(trimmedData[1][i], i, 1);
-     }
-
-     return trimmedData;
- }
-
     private double calculateSurfaceArea()
     {
         return 0.0;
@@ -268,5 +303,30 @@ public class BodyController extends AbstractController {
     private double calculateZValuesD()
     {
         return 0.0;
+    }
+
+    public INPUT_CHOICE getInputMode() {
+        return inputMode;
+    }
+
+    /**
+     * Clears the data from the BodyModel Table and nulls the old values in the model.
+     */
+    public void clearTable()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            tableEntries.get(i).clear();
+        }
+
+        view.getjBodyTable().removeAll();
+    }
+
+    public BodyModel getModel() {
+        return model;
+    }
+
+    public BodyView getView() {
+        return view;
     }
 }

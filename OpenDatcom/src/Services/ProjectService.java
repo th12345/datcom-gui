@@ -60,7 +60,7 @@ public class ProjectService extends AbstractService
             projectName = text;
             projectPath = System.getProperty("user.dir") + "\\Projects\\" + projectName;
             System.out.println("Path: " + projectPath);
-            projectFile = new File(projectPath + "\\" + projectName + ".xml");
+            projectFile = new File(projectPath + "\\" + projectName + ".od");
             new File(projectPath).mkdirs();
             projectFile.createNewFile();
             System.out.println("Project File:" + projectFile.getName());

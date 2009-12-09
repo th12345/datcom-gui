@@ -79,7 +79,7 @@ public class OpenDatcomController extends SingleFrameApplication{
     private void initServices()
     {
         in   = ImportExportService.getInstance();
-        ps = ProjectService.getInstance();
+        ps   = ProjectService.getInstance();
         jSim = JSBSimService.getInstance();
     }
 
@@ -253,7 +253,6 @@ public class OpenDatcomController extends SingleFrameApplication{
         {
             in.writeXML(currentFile);
         }
-        
     }
 
     /**
