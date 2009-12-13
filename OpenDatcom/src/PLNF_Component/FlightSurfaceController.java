@@ -6,6 +6,8 @@
 package PLNF_Component;
 
 import Abstracts.AbstractController;
+import Abstracts.MVC_DataLink;
+import java.util.LinkedList;
 import opendatcom.*;
 
 /**
@@ -16,43 +18,33 @@ public class FlightSurfaceController extends AbstractController {
     
     // Variables
     String wingType;
-    FlightSurfaceModel model;
     FlightSurfaceView view;
+    FlightSurfaceModel model;
+
+    SURFACE_TYPE surfaceType;
+
+    public enum SURFACE_TYPE
+    {
+        MAIN_WING,
+        HORIZONTAL_TAIL,
+        VERTICAL_TAIL,
+        VFPLNF,
+        NUM_SURFACE_TYPES
+    }
 
     /**
      * Standard constructor, set the model, view, controller references
      * @param view
      */
-    public FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE type) {
+    public FlightSurfaceController(SURFACE_TYPE type) {
+        surfaceType = type;
         this.view = new FlightSurfaceView(type, this);
-        this.model = new FlightSurfaceModel(type);
+        this.model = new FlightSurfaceModel();
         this.name = "FlightSurface";
-        wingType = getSurfaceType();
+        wingType = initSurfaceType();
         this.xmlTag = wingType;
         registerWithService("ImportExport");
         registerForMe();
-    }
-
-    /**
-     * Gathers input data from the view and updates the model
-     */
-    @Override
-    public void gatherData()
-    {
-        model.setAirfoil(view.getjAirfoil_Text().getText());
-        model.setCHRDBP(util.processDataField(view.getjCHRDBP_Text()));
-        model.setCHRDR(util.processDataField(view.getjCHRDR_Text()));
-        model.setCHRDTP(util.processDataField(view.getjCHRDTP_Text()));
-        model.setCHSTAT(util.processDataField(view.getjCHSTAT_Text()));
-        model.setDHADO(util.processDataField(view.getjDHADO_Text()));
-        model.setDHDADI(util.processDataField(view.getjDHDADI_Text()));
-        model.setSAVSI(util.processDataField(view.getjSAVSI_Text()));
-        model.setSAVSO(util.processDataField(view.getjSAVSO_Text()));
-        model.setSSPN(util.processDataField(view.getjSSPN_Text()));
-        model.setSSPNE(util.processDataField(view.getjSSPNE_Text()));
-        model.setSSPNOP(util.processDataField(view.getjSSPNOP_Text()));
-        model.setTWISTA(util.processDataField(view.getjTWISTA_Text()));
-        model.setTYPE(util.processDataField(view.getjTYPE_Text()));
     }
 
     /**
@@ -73,24 +65,29 @@ public class FlightSurfaceController extends AbstractController {
     public String generateOutput()
     {
         String temp = "";
-        temp += util.safeAdd(" CHRDTP=", model.getCHRDTP());
-        temp += util.safeAdd(" SSPNOP=", model.getSSPNOP());
-        temp += util.safeAdd(" SSPNE=", model.getSSPNE());
-        temp += util.safeAdd(" SSPN=", model.getSSPN());
-        temp += util.safeAdd(" CHRDBP=", model.getCHRDBP());
-        temp += util.safeAdd(" CHRDR=", model.getCHRDR());
-        temp += util.safeAdd(" SAVSI=", model.getSAVSI());
-        temp += util.safeAdd(" CHSTAT=", model.getCHSTAT());
-        temp += util.safeAdd(" TWISTA=", model.getTWISTA());
-        temp += util.safeAdd(" DHDADI=", model.getDHDADI());
-        temp += util.safeAdd(" TYPE=", model.getTYPE());
-       
+        for (int i = 0; i < Links.size(); i++) 
+        {
+            temp += Links.get(i).datcomFormat(" ");
+        }
+        /*
+        temp += util.safeFormat(" CHRDTP=", model.getCHRDTP());
+        temp += util.safeFormat(" SSPNOP=", model.getSSPNOP());
+        temp += util.safeFormat(" SSPNE=", model.getSSPNE());
+        temp += util.safeFormat(" SSPN=", model.getSSPN());
+        temp += util.safeFormat(" CHRDBP=", model.getCHRDBP());
+        temp += util.safeFormat(" CHRDR=", model.getCHRDR());
+        temp += util.safeFormat(" SAVSI=", model.getSAVSI());
+        temp += util.safeFormat(" CHSTAT=", model.getCHSTAT());
+        temp += util.safeFormat(" TWISTA=", model.getTWISTA());
+        temp += util.safeFormat(" DHDADI=", model.getDHDADI());
+        temp += util.safeFormat(" TYPE=", model.getTYPE());
+       */
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
         {            
             temp = temp.substring(0, temp.length() - 2);
             String header = "#Start of " + wingType + " data\n";
-            if(!model.getAirfoil().isEmpty())
+            if(true)
             {
                 // Double space everything as per datcom standard
                 temp = temp.replace(" ", "  ");
@@ -108,33 +105,49 @@ public class FlightSurfaceController extends AbstractController {
         return temp;
     }
 
-    private String getSurfaceType()
+    private String initSurfaceType()
     {
         String output = "";
-        switch(model.getSurfaceType())
+        switch(surfaceType)
         {
             case MAIN_WING:
             {
-                output = "WGPLNF";
+                output    = "WGPLNF";
                 this.name = "Wing";
+                view.setIsHT(true);
+                view.setIsV(false);
                 break;
             }
             case HORIZONTAL_TAIL:
             {
                 output = "HTPLNF";
                 this.name = "Horizontal Tail";
+                view.setIsHT(true);
+                view.setIsV(false);
                 break;
             }
             case VERTICAL_TAIL:
             {
                 output = "VTPLNF";
                 this.name = "Vertical Tail";
+                view.setIsHT(false);
+                view.setIsV(true);
+                view.getjTWISTA_Text().setEnabled(false);
+                view.getjDHDADI_Text().setEnabled(false);
+                view.getjDHDADO_Text().setEnabled(false);
+                view.getjSSPNDO().setEnabled(false);
                 break;
             }
-            case OTHER:
+            case VFPLNF:
             {
-                //TODO: Define the rest of the planform types
-                output = "undefined";
+                output = "VFPLNF";
+                this.name = "???????";
+                view.setIsHT(false);
+                view.setIsV(true);
+                view.getjTWISTA_Text().setEnabled(false);
+                view.getjDHDADI_Text().setEnabled(false);
+                view.getjDHDADO_Text().setEnabled(false);
+                view.getjSSPNDO().setEnabled(false);
                 break;
             }
         }
@@ -152,48 +165,22 @@ public class FlightSurfaceController extends AbstractController {
     }
 
     @Override
-    public void refreshFromSaved(String data) {
-        String section = util.xmlParse(xmlTag, data);
-        if(section.isEmpty())
-        {
-            return;
-        }
-        view.getjAirfoil_Text().setText(util.xmlParse("AIRFOIL", section));
-        view.getjCHRDBP_Text().setText(util.xmlParse("CHRDBP", section));
-        view.getjCHRDR_Text().setText(util.xmlParse("CHRDR", section));
-        view.getjCHRDTP_Text().setText(util.xmlParse("CHRDTP", section));
-        view.getjCHSTAT_Text().setText(util.xmlParse("CHSTAT", section));
-        view.getjDHADO_Text().setText(util.xmlParse("DHADO", section));
-        view.getjDHDADI_Text().setText(util.xmlParse("DHDADI", section));
-        view.getjSAVSI_Text().setText(util.xmlParse("SAVSI", section));
-        view.getjSAVSO_Text().setText(util.xmlParse("SAVSO", section));
-        view.getjSSPNE_Text().setText(util.xmlParse("SSPNE", section));
-        view.getjSSPNOP_Text().setText(util.xmlParse("SSPNOP", section));
-        view.getjSSPN_Text().setText(util.xmlParse("SSPN", section));
-        view.getjTWISTA_Text().setText(util.xmlParse("TWISTA", section));
-        view.getjTYPE_Text().setText(util.xmlParse("TYPE", section));
-        refresh();
+    public void refreshFromSaved(String data)
+    {
+        super.refreshFromSaved(data);
+        String temp = util.xmlParse(xmlTag, data);
+        view.setjTYPE((int)Double.parseDouble(util.xmlParse("TYPE", temp)));
     }
 
     @Override
-    public String generateXML() {
-        
+    public String generateXML()
+    {
         String temp = "";
         temp += "<" + xmlTag + ">\n";
-        temp+= util.xmlWrite("AIRFOIL", model.getAirfoil());
-        temp+= util.xmlWrite("CHRDBP", model.getCHRDBP());
-        temp+= util.xmlWrite("CHRDR", model.getCHRDR());
-        temp+= util.xmlWrite("CHRDTP", model.getCHRDTP());
-        temp+= util.xmlWrite("CHSTAT", model.getCHSTAT());
-        temp+= util.xmlWrite("DHADO", model.getDHADO());
-        temp+= util.xmlWrite("DHDADI", model.getDHDADI());
-        temp+= util.xmlWrite("SAVSI", model.getSAVSI());
-        temp+= util.xmlWrite("SAVSO", model.getSAVSO());
-        temp+= util.xmlWrite("SSPN", model.getSSPN());
-        temp+= util.xmlWrite("SSPNE", model.getSSPNE());
-        temp+= util.xmlWrite("SSPNOP", model.getSSPNOP());
-        temp+= util.xmlWrite("TWISTA", model.getTWISTA());
-        temp+= util.xmlWrite("TYPE", model.getTYPE());
+        for (int i = 0; i < Links.size(); i++)
+        {
+            temp += Links.get(i).generateXML_Element();
+        }
         temp += "</" + xmlTag + ">\n";
         return temp;
     }

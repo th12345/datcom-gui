@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  * Class provides XML reading/writing functionality to registered controllers. It
@@ -34,6 +35,24 @@ public class ImportExportService extends AbstractService{
         name = "ImportExport";
         controllers = new LinkedList<AbstractController>();
         registerForMe();
+    }
+
+    /**
+     * Shows a JFileChooser and allows the user to choose which file to open.
+     * After a valid file is chosen, it calls importFile on the selected file
+     * and returns the parsed file data.
+     * @return A string containing all parsed data.
+     */
+    public String importFile_FC()
+    {
+        File inFile;
+        int check = parent.getFc().showOpenDialog(null);
+        if(check == JFileChooser.APPROVE_OPTION)
+        {
+            inFile = parent.getFc().getSelectedFile();
+            return importFile(inFile);
+        }
+        return "";
     }
 
     /**

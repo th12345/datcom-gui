@@ -8,7 +8,7 @@ package opendatcom;
 import Abstracts.AbstractService;
 import Services.ImportExportService;
 import Services.ProjectService;
-import Services.ParserUtility;
+import Services.FormatUtility;
 import java.io.File;
 
 /**
@@ -19,13 +19,13 @@ public class JSBSimService extends AbstractService
 {
     static JSBSimService self;
     ImportExportService ies;
-    ParserUtility pu;
+    FormatUtility pu;
     ProjectService ps;
 
     private JSBSimService()
     {
         ies = ImportExportService.getInstance();
-        pu = ParserUtility.getInstance();
+        pu = FormatUtility.getInstance();
         ps = ProjectService.getInstance();
     }
 

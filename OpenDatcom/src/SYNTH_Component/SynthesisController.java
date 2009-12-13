@@ -68,16 +68,16 @@ public class SynthesisController extends AbstractController{
     public String generateOutput()
     {
         String temp;
-        temp =  util.safeAdd("  XCG=", model.getXCG());
-        temp += util.safeAdd("  ZCG=", model.getZCG());
-        temp += util.safeAdd("  XW=", model.getXW());
-        temp += util.safeAdd("  ZW=", model.getZW());
-        temp += util.safeAdd("  ALIH=", model.getALIH());
-        temp += util.safeAdd("  ALIW=", model.getALIW());
-        temp += util.safeAdd("  XH=", model.getXH());
-        temp += util.safeAdd("  ZH=", model.getZH());
-        temp += util.safeAdd("  XV=", model.getXV());
-        temp += util.safeAdd("  ZV=", model.getZV());
+        temp =  util.safeFormat("  XCG=", model.getXCG());
+        temp += util.safeFormat("  ZCG=", model.getZCG());
+        temp += util.safeFormat("  XW=", model.getXW());
+        temp += util.safeFormat("  ZW=", model.getZW());
+        temp += util.safeFormat("  ALIH=", model.getALIH());
+        temp += util.safeFormat("  ALIW=", model.getALIW());
+        temp += util.safeFormat("  XH=", model.getXH());
+        temp += util.safeFormat("  ZH=", model.getZH());
+        temp += util.safeFormat("  XV=", model.getXV());
+        temp += util.safeFormat("  ZV=", model.getZV());
 
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())

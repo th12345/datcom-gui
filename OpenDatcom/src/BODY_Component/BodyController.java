@@ -145,80 +145,21 @@ public class BodyController extends AbstractController {
         
         temp += "# Start of Body Parameters\n";
         temp += " $BODY\n";
-        temp += util.safeAdd("  BLN=", model.getBln());
-        temp += util.safeAdd("  BLA=", model.getBla());
-        temp += util.safeAdd("  BNOSE=", model.getBnose());
-        temp += util.safeAdd("  BTAIL=", model.getBtail());
+        temp += util.safeFormat("  BLN=", model.getBln());
+        temp += util.safeFormat("  BLA=", model.getBla());
+        temp += util.safeFormat("  BNOSE=", model.getBnose());
+        temp += util.safeFormat("  BTAIL=", model.getBtail());
         temp += "  NX=\t" + length + ".0,\n";
-        
-        temp += "  X(1)=\t";
-        for(int i = 0; i < length; i++)
-        {
-            temp += x.get(i) + ",\t";
-            if(i%5 == wrapNum)
-            {
-                temp += "\n   ";
-            }
-        }
 
-        temp += "\n  S(1)=\t";
-        for(int i = 0; i < length; i++)
-        {
-            temp+= s[i] + ",\t";
-            // Wrap around neatly
-            if(i%5 == wrapNum && !(i == length - 1))
-            {
-                temp += "\n   ";
-            }
-        }
-
-        temp += "\n  P(1)=\t";
-        for(int i = 0; i < length; i++)
-        {
-            temp+= p[i] + ",\t";
-            // Wrap around neatly
-            if(i%5 == wrapNum && !(i == length - 1))
-            {
-                temp += "\n   ";
-            }
-        }
-
-        temp += "\n  R(1)=\t";
-        for(int i = 0; i < length; i++)
-        {
-            temp+= r[i] + ",\t";
-            // Wrap around neatly
-            if(i%5 == wrapNum && !(i == length - 1))
-            {
-                temp += "\n   ";
-            }
-        }
-
-        temp += "\n  ZU(1)=\t";
-        for(int i = 0; i < length; i++)
-        {
-            temp+= zu[i] + ",\t";
-            // Wrap around neatly
-            if(i%5 == wrapNum && !(i == length - 1))
-            {
-                temp += "\n   ";
-            }
-        }
-
-        temp += "\n  ZL(1)=\t";
-        for(int i = 0; i < length; i++)
-        {
-            temp+= zl[i] + ",\t";
-            // Wrap around neatly
-            if(i%5 == wrapNum && !(i == length - 1))
-            {
-                temp += "\n   ";
-            }
-        }
-
+        temp += util.datcomFormat("  X(1)=\t", x, length);
+        temp += util.datcomFormat("  S(1)=\t", s, length);
+        temp += util.datcomFormat("  P(1)=\t", p, length);
+        temp += util.datcomFormat("  R(1)=\t", r, length);
+        temp += util.datcomFormat("  ZU(1)=\t", zu, length);
+        temp += util.datcomFormat("  ZL(1)=\t", zl, length);
 
         // Trim off the extra comma
-        temp = temp.substring(0, temp.length() - 2);
+        temp = temp.substring(0, temp.length() - 3);
         temp += "$\n#End of BODY Parameters\n\n";
         view.setOutputData(temp);
         return temp;
@@ -295,16 +236,7 @@ public class BodyController extends AbstractController {
         temp += "</" + xmlTag + ">\n";
         return temp;
     }
-
-    private double calculateSurfaceArea()
-    {
-        return 0.0;
-    }
-    private double calculateZValuesD()
-    {
-        return 0.0;
-    }
-
+    
     public INPUT_CHOICE getInputMode() {
         return inputMode;
     }

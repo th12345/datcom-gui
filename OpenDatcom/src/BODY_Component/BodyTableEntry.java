@@ -187,6 +187,9 @@ public class BodyTableEntry
         writeBack();
     }
 
+    /**
+     * Writes the filtered and calculated values back to the master table.
+     */
     private void writeBack()
     {
         masterTable.setValueAt(r, tablePosition, 1);
@@ -194,7 +197,6 @@ public class BodyTableEntry
         masterTable.setValueAt(s, tablePosition, 3);
         masterTable.setValueAt(zu, tablePosition, 4);
         masterTable.setValueAt(zl, tablePosition, 5);
- 
     }
 
     /**

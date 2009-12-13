@@ -25,11 +25,6 @@ class MainScreenController extends AbstractController{
         registerForMe();
     }
 
-    public void test()
-    {
-        parent.runJSBSimTranslator();
-    }
-
     public MainScreenController GetInstance()
     {
         if(self == null)

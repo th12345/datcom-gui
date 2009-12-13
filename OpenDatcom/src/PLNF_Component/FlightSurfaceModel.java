@@ -13,13 +13,9 @@ import opendatcom.*;
  * @author -B-
  */
 public class FlightSurfaceModel extends AbstractModel {
-    public enum SURFACE_TYPE
-    {
-        MAIN_WING, HORIZONTAL_TAIL, VERTICAL_TAIL, OTHER, NUM_SURFACE_TYPES
-    }
+    
 
     //TODO: Update the view class with the correct title based on type
-    private SURFACE_TYPE surfaceType;
     private String Airfoil;
     private double CHRDBP;
     private double CHRDR;
@@ -40,22 +36,9 @@ public class FlightSurfaceModel extends AbstractModel {
      * Default constructor.
      * @param surfaceType The surface type the data represents (enum).
      */
-    public FlightSurfaceModel(SURFACE_TYPE surfaceType) {
-        this.surfaceType = surfaceType;
+    public FlightSurfaceModel() {
     }
 
-
-
-
-    // Auto-generated code below this point
-
-    public SURFACE_TYPE getSurfaceType() {
-        return surfaceType;
-    }
-
-    public void setSurfaceType(SURFACE_TYPE surfaceType) {
-        this.surfaceType = surfaceType;
-    }
     
     public String getAirfoil() {
         return Airfoil;

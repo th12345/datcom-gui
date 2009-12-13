@@ -1,6 +1,6 @@
 package Services;
 
-import javax.swing.JTable;
+import java.util.LinkedList;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -12,19 +12,23 @@ import javax.swing.JTextField;
  * a singleton. Call getInstance to create instead of constructor.
  * @author -B-
  */
-public class ParserUtility {
+public class FormatUtility {
 
-    static ParserUtility self;
-    public static ParserUtility getInstance()
+    static FormatUtility self;
+    int wrapNum;
+    public static FormatUtility getInstance()
     {
         if(self == null)
         {
-            self = new ParserUtility();
+            self = new FormatUtility();
         }
         return self;
     }
 
-    private ParserUtility() {}
+    private FormatUtility()
+    {
+        wrapNum = 4;
+    }
 
   /**
    * Takes the text from the target text field/Area, processes it for the correct
@@ -310,14 +314,14 @@ public String removeComments(String input)
     }
 
      /**
-     * All the safeAdd functions take the input data and format  it the following
+     * All the safeFormat functions take the input data and format  it the following
      * way: <  Header \t Data, \n >. The input data is checked for error conditions
      * (empty string or NaN double) and rejected if invalid. If valid, it is
      * appended to the end of the aggragateData string.
      * @param Header
      * @param Data
      */
-    public String safeAdd(String Header, double Data)
+    public String safeFormat(String Header, double Data)
     {
         String output = "";
         if(Double.isNaN(Data))
@@ -329,14 +333,14 @@ public String removeComments(String input)
     }
 
     /**
-     * All the safeAdd functions take the input data and format  it the following
+     * All the safeFormat functions take the input data and format  it the following
      * way: <  Header \t Data, \n >. The input data is checked for error conditions
      * (empty string or NaN double) and rejected if invalid. If valid, it is
      * appended to the end of the aggragateData string.
      * @param Header
      * @param Data
      */
-    public String safeAdd(String Header, String Data)
+    public String safeFormat(String Header, String Data)
     {
         String output = "";
         if(Data.isEmpty())
@@ -345,5 +349,54 @@ public String removeComments(String input)
         }
         output += Header + "\t" +  Data + ",\n";
         return output;
+    }
+
+    /**
+     * Generates the approprate datcom format for the given data type.
+     * @param Header The header information to include ex "X(1)="
+     * @param data The data to append after the header
+     * @param length The length of the array/linked list
+     * @return A string containing the datcom-formatted information.
+     */
+    public String datcomFormat(String Header, double data[], int length)
+    {
+        // Check to make sure the data isnt null & for bound exceptions
+        if(data.length == 0 || data.length < length)
+        {
+            return "";
+        }
+
+        String temp = "";
+        temp += Header + "\n";
+
+        // Iterate through and appended the data
+        for(int i = 0; i < length; i++)
+        {
+            temp += data[i] + ",\t";
+            
+            // Wrap to a new line after every wrapNum entries
+            if(i%wrapNum == 0)
+            {
+                temp += "\n   ";
+            }
+        }
+        temp += "\n";
+        return temp;
+    }
+
+    public String datcomFormat(String Header, LinkedList<Double> data, int length)
+    {
+        String temp = "";
+        temp += Header + "\n";
+        for(int i = 0; i < length; i++)
+        {
+            temp += data.get(i) + ",\t";
+            if(i%5 == wrapNum)
+            {
+                temp += "\n   ";
+            }
+        }
+        temp += "\n";
+        return temp;
     }
 }

@@ -6,7 +6,7 @@
 package Abstracts;
 
 import opendatcom.*;
-import Services.ParserUtility;
+import Services.FormatUtility;
 import java.util.LinkedList;
 import javax.swing.JPanel;
 
@@ -22,8 +22,10 @@ public abstract class AbstractController {
     public AbstractModel model;
     public JPanel view;
     public LinkedList<AbstractController> otherControllers;
-    public ParserUtility util = ParserUtility.getInstance();
+    public FormatUtility util = FormatUtility.getInstance();
     public OpenDatcomController parent = OpenDatcomController.getInstance();
+    public LinkedList<MVC_DataLink> Links;
+    boolean initialized = false;
     
     /**
      * Registers the module with the main app interface. Sets all internal and
@@ -33,6 +35,17 @@ public abstract class AbstractController {
     {
         otherControllers = new LinkedList<AbstractController>();
         parent.registerModule(this);
+    }
+
+    public void createLink(String name, Object viewComponent, Object dataType)
+    {
+        if(!initialized)
+        {
+            Links = Links = new LinkedList<MVC_DataLink>();
+            initialized = true;
+            System.out.println("Initialized");
+        }
+        Links.add(new MVC_DataLink(name, viewComponent, dataType));
     }
 
     public boolean registerWithService(String serviceName)
@@ -61,14 +74,36 @@ public abstract class AbstractController {
      * XML format.
      * @param data XML-formatted controller node.
      */
-    public void refreshFromSaved(String data) {};
+    public void refreshFromSaved(String data)
+    {
+        String section = util.xmlParse(xmlTag, data);
+        if(section.isEmpty())
+        {
+            return;
+        }
+        for (int i = 0; i < Links.size(); i++)
+        {
+            Links.get(i).load(section);
+        }
+        refresh();
+    }
 
     /**
      * Generates the XML data for the controller's variables. Outputs the data
      * in a formatted string.
      * @return A string containing the XML-formatted variable data.
      */
-    public String generateXML() { return "";}
+    public String generateXML()
+    {
+        String temp = "";
+        temp += "<" + xmlTag + ">\n";
+        for (int i = 0; i < Links.size(); i++)
+        {
+            temp += Links.get(i).generateXML_Element();
+        }
+        temp += "</" + xmlTag + ">\n";
+        return temp;
+    }
 
     public abstract JPanel getView();
 

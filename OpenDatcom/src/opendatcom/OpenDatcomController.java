@@ -4,17 +4,17 @@
 
 package opendatcom;
 
+import AIRFOIL_Component.AirfoilController;
 import Services.xmlFilter;
 import Abstracts.AbstractController;
 import SYNTH_Component.SynthesisController;
 import PLNF_Component.FlightSurfaceController;
-import PLNF_Component.FlightSurfaceModel;
 import FLTCON_Component.FlightConditionsController;
 import BODY_Component.BodyController;
 import Abstracts.AbstractService;
 import Services.ImportExportService;
 import Services.ProjectService;
-import Services.ParserUtility;
+import Services.FormatUtility;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class OpenDatcomController extends SingleFrameApplication{
     OpenDatcomView view;
     
     // Golbal Stuff
-    private ParserUtility util = ParserUtility.getInstance();
+    private FormatUtility util = FormatUtility.getInstance();
     private LinkedList<AbstractController> controllers = new LinkedList<AbstractController>();
     private LinkedList<AbstractService> services    = new LinkedList<AbstractService>();
 
@@ -57,6 +57,7 @@ public class OpenDatcomController extends SingleFrameApplication{
     private ImportExportService in;
     private FileViewerController fviewC;
     private MainScreenController mainC;
+    private AirfoilController airfoilC;
 
     // Services
     private DatcomService output;
@@ -95,11 +96,12 @@ public class OpenDatcomController extends SingleFrameApplication{
         flightC =   new FlightConditionsController();
         synthC  =   new SynthesisController();
         bodyC   =   new BodyController();
-        wingC   =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.MAIN_WING);
-        hTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.HORIZONTAL_TAIL);
-        vTailC  =   new FlightSurfaceController(FlightSurfaceModel.SURFACE_TYPE.VERTICAL_TAIL);
+        wingC   =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.MAIN_WING);
+        hTailC  =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.HORIZONTAL_TAIL);
+        vTailC  =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.VERTICAL_TAIL);
         output  =   new DatcomService();
         fviewC  =   new FileViewerController();
+        airfoilC =  new AirfoilController();
         caseName = "";
         units = "DIM FT";
 
@@ -401,9 +403,5 @@ public class OpenDatcomController extends SingleFrameApplication{
 
     public void setCaseName(String caseName) {
         this.caseName = caseName;
-    }
-
-    public void runJSBSimTranslator()
-    {
     }
 }

@@ -101,10 +101,10 @@ public class FlightConditionsController extends AbstractController {
     private String generateOPTS()
     {
         String temp = "";
-        //temp += util.safeAdd("  ROUGFC=", roughValues[view.getjRoughness().getSelectedIndex()]);
-        temp += util.safeAdd("  SREF=", model.getSref());
-        temp += util.safeAdd("  CBARR=", model.getCbarr());
-        temp += util.safeAdd("  BLREF=", model.getBlref());
+        //temp += util.safeFormat("  ROUGFC=", roughValues[view.getjRoughness().getSelectedIndex()]);
+        temp += util.safeFormat("  SREF=", model.getSref());
+        temp += util.safeFormat("  CBARR=", model.getCbarr());
+        temp += util.safeFormat("  BLREF=", model.getBlref());
 
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
@@ -123,14 +123,14 @@ public class FlightConditionsController extends AbstractController {
     private String generateFCON()
     {
         String temp = "";
-        temp += util.safeAdd("  NMACH=", model.getnMach());
-        temp += util.safeAdd("  MACH(1)=" , model.getMachs());
-        temp += util.safeAdd("  NALPHA=" , model.getnAOA());
-        temp += util.safeAdd("  ALSCHD(1)=", model.getAoas());
-        temp += util.safeAdd("  NALT=", model.getnAlt());
-        temp += util.safeAdd("  ALT(1)= ", model.getAltitudes());
-        temp += util.safeAdd("  WT= ", model.getWeight());
-        temp += util.safeAdd("  LOOP= ", model.getLoop());
+        temp += util.safeFormat("  NMACH=", model.getnMach());
+        temp += util.safeFormat("  MACH(1)=" , model.getMachs());
+        temp += util.safeFormat("  NALPHA=" , model.getnAOA());
+        temp += util.safeFormat("  ALSCHD(1)=", model.getAoas());
+        temp += util.safeFormat("  NALT=", model.getnAlt());
+        temp += util.safeFormat("  ALT(1)= ", model.getAltitudes());
+        temp += util.safeFormat("  WT= ", model.getWeight());
+        temp += util.safeFormat("  LOOP= ", model.getLoop());
 
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
