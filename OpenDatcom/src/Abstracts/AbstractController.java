@@ -24,7 +24,7 @@ public abstract class AbstractController {
     public LinkedList<AbstractController> otherControllers;
     public FormatUtility util = FormatUtility.getInstance();
     public OpenDatcomController parent = OpenDatcomController.getInstance();
-    public LinkedList<MVC_DataLink> Links;
+    public LinkedList<OAE_DataLink> Links;
     boolean initialized = false;
     
     /**
@@ -41,11 +41,22 @@ public abstract class AbstractController {
     {
         if(!initialized)
         {
-            Links = Links = new LinkedList<MVC_DataLink>();
+            Links = Links = new LinkedList<OAE_DataLink>();
             initialized = true;
             System.out.println("Initialized");
         }
-        Links.add(new MVC_DataLink(name, viewComponent, dataType));
+        Links.add(new OAE_DataLink(name, viewComponent, dataType));
+    }
+
+    public void createLink(OAE_DataLink tableLink)
+    {
+        if(!initialized)
+        {
+            Links = Links = new LinkedList<OAE_DataLink>();
+            initialized = true;
+            System.out.println("Initialized");
+        }
+        Links.add(tableLink);
     }
 
     public boolean registerWithService(String serviceName)
@@ -61,7 +72,21 @@ public abstract class AbstractController {
      * Generates datcom-formatted output from the controller's variables.
      * @return String containing datcom-formatted data.
      */
-    public String generateOutput() { return "";}
+    public String generateOutput() 
+    {
+        String header = "$" + xmlTag + "\n";
+        String temp = "";
+        for (int i = 0; i < Links.size(); i++)
+        {
+            temp += Links.get(i).datcomFormat("  ");
+        }
+        if(!temp.isEmpty())
+        {
+            temp = temp.substring(0, temp.length() - 2);
+            temp = header + temp + "$\n";
+        }
+        return temp;
+    }
 
     /**
      * Refreshes the data in the controller. Cascades down and updates the model
@@ -106,23 +131,7 @@ public abstract class AbstractController {
     }
 
     public abstract JPanel getView();
-
-    /**
-     * Gets the controller's datcom output data.
-     * @return
-     */
-    public String getOutput() {
-        return outputText;
-    }
-
-    /**
-     * Sets the output data. DO NOT USE.
-     * @param output
-     */
-    public void setOutput(String output) {
-        this.outputText = output;
-    }
-
+    
     /**
      * Gets the controller's unique xml identifier
      * @return The identifier
@@ -141,5 +150,17 @@ public abstract class AbstractController {
 
     public String getName() {
         return name;
+    }
+
+    public Object lookupValue(String name)
+    {
+        for (int i = 0; i < Links.size(); i++)
+        {
+            if(Links.get(i).toString().equals(name))
+            {
+                return Links.get(i).getData();
+            }
+        }
+        return null;
     }
 }

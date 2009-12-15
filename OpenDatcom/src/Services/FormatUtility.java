@@ -1,6 +1,7 @@
 package Services;
 
 import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -313,6 +314,23 @@ public String removeComments(String input)
         return startXML + String.valueOf(data) + endXML + "\n";
     }
 
+    public String xmlWrite(String elementTag, List<Double> data)
+    {
+        if(data.isEmpty())
+        {
+            return "";
+        }
+        String startXML = "<" + elementTag + ">";
+        String endXML = "</" + elementTag + ">";
+        String temp = "";
+        for (int i = 0; i < data.size(); i++)
+        {
+            temp += String.valueOf(data.get(i)) + ", ";
+        }
+
+        return startXML + temp + endXML + "\n";
+    }
+
      /**
      * All the safeFormat functions take the input data and format  it the following
      * way: <  Header \t Data, \n >. The input data is checked for error conditions
@@ -367,7 +385,7 @@ public String removeComments(String input)
         }
 
         String temp = "";
-        temp += Header + "\n";
+        temp += Header + "\t";
 
         // Iterate through and appended the data
         for(int i = 0; i < length; i++)
@@ -384,14 +402,24 @@ public String removeComments(String input)
         return temp;
     }
 
-    public String datcomFormat(String Header, LinkedList<Double> data, int length)
+    public String datcomFormat(String Header, double  data, int length)
+    {
+        if(Double.isNaN(data))
+        {
+            return "";
+        }
+        return Header + String.valueOf(data) + "\n";
+    }
+
+    public String datcomFormat(String Header, List<Double> data, int length)
     {
         String temp = "";
-        temp += Header + "\n";
+        temp += Header + "\t";
         for(int i = 0; i < length; i++)
         {
-            temp += data.get(i) + ",\t";
-            if(i%5 == wrapNum)
+            temp += String.valueOf(data.get(i)) + ",\t";
+            // Wrap to a new line after every wrapNum entries
+            if(i%wrapNum == wrapNum)
             {
                 temp += "\n   ";
             }

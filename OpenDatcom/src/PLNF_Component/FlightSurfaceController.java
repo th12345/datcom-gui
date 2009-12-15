@@ -6,7 +6,7 @@
 package PLNF_Component;
 
 import Abstracts.AbstractController;
-import Abstracts.MVC_DataLink;
+import Abstracts.OAE_DataLink;
 import java.util.LinkedList;
 import opendatcom.*;
 
@@ -19,8 +19,6 @@ public class FlightSurfaceController extends AbstractController {
     // Variables
     String wingType;
     FlightSurfaceView view;
-    FlightSurfaceModel model;
-
     SURFACE_TYPE surfaceType;
 
     public enum SURFACE_TYPE
@@ -39,7 +37,6 @@ public class FlightSurfaceController extends AbstractController {
     public FlightSurfaceController(SURFACE_TYPE type) {
         surfaceType = type;
         this.view = new FlightSurfaceView(type, this);
-        this.model = new FlightSurfaceModel();
         this.name = "FlightSurface";
         wingType = initSurfaceType();
         this.xmlTag = wingType;
@@ -69,19 +66,7 @@ public class FlightSurfaceController extends AbstractController {
         {
             temp += Links.get(i).datcomFormat(" ");
         }
-        /*
-        temp += util.safeFormat(" CHRDTP=", model.getCHRDTP());
-        temp += util.safeFormat(" SSPNOP=", model.getSSPNOP());
-        temp += util.safeFormat(" SSPNE=", model.getSSPNE());
-        temp += util.safeFormat(" SSPN=", model.getSSPN());
-        temp += util.safeFormat(" CHRDBP=", model.getCHRDBP());
-        temp += util.safeFormat(" CHRDR=", model.getCHRDR());
-        temp += util.safeFormat(" SAVSI=", model.getSAVSI());
-        temp += util.safeFormat(" CHSTAT=", model.getCHSTAT());
-        temp += util.safeFormat(" TWISTA=", model.getTWISTA());
-        temp += util.safeFormat(" DHDADI=", model.getDHDADI());
-        temp += util.safeFormat(" TYPE=", model.getTYPE());
-       */
+
         // Make sure atleast 1 value was written then append the header/footer
         if(!temp.isEmpty())
         {            
@@ -91,7 +76,7 @@ public class FlightSurfaceController extends AbstractController {
             {
                 // Double space everything as per datcom standard
                 temp = temp.replace(" ", "  ");
-                header += model.getAirfoil() + "\n";
+                header += lookupValue("Airfoil") + "\n";
                 temp = header +  " $" + wingType + "\n" + temp;
                 temp += "$\n#End of " + wingType + " data\n\n";
                 // Set the output back to the model
@@ -105,7 +90,7 @@ public class FlightSurfaceController extends AbstractController {
         return temp;
     }
 
-    private String initSurfaceType()
+    public  String initSurfaceType()
     {
         String output = "";
         switch(surfaceType)
@@ -153,10 +138,6 @@ public class FlightSurfaceController extends AbstractController {
         }
         view.setjTitle(output + " Parameters");
         return output;
-    }
-
-    public FlightSurfaceModel getModel() {
-        return model;
     }
 
     @Override

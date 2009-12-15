@@ -4,7 +4,6 @@
 
 package opendatcom;
 
-import AIRFOIL_Component.AirfoilController;
 import Services.xmlFilter;
 import Abstracts.AbstractController;
 import SYNTH_Component.SynthesisController;
@@ -18,12 +17,10 @@ import Services.FormatUtility;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -57,7 +54,6 @@ public class OpenDatcomController extends SingleFrameApplication{
     private ImportExportService in;
     private FileViewerController fviewC;
     private MainScreenController mainC;
-    private AirfoilController airfoilC;
 
     // Services
     private DatcomService output;
@@ -101,7 +97,6 @@ public class OpenDatcomController extends SingleFrameApplication{
         vTailC  =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.VERTICAL_TAIL);
         output  =   new DatcomService();
         fviewC  =   new FileViewerController();
-        airfoilC =  new AirfoilController();
         caseName = "";
         units = "DIM FT";
 

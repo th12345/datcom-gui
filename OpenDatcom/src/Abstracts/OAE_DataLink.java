@@ -17,7 +17,7 @@ import javax.swing.JTextField;
  * and loading internally.
  * @author -B-
  */
-public class MVC_DataLink
+public class OAE_DataLink
 {
     String name;
     
@@ -58,16 +58,18 @@ public class MVC_DataLink
      * @param viewComponent The visible component, ie JTextArea, JTextField... etc
      * @param modelComponent The class of the data to story, ie Double.class, String.class
      */
-    public MVC_DataLink(String name, Object viewComponent, Object modelComponent)
+    public OAE_DataLink(String name, Object viewComponent, Object modelComponent)
     {
         fu = FormatUtility.getInstance();
         try {
             this.name = name;
             link(viewComponent, modelComponent);
         } catch (NoSuchMethodException ex) {
-            Logger.getLogger(MVC_DataLink.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OAE_DataLink.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public OAE_DataLink(){}
 
     /**
      * Function does all the dirty work of type determination for the given objects.
@@ -150,11 +152,11 @@ public class MVC_DataLink
         try {
             setMethod.invoke(view, fu.xmlParse(name, section));
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(MVC_DataLink.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OAE_DataLink.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalArgumentException ex) {
-            Logger.getLogger(MVC_DataLink.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OAE_DataLink.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {
-            Logger.getLogger(MVC_DataLink.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OAE_DataLink.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -163,13 +165,20 @@ public class MVC_DataLink
         switch(dType)
         {
             case DOUBLE:
-                System.out.println(data);
                 return fu.safeFormat(offset + name, fu.processDataField((JTextField)view));
             case STRING:
-                System.out.println(data);
                 return fu.safeFormat(offset + name, fu.processTextField((JTextField)view));
             default:
                 return "";
         }
+    }
+
+    /**
+     * Returns the stored object
+     * @return The stored object... Cast it to what its supposed to be.
+     */
+    public Object getData()
+    {
+        return data;
     }
 }
