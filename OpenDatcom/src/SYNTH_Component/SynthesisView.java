@@ -56,6 +56,8 @@ public class SynthesisView extends javax.swing.JPanel {
         jZCGText = new javax.swing.JTextField();
         jLabel241 = new javax.swing.JLabel();
         jLabel242 = new javax.swing.JLabel();
+        jScale = new javax.swing.JTextField();
+        jLabel244 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
         jXVFText = new javax.swing.JTextField();
         jLabel235 = new javax.swing.JLabel();
@@ -69,6 +71,8 @@ public class SynthesisView extends javax.swing.JPanel {
         jZHText = new javax.swing.JTextField();
         jLabel239 = new javax.swing.JLabel();
         jLabel243 = new javax.swing.JLabel();
+        jHINAX = new javax.swing.JTextField();
+        jLabel245 = new javax.swing.JLabel();
         jFlightHeaderText4 = new javax.swing.JPanel();
         jPanel58 = new javax.swing.JPanel();
         jLabel240 = new javax.swing.JLabel();
@@ -120,6 +124,12 @@ public class SynthesisView extends javax.swing.JPanel {
         jLabel242.setToolTipText(resourceMap.getString("jLabel242.toolTipText")); // NOI18N
         jLabel242.setName("jLabel242"); // NOI18N
 
+        jScale.setName("jScale"); // NOI18N
+
+        jLabel244.setText(resourceMap.getString("jLabel244.text")); // NOI18N
+        jLabel244.setToolTipText(resourceMap.getString("jLabel244.toolTipText")); // NOI18N
+        jLabel244.setName("jLabel244"); // NOI18N
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -132,15 +142,17 @@ public class SynthesisView extends javax.swing.JPanel {
                     .addComponent(jLabel232)
                     .addComponent(jLabel220)
                     .addComponent(jLabel241)
-                    .addComponent(jLabel242))
-                .addGap(64, 64, 64)
+                    .addComponent(jLabel242)
+                    .addComponent(jLabel244))
+                .addGap(59, 59, 59)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jZCGText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(jXWText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(jZWText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(jALIWText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(jALIHText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                    .addComponent(jXCGText, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                    .addComponent(jScale, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jZCGText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jXWText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jZWText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jALIWText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jALIHText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jXCGText, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -170,7 +182,11 @@ public class SynthesisView extends javax.swing.JPanel {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jALIHText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel242))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jScale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel244))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         jPanel19.setName("jPanel19"); // NOI18N
@@ -211,6 +227,12 @@ public class SynthesisView extends javax.swing.JPanel {
         jLabel243.setToolTipText(resourceMap.getString("jLabel243.toolTipText")); // NOI18N
         jLabel243.setName("jLabel243"); // NOI18N
 
+        jHINAX.setName("jHINAX"); // NOI18N
+
+        jLabel245.setText(resourceMap.getString("jLabel245.text")); // NOI18N
+        jLabel245.setToolTipText(resourceMap.getString("jLabel245.toolTipText")); // NOI18N
+        jLabel245.setName("jLabel245"); // NOI18N
+
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
         jPanel19Layout.setHorizontalGroup(
@@ -223,15 +245,17 @@ public class SynthesisView extends javax.swing.JPanel {
                     .addComponent(jLabel238)
                     .addComponent(jLabel235)
                     .addComponent(jLabel243)
-                    .addComponent(jLabel239))
-                .addGap(75, 75, 75)
+                    .addComponent(jLabel239)
+                    .addComponent(jLabel245))
+                .addGap(62, 62, 62)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jZHText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .addComponent(jXVFText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .addComponent(jZVFText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .addComponent(jXVText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .addComponent(jZVText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .addComponent(jXHText, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                    .addComponent(jHINAX, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jZHText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jXVFText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jZVFText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jXVText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jZVText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(jXHText, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel19Layout.setVerticalGroup(
@@ -261,7 +285,11 @@ public class SynthesisView extends javax.swing.JPanel {
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jZVText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel239))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jHINAX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel245))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel56Layout = new javax.swing.GroupLayout(jPanel56);
@@ -291,7 +319,7 @@ public class SynthesisView extends javax.swing.JPanel {
         );
         jFlightHeaderText4Layout.setVerticalGroup(
             jFlightHeaderText4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 228, Short.MAX_VALUE)
+            .addGap(0, 133, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel53Layout = new javax.swing.GroupLayout(jPanel53);
@@ -301,17 +329,17 @@ public class SynthesisView extends javax.swing.JPanel {
             .addGroup(jPanel53Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jFlightHeaderText4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel56, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel56, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jFlightHeaderText4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel53Layout.setVerticalGroup(
             jPanel53Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel53Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel53Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFlightHeaderText4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel56, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jFlightHeaderText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -366,6 +394,7 @@ public class SynthesisView extends javax.swing.JPanel {
     private javax.swing.JTextField jALIHText;
     private javax.swing.JTextField jALIWText;
     private javax.swing.JPanel jFlightHeaderText4;
+    private javax.swing.JTextField jHINAX;
     private javax.swing.JLabel jLabel220;
     private javax.swing.JLabel jLabel228;
     private javax.swing.JLabel jLabel229;
@@ -379,11 +408,14 @@ public class SynthesisView extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel241;
     private javax.swing.JLabel jLabel242;
     private javax.swing.JLabel jLabel243;
+    private javax.swing.JLabel jLabel244;
+    private javax.swing.JLabel jLabel245;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel53;
     private javax.swing.JPanel jPanel56;
     private javax.swing.JPanel jPanel58;
+    private javax.swing.JTextField jScale;
     private javax.swing.JTextField jXCGText;
     private javax.swing.JTextField jXHText;
     private javax.swing.JTextField jXVFText;
@@ -454,6 +486,14 @@ public class SynthesisView extends javax.swing.JPanel {
 
     public void setOutputData(String outputData) {
         this.outputData = outputData;
+    }
+
+    public JTextField getjHINAX() {
+        return jHINAX;
+    }
+
+    public JTextField getjScale() {
+        return jScale;
     }
 
 

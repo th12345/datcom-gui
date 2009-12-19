@@ -6,6 +6,7 @@
 package FLTCON_Component;
 
 import Abstracts.AbstractController;
+import Abstracts.OAE_LinkedTable;
 import opendatcom.*;
 import Services.ImportExportService;
 import java.io.File;
@@ -25,7 +26,6 @@ public class FlightConditionsController extends AbstractController {
     // Variables
     String wingType;
 
-    FlightConditionsModel model;
     FlightConditionsView view;
 
     double nMach;
@@ -42,13 +42,22 @@ public class FlightConditionsController extends AbstractController {
      * @param view
      */
     public FlightConditionsController() {
-        this.view = new FlightConditionsView(this);
-        this.model = FlightConditionsModel.getInstance();
+        this.view = FlightConditionsView.getInstance();
         this.xmlTag = "FLTCON";
         this.name = "Flight Conditions";
         in = ImportExportService.getInstance();
         registerWithService("ImportExport");
         registerForMe();
+
+        createLink(new OAE_LinkedTable("AOA",  view.getjTable(), 0));
+        createLink(new OAE_LinkedTable("ALT",  view.getjTable(), 1));
+        createLink(new OAE_LinkedTable("MACH", view.getjTable(), 2));
+        createLink("STMACH",     view.getjSTMach(), double.class);
+        createLink("TSMACH", view.getjTSMach(), double.class);
+        createLink("TR",     view.getjTR(),     double.class);
+        createLink("WT", view.getjWeight(), double.class);
+        createLink("GAMMA", view.getjGamma(), double.class);
+        createLink("LOOP",   view.getjLoop(),   double.class);
     }
 
     /**
@@ -59,27 +68,13 @@ public class FlightConditionsController extends AbstractController {
     public void gatherData()
     {
         super.refresh();
-
-        //nALT = ((List<Double>)lookupValue("ALT")).size();
-        //nAOA = ((List<Double>)lookupValue("AOA")).size();
-        //nMach = ((List<Double>)lookupValue("MACH")).size();
+        
+        nALT =  ((List<Double>)lookupValue("ALT" )).size();
+        nAOA =  ((List<Double>)lookupValue("AOA" )).size();
+        nMach = ((List<Double>)lookupValue("MACH")).size();
     }
 
-    /**
-     * Refreshes the entire model/view/controllers links & formats the datcom
-     * output data.
-     */
-    @Override
-    public void refresh()
-    {
-        gatherData();
-        generateOutput();
-    }
-
-    public FlightConditionsModel getModel() {
-        return model;
-    }
-
+    
     @Override
     public FlightConditionsView getView() {
         return view;

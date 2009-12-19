@@ -98,15 +98,12 @@ public class ImportExportService extends AbstractService{
                 System.out.println("Saving: " + controllers.get(x).getName());
                 temp += controllers.get(x).generateXML();
            }
-           String [] newlineTempCauseJavaSucks = temp.split("\n");
+           temp.replaceAll("\n", System.getProperty("line.separator"));
            output.write(xmlHeader);
            output.newLine();
            output.write("<DATCOM>");
-           for(int x = 0; x < newlineTempCauseJavaSucks.length; x++)
-           {
-               output.write(newlineTempCauseJavaSucks[x]);
-               output.newLine();
-           }
+           output.newLine();
+           output.write(temp);
            System.out.println("Saved as: " + inputFile.getName());
            output.write("</DATCOM>");
            output.close();
@@ -133,6 +130,7 @@ public class ImportExportService extends AbstractService{
         String[] temp = data.split("\n");
        
         try {
+            destination.delete();
             destination.mkdirs();
             destination.createNewFile();
             BufferedWriter output = new BufferedWriter(new FileWriter(destination));

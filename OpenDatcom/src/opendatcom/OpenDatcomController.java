@@ -11,6 +11,8 @@ import PLNF_Component.FlightSurfaceController;
 import FLTCON_Component.FlightConditionsController;
 import BODY_Component.BodyController;
 import Abstracts.AbstractService;
+import FLTCON_Component.OptionsController;
+import SCHR_Component.AirfoilController;
 import Services.ImportExportService;
 import Services.ProjectService;
 import Services.FormatUtility;
@@ -54,6 +56,8 @@ public class OpenDatcomController extends SingleFrameApplication{
     private ImportExportService in;
     private FileViewerController fviewC;
     private MainScreenController mainC;
+    private OptionsController optC;
+    private AirfoilController airfoilC;
 
     // Services
     private DatcomService output;
@@ -90,11 +94,13 @@ public class OpenDatcomController extends SingleFrameApplication{
         // order determines the tab order
         mainC   =   new MainScreenController();
         flightC =   new FlightConditionsController();
+        optC    =   new OptionsController();
         synthC  =   new SynthesisController();
         bodyC   =   new BodyController();
         wingC   =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.MAIN_WING);
         hTailC  =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.HORIZONTAL_TAIL);
         vTailC  =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.VERTICAL_TAIL);
+        airfoilC =  new AirfoilController();
         output  =   new DatcomService();
         fviewC  =   new FileViewerController();
         caseName = "";
@@ -104,11 +110,14 @@ public class OpenDatcomController extends SingleFrameApplication{
         JPanel tempJPanel;
         for(int x = 0; x < controllers.size(); x++)
         {
-            tempJPanel = new JPanel();
-            tempJPanel.setLayout(new GridLayout(1,0));
-            tempJPanel.setName(controllers.get(x).getName());
-            tempJPanel.add((controllers.get(x)).getView());
-            view.addTab(tempJPanel);
+            if(controllers.get(x).getView() != null)
+            {
+                tempJPanel = new JPanel();
+                tempJPanel.setLayout(new GridLayout(1,0));
+                tempJPanel.setName(controllers.get(x).getName());
+                tempJPanel.add((controllers.get(x)).getView());
+                view.addTab(tempJPanel);
+            }
         }
 
         tempJPanel = new JPanel();
@@ -117,11 +126,13 @@ public class OpenDatcomController extends SingleFrameApplication{
         tempJPanel.add(output);
 
         output.registerController(flightC);
+        output.registerController(optC);
         output.registerController(synthC);
         output.registerController(bodyC);
         output.registerController(wingC);
         output.registerController(hTailC);
         output.registerController(vTailC);
+        output.registerController(airfoilC);
         
         view.addTab(tempJPanel);
 
@@ -240,16 +251,7 @@ public class OpenDatcomController extends SingleFrameApplication{
      */
     public void save()
     {
-        // Check if user has saved to a file before
-        if(currentFile == null)
-        {
-           saveAs();
-        }
-        // If user has already saved, don't display the select file box
-        else
-        {
-            in.writeXML(currentFile);
-        }
+       in.writeXML(new File(ps.getProjectPath() + "//data.od"));
     }
 
     /**

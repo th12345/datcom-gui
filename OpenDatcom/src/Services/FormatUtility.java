@@ -311,7 +311,7 @@ public String removeComments(String input)
         String startXML = "<" + elementTag + ">";
         String endXML = "</" + elementTag + ">";
 
-        return startXML + String.valueOf(data) + endXML + "\n";
+        return startXML + data + endXML + "\n";
     }
 
     public String xmlWrite(String elementTag, List<Double> data)
@@ -327,7 +327,7 @@ public String removeComments(String input)
         {
             temp += String.valueOf(data.get(i)) + ", ";
         }
-
+        temp = temp.substring(0, temp.length()-1);
         return startXML + temp + endXML + "\n";
     }
 
@@ -402,13 +402,13 @@ public String removeComments(String input)
         return temp;
     }
 
-    public String datcomFormat(String Header, double  data, int length)
+    public String datcomFormat(String Header, double data)
     {
         if(Double.isNaN(data))
         {
             return "";
         }
-        return Header + String.valueOf(data) + "\n";
+        return Header + String.valueOf(data) + ",\n";
     }
 
     public String datcomFormat(String Header, List<Double> data, int length)

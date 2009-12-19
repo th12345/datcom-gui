@@ -21,7 +21,7 @@ public class OAE_LinkedTable extends OAE_DataLink
     JTable table;
     Vector<Double> data;
 
-    public OAE_LinkedTable(JTable viewComponent, int columnIndex, String name)
+    public OAE_LinkedTable(String name, JTable viewComponent, int columnIndex)
     {
         fu = FormatUtility.getInstance();
         this.name = name;
@@ -43,7 +43,7 @@ public class OAE_LinkedTable extends OAE_DataLink
         {
             if(!String.valueOf(table.getValueAt(i, columnIndex)).equals("null"))
             {
-                data.add(Double.parseDouble(table.getValueAt(i, 1).toString()));
+                data.add(Double.parseDouble(table.getValueAt(i, columnIndex).toString()));
             }
         }
     }
@@ -51,19 +51,26 @@ public class OAE_LinkedTable extends OAE_DataLink
     @Override
     public String generateXML_Element()
     {
-        fu.xmlWrite(name, data);
-        return "";
+        return  fu.xmlWrite(name, data);
     }
 
+    @Override
     public String datcomFormat(String offset)
     {
-        return fu.datcomFormat(offset + name + "(1)=", data, data.size());
+        String temp = fu.datcomFormat(offset + name + "(1)=", data, data.size());
+        temp = offset + "N" + name + "=" + data.size() + ",\n" + temp;
+        return temp;
     }
     
     @Override
-    public Object getData()
+    public Vector<Double> getData()
     {
         return data;
+    }
+
+    public void setData(Vector<Double> newData)
+    {
+        data = newData;
     }
     
     @Override
@@ -82,5 +89,10 @@ public class OAE_LinkedTable extends OAE_DataLink
             table.setValueAt(Double.parseDouble(parsedData[i]), i, columnIndex);
             data.add(Double.parseDouble(parsedData[i]));
         }
+    }
+
+    public int getSize()
+    {
+        return data.size();
     }
 }

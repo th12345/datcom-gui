@@ -11,9 +11,12 @@
 
 package FLTCON_Component;
 
-import Abstracts.OAE_DataLink;
 import Abstracts.OAE_LinkedTable;
+import java.util.Locale;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -23,25 +26,11 @@ import javax.swing.JTextField;
  */
 public class FlightConditionsView extends javax.swing.JPanel
 {
-    String outputData;
-    FlightConditionsController controller;
+    static FlightConditionsView self;
     
     /** Creates new form FlightConditionsView */
-    public FlightConditionsView(FlightConditionsController controller) {
+    public FlightConditionsView() {
         initComponents();
-        this.controller = controller;
-
-        controller.createLink("BLREF",  jBlrefText,  double.class);
-        controller.createLink("CBARR",  jCbarrText,  double.class);
-        controller.createLink("GAMMA",  jGammaText,  double.class);
-        controller.createLink(new OAE_LinkedTable(jTable1, 0, "AOA"));
-        controller.createLink(new OAE_LinkedTable(jTable1, 1, "ALT"));
-        controller.createLink(new OAE_LinkedTable(jTable1, 2, "MACH"));
-        controller.createLink("SREF",   jSrefText,   double.class);
-        controller.createLink("TR",     jTRText,     double.class);
-        controller.createLink("TSMACH", jTSMachText, double.class);
-        controller.createLink("WEIGHT", jWeightText, double.class);
-        controller.createLink("LOOP",   jLoop,       double.class);
     }
 
     /** This method is called from within the constructor to
@@ -55,30 +44,30 @@ public class FlightConditionsView extends javax.swing.JPanel
 
         jPanel13 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable = new javax.swing.JTable();
         jPanel17 = new javax.swing.JPanel();
-        jWeightText = new javax.swing.JTextField();
-        jSTMachText = new javax.swing.JTextField();
+        jWeight = new javax.swing.JTextField();
+        jSTMach = new javax.swing.JTextField();
         jLabel226 = new javax.swing.JLabel();
-        jTSMachText = new javax.swing.JTextField();
+        jTSMach = new javax.swing.JTextField();
         jLabel227 = new javax.swing.JLabel();
-        jGammaText = new javax.swing.JTextField();
+        jGamma = new javax.swing.JTextField();
         jLabel230 = new javax.swing.JLabel();
-        jTRText = new javax.swing.JTextField();
+        jTR = new javax.swing.JTextField();
         jLabel236 = new javax.swing.JLabel();
         jLabel237 = new javax.swing.JLabel();
         jLabel238 = new javax.swing.JLabel();
+        jLoop = new javax.swing.JTextField();
+        jLabel231 = new javax.swing.JLabel();
         jFlightHeaderText = new javax.swing.JPanel();
         jLabel228 = new javax.swing.JLabel();
         jLabel229 = new javax.swing.JLabel();
         jLabel239 = new javax.swing.JLabel();
         jLabel240 = new javax.swing.JLabel();
-        jBlrefText = new javax.swing.JTextField();
-        jSrefText = new javax.swing.JTextField();
-        jCbarrText = new javax.swing.JTextField();
+        jBlref = new javax.swing.JTextField();
+        jSref = new javax.swing.JTextField();
+        jCbarr = new javax.swing.JTextField();
         jRoughness = new javax.swing.JComboBox();
-        jLabel231 = new javax.swing.JLabel();
-        jLoop = new javax.swing.JTextField();
         jPanel55 = new javax.swing.JPanel();
         jTitle = new javax.swing.JLabel();
 
@@ -90,7 +79,8 @@ public class FlightConditionsView extends javax.swing.JPanel
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable.setAutoCreateRowSorter(true);
+        jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -125,8 +115,13 @@ public class FlightConditionsView extends javax.swing.JPanel
                 return types [columnIndex];
             }
         });
-        jTable1.setName("jTable1"); // NOI18N
-        jScrollPane1.setViewportView(jTable1);
+        jTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable.setCellSelectionEnabled(true);
+        jTable.setDoubleBuffered(true);
+        jTable.setDragEnabled(true);
+        jTable.setFocusCycleRoot(true);
+        jTable.setName("jTable"); // NOI18N
+        jScrollPane1.setViewportView(jTable);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -134,51 +129,51 @@ public class FlightConditionsView extends javax.swing.JPanel
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel17.border.title"))); // NOI18N
         jPanel17.setName("jPanel17"); // NOI18N
 
-        jWeightText.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jWeightText.setText(resourceMap.getString("jWeightText.text")); // NOI18N
-        jWeightText.setName("jWeightText"); // NOI18N
-        jWeightText.addActionListener(new java.awt.event.ActionListener() {
+        jWeight.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jWeight.setText(resourceMap.getString("jWeight.text")); // NOI18N
+        jWeight.setName("jWeight"); // NOI18N
+        jWeight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jWeightTextActionPerformed(evt);
+                jWeightActionPerformed(evt);
             }
         });
 
-        jSTMachText.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jSTMachText.setName("jSTMachText"); // NOI18N
+        jSTMach.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jSTMach.setName("jSTMach"); // NOI18N
 
         jLabel226.setText(resourceMap.getString("jLabel226.text")); // NOI18N
         jLabel226.setToolTipText(resourceMap.getString("jLabel226.toolTipText")); // NOI18N
         jLabel226.setName("jLabel226"); // NOI18N
 
-        jTSMachText.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTSMachText.setName("jTSMachText"); // NOI18N
+        jTSMach.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTSMach.setName("jTSMach"); // NOI18N
 
         jLabel227.setText(resourceMap.getString("jLabel227.text")); // NOI18N
         jLabel227.setToolTipText(resourceMap.getString("jLabel227.toolTipText")); // NOI18N
         jLabel227.setName("jLabel227"); // NOI18N
 
-        jGammaText.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jGammaText.setName("jGammaText"); // NOI18N
+        jGamma.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jGamma.setName("jGamma"); // NOI18N
 
         jLabel230.setText(resourceMap.getString("jLabel230.text")); // NOI18N
         jLabel230.setToolTipText(resourceMap.getString("jLabel230.toolTipText")); // NOI18N
         jLabel230.setName("jLabel230"); // NOI18N
 
-        jTRText.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jTRText.setName("jTRText"); // NOI18N
+        jTR.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jTR.setName("jTR"); // NOI18N
 
         jLabel236.setName("jLabel236"); // NOI18N
 
@@ -189,6 +184,14 @@ public class FlightConditionsView extends javax.swing.JPanel
         jLabel238.setText(resourceMap.getString("jLabel238.text")); // NOI18N
         jLabel238.setToolTipText(resourceMap.getString("jLabel238.toolTipText")); // NOI18N
         jLabel238.setName("jLabel238"); // NOI18N
+
+        jLoop.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jLoop.setText(resourceMap.getString("jLoop.text")); // NOI18N
+        jLoop.setName("jLoop"); // NOI18N
+
+        jLabel231.setText(resourceMap.getString("jLabel231.text")); // NOI18N
+        jLabel231.setToolTipText(resourceMap.getString("jLabel231.toolTipText")); // NOI18N
+        jLabel231.setName("jLabel231"); // NOI18N
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -202,40 +205,46 @@ public class FlightConditionsView extends javax.swing.JPanel
                     .addComponent(jLabel230)
                     .addComponent(jLabel236)
                     .addComponent(jLabel237)
-                    .addComponent(jLabel238))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jWeightText)
-                    .addComponent(jSTMachText)
-                    .addComponent(jTSMachText)
-                    .addComponent(jTRText, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
-                    .addComponent(jGammaText))
+                    .addComponent(jLabel238)
+                    .addComponent(jLabel231))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLoop)
+                    .addComponent(jWeight, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSTMach, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTSMach, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                    .addComponent(jGamma, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jWeightText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel236)
                     .addComponent(jLabel237))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSTMachText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSTMach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel238))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel226)
-                    .addComponent(jTSMachText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTSMach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel227)
-                    .addComponent(jGammaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jGamma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel230)
-                    .addComponent(jTRText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                    .addComponent(jTR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLoop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel231))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jFlightHeaderText.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jFlightHeaderText.border.title"))); // NOI18N
@@ -257,31 +266,23 @@ public class FlightConditionsView extends javax.swing.JPanel
         jLabel240.setToolTipText(resourceMap.getString("jLabel240.toolTipText")); // NOI18N
         jLabel240.setName("jLabel240"); // NOI18N
 
-        jBlrefText.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jBlrefText.setText(resourceMap.getString("jBlrefText.text")); // NOI18N
-        jBlrefText.setName("jBlrefText"); // NOI18N
-        jBlrefText.addActionListener(new java.awt.event.ActionListener() {
+        jBlref.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jBlref.setText(resourceMap.getString("jBlref.text")); // NOI18N
+        jBlref.setName("jBlref"); // NOI18N
+        jBlref.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBlrefTextActionPerformed(evt);
+                jBlrefActionPerformed(evt);
             }
         });
 
-        jSrefText.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jSrefText.setName("jSrefText"); // NOI18N
+        jSref.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jSref.setName("jSref"); // NOI18N
 
-        jCbarrText.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jCbarrText.setName("jCbarrText"); // NOI18N
+        jCbarr.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        jCbarr.setName("jCbarr"); // NOI18N
 
         jRoughness.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Smooth", "Polished Metal", "Wood", "Sheet Metal", "Matte Paint", "Military Camoflauge, Standard", "Mliitary Camo, Spayed", "Dip-Galvanized Metal", "Cast Iron", " " }));
         jRoughness.setName("jRoughness"); // NOI18N
-
-        jLabel231.setText(resourceMap.getString("jLabel231.text")); // NOI18N
-        jLabel231.setToolTipText(resourceMap.getString("jLabel231.toolTipText")); // NOI18N
-        jLabel231.setName("jLabel231"); // NOI18N
-
-        jLoop.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        jLoop.setText(resourceMap.getString("jLoop.text")); // NOI18N
-        jLoop.setName("jLoop"); // NOI18N
 
         javax.swing.GroupLayout jFlightHeaderTextLayout = new javax.swing.GroupLayout(jFlightHeaderText);
         jFlightHeaderText.setLayout(jFlightHeaderTextLayout);
@@ -293,40 +294,34 @@ public class FlightConditionsView extends javax.swing.JPanel
                     .addComponent(jLabel229)
                     .addComponent(jLabel228)
                     .addComponent(jLabel240)
-                    .addComponent(jLabel239)
-                    .addComponent(jLabel231))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                    .addComponent(jLabel239))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLoop)
                     .addComponent(jRoughness, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSrefText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCbarrText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBlrefText, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+                    .addComponent(jSref, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jCbarr, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBlref, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jFlightHeaderTextLayout.setVerticalGroup(
             jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFlightHeaderTextLayout.createSequentialGroup()
                 .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBlrefText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBlref, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel240))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSrefText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSref, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel239))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel229)
-                    .addComponent(jCbarrText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCbarr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel228)
                     .addComponent(jRoughness, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jFlightHeaderTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLoop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel231))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jPanel55.setName("jPanel55"); // NOI18N
@@ -342,7 +337,7 @@ public class FlightConditionsView extends javax.swing.JPanel
             jPanel55Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel55Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
+                .addComponent(jTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel55Layout.setVerticalGroup(
@@ -359,13 +354,14 @@ public class FlightConditionsView extends javax.swing.JPanel
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel55, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel55, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jFlightHeaderText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jFlightHeaderText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -373,30 +369,31 @@ public class FlightConditionsView extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel55, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jFlightHeaderText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFlightHeaderText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jWeightTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWeightTextActionPerformed
+    private void jWeightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jWeightActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jWeightTextActionPerformed
+    }//GEN-LAST:event_jWeightActionPerformed
 
-    private void jBlrefTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlrefTextActionPerformed
+    private void jBlrefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlrefActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBlrefTextActionPerformed
+    }//GEN-LAST:event_jBlrefActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jBlrefText;
-    private javax.swing.JTextField jCbarrText;
+    private javax.swing.JTextField jBlref;
+    private javax.swing.JTextField jCbarr;
     private javax.swing.JPanel jFlightHeaderText;
-    private javax.swing.JTextField jGammaText;
+    private javax.swing.JTextField jGamma;
     private javax.swing.JLabel jLabel226;
     private javax.swing.JLabel jLabel227;
     private javax.swing.JLabel jLabel228;
@@ -413,75 +410,70 @@ public class FlightConditionsView extends javax.swing.JPanel
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel55;
     private static javax.swing.JComboBox jRoughness;
-    private javax.swing.JTextField jSTMachText;
+    private javax.swing.JTextField jSTMach;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jSrefText;
-    private javax.swing.JTextField jTRText;
-    private javax.swing.JTextField jTSMachText;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jSref;
+    private javax.swing.JTextField jTR;
+    private javax.swing.JTextField jTSMach;
+    private javax.swing.JTable jTable;
     private javax.swing.JLabel jTitle;
-    private javax.swing.JTextField jWeightText;
+    private javax.swing.JTextField jWeight;
     // End of variables declaration//GEN-END:variables
 
-    public JTextArea getjAOAText() {
-        return null;
+    public static FlightConditionsView getInstance(){
+        if(self == null)
+        {
+            self = new FlightConditionsView();
+        }
+        return self;
     }
 
-    public JTextArea getjAltText() {
-        return null;
+    public JTextField getjBlref() {
+        return jBlref;
     }
 
-    public JTextField getjGammaText() {
-        return jGammaText;
+    public JTextField getjCbarr() {
+        return jCbarr;
+    }
+    
+    public JTextField getjGamma() {
+        return jGamma;
     }
 
-    public JTextField getjWeightText() {
-        return jWeightText;
-    }
-
-    public JTextArea getjMachText() {
-        return null;
-    }
-
-    public JTextField getjSTMachText() {
-        return jSTMachText;
-    }
-
-    public JTextField getjTRText() {
-        return jTRText;
-    }
-
-    public JTextField getjTSMachText() {
-        return jTSMachText;
-    }
-
-    public String getOutputData() {
-        return outputData;
-    }
-
-    public void setOutputData(String outputData) {
-        this.outputData = outputData;
-    }
-
-    public JTextField getjBlrefText() {
-        return jBlrefText;
-    }
-
-    public JTextField getjCbarrText() {
-        return jCbarrText;
-    }
-
-    public JTextField getjSrefText() {
-        return jSrefText;
-    }
-
-    public JComboBox getjRoughness() {
+    public static JComboBox getjRoughness() {
         return jRoughness;
+    }
+
+    public JTextField getjSTMach() {
+        return jSTMach;
+    }
+
+    public JScrollPane getjScrollPane1() {
+        return jScrollPane1;
+    }
+
+    public JTextField getjSref() {
+        return jSref;
+    }
+
+    public JTextField getjTR() {
+        return jTR;
+    }
+
+    public JTextField getjTSMach() {
+        return jTSMach;
+    }
+
+    public JTextField getjWeight() {
+        return jWeight;
+    }
+
+    public JTable getjTable() {
+        return jTable;
     }
 
     public JTextField getjLoop() {
         return jLoop;
     }
-    
 }
 

@@ -7,6 +7,7 @@
 package opendatcom;
 
 import Abstracts.AbstractController;
+import Abstracts.OAE_LinkedTable;
 import FLTCON_Component.FlightConditionsController;
 import Services.ImportExportService;
 import Services.ProjectService;
@@ -15,6 +16,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextPane;
@@ -67,8 +69,10 @@ public class DatcomService extends javax.swing.JPanel {
         for(int x = 0; x < controllers.size(); x++)
         {
             controllers.get(x).refresh();
+            System.out.println("Generating output for: " + controllers.get(x).getName());
             temp += controllers.get(x).generateOutput();
         }
+
         return temp;
     }
 
@@ -142,48 +146,44 @@ public class DatcomService extends javax.swing.JPanel {
         {
             return;
         }
-        String alts = fcc.getModel().getAltitudes();
-        alts = alts.replaceAll("\t", "");
-        String machs = fcc.getModel().getMachs();
-        machs = machs.replaceAll("\t", "");
-        String aoas = fcc.getModel().getAoas();
-        aoas = aoas.replaceAll("\t", "");
-        String [] sAlts = alts.split(",");
-        String [] sMachs = machs.split(",");
-        String [] sAoas = aoas.split(",");
+
+        Vector<Double> sAlts = ((OAE_LinkedTable)fcc.lookupLink("ALT")).getData();
+        Vector<Double> sMachs = ((OAE_LinkedTable)fcc.lookupLink("MACH")).getData();
+        Vector<Double> sAoas = ((OAE_LinkedTable)fcc.lookupLink("AOA")).getData();
+
         String tempPath = "";
         try {
-            for(int a = 0; a < sAlts.length; a++)
+            for(int a = 0; a < sAlts.size(); a++)
             {
-                fcc.getView().getjAltText().setText(sAlts[a]);
-                for(int m = 0; m < sMachs.length; m++)
+                ((OAE_LinkedTable)fcc.lookupLink("ALT")).getData().clear();
+                ((OAE_LinkedTable)fcc.lookupLink("MACH")).getData().add(sMachs.get(a));
+                for(int m = 0; m < sMachs.size(); m++)
                 {
-                    fcc.getView().getjMachText().setText(sMachs[a]);
-                    fcc.getModel().setMachs(sMachs[m]);
-                    tempPath = ps.getProjectPath() + "\\Table_Data\\" + sAlts[a]
-                            + "\\" + sMachs[m] + "_" + sAlts[a];
+                    ((OAE_LinkedTable)fcc.lookupLink("MACH")).getData().clear();
+                    ((OAE_LinkedTable)fcc.lookupLink("MACH")).getData().add(sMachs.get(a));
+                    tempPath = ps.getProjectPath() + "\\Table_Data\\" + sAlts.get(a)
+                            + "\\" + sMachs.get(m) + "_" + sAlts.get(a);
                     File destF = new File(tempPath + "\\for006.dat");
                     destF.mkdirs();
                     generateDat();
                     getjOutputText().setText(getjOutputText().getText() + "Generating JSBSim data for " +
-                        "Altitude: " + sAlts[a] + " Mach: " + sMachs[m] + "\n");
+                        "Altitude: " + sAlts.get(a) + " Mach: " + sMachs.get(m) + "\n");
                     Process p = new ProcessBuilder(datcomPath).start();
                     p.waitFor();
-                    moveForFiles(tempPath, sAlts[a]);
-                    processJSBSimData(destF, sAlts[a]);
+                    moveForFiles(tempPath, sAlts.get(a).toString());
+                    processJSBSimData(destF, sAlts.get(a).toString());
                 }// Machs
             }// Altitudes
-
-            fcc.getView().getjAltText().setText(alts);
-            fcc.getView().getjMachText().setText(machs);
+            
+            ((OAE_LinkedTable)fcc.lookupLink("ALT")).setData(sAlts);
+            ((OAE_LinkedTable)fcc.lookupLink("MACH")).setData(sMachs);
+            ((OAE_LinkedTable)fcc.lookupLink("AOA")).setData(sAoas);
             getjOutputText().setText(getjOutputText().getText() + "JSBSim table generation " +
                     "completed. Data saved to " + ps.getProjectPath() + "\\Table_Data");
         } catch (InterruptedException ex) {
             Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(DatcomService.class.getName()).log(Level.SEVERE, null, ex);
-            fcc.getView().getjAltText().setText(alts);
-            fcc.getView().getjMachText().setText(machs);
         }
     }
 

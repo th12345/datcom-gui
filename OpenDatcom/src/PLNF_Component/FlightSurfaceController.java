@@ -61,32 +61,18 @@ public class FlightSurfaceController extends AbstractController {
     @Override
     public String generateOutput()
     {
-        String temp = "";
-        for (int i = 0; i < Links.size(); i++) 
-        {
-            temp += Links.get(i).datcomFormat(" ");
-        }
+        String temp = super.generateOutput();
+        temp.replaceAll("  ", "   ");
 
-        // Make sure atleast 1 value was written then append the header/footer
-        if(!temp.isEmpty())
-        {            
-            temp = temp.substring(0, temp.length() - 2);
-            String header = "#Start of " + wingType + " data\n";
-            if(true)
-            {
-                // Double space everything as per datcom standard
-                temp = temp.replace(" ", "  ");
-                header += lookupValue("Airfoil") + "\n";
-                temp = header +  " $" + wingType + "\n" + temp;
-                temp += "$\n#End of " + wingType + " data\n\n";
-                // Set the output back to the model
-            }
-            else
-            {
-                temp = header +  "$" + wingType + "\n" + temp;
-                temp += "$\n#End of " + wingType + " data\n\n";
-            }
+        // Lookup the airfoil value
+        String airfoil = view.getjAirfoil_Text().getText();
+        // If an aifoil isnt specified, dont print anything.
+        if(airfoil.isEmpty())
+        {
+            return "";
         }
+        // Append the airfoil to the start of the namelist, as per DATCOM requirements
+        temp = airfoil +"\n"+ temp;
         return temp;
     }
 
@@ -146,18 +132,11 @@ public class FlightSurfaceController extends AbstractController {
     }
 
     @Override
-    public void refreshFromSaved(String data)
-    {
-        super.refreshFromSaved(data);
-        String temp = util.xmlParse(xmlTag, data);
-        view.setjTYPE((int)Double.parseDouble(util.xmlParse("TYPE", temp)));
-    }
-
-    @Override
     public String generateXML()
     {
         String temp = "";
         temp += "<" + xmlTag + ">\n";
+        temp += util.xmlWrite("AIRFOIL", view.getjAirfoil_Text().getText());
         for (int i = 0; i < Links.size(); i++)
         {
             temp += Links.get(i).generateXML_Element();
@@ -166,12 +145,11 @@ public class FlightSurfaceController extends AbstractController {
         return temp;
     }
 
-    public String generateTemplate()
+    @Override
+    public void refreshFromSaved(String in)
     {
-        String hack = this.xmlTag;
-        xmlTag = this.name + "_TEMPLATE";
-        String temp = generateXML();
-        this.xmlTag = hack;
-        return temp;
+        super.refreshFromSaved(in);
+        String section = util.xmlParse(xmlTag, in);
+        view.getjAirfoil_Text().setText(util.xmlParse("AIRFOIL", section));
     }
 }

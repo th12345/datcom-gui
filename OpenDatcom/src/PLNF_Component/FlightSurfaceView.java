@@ -37,7 +37,6 @@ public class FlightSurfaceView extends javax.swing.JPanel {
         jCHRDBP_Text.setEnabled(false);
         jSAVSO_Text.setEnabled(false);
 
-        controller.createLink("AIRFOIL",jAirfoil_Text,String.class);
         controller.createLink("CHRDBP", jCHRDBP_Text, Double.class);
         controller.createLink("CHRDR",  jCHRDR_Text,  Double.class);
         controller.createLink("CHRDTP", jCHRDTP_Text, Double.class);
@@ -51,6 +50,7 @@ public class FlightSurfaceView extends javax.swing.JPanel {
         controller.createLink("SSPNOP", jSSPNOP_Text, Double.class);
         controller.createLink("SSPN",   jSSPN_Text,   Double.class);
         controller.createLink("TWISTA", jTWISTA_Text, Double.class);
+        controller.createLink("TYPE",   jType,        Double.class);
     }
 
     /** This method is called from within the constructor to
@@ -578,14 +578,6 @@ public class FlightSurfaceView extends javax.swing.JPanel {
 
     public int getjTYPE() {
         return jType.getSelectedIndex() + 1;
-    }
-
-    public void setjTYPE(int i) {
-        jType.setSelectedIndex(i);
-    }
-
-    public void setjPanel55(JPanel jPanel55) {
-        this.jPanel55 = jPanel55;
     }
 
     public void setjTitle(String Title) {

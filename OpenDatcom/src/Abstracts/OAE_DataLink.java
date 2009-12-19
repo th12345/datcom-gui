@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -23,7 +24,7 @@ public class OAE_DataLink
     
     // Abstract stufff
     Object view;
-    Object data;
+    double data;
 
     // Function pointers
     Method setMethod;
@@ -39,6 +40,7 @@ public class OAE_DataLink
     {
         JTEXT_A,
         JTEXT_F,
+        JCOMBO,
         UNKNOWN
     }
 
@@ -60,6 +62,7 @@ public class OAE_DataLink
      */
     public OAE_DataLink(String name, Object viewComponent, Object modelComponent)
     {
+        data = Double.NaN;
         fu = FormatUtility.getInstance();
         try {
             this.name = name;
@@ -101,6 +104,13 @@ public class OAE_DataLink
             setMethod = JTextField.class.getMethod("setText", String.class);
             getMethod = JTextField.class.getMethod("getText");
         }
+        else if(viewComponent.getClass().equals(JComboBox.class))
+        {
+            vType = VIEW_TYPES.JCOMBO;
+            view = viewComponent;
+            setMethod = JComboBox.class.getMethod("setSelectedIndex", int.class);
+            getMethod = JComboBox.class.getMethod("getSelectedIndex");
+        }
         else // If it falls into this else, it is going to break the program...
         {
             setMethod = null; // Yup, null function pointers. Can't see how that
@@ -109,17 +119,6 @@ public class OAE_DataLink
             view = viewComponent;
             System.out.println("Found UNKNOWN!!!!!");
         }
-
-        if(modelComponent.getClass().equals(Double.class))
-        {
-            dType = DATA_TYPES.DOUBLE;
-            data = new Double(0.0);
-        }
-        else
-        {
-            dType = DATA_TYPES.STRING;
-            data = new String("");
-        }
     }
 
     /**
@@ -127,7 +126,16 @@ public class OAE_DataLink
      */
     public void refresh()
     {
-        data = fu.processDataField((JTextField)view);
+        switch(vType)
+        {
+            case JCOMBO:
+                data = ((JComboBox)view).getSelectedIndex() + 1;
+                break;
+            case JTEXT_F:
+                data = fu.processDataField((JTextField)view);
+            break;
+            default:
+        }
     }
 
     /**
@@ -136,11 +144,7 @@ public class OAE_DataLink
      */
     public String generateXML_Element()
     {
-        if(dType == DATA_TYPES.DOUBLE)
-        {
-            return fu.xmlWrite(name, fu.processDataField((JTextField)view));
-        }
-        return fu.xmlWrite(name, fu.processTextField((JTextField)view));
+        return fu.xmlWrite(name, (Double)data);
     }
 
     /**
@@ -148,29 +152,28 @@ public class OAE_DataLink
      * @param section The string to parse.
      */
     public void load(String section)
-    {
-        try {
-            setMethod.invoke(view, fu.xmlParse(name, section));
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(OAE_DataLink.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(OAE_DataLink.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(OAE_DataLink.class.getName()).log(Level.SEVERE, null, ex);
+    {    
+        String in = fu.xmlParse(name, section);
+
+        if(in.isEmpty())
+        {
+            return;
+        }
+
+        switch (vType)
+        {
+            case JCOMBO:
+                ((JComboBox)(view)).setSelectedIndex(((int)(Double.parseDouble(in))) - 1);
+                break;
+            default:
+                ((JTextField)view).setText(in);
         }
     }
 
     public String datcomFormat(String offset)
     {
-        switch(dType)
-        {
-            case DOUBLE:
-                return fu.safeFormat(offset + name, fu.processDataField((JTextField)view));
-            case STRING:
-                return fu.safeFormat(offset + name, fu.processTextField((JTextField)view));
-            default:
-                return "";
-        }
+        refresh();
+        return fu.datcomFormat(offset + name + "=", data);
     }
 
     /**
@@ -180,5 +183,10 @@ public class OAE_DataLink
     public Object getData()
     {
         return data;
+    }
+
+    public String getName()
+    {
+        return name;
     }
 }

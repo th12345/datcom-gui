@@ -92,7 +92,17 @@ public abstract class AbstractController {
      * Refreshes the data in the controller. Cascades down and updates the model
      * and the view. Methods called: gather data, generate output, & view.refresh.
      */
-    public void refresh(){};
+    public void refresh()
+    {
+        if(Links == null)
+        {
+            return;
+        }
+        for (int i = 0; i < Links.size(); i++) 
+        {
+            Links.get(i).refresh();
+        }
+    };
 
     /**
      * Parses variable data from the input data. The input data should be in
@@ -120,6 +130,7 @@ public abstract class AbstractController {
      */
     public String generateXML()
     {
+        refresh();
         String temp = "";
         temp += "<" + xmlTag + ">\n";
         for (int i = 0; i < Links.size(); i++)
@@ -156,9 +167,21 @@ public abstract class AbstractController {
     {
         for (int i = 0; i < Links.size(); i++)
         {
-            if(Links.get(i).toString().equals(name))
+            if(Links.get(i).getName().equalsIgnoreCase(name))
             {
                 return Links.get(i).getData();
+            }
+        }
+        return null;
+    }
+
+    public OAE_DataLink lookupLink(String name)
+    {
+        for (int i = 0; i < Links.size(); i++)
+        {
+            if(Links.get(i).getName().equalsIgnoreCase(name))
+            {
+                return Links.get(i);
             }
         }
         return null;
