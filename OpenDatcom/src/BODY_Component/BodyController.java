@@ -101,9 +101,9 @@ public class BodyController extends AbstractController {
              {
                  if(!tableEntries.get(i).compare(tableEntries.get(j)) & tableEntries.get(j).isValid)
                  {
-                     temp = tableEntries.get(i);
-                     tableEntries.set(i, tableEntries.get(j));
-                     tableEntries.set(j, temp);
+                    temp = tableEntries.get(i);
+                    tableEntries.set(i, tableEntries.get(j));
+                    tableEntries.set(j, temp);
                  }
              }
          }

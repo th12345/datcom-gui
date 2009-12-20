@@ -11,6 +11,11 @@
 
 package SCHR_Component;
 
+import Abstracts.LineObject;
+import Abstracts.OAE_DrawPane;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.util.LinkedList;
 import javax.swing.JTextField;
 
 /**
@@ -22,6 +27,34 @@ public class AirfoilView extends javax.swing.JPanel {
     /** Creates new form AirfoilView */
     public AirfoilView() {
         initComponents();
+        
+        LinkedList<Double> blahX = new LinkedList<Double>();
+        LinkedList<Double> blahY = new LinkedList<Double>();
+
+        blahX.add(1.0);
+        blahX.add(2.0);
+        blahX.add(3.0);
+        blahX.add(4.0);
+        blahX.add(5.0);
+        blahX.add(6.0);
+        blahX.add(7.0);
+        blahX.add(8.0);
+
+        blahY.add(10.0);
+        blahY.add(25.0);
+        blahY.add(50.0);
+        blahY.add(50.0);
+        blahY.add(50.0);
+        blahY.add(40.0);
+        blahY.add(40.0);
+        blahY.add(60.0);
+
+        LineObject lo = new LineObject(blahX, blahY);
+        lo.setColor(Color.RED);
+        lo.setStroke(new BasicStroke(12.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+
+        // Vaugely legal, but it works
+        ((OAE_DrawPane)(jDraw)).addDrawObject(lo);
     }
 
     /** This method is called from within the constructor to
@@ -68,6 +101,7 @@ public class AirfoilView extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jARCC = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        jDraw = new OAE_DrawPane();
 
         setName("Form"); // NOI18N
 
@@ -336,6 +370,20 @@ public class AirfoilView extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jDraw.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jDraw.setName("jDraw"); // NOI18N
+
+        javax.swing.GroupLayout jDrawLayout = new javax.swing.GroupLayout(jDraw);
+        jDraw.setLayout(jDrawLayout);
+        jDrawLayout.setHorizontalGroup(
+            jDrawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 395, Short.MAX_VALUE)
+        );
+        jDrawLayout.setVerticalGroup(
+            jDrawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 284, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -347,7 +395,9 @@ public class AirfoilView extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -358,7 +408,10 @@ public class AirfoilView extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -385,6 +438,7 @@ public class AirfoilView extends javax.swing.JPanel {
     private javax.swing.JTextField jCM0;
     private javax.swing.JTextField jCM0T;
     private javax.swing.JTextField jDELTAY;
+    private javax.swing.JPanel jDraw;
     private javax.swing.JTextField jKSHARP;
     private javax.swing.JTextField jLER0;
     private javax.swing.JTextField jLERI;
