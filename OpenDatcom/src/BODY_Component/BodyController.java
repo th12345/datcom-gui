@@ -1,6 +1,9 @@
 package BODY_Component;
 
 import Abstracts.AbstractController;
+import Abstracts.LineObject;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.util.LinkedList;
 
 /**
@@ -89,6 +92,11 @@ public class BodyController extends AbstractController {
         model.setR(r);
         model.setZl(zl);
         model.setZu(zu);
+        LineObject lo = new LineObject(x.toArray(new Double[x.size()]), r);
+        lo.setColor(Color.RED);
+        lo.setStroke(new BasicStroke(12.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+        view.getjDraw().clearObjects();
+        view.getjDraw().addDrawObject(lo);
     }
 
      void sortTable()

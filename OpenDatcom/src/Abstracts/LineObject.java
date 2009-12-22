@@ -18,6 +18,7 @@ public class LineObject
     LinkedList<Double> rawDataX;
     LinkedList<Double> rawDataY;
     int normalizedData[];
+    int smoothedData[];
     int size;
     double maxX;
     double maxY;
@@ -26,6 +27,26 @@ public class LineObject
     Color color;
     Stroke stroke;
 
+    public LineObject(Double [] xpoints, double [] ypoints)
+    {
+        maxX = 1;
+        maxY = 1;
+        isNormalized = false;
+        LinkedList<Double> tempx = new LinkedList<Double>();
+        LinkedList<Double> tempy = new LinkedList<Double>();
+        size = Math.min(xpoints.length, ypoints.length);
+        for(int i = 0; i < size; i++)
+        {
+            tempx.add(xpoints[i]);
+            tempy.add(ypoints[i]);
+        }
+
+        this.rawDataX = tempx;
+        this.rawDataY = tempy;
+        normalizedData = new int[size * 2];
+        smoothedData = new int[size * 4];
+    }
+
     public LineObject(LinkedList<Double> xpoints, LinkedList<Double> ypoints)
     {
         maxX = 1;
@@ -33,11 +54,12 @@ public class LineObject
         isNormalized = false;
         this.rawDataX = xpoints;
         this.rawDataY = ypoints;
-
+        
         // Make sure that the x coordinate & y coordinates are the same size,
         // if not use the smaller to avoid array overruns
         size = Math.min(rawDataX.size(), rawDataY.size());
         normalizedData = new int[size * 2];
+        smoothedData = new int[size * 4];
     }
 
     public int[] getPoints()
@@ -76,8 +98,28 @@ public class LineObject
             normalizedData[z++] = tempX.intValue();
             normalizedData[z++] = tempY.intValue();
         }
+        smooth();
         isNormalized = true;
         lastSize = maxHeight + maxWidth;
+    }
+
+    private void smooth()
+    {
+        double midX;
+        double midY;
+        int midpoints[] = new int[size*2];
+        int slopes[] = new int[size];
+        int z = 0;
+        for(int i = 0; i < size-2; i+=2, z++)
+        {
+            midpoints[z]   = (normalizedData[i+2] + normalizedData[i])>>1;
+            midpoints[z+1] = (normalizedData[i+1] + normalizedData[i+3])>>1;
+        }
+        for(int i = 0; i < size-1; i++)
+        {
+            //slopes[i] = (midpoints[i+1] + midpoints[i+3]) / (midpoints[i] + midpoints[i+2]);
+            //System.out.println("Slope: " + slopes[i]);
+        }
     }
 
     private void calcMaxValues()
