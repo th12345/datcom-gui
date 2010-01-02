@@ -1,5 +1,6 @@
 package Services;
 
+import Core.OAE_LinkInterface;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JTextArea;
@@ -75,11 +76,7 @@ public class FormatUtility {
      catch (IllegalArgumentException e)
      {
          // Error stuff
-         System.out.println("Parsing of JTextField failed, String data: " + target.getText());
-         if(verboseErrors)
-         {
-             System.out.println("Details:\n" + e.toString());
-         }
+         StreamService.printToStream("Parsing of JTextField failed, String data: " + target.getText(), "err");
          target.setText("Error, invalid value");
          return -1;
      }
@@ -260,12 +257,12 @@ public String removeComments(String input)
 
         if(start == -1)
         {
-            System.out.println(targetElement + " not found in save file");
+            StreamService.print(targetElement + " not found in save file");
             return "";
         }
         else if(end == -1)
         {
-            System.out.println("Found non-terminated XML tag");
+            StreamService.print("Found non-terminated XML tag");
             return "";
         }
 
@@ -314,21 +311,33 @@ public String removeComments(String input)
         return startXML + data + endXML + "\n";
     }
 
-    public String xmlWrite(String elementTag, List<Double> data)
+    public String xmlWrite(String elementTag, List<?> data)
     {
-        if(data.isEmpty())
+        if(data == null || data.isEmpty())
         {
             return "";
         }
         String startXML = "<" + elementTag + ">";
         String endXML = "</" + elementTag + ">";
         String temp = "";
-        for (int i = 0; i < data.size(); i++)
-        {
-            temp += String.valueOf(data.get(i)) + ", ";
+        for (Object object : data) {
+            if(object != null && (!object.toString().equals("null")))
+            {
+                temp += String.valueOf(object) + ", ";
+            }
         }
-        temp = temp.substring(0, temp.length()-1);
+        if(temp.isEmpty())
+        {
+            return "";
+        }
+        temp = temp.substring(0, temp.length()-2);
         return startXML + temp + endXML + "\n";
+    }
+
+    public String xmlWrite(String elementTagS, OAE_LinkInterface target)
+    {
+        
+        return "";
     }
 
      /**
@@ -411,11 +420,39 @@ public String removeComments(String input)
         return Header + String.valueOf(data) + ",\n";
     }
 
-    public String datcomFormat(String Header, List<Double> data, int length)
+    public String datcomFormat(String Header, String data)
+    {
+        if(data.isEmpty())
+        {
+            return "";
+        }
+        return Header + String.valueOf(data) + ",\n";
+    }
+
+    public String datcomFormat(String Header, List<?> data, int length)
+    {
+        String temp = "";
+        for(int i = 0; i < length; i++)
+        {
+            if(data.get(i) != null)
+            {
+                temp += String.valueOf(data.get(i)) + ",";
+            }
+        }
+
+        if(!temp.isEmpty())
+        {
+            temp = Header + temp;
+            temp += "\n";
+        }
+        return temp;
+    }
+
+    public String datcomFormat(String Header, List<Double> data)
     {
         String temp = "";
         temp += Header + "\t";
-        for(int i = 0; i < length; i++)
+        for(int i = 0; i < data.size(); i++)
         {
             temp += String.valueOf(data.get(i)) + ",\t";
             // Wrap to a new line after every wrapNum entries

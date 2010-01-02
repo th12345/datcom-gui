@@ -68,9 +68,7 @@
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder>
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder justification="2" title="Current Output">
-                      <Property name="titleX" resourceKey="jOutputText.border.border.title"/>
-                    </TitledBorder>
+                    <TitledBorder justification="2" title="Current Output"/>
                   </Border>
                 </TitledBorder>
               </Border>
@@ -86,9 +84,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="FIle Controls">
-              <Property name="titleX" resourceKey="jPanel2.border.title"/>
-            </TitledBorder>
+            <TitledBorder title="FIle Controls"/>
           </Border>
         </Property>
         <Property name="name" type="java.lang.String" value="jPanel2" noResource="true"/>
@@ -121,7 +117,6 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jRunDatcom">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jRunDatcom.text"/>
             <Property name="name" type="java.lang.String" value="jRunDatcom" noResource="true"/>
           </Properties>
           <Events>
@@ -130,7 +125,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jGenerateDatFile">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jGenerateDatFile.text"/>
             <Property name="name" type="java.lang.String" value="jGenerateDatFile" noResource="true"/>
           </Properties>
           <Events>
@@ -143,9 +137,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Edit Controls">
-              <Property name="titleX" resourceKey="jPanel1.border.title"/>
-            </TitledBorder>
+            <TitledBorder title="Edit Controls"/>
           </Border>
         </Property>
         <Property name="name" type="java.lang.String" value="jPanel1" noResource="true"/>
@@ -185,7 +177,6 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jShowDatcomReadable">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jShowDatcomReadable.text"/>
             <Property name="name" type="java.lang.String" value="jShowDatcomReadable" noResource="true"/>
           </Properties>
           <Events>
@@ -194,7 +185,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jShowHumanReadable">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jShowHumanReadable.text"/>
             <Property name="name" type="java.lang.String" value="jShowHumanReadable" noResource="true"/>
           </Properties>
           <Events>
@@ -203,14 +193,12 @@
         </Component>
         <Component class="javax.swing.JButton" name="jManualRevert">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jManualRevert.text"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="jManualRevert" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jSetData">
           <Properties>
-            <Property name="text" type="java.lang.String" resourceKey="jSetData.text"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="name" type="java.lang.String" value="jSetData" noResource="true"/>
           </Properties>
@@ -240,7 +228,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jDrawPane" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="61" max="32767" attributes="1"/>
+                  <EmptySpace pref="145" max="32767" attributes="1"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -248,7 +236,6 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jDrawPane">
           <Properties>
-            <Property name="background" type="java.awt.Color" resourceKey="jDrawPane.background"/>
             <Property name="name" type="java.lang.String" value="jDrawPane" noResource="true"/>
           </Properties>
 

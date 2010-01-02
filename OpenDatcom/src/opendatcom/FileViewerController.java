@@ -5,9 +5,9 @@
 
 package opendatcom;
 
-import Abstracts.AbstractController;
 import Services.ImportExportService;
 import Services.ProjectService;
+import Services.StreamService;
 import java.io.File;
 import java.util.LinkedList;
 import javax.swing.JApplet;
@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  *
  * @author -B-
  */
-public class FileViewerController extends AbstractController{
+public class FileViewerController{
 
     FileViewer view;
     FileViewerModel model;
@@ -31,9 +31,7 @@ public class FileViewerController extends AbstractController{
         view = new FileViewer(this);
         ies = ImportExportService.getInstance();
         ps = ProjectService.getInstance();
-        this.name = "File Viewer";
         populateFileSelect();
-        registerForMe();
     }
 
     /**
@@ -69,7 +67,7 @@ public class FileViewerController extends AbstractController{
     {
         if(files == null)
         {
-            System.out.println("No Files to Select");
+            StreamService.print("No Files to Select");
             return;
         }
         File tempF = files[view.getjFileSelect().getSelectedIndex()];
@@ -78,7 +76,6 @@ public class FileViewerController extends AbstractController{
         view.getjShow().setCaretPosition(0);
     }
 
-    @Override
     public JPanel getView() {
         return view;
     }

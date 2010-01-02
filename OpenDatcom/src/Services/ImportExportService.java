@@ -5,9 +5,6 @@
 
 package Services;
 
-import Abstracts.AbstractService;
-import Abstracts.AbstractController;
-import opendatcom.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,26 +12,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import opendatcom.OpenDatcomController;
 
 /**
  * Class provides XML reading/writing functionality to registered controllers. It
  * also allows retroing parsed data back into the correct form/text fields.
  * @author -B-
  */
-public class ImportExportService extends AbstractService{
+public class ImportExportService{
     private static ImportExportService self;
     BufferedReader in;
-    String xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
 
     private ImportExportService()
     {
-        name = "ImportExport";
-        controllers = new LinkedList<AbstractController>();
-        registerForMe();
     }
 
     /**
@@ -46,6 +37,7 @@ public class ImportExportService extends AbstractService{
     public String importFile_FC()
     {
         File inFile;
+        OpenDatcomController parent = OpenDatcomController.getInstance();
         int check = parent.getFc().showOpenDialog(null);
         if(check == JFileChooser.APPROVE_OPTION)
         {
@@ -73,50 +65,12 @@ public class ImportExportService extends AbstractService{
 
         catch (FileNotFoundException ex) // Catch file not found errors
         {
-            Logger.getLogger(ImportExportService.class.getName()).log(Level.SEVERE, null, ex);
+            StreamService.printToStream("File not found exception: " + ex.getCause(), "err");
         }        catch (IOException ex)  // Catch IO errors reading the stream
         {
-            Logger.getLogger(ImportExportService.class.getName()).log(Level.SEVERE, null, ex);
+            StreamService.printToStream("IO Exception: " + ex.getCause(), "err");
         }
         return temp;
-    }
-
-    public void writeXML(File inputFile)
-    {        
-        String temp = "";
-        System.out.println("Writing XML");
-        try {
-           if(!inputFile.exists())
-           {
-                inputFile.createNewFile();
-           } 
-           BufferedWriter output = new BufferedWriter(new FileWriter(inputFile));
-           temp += parent.generateXML();
-           for(int x = 0; x < controllers.size(); x++)
-           {
-                controllers.get(x).refresh();
-                System.out.println("Saving: " + controllers.get(x).getName());
-                temp += controllers.get(x).generateXML();
-           }
-           temp.replaceAll("\n", System.getProperty("line.separator"));
-           output.write(xmlHeader);
-           output.newLine();
-           output.write("<DATCOM>");
-           output.newLine();
-           output.write(temp);
-           System.out.println("Saved as: " + inputFile.getName());
-           output.write("</DATCOM>");
-           output.close();
-        }
-
-        catch (FileNotFoundException ex) // Catch file not found errors
-        {
-            Logger.getLogger(ImportExportService.class.getName()).log(Level.SEVERE, null, ex);
-        }        catch (IOException ex)  // Catch IO errors reading the stream
-        {
-            Logger.getLogger(ImportExportService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }
 
     /**
@@ -124,42 +78,26 @@ public class ImportExportService extends AbstractService{
      * @param destination
      * @param data
      */
-
     public void writeFile(File destination, String data)
     {
-        String[] temp = data.split("\n");
+        String newline = System.getProperty("line.separator");
+        data = data.replaceAll("\n", newline);
        
         try {
             destination.delete();
-            destination.mkdirs();
             destination.createNewFile();
             BufferedWriter output = new BufferedWriter(new FileWriter(destination));
-            for (int i = 0; i < temp.length; i++) {
-                output.write(temp[i]);
-                output.newLine();
-            }
+            output.write(data);
             output.close();
         }
 
         catch (FileNotFoundException ex) // Catch file not found errors
         {
-            Logger.getLogger(ImportExportService.class.getName()).log(Level.SEVERE, null, ex);
+           StreamService.printToStream("File not found exception: " + ex.getCause(), "err");
         }        catch (IOException ex)  // Catch IO errors reading the stream
         {
-            Logger.getLogger(ImportExportService.class.getName()).log(Level.SEVERE, null, ex);
+            StreamService.printToStream("IO Exception: " + ex.getCause(), "err");
         }
-    }
-
-    /**
-     * Compatability wrapper for Aleksey's JSBSim stuff.
-     * @param path
-     * @param fileName
-     * @param data
-     */
-    public void writeFile(String path, String fileName, String data)
-    {
-        File destination = new File(path + "\\" + fileName);
-        writeFile(destination, data);
     }
 
     public static ImportExportService getInstance()

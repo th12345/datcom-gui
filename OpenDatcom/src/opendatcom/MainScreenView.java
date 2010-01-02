@@ -11,21 +11,23 @@
 
 package opendatcom;
 
+import Core.OAE_ViewComponent;
 import java.awt.image.BufferedImage;
 
 /**
  *
  * @author -B-
  */
-public class MainScreenView extends javax.swing.JPanel {
+public class MainScreenView extends OAE_ViewComponent {
 
-    MainScreenController controller;
     BufferedImage backgroundImage;
     /** Creates new form MainScreenView */
-    public MainScreenView(MainScreenController controller) {
+    public MainScreenView() {
         initComponents();
-        this.controller = controller;
+        initView("Main");
     }
+
+    public void registerLinks(){}
 
     /** This method is called from within the constructor to
      * initialize the form.

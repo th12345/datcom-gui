@@ -6,7 +6,7 @@
 
 package opendatcom;
 
-import Abstracts.AbstractController;
+import Services.FortranFormat;
 import Services.ProjectService;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,7 +24,6 @@ import javax.swing.JTextPane;
 public class OutputView extends javax.swing.JPanel {
 
     String outputData;
-    LinkedList<AbstractController> controllers;
     OpenDatcomController parent;
     ProjectService ps;
 
@@ -33,36 +32,8 @@ public class OutputView extends javax.swing.JPanel {
     public OutputView() {
         initComponents();
         outputData = "";
-        controllers = new LinkedList<AbstractController>();
         parent = OpenDatcomController.getInstance();
         ps = ProjectService.getInstance();
-    }
-
-    /**
-     * Registers a controller with the view. The order matters! Controllers will
-     * be accessed in the order they are added.
-     * @param control The controller to register.
-     */
-    public void registerController(AbstractController control)
-    {
-        controllers.add(control);
-    }
-
-    /**
-     * Updates the text in the output's view
-     * @return
-     */
-    public String getControllerOutput()
-    {
-        String temp = "";
-        
-        for(int x = 0; x < controllers.size(); x++)
-        {
-            controllers.get(x).refresh();
-            temp += controllers.get(x).generateOutput();
-        }
-
-        return temp;
     }
 
     /** This method is called from within the constructor to
@@ -264,13 +235,12 @@ public class OutputView extends javax.swing.JPanel {
     }//GEN-LAST:event_jSetDataActionPerformed
 
     private void jShowHumanReadableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowHumanReadableActionPerformed
-        String temp = getControllerOutput();
+        String temp = "";
         jOutputText.setText(temp);
-        parent.getUnits();
     }//GEN-LAST:event_jShowHumanReadableActionPerformed
 
     private void jShowDatcomReadableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowDatcomReadableActionPerformed
-        String temp = getControllerOutput();
+        String temp = "";
         temp = datcomFormat(temp);
         jOutputText.setText(temp);
     }//GEN-LAST:event_jShowDatcomReadableActionPerformed
@@ -346,7 +316,7 @@ public class OutputView extends javax.swing.JPanel {
     public void generateDat()
     {
         File datFile = new File(parent.getWorkingDirectory().getAbsolutePath() +"\\for005.dat");
-        String temp = getControllerOutput();
+        String temp = new FortranFormat().generateForFile();
         temp = datcomFormat(temp);
         try
         {

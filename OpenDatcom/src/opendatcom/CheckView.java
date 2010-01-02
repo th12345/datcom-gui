@@ -6,65 +6,38 @@
 
 package opendatcom;
 
-import Abstracts.AbstractController;
+import Core.OAE_ViewComponent;
+import Services.FortranFormat;
+import Services.ImportExportService;
 import Services.ProjectService;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTextPane;
 
 /**
  * 
  * @author -B-
  */
-public class CheckView extends javax.swing.JPanel {
-
-    String outputData;
-    LinkedList<AbstractController> controllers;
-    OpenDatcomController parent;
+public class CheckView extends OAE_ViewComponent
+{
     ProjectService ps;
+    ImportExportService ies;
+    FortranFormat fformat;
 
 
     /** Creates new form CheckView */
     public CheckView() {
         initComponents();
-        outputData = "";
-        controllers = new LinkedList<AbstractController>();
-        parent = OpenDatcomController.getInstance();
         ps = ProjectService.getInstance();
+        ies = ImportExportService.getInstance();
+        fformat = new FortranFormat();
+        name = "Review";
+        initView(name);
     }
 
-    /**
-     * Registers a controller with the view. The order matters! Controllers will
-     * be accessed in the order they are added.
-     * @param control The controller to register.
-     */
-    public void registerController(AbstractController control)
-    {
-        controllers.add(control);
-    }
-
-    /**
-     * Updates the text in the output's view
-     * @return
-     */
-    public String getControllerOutput()
-    {
-        String temp = "";
-        
-        for(int x = 0; x < controllers.size(); x++)
-        {
-            controllers.get(x).refresh();
-            temp += controllers.get(x).generateOutput();
-        }
-
-        return temp;
-    }
-
+    public void registerLinks(){}
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -76,14 +49,11 @@ public class CheckView extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jOutputText = new javax.swing.JTextPane();
-        jPanel2 = new javax.swing.JPanel();
-        jRunDatcom = new javax.swing.JButton();
-        jGenerateDatFile = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jShowDatcomReadable = new javax.swing.JButton();
-        jShowHumanReadable = new javax.swing.JButton();
-        jManualRevert = new javax.swing.JButton();
-        jSetData = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPlot = new javax.swing.JCheckBox();
+        jBuild = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jDrawPane = new javax.swing.JPanel();
 
@@ -91,83 +61,37 @@ public class CheckView extends javax.swing.JPanel {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getResourceMap(CheckView.class);
-        jOutputText.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("jOutputText.border.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION))); // NOI18N
+        jOutputText.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Output", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION)));
         jOutputText.setEditable(false);
         jOutputText.setFocusable(false);
         jOutputText.setName("jOutputText"); // NOI18N
         jScrollPane1.setViewportView(jOutputText);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel2.border.title"))); // NOI18N
-        jPanel2.setName("jPanel2"); // NOI18N
-
-        jRunDatcom.setText(resourceMap.getString("jRunDatcom.text")); // NOI18N
-        jRunDatcom.setName("jRunDatcom"); // NOI18N
-        jRunDatcom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRunDatcomActionPerformed(evt);
-            }
-        });
-
-        jGenerateDatFile.setText(resourceMap.getString("jGenerateDatFile.text")); // NOI18N
-        jGenerateDatFile.setName("jGenerateDatFile"); // NOI18N
-        jGenerateDatFile.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jGenerateDatFileActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jGenerateDatFile, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jRunDatcom, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jGenerateDatFile)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRunDatcom)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(resourceMap.getString("jPanel1.border.title"))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Edit Controls"));
         jPanel1.setName("jPanel1"); // NOI18N
 
-        jShowDatcomReadable.setText(resourceMap.getString("jShowDatcomReadable.text")); // NOI18N
-        jShowDatcomReadable.setName("jShowDatcomReadable"); // NOI18N
-        jShowDatcomReadable.addActionListener(new java.awt.event.ActionListener() {
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getResourceMap(CheckView.class);
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jShowDatcomReadableActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jShowHumanReadable.setText(resourceMap.getString("jShowHumanReadable.text")); // NOI18N
-        jShowHumanReadable.setName("jShowHumanReadable"); // NOI18N
-        jShowHumanReadable.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText(resourceMap.getString("jButton2.text")); // NOI18N
+        jButton2.setName("jButton2"); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jShowHumanReadableActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        jManualRevert.setText(resourceMap.getString("jManualRevert.text")); // NOI18N
-        jManualRevert.setEnabled(false);
-        jManualRevert.setName("jManualRevert"); // NOI18N
+        jPlot.setText(resourceMap.getString("jPlot.text")); // NOI18N
+        jPlot.setName("jPlot"); // NOI18N
 
-        jSetData.setText(resourceMap.getString("jSetData.text")); // NOI18N
-        jSetData.setEnabled(false);
-        jSetData.setName("jSetData"); // NOI18N
-        jSetData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSetDataActionPerformed(evt);
-            }
-        });
+        jBuild.setText(resourceMap.getString("jBuild.text")); // NOI18N
+        jBuild.setName("jBuild"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -176,36 +100,35 @@ public class CheckView extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jManualRevert, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jSetData, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jShowDatcomReadable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                    .addComponent(jShowHumanReadable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                    .addComponent(jBuild)
+                    .addComponent(jPlot)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jShowHumanReadable)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addComponent(jBuild)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jShowDatcomReadable)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jManualRevert)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSetData)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jPlot)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         jPanel3.setName("jPanel3"); // NOI18N
 
-        jDrawPane.setBackground(resourceMap.getColor("jDrawPane.background")); // NOI18N
         jDrawPane.setName("jDrawPane"); // NOI18N
 
         javax.swing.GroupLayout jDrawPaneLayout = new javax.swing.GroupLayout(jDrawPane);
         jDrawPane.setLayout(jDrawPaneLayout);
         jDrawPaneLayout.setHorizontalGroup(
             jDrawPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
+            .addGap(0, 193, Short.MAX_VALUE)
         );
         jDrawPaneLayout.setVerticalGroup(
             jDrawPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +149,7 @@ public class CheckView extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jDrawPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -235,12 +158,11 @@ public class CheckView extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 844, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -249,126 +171,54 @@ public class CheckView extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jSetDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSetDataActionPerformed
-        jOutputText.setText(outputData);
-    }//GEN-LAST:event_jSetDataActionPerformed
-
-    private void jShowHumanReadableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowHumanReadableActionPerformed
-        String temp = getControllerOutput();
-        jOutputText.setText(temp);
-        parent.getUnits();
-    }//GEN-LAST:event_jShowHumanReadableActionPerformed
-
-    private void jShowDatcomReadableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowDatcomReadableActionPerformed
-        String temp = getControllerOutput();
-        temp = datcomFormat(temp);
-        jOutputText.setText(temp);
-    }//GEN-LAST:event_jShowDatcomReadableActionPerformed
-
-    private void jGenerateDatFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGenerateDatFileActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         generateDat();
-    }//GEN-LAST:event_jGenerateDatFileActionPerformed
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jRunDatcomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRunDatcomActionPerformed
-        generateDat();
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         runDatcom();
-    }//GEN-LAST:event_jRunDatcomActionPerformed
-
-    /**
-     * Removes all the comments & blank lines from the input data.
-     * @param target The input data.
-     * @return The The input data - any # comments.
-     */
-    public String datcomFormat(String target)
-    {
-        String [] temp = target.split("\n");
-        target = "";
-        for(int x = 0; x < temp.length; x++)
-        {
-            if(!temp[x].isEmpty())
-            {
-                temp[x] += "\n";
-                if(temp[x].charAt(0) == '#')
-                {
-                    temp[x] = "";
-                }
-                target += temp[x];
-            }
-        }
-        target = target.replaceAll("\t", "");
-        target += parent.getUnits() + "\nBUILD\nPLOT\nNEXT CASE";
-        return target;
-    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jBuild;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jDrawPane;
-    private javax.swing.JButton jGenerateDatFile;
-    private javax.swing.JButton jManualRevert;
     private javax.swing.JTextPane jOutputText;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JButton jRunDatcom;
+    private javax.swing.JCheckBox jPlot;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jSetData;
-    private javax.swing.JButton jShowDatcomReadable;
-    private javax.swing.JButton jShowHumanReadable;
     // End of variables declaration//GEN-END:variables
-
-    public JTextPane getjOutputText() {
-        return jOutputText;
-    }
-
-    public void setjOutputText(JTextPane jOutputText) {
-        this.jOutputText = jOutputText;
-    }
-
-    public String getOutputData() {
-        return outputData;
-    }
-
-    public void setOutputData(String outputData) {
-        this.outputData = outputData;
-        jOutputText.setText(outputData);
-    }
-
 
     public void generateDat()
     {
         File datFile = new File(parent.getWorkingDirectory().getAbsolutePath() +"\\for005.dat");
-        String temp = getControllerOutput();
-        temp = datcomFormat(temp);
-        try
+        String temp = fformat.generateForFile();
+        temp += "DIM FT\n";
+        if(jBuild.isSelected())
         {
-           datFile.createNewFile();
-           BufferedWriter output = new BufferedWriter(new FileWriter(datFile));
-           String [] newlineTempCauseJavaSucks = temp.split("\n");
-           for(int x = 0; x < newlineTempCauseJavaSucks.length; x++)
-           {
-               output.write(newlineTempCauseJavaSucks[x]);
-               output.newLine();
-           }
-           output.close();
-
-        } catch (IOException ex)
-        {
-            Logger.getLogger(CheckView.class.getName()).log(Level.SEVERE, null, ex);
+            temp += "BUILD \n";
         }
-    }
 
-    /**
-     *
-     */
+        if(jPlot.isSelected())
+        {
+            temp += "PLOT\n";
+        }
+        temp += "NEXT CASE";
+        this.jOutputText.setText(temp);
+        temp.replaceAll("\t", " ");
+        ies.writeFile(datFile, temp);
+    }
+    
     private void runDatcom()
     {
         generateDat();
@@ -402,12 +252,12 @@ public class CheckView extends javax.swing.JPanel {
             if(i < 10)
             {
                 moveForSource = new File("for00" + i + ".dat");
-                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + " for00" + i +".dat");
+                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + "_out" + i +".txt");
             }
             else
             {
                 moveForSource = new File("for0" + i + ".dat");
-                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + " for0" + i +".dat");
+                moveForDest = new File(ps.getProjectPath() + "\\"+ ps.getProjectName() + "_out" + i +".txt");
             }
 
             // Delete old files so the move can be executed

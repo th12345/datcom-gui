@@ -4,24 +4,24 @@
 
 package opendatcom;
 
+import Core.OAE_ViewComponent;
 import Services.xmlFilter;
-import Abstracts.AbstractController;
-import SYNTH_Component.SynthesisController;
-import PLNF_Component.FlightSurfaceController;
-import FLTCON_Component.FlightConditionsController;
-import BODY_Component.BodyController;
-import Abstracts.AbstractService;
-import FLTCON_Component.OptionsController;
-import SCHR_Component.AirfoilController;
+import BODY_Component.BodyView;
+import Core.DataServer;
+import Core.OAE_LinkInterface;
+import Views.FlightConditionsView;
+import Views.FlightSurfaceView;
+import Views.AirfoilView;
+import Views.SynthesisView;
+import Services.DatabaseIO;
 import Services.ImportExportService;
 import Services.ProjectService;
 import Services.FormatUtility;
+import Services.StreamService;
 import java.awt.GridLayout;
 import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import org.jdesktop.application.Application;
@@ -40,29 +40,29 @@ public class OpenDatcomController extends SingleFrameApplication{
     
     // Golbal Stuff
     private FormatUtility util = FormatUtility.getInstance();
-    private LinkedList<AbstractController> controllers = new LinkedList<AbstractController>();
-    private LinkedList<AbstractService> services    = new LinkedList<AbstractService>();
+    private DataServer gDataServer;
+    private DatabaseIO dio;
+    private Vector<OAE_ViewComponent> views;
 
     // Files
     private File currentFile;
     private File workingDirectory = new File(System.getProperty("user.dir"));
     private JFileChooser fc;
 
-    // Controllers
-    private BodyController bodyC;
-    private SynthesisController synthC;
-    private FlightConditionsController flightC;
-    private FlightSurfaceController wingC, hTailC, vTailC;
-    private ImportExportService in;
-    private FileViewerController fviewC;
-    private MainScreenController mainC;
-    private OptionsController optC;
-    private AirfoilController airfoilC;
+    private SynthesisView           synthView;
+    private BodyView                bodyView;
+    private FlightSurfaceView       hwPlnf;
+    private FlightSurfaceView       htPlnf;
+    private FlightSurfaceView       vtPlnf;
+    private FlightSurfaceView       vfPlnf;
+    private FlightConditionsView    flightView;
+    private AirfoilView             airfoilView;
+    private CheckView               cView;
+
 
     // Services
-    private DatcomService output;
     private ProjectService ps;
-    private JSBSimService jSim;
+    private ImportExportService in;
 
     // Variables
     String caseName;
@@ -70,6 +70,7 @@ public class OpenDatcomController extends SingleFrameApplication{
 
     private void initModule()
     {
+        StreamService.GetInstance();
         makeDirs();
         // Init the file chooser
         fc = new JFileChooser();
@@ -79,9 +80,10 @@ public class OpenDatcomController extends SingleFrameApplication{
 
     private void initServices()
     {
-        in   = ImportExportService.getInstance();
-        ps   = ProjectService.getInstance();
-        jSim = JSBSimService.getInstance();
+        gDataServer = DataServer.getInstance();
+        dio         = new DatabaseIO();
+        in          = ImportExportService.getInstance();
+        ps          = ProjectService.getInstance();
     }
 
     private void initModules()
@@ -89,169 +91,51 @@ public class OpenDatcomController extends SingleFrameApplication{
         // Set the initial frame size to the system max res
         view.getFrame().setBounds(0, 0, 1200, 700);
         view.getFrame().setResizable(false);
+        views = new Vector<OAE_ViewComponent>();
         
         // Initialize the panels. Note that the order matters here, the initialization
         // order determines the tab order
-        mainC   =   new MainScreenController();
-        flightC =   new FlightConditionsController();
-        optC    =   new OptionsController();
-        synthC  =   new SynthesisController();
-        bodyC   =   new BodyController();
-        wingC   =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.MAIN_WING);
-        hTailC  =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.HORIZONTAL_TAIL);
-        vTailC  =   new FlightSurfaceController(FlightSurfaceController.SURFACE_TYPE.VERTICAL_TAIL);
-        airfoilC =  new AirfoilController();
-        output  =   new DatcomService();
-        fviewC  =   new FileViewerController();
+        flightView  = new FlightConditionsView();
+        bodyView    = new BodyView();
+        synthView   = new SynthesisView();
+        hwPlnf      = new FlightSurfaceView(FlightSurfaceView.SURFACE_TYPE.WGPLNF);
+        htPlnf      = new FlightSurfaceView(FlightSurfaceView.SURFACE_TYPE.HTPLNF);
+        vtPlnf      = new FlightSurfaceView(FlightSurfaceView.SURFACE_TYPE.VTPLNF);
+        vfPlnf      = new FlightSurfaceView(FlightSurfaceView.SURFACE_TYPE.VFPLNF);
+        airfoilView = new AirfoilView();
+        cView       = new CheckView();
+
         caseName = "";
         units = "DIM FT";
-
-        // Iterate through and add the modules to the tab frame.
-        JPanel tempJPanel;
-        for(int x = 0; x < controllers.size(); x++)
-        {
-            if(controllers.get(x).getView() != null)
-            {
-                tempJPanel = new JPanel();
-                tempJPanel.setLayout(new GridLayout(1,0));
-                tempJPanel.setName(controllers.get(x).getName());
-                tempJPanel.add((controllers.get(x)).getView());
-                view.addTab(tempJPanel);
-            }
-        }
-
-        tempJPanel = new JPanel();
-        tempJPanel.setLayout(new GridLayout(1,0));
-        tempJPanel.setName("Output");
-        tempJPanel.add(output);
-
-        output.registerController(flightC);
-        output.registerController(optC);
-        output.registerController(synthC);
-        output.registerController(bodyC);
-        output.registerController(wingC);
-        output.registerController(hTailC);
-        output.registerController(vTailC);
-        output.registerController(airfoilC);
-        
-        view.addTab(tempJPanel);
-
-
     }
 
     /**
      * Start of API methods
      */
-
-    /**
-     * Registers a service with the application. Services must be registered during 
-     * inititalization. The target MUST have its name set to something uniquie.
-     * @param target
-     */
-     public void registerService(AbstractService target)
-     {
-        services.add(target);
-     }
-
-     public AbstractService getService(String serviceName)
-     {
-         AbstractService temp = null;
-         for(int i = 0; i < services.size(); i++)
-         {
-             if(services.get(i).getName().equalsIgnoreCase(serviceName))
-             {
-                 return services.get(i);
-             }
-         }
-         return temp;
-     }
-
-     /**
-      * Gets a registered controller by name.
-      * @param serviceName
-      * @return
-      */
-     public AbstractController getController(String serviceName)
-     {
-         AbstractController temp = null;
-         for(int i = 0; i < services.size(); i++)
-         {
-             if(controllers.get(i).getName().equalsIgnoreCase(serviceName))
-             {
-                 return controllers.get(i);
-             }
-         }
-         return temp;
-     }
-
-    /**
-     * Registers a module with the application. Modules must be registered during 
-     * @param target
-     */
-    public void registerModule(AbstractController target)
-    {
-        controllers.add(target);
-    }
-
-    /**
-     * Registers a controller with a service by the services's name.
-     * @param serviceName The service to register to.
-     * @param self Reference to the controller to register (this)
-     * @return True if the service is found and successfully registered.
-     */
-    public boolean registerToService(String serviceName, AbstractController self)
-    {
-        for(int i = 0; i < services.size(); i++)
-        {
-            if(services.get(i).getName().equalsIgnoreCase(serviceName))
-            {
-                //TODO: prevent duplicate registrations here
-                services.get(i).registerController(self);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Refreshes the application from an .od save file.
-     */
-    public void refreshFromSave(String input)
-    {
-        for(int x = 0; x < controllers.size(); x++)
-        {
-            controllers.get(x).refreshFromSaved(input);
-        }
-        
-        refresh();
-    }
-
-    public String generateXML()
-    {
-        String temp = "";
-        temp += util.xmlWrite("CASE_NAME", caseName);
-        temp +=util.xmlWrite("UNITS", units);
-        return temp;
-    }
-
-    /**
-     * Refreshes the application & all registered modules.
-     */
-    public void refresh()
-    {
-        for(int i = 0; i < controllers.size(); i++)
-        {
-            controllers.get(i).refresh();
-        }
-    }
-
+    
     /**
      * Saves controller data to an xml file. If a save has occured previously it
      * skips the file chooser dialog and saves over the previous file.
      */
     public void save()
     {
-       in.writeXML(new File(ps.getProjectPath() + "//data.od"));
+        if(currentFile == null)
+        {
+            fc.setDialogTitle("Save Project:");
+            int check = fc.showOpenDialog(view.getComponent());
+            if(check == JFileChooser.APPROVE_OPTION)
+            {
+                currentFile = fc.getSelectedFile();
+                ps.startProject(currentFile.getName().replace(".od", ""));
+                // Set current file to the correct project path
+                currentFile = ps.getProjectFile();
+            }
+            else if(check == JFileChooser.CANCEL_OPTION)
+            {
+                return;
+            }
+        }
+       dio.save(currentFile);
     }
 
     /**
@@ -259,18 +143,20 @@ public class OpenDatcomController extends SingleFrameApplication{
      */
     public void saveAs()
     {
-        // If the project service has been initialized save to the default location
-        if(ps.isValid())
+        fc.setDialogTitle("SaveAs Project:");
+        int check = fc.showOpenDialog(view.getComponent());
+        if(check == JFileChooser.APPROVE_OPTION)
         {
-            try {
-                currentFile = new File(ps.getProjectPath() + "//data.od");
-                currentFile.createNewFile();
-                in.writeXML(currentFile);
-                return;
-            } catch (IOException ex) {
-                Logger.getLogger(OpenDatcomController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            currentFile = fc.getSelectedFile();
+            ps.startProject(currentFile.getName().replace(".od", ""));
+            // Set current file to the correct project path
+            currentFile = ps.getProjectFile();
         }
+        else if(check == JFileChooser.CANCEL_OPTION)
+        {
+            return;
+        }
+        dio.save(currentFile);
     }
 
     /**
@@ -286,7 +172,7 @@ public class OpenDatcomController extends SingleFrameApplication{
         {
             currentFile = fc.getSelectedFile();
             ps.startProject(currentFile.getName().replace(".od", ""));
-            refreshFromSave(in.importFile(currentFile));
+            dio.load(currentFile);
 
             // Set current file to the correct project path
             currentFile = ps.getProjectFile();
@@ -310,7 +196,6 @@ public class OpenDatcomController extends SingleFrameApplication{
         {
             File target = fc.getSelectedFile();
             in.importFile(target);
-            refresh();
         }
         else if(check == JFileChooser.CANCEL_OPTION)
         {
@@ -373,7 +258,6 @@ public class OpenDatcomController extends SingleFrameApplication{
     public void newProject()
     {
         ps.startProject();
-        caseName = ps.getName();
         units = "DIM FT";
     }
 
@@ -400,5 +284,25 @@ public class OpenDatcomController extends SingleFrameApplication{
 
     public void setCaseName(String caseName) {
         this.caseName = caseName;
+    }
+
+    public void addLink(OAE_LinkInterface link)
+    {
+        gDataServer.addLink(link);
+    }
+
+    public OAE_LinkInterface getLink(String name)
+    {
+        return gDataServer.getLink(name);
+    }
+
+    public void register(OAE_ViewComponent aThis)
+    {
+        JPanel tempJPanel;
+        tempJPanel = new JPanel();
+        tempJPanel.setLayout(new GridLayout(1,0));
+        tempJPanel.setName(aThis.getName());
+        tempJPanel.add(aThis);
+        view.addTab(tempJPanel);
     }
 }

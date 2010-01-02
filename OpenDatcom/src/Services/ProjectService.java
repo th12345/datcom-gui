@@ -5,18 +5,14 @@
 
 package Services;
 
-import Abstracts.AbstractService;
-import opendatcom.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author -B-
  */
-public class ProjectService extends AbstractService
+public class ProjectService
 {
     static ProjectService self;
     ImportExportService ies;
@@ -28,7 +24,6 @@ public class ProjectService extends AbstractService
 
     private ProjectService()
     {
-        registerForMe();
         ies = ImportExportService.getInstance();
         workingFolder = new File(System.getProperty("user.dir"));
         projectFile = new File(System.getProperty("user.dir"));
@@ -59,15 +54,15 @@ public class ProjectService extends AbstractService
             }
             projectName = text;
             projectPath = System.getProperty("user.dir") + "\\Projects\\" + projectName;
-            System.out.println("Path: " + projectPath);
+            StreamService.print("Path: " + projectPath);
             projectFile = new File(projectPath + "\\" + projectName + ".od");
             new File(projectPath).mkdirs();
             projectFile.createNewFile();
-            System.out.println("Project File:" + projectFile.getName());
+            StreamService.print("Project File:" + projectFile.getName());
             projectFile.mkdirs();
             isValid = true;
         } catch (IOException ex) {
-            Logger.getLogger(ProjectService.class.getName()).log(Level.SEVERE, null, ex);
+            StreamService.printToStream("IO Exception: " + ex.getCause(), "err");
         }
     }
 

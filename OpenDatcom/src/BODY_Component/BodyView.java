@@ -1,8 +1,8 @@
 package BODY_Component;
 
 
-import Abstracts.OAE_DrawPane;
-import javax.swing.JPanel;
+import Core.OAE_DrawPane;
+import Core.OAE_ViewComponent;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -21,14 +21,32 @@ import javax.swing.JTextField;
  *
  * @author -B-
  */
-public class BodyView extends javax.swing.JPanel{
+public class BodyView extends OAE_ViewComponent{
 
-    BodyController controller;
+    public enum INPUT_CHOICE
+     {
+         USING_S,
+         USING_P,
+         USING_R,
+         USING_SP,
+         USING_PR,
+         USING_SR,
+         USING_Z
+     }
+
     String outputData;
+    BodyTable table;
+
     /** Creates new form BodyView */
-    public BodyView(BodyController controller) {
-        this.controller = controller;
+    public BodyView() {
         initComponents();
+        table = new BodyTable(this);
+        initView("Body");
+    }
+
+    public void registerLinks()
+    {
+        table.registerLinks();
     }
 
     /** This method is called from within the constructor to
@@ -253,7 +271,7 @@ public class BodyView extends javax.swing.JPanel{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSetValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSetValuesActionPerformed
-        controller.refresh();
+ 
 }//GEN-LAST:event_jSetValuesActionPerformed
 
     private void jInputModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInputModeActionPerformed
@@ -300,43 +318,43 @@ public class BodyView extends javax.swing.JPanel{
      * Returns the currently selected data input mode.
      * @return BodyController.INPUT_CHOICE 
      */
-    public BodyController.INPUT_CHOICE getInputMode()
+    public INPUT_CHOICE getInputMode()
     {
         switch(jInputMode.getSelectedIndex())
         {
             case 0:
             {
-                return BodyController.INPUT_CHOICE.USING_R;
+                return INPUT_CHOICE.USING_R;
             }
             case 1:
             {
-                return BodyController.INPUT_CHOICE.USING_P;
+                return INPUT_CHOICE.USING_P;
             }
             case 2:
             {
-                return BodyController.INPUT_CHOICE.USING_S;
+                return INPUT_CHOICE.USING_S;
             }
             case 3:
             {
-                return BodyController.INPUT_CHOICE.USING_PR;
+                return INPUT_CHOICE.USING_PR;
             }
             case 4:
             {
-                return BodyController.INPUT_CHOICE.USING_SR;
+                return INPUT_CHOICE.USING_SR;
             }
             case 5:
             {
-                return BodyController.INPUT_CHOICE.USING_SP;
+                return INPUT_CHOICE.USING_SP;
             }
             case 6:
             {
-                return BodyController.INPUT_CHOICE.USING_Z;
+                return INPUT_CHOICE.USING_Z;
             }
         }
 
 
 
-        return BodyController.INPUT_CHOICE.USING_R;
+        return INPUT_CHOICE.USING_R;
     }
 
     public JTextField getjBLA() {
