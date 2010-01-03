@@ -4,11 +4,13 @@
 
 package opendatcom;
 
+import Views.CheckView;
 import Core.OAE_ViewComponent;
 import Services.xmlFilter;
-import BODY_Component.BodyView;
+import Views.BodyComponent.BodyView;
 import Core.DataServer;
 import Core.OAE_LinkInterface;
+import Project.ProjectWizard;
 import Views.FlightConditionsView;
 import Views.FlightSurfaceView;
 import Views.AirfoilView;
@@ -20,7 +22,6 @@ import Services.FormatUtility;
 import Services.StreamService;
 import java.awt.GridLayout;
 import java.io.File;
-import java.util.LinkedList;
 import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
@@ -56,7 +57,10 @@ public class OpenDatcomController extends SingleFrameApplication{
     private FlightSurfaceView       vtPlnf;
     private FlightSurfaceView       vfPlnf;
     private FlightConditionsView    flightView;
-    private AirfoilView             airfoilView;
+    private AirfoilView             wgSchr;
+    private AirfoilView             htSchr;
+    private AirfoilView             vtSchr;
+    private AirfoilView             vfSchr;
     private CheckView               cView;
 
 
@@ -99,10 +103,13 @@ public class OpenDatcomController extends SingleFrameApplication{
         bodyView    = new BodyView();
         synthView   = new SynthesisView();
         hwPlnf      = new FlightSurfaceView(FlightSurfaceView.SURFACE_TYPE.WGPLNF);
+        wgSchr      = new AirfoilView(AirfoilView.AIRFOIL_TYPE.WGSCHR);
         htPlnf      = new FlightSurfaceView(FlightSurfaceView.SURFACE_TYPE.HTPLNF);
+        htSchr      = new AirfoilView(AirfoilView.AIRFOIL_TYPE.HTSCHR);
         vtPlnf      = new FlightSurfaceView(FlightSurfaceView.SURFACE_TYPE.VTPLNF);
+        vtSchr      = new AirfoilView(AirfoilView.AIRFOIL_TYPE.VTSCHR);
         vfPlnf      = new FlightSurfaceView(FlightSurfaceView.SURFACE_TYPE.VFPLNF);
-        airfoilView = new AirfoilView();
+        vfSchr      = new AirfoilView(AirfoilView.AIRFOIL_TYPE.VFSCHR);
         cView       = new CheckView();
 
         caseName = "";
@@ -261,6 +268,16 @@ public class OpenDatcomController extends SingleFrameApplication{
         units = "DIM FT";
     }
 
+    public void register(OAE_ViewComponent aThis)
+    {
+        JPanel tempJPanel;
+        tempJPanel = new JPanel();
+        tempJPanel.setLayout(new GridLayout(1,0));
+        tempJPanel.setName(aThis.getName());
+        tempJPanel.add(aThis);
+        view.addTab(tempJPanel);
+    }
+
     public String getCaseName()
     {
         return caseName;
@@ -294,15 +311,5 @@ public class OpenDatcomController extends SingleFrameApplication{
     public OAE_LinkInterface getLink(String name)
     {
         return gDataServer.getLink(name);
-    }
-
-    public void register(OAE_ViewComponent aThis)
-    {
-        JPanel tempJPanel;
-        tempJPanel = new JPanel();
-        tempJPanel.setLayout(new GridLayout(1,0));
-        tempJPanel.setName(aThis.getName());
-        tempJPanel.add(aThis);
-        view.addTab(tempJPanel);
     }
 }

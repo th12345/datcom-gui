@@ -8,7 +8,6 @@ package Services;
 import Core.DataServer;
 import Core.OAE_LinkInterface;
 import Core.OAE_LinkedTable;
-import com.sun.corba.se.spi.activation._ActivatorImplBase;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +32,7 @@ public class FortranFormat
         out += generateOPTINS();
         out += generateBODY();
         out += generatePLNFS();
+        out += generateSCHRS();
         out = out.replaceAll("\t", "");
         return out;
     }
@@ -42,9 +42,9 @@ public class FortranFormat
         String out = "";
         String header = " $FLTCON\n";
         String offset = "  ";
-        out += ((OAE_LinkedTable)mapRef.get("MACH")).datcomFormat(offset);
-        out += ((OAE_LinkedTable)mapRef.get("ALT")).datcomFormat(offset);
-        out += ((OAE_LinkedTable)mapRef.get("ALSCHD")).datcomFormat(offset);
+        out += mapRef.get("MACH").datcomFormat(offset);
+        out += mapRef.get("ALT").datcomFormat(offset);
+        out += mapRef.get("ALSCHD").datcomFormat(offset);
         out += mapRef.get("WT").datcomFormat(offset);
         out += mapRef.get("STMACH").datcomFormat(offset);
         out += mapRef.get("TSMACH").datcomFormat(offset);
@@ -54,9 +54,27 @@ public class FortranFormat
 
         if(!out.isEmpty())
         {
+            // Do a bunch of vodoo to get the N--- values correctly positioned (not pretty)
+            OAE_LinkedTable temp = (OAE_LinkedTable) mapRef.get("MACH");
+            if(temp != null)
+            {
+                String blah = "NMACH=" + temp.getSize() + ".0,\n" + offset + "MACH";
+                out = out.replace("MACH", blah);
+            }
+            temp = (OAE_LinkedTable) mapRef.get("ALT");
+            if(temp != null)
+            {
+                String blah = "NALT=" + temp.getSize() + ".0,\n" + offset + "ALT";
+                out = out.replace("ALT", blah);
+            }
+            temp = (OAE_LinkedTable) mapRef.get("ALSCHD");
+            if(temp != null)
+            {
+                String blah = "NALPHA=" + temp.getSize() + ".0,\n" + offset + "ALSCHD";
+                out = out.replace("ALSCHD", blah);
+            }
             out = out.substring(0, out.length() - 2 );
             out = header + out + "$\n";
-            out = out.replaceAll("NALSCHD", "NALPHA");
         }
         return out;
     }
@@ -138,7 +156,7 @@ public class FortranFormat
         String [] headers = {"WGPLNF", "HTPLNF", "VTPLNF", "VFPLNF"};
         String [] prefixes = {"WG_", "HT_", "VT_", "VF_"};
         String out = "";
-        String offset = "   ";
+        String offset = "  ";
 
         for (int i = 0; i < 4; i++)
         {
@@ -146,9 +164,14 @@ public class FortranFormat
             String prefix = prefixes[i];
             String section = "";
 
+
             String tag =  mapRef.get(prefix + "AIRFOIL").datcomFormat("");
-            tag = tag.replace(prefix + "AIRFOIL=", "");
-            tag = tag.replace(",", "");
+            if(!tag.isEmpty())
+            {
+                tag = tag.replace(prefix + "AIRFOIL=", "");
+                tag = tag.replace(",", "");
+                offset = "   ";
+            }
             
             section += mapRef.get(prefix + "SSPNOP").datcomFormat(offset);
             section += mapRef.get(prefix + "SSPNE").datcomFormat(offset);
@@ -170,7 +193,83 @@ public class FortranFormat
                 section = section.replaceAll(prefix, "");
                 section = tag + header + section + "$\n";
                 out += section;
+
             }
+            offset = "  ";
+        }
+        return out;
+    }
+
+    public String generateSCHRS()
+    {
+        boolean usingY = true;
+        String [] headers = {"WGSCHR", "HTSCHR", "VTSCHR", "VFSCHR"};
+        String [] prefixes = {"WG_", "HT_", "VT_", "VF_"};
+        String out = "";
+        String offset = "  ";
+
+        for (int i = 0; i < 4; i++)
+        {
+
+            String header = " $" + headers[i] + "\n";
+            String prefix = prefixes[i];
+            String section = "";
+            
+            section += mapRef.get(prefix + "T0VC").datcomFormat(offset);
+            section += mapRef.get(prefix + "DELTAY").datcomFormat(offset);
+            section += mapRef.get(prefix + "X0VC").datcomFormat(offset);
+            section += mapRef.get(prefix + "CLI").datcomFormat(offset);
+            section += mapRef.get(prefix + "ALPHAI").datcomFormat(offset);
+            section += mapRef.get(prefix + "CM0").datcomFormat(offset);
+            section += mapRef.get(prefix + "LERI").datcomFormat(offset);
+            section += mapRef.get(prefix + "LER0").datcomFormat(offset);
+            section += mapRef.get(prefix + "T0VC0").datcomFormat(offset);
+            section += mapRef.get(prefix + "X0VC0").datcomFormat(offset);
+            section += mapRef.get(prefix + "CM0T").datcomFormat(offset);
+            section += mapRef.get(prefix + "CLMAXL").datcomFormat(offset);
+            section += mapRef.get(prefix + "CLAMO").datcomFormat(offset);
+            section += mapRef.get(prefix + "TCEFF").datcomFormat(offset);
+            section += mapRef.get(prefix + "KSHARP").datcomFormat(offset);
+            section += mapRef.get(prefix + "ARCC").datcomFormat(offset);
+            if(usingY)
+            {
+                section += mapRef.get(prefix + "XCORD").datcomFormat(offset);
+                section += mapRef.get(prefix + "YUPPER").datcomFormat(offset);
+                section += mapRef.get(prefix + "YLOWER").datcomFormat(offset);
+            }
+            else
+            {
+                section += mapRef.get(prefix + "MEAN").datcomFormat(offset);
+                section += mapRef.get(prefix + "THICK").datcomFormat(offset);
+            }
+
+            // Fail safe, make sure that an airfoil is not defined in the PLNFS
+            // and if it is, clear the namelist text and add nothing
+            OAE_LinkInterface guard = mapRef.get(prefix + "AIRFOIL");
+            if(guard != null)
+            {
+                // Make sure the airfoil value is empty
+                if(!((String)guard.getValue()).isEmpty())
+                {
+                    section = "";
+                }
+            }
+
+            // Make sure the section isnt empty
+            if(!section.isEmpty())
+            {   
+                OAE_LinkedTable temp = (OAE_LinkedTable) mapRef.get(prefix + "XCORD");
+                if(temp != null)
+                {
+                    String blah = "TYPEIN=1.0,\n" + offset + "NPTS=" + temp.getData().size() + ".0,\n" + offset + "XCORD";
+                    section = section.replace("XCORD", blah);
+                }
+                section = section.substring(0, section.length() - 2 );
+                section = section.replaceAll(prefix, "");
+                section = header + section + "$\n";
+                out += section;
+            }
+
         }
         return out;
     }

@@ -43,6 +43,7 @@ public class FlightSurfaceView extends OAE_ViewComponent
         this.type = type;
         initComponents();
         initSurfaceType();
+        this.name = type.toString();
         initView(name);
     }
 

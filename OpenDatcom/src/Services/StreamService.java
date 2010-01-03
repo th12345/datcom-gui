@@ -20,6 +20,12 @@ import java.util.logging.Logger;
  */
 public class StreamService {
 
+    static void print(byte[] out) {
+        std.print(String.valueOf(out));
+    }
+
+   
+
     /**
      * Helper class that wraps standard PrintStream and adds more
      * control functionality.
@@ -136,6 +142,10 @@ public class StreamService {
      */
     public static void print(String string) {
         std.print(string);
+    }
+
+     public static void print(int i) {
+        std.print(String.valueOf(i));
     }
 
     /**

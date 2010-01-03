@@ -16,17 +16,13 @@ import javax.swing.JFileChooser;
 import opendatcom.OpenDatcomController;
 
 /**
- * Class provides XML reading/writing functionality to registered controllers. It
- * also allows retroing parsed data back into the correct form/text fields.
+ * Class provides easy file loading and saving and handles associated io exceptions.
+ * Implemented statically.
  * @author -B-
  */
 public class ImportExportService{
     private static ImportExportService self;
-    BufferedReader in;
-
-    private ImportExportService()
-    {
-    }
+    private ImportExportService(){}
 
     /**
      * Shows a JFileChooser and allows the user to choose which file to open.

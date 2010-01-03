@@ -11,13 +11,13 @@
 
 package Views;
 
-import Core.LineObject;
+import Core.DataServer;
 import Core.OAE_DataLink;
-import Core.OAE_DrawPane;
+import Core.OAE_LinkedTable;
 import Core.OAE_ViewComponent;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.util.LinkedList;
+import Services.ImportExportService;
+import Services.StreamService;
+import java.util.Vector;
 import javax.swing.JTextField;
 
 /**
@@ -26,30 +26,50 @@ import javax.swing.JTextField;
  */
 public class AirfoilView extends OAE_ViewComponent {
 
+    public enum AIRFOIL_TYPE
+    {
+        WGSCHR,
+        HTSCHR,
+        VTSCHR,
+        VFSCHR
+    }
+    AIRFOIL_TYPE type;
+    String prefix;
+
+
     /** Creates new form AirfoilView */
-    public AirfoilView() {
+    public AirfoilView(AIRFOIL_TYPE type) {
         initComponents();
-        initView("Airfoil");
+        this.type = type;
+        this.name = type.toString();
+        jTitle.setText(name + " Parameters");
+        initView(name);
     }
 
     public void registerLinks()
     {
-        parent.addLink(new OAE_DataLink("T0VC",      jT0VC,    double.class));
-        parent.addLink(new OAE_DataLink("DELTAY",    jDELTAY,  double.class));
-        parent.addLink(new OAE_DataLink("X0VC",      jX0VC,    double.class));
-        parent.addLink(new OAE_DataLink("CLI",       jCLI,     double.class));
-        parent.addLink(new OAE_DataLink("ALPHAI",    jALPHAI,  double.class));
-        parent.addLink(new OAE_DataLink("CM0",       jCM0,     double.class));
-        parent.addLink(new OAE_DataLink("LERI",      jLERI,    double.class));
-        parent.addLink(new OAE_DataLink("LER0",      jLER0,    double.class));
-        parent.addLink(new OAE_DataLink("T0VC0",     jT0VC0,   double.class));
-        parent.addLink(new OAE_DataLink("X0VC0",     jX0VC0,   double.class));
-        parent.addLink(new OAE_DataLink("CM0T",      jCM0T,    double.class));
-        parent.addLink(new OAE_DataLink("CLMAXL",    jCLMAXL,  double.class));
-        parent.addLink(new OAE_DataLink("CLAMO",     jCLAM0,   double.class));
-        parent.addLink(new OAE_DataLink("TCEFF",     jTCEFF,   double.class));
-        parent.addLink(new OAE_DataLink("KSHARP",    jKSHARP,  double.class));
-        parent.addLink(new OAE_DataLink("ARCC",      jARCC,    double.class));
+        prefix  = this.name.substring(0, 2) + "_";
+        parent.addLink(new OAE_DataLink(prefix + "T0VC",      jT0VC,    double.class));
+        parent.addLink(new OAE_DataLink(prefix + "DELTAY",    jDELTAY,  double.class));
+        parent.addLink(new OAE_DataLink(prefix + "X0VC",      jX0VC,    double.class));
+        parent.addLink(new OAE_DataLink(prefix + "CLI",       jCLI,     double.class));
+        parent.addLink(new OAE_DataLink(prefix + "ALPHAI",    jALPHAI,  double.class));
+        parent.addLink(new OAE_DataLink(prefix + "CM0",       jCM0,     double.class));
+        parent.addLink(new OAE_DataLink(prefix + "LERI",      jLERI,    double.class));
+        parent.addLink(new OAE_DataLink(prefix + "LER0",      jLER0,    double.class));
+        parent.addLink(new OAE_DataLink(prefix + "T0VC0",     jT0VC0,   double.class));
+        parent.addLink(new OAE_DataLink(prefix + "X0VC0",     jX0VC0,   double.class));
+        parent.addLink(new OAE_DataLink(prefix + "CM0T",      jCM0T,    double.class));
+        parent.addLink(new OAE_DataLink(prefix + "CLMAXL",    jCLMAXL,  double.class));
+        parent.addLink(new OAE_DataLink(prefix + "CLAMO",     jCLAM0,   double.class));
+        parent.addLink(new OAE_DataLink(prefix + "TCEFF",     jTCEFF,   double.class));
+        parent.addLink(new OAE_DataLink(prefix + "KSHARP",    jKSHARP,  double.class));
+        parent.addLink(new OAE_DataLink(prefix + "ARCC",      jARCC,    double.class));
+        parent.addLink(new OAE_LinkedTable(prefix + "XCORD", jTable1, 0));
+        parent.addLink(new OAE_LinkedTable(prefix + "YUPPER", jTable1, 1));
+        parent.addLink(new OAE_LinkedTable(prefix + "YLOWER", jTable1, 2));
+        parent.addLink(new OAE_LinkedTable(prefix + "MEAN", jTable1, 1));
+        parent.addLink(new OAE_LinkedTable(prefix + "THICK", jTable1, 2));
     }
 
     /** This method is called from within the constructor to
@@ -62,6 +82,7 @@ public class AirfoilView extends OAE_ViewComponent {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jT0VC = new javax.swing.JTextField();
@@ -96,26 +117,50 @@ public class AirfoilView extends OAE_ViewComponent {
         jLabel15 = new javax.swing.JLabel();
         jARCC = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jDraw = new OAE_DrawPane();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jClearTable = new javax.swing.JButton();
+        jImportAirfoil = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel17 = new javax.swing.JLabel();
+        jAirfoilName = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jNPTS = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
 
         setName("Form"); // NOI18N
 
         jPanel1.setName("jPanel1"); // NOI18N
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getResourceMap(AirfoilView.class);
+        jTitle.setFont(resourceMap.getFont("jTitle.font")); // NOI18N
+        jTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jTitle.setText(resourceMap.getString("jTitle.text")); // NOI18N
+        jTitle.setName("jTitle"); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 678, Short.MAX_VALUE)
+            .addGap(0, 907, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 59, Short.MAX_VALUE)
+            .addGap(0, 74, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setName("jPanel2"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getResourceMap(AirfoilView.class);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
@@ -215,12 +260,12 @@ public class AirfoilView extends OAE_ViewComponent {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jCM0, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                            .addComponent(jALPHAI, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                            .addComponent(jCLI, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                            .addComponent(jX0VC, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                            .addComponent(jDELTAY, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                            .addComponent(jT0VC, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)))
+                            .addComponent(jCM0, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(jALPHAI, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(jCLI, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(jX0VC, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(jDELTAY, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                            .addComponent(jT0VC, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
@@ -231,12 +276,12 @@ public class AirfoilView extends OAE_ViewComponent {
                             .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jCLMAXL, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(jCM0T, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(jX0VC0, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(jT0VC0, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(jLER0, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                            .addComponent(jLERI, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))))
+                            .addComponent(jCLMAXL, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(jCM0T, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(jX0VC0, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(jT0VC0, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(jLER0, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(jLERI, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -290,7 +335,7 @@ public class AirfoilView extends OAE_ViewComponent {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jCLMAXL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel3.setName("jPanel3"); // NOI18N
@@ -330,17 +375,23 @@ public class AirfoilView extends OAE_ViewComponent {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTCEFF))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCLAM0, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel14)
                     .addComponent(jLabel15)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel13))
+                    .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jARCC, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                    .addComponent(jKSHARP, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                    .addComponent(jTCEFF, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                    .addComponent(jCLAM0, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                    .addComponent(jARCC, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jKSHARP, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -354,7 +405,9 @@ public class AirfoilView extends OAE_ViewComponent {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jTCEFF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jKSHARP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -362,21 +415,170 @@ public class AirfoilView extends OAE_ViewComponent {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jARCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jDraw.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jDraw.setName("jDraw"); // NOI18N
+        jPanel4.setName("jPanel4"); // NOI18N
 
-        javax.swing.GroupLayout jDrawLayout = new javax.swing.GroupLayout(jDraw);
-        jDraw.setLayout(jDrawLayout);
-        jDrawLayout.setHorizontalGroup(
-            jDrawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "X", "Value 1", "Value 2"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable1.setName("jTable1"); // NOI18N
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 484, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(5, 5, 5)
+                    .addComponent(jScrollPane1)
+                    .addContainerGap()))
         );
-        jDrawLayout.setVerticalGroup(
-            jDrawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 284, Short.MAX_VALUE)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 375, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+
+        jPanel5.setName("jPanel5"); // NOI18N
+
+        jClearTable.setText(resourceMap.getString("jClearTable.text")); // NOI18N
+        jClearTable.setName("jClearTable"); // NOI18N
+
+        jImportAirfoil.setText(resourceMap.getString("jImportAirfoil.text")); // NOI18N
+        jImportAirfoil.setName("jImportAirfoil"); // NOI18N
+        jImportAirfoil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jImportAirfoilActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "YUpper/YLower", "Mean/Thick" }));
+        jComboBox1.setName("jComboBox1"); // NOI18N
+
+        jLabel17.setText(resourceMap.getString("jLabel17.text")); // NOI18N
+        jLabel17.setName("jLabel17"); // NOI18N
+
+        jAirfoilName.setText(resourceMap.getString("jAirfoilName.text")); // NOI18N
+        jAirfoilName.setName("jAirfoilName"); // NOI18N
+
+        jLabel18.setText(resourceMap.getString("jLabel18.text")); // NOI18N
+        jLabel18.setName("jLabel18"); // NOI18N
+
+        jNPTS.setEnabled(false);
+        jNPTS.setName("jNPTS"); // NOI18N
+
+        jLabel19.setText(resourceMap.getString("jLabel19.text")); // NOI18N
+        jLabel19.setName("jLabel19"); // NOI18N
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jClearTable, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jImportAirfoil, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, 151, Short.MAX_VALUE)
+                    .addComponent(jLabel17)
+                    .addComponent(jAirfoilName, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jLabel18)
+                    .addComponent(jNPTS, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                    .addComponent(jLabel19))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jAirfoilName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jNPTS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addComponent(jLabel17)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jImportAirfoil)
+                .addGap(18, 18, 18)
+                .addComponent(jClearTable)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -391,8 +593,10 @@ public class AirfoilView extends OAE_ViewComponent {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -401,12 +605,13 @@ public class AirfoilView extends OAE_ViewComponent {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -423,17 +628,113 @@ public class AirfoilView extends OAE_ViewComponent {
         // TODO add your handling code here:
     }//GEN-LAST:event_jARCCActionPerformed
 
+    private void jImportAirfoilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jImportAirfoilActionPerformed
+        String text = ImportExportService.getInstance().importFile_FC();
+        if(text == null)
+        {
+            StreamService.print("No Airfoil File Chosen, aborting import");
+        }
+        text = text.replaceAll(" ", ",");
+        StreamService.print(text);
+        String [] lines = text.split("\n");
+        String [] currLine;
+        // Initialize the vectors to a nice big size to speed up processing
+        Vector<Double> x = new Vector<Double>(200);
+        Vector<Double> yUpper = new Vector<Double>(100);
+        Vector<Double> yLower = new Vector<Double>(100);
+
+        // Reverse the changes made to the 1st line and set the airfoil name
+        lines[0] = lines[0].replaceAll(",", " ");
+        jAirfoilName.setText(lines[0]);
+
+        // Init the control variables
+        int breakPoint = -1;
+
+        // Throw away the first 3 lines cause they are garbage
+        for(int i = 3; i < lines.length; i++)
+        {
+            currLine = lines[i].split(",");
+            if(currLine.length == 3)
+            {
+                x.add(Double.parseDouble(currLine[1]));
+                if(breakPoint > 0)
+                {
+                    yLower.add(Double.parseDouble(currLine[2]));
+                }
+                else
+                {
+                    yUpper.add(Double.parseDouble(currLine[2]));
+                }
+            }
+            else if(currLine.length == 2)
+            {
+                x.add(Double.parseDouble(currLine[0]));
+                if(breakPoint > 0)
+                {
+                    yLower.add(Double.parseDouble(currLine[1]));
+                }
+                else
+                {
+                    yUpper.add(Double.parseDouble(currLine[1]));
+                }
+            }
+            else if(currLine.length == 1)
+            {
+                StreamService.print("Break found at line:" + i);
+                breakPoint = i - 3;
+            }
+        }
+        int npts = Math.min(yUpper.size(), yLower.size());
+
+        // Make sure that the airfoil corresponds to datcom format, and if not
+        // modify it to correspond
+        if(x.firstElement() != 0)
+        {
+            StreamService.print("X(1) is not 0.0 as per DATCOM requirements, overriding:\n" +
+                    "\tX(0)  to 0.0\n" +
+                    "\tV1(0) to 0.0\n" +
+                    "\tV2(0) to 0.0" );
+            x.set(0, 0.0);
+            yUpper.set(0, 0.0);
+            yLower.set(0, 0.0);
+        }
+
+        if(x.get(breakPoint-1) != 1.0)
+        {
+            StreamService.print("X(NPOINTS) is not 0.0 as per DATCOM requirements, overriding:\n" +
+                    "\tX(NPOINTS)  to 1.0\n" +
+                    "\tV1(NPOINTS) to 0.0\n" +
+                    "\tV2(NPOINTS) to 0.0" );
+            x.set(npts-1, 1.0);
+            yUpper.set(npts-1, 0.0);
+            yLower.set(npts-1, 0.0);
+        }
+
+        // Write the values to the table
+        for (int i = 0; i < npts; i++) {
+            jTable1.setValueAt(x.get(i), i, 0);
+            jTable1.setValueAt(yUpper.get(i), i, 1);
+            jTable1.setValueAt(yLower.get(i), i, 2);
+        }
+
+        jNPTS.setText(String.valueOf(npts));
+        DataServer.getInstance().getLink(prefix + "AIRFOIL").clear();
+    }//GEN-LAST:event_jImportAirfoilActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jALPHAI;
     private javax.swing.JTextField jARCC;
+    private javax.swing.JTextField jAirfoilName;
     private javax.swing.JTextField jCLAM0;
     private javax.swing.JTextField jCLI;
     private javax.swing.JTextField jCLMAXL;
     private javax.swing.JTextField jCM0;
     private javax.swing.JTextField jCM0T;
+    private javax.swing.JButton jClearTable;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JTextField jDELTAY;
-    private javax.swing.JPanel jDraw;
+    private javax.swing.JButton jImportAirfoil;
     private javax.swing.JTextField jKSHARP;
     private javax.swing.JTextField jLER0;
     private javax.swing.JTextField jLERI;
@@ -445,6 +746,9 @@ public class AirfoilView extends OAE_ViewComponent {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -453,12 +757,18 @@ public class AirfoilView extends OAE_ViewComponent {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jNPTS;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jT0VC;
     private javax.swing.JTextField jT0VC0;
     private javax.swing.JTextField jTCEFF;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jTitle;
     private javax.swing.JTextField jX0VC;
     private javax.swing.JTextField jX0VC0;
     // End of variables declaration//GEN-END:variables

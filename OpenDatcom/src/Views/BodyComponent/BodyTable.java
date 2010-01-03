@@ -3,13 +3,12 @@
  * and open the template in the editor.
  */
 
-package BODY_Component;
+package Views.BodyComponent;
 
 import Core.GlobalValue;
 import Core.OAE_Component;
 import java.util.Vector;
 import javax.swing.JTable;
-import javax.swing.text.View;
 import opendatcom.OpenDatcomController;
 
 /**

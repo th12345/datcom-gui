@@ -1,23 +1,19 @@
 package Services;
 
 import Core.OAE_LinkInterface;
-import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * Class that is really more of a set of like functions. The main purpose of the
- * class is parsing data from the user and making sure that input will not break
- * the program or the DATCOM. All inputs come through their respected function and
- * must eventually be run through the validate() method where applicable. Class is
- * a singleton. Call getInstance to create instead of constructor.
+ * Class containing various utility functions ranging from data-specific XML parxing
+ * to Datcom-specific field formatting and input validation. Statically implemented.
  * @author -B-
  */
 public class FormatUtility {
 
     static FormatUtility self;
-    int wrapNum;
+    static int wrapNum = 5;
     public static FormatUtility getInstance()
     {
         if(self == null)
@@ -29,7 +25,6 @@ public class FormatUtility {
 
     private FormatUtility()
     {
-        wrapNum = 4;
     }
 
   /**
@@ -84,17 +79,7 @@ public class FormatUtility {
      target.setText(String.valueOf(value));
      return value;
  }
-
- /**
-  * Processes a comment header, breaks into multiple lines if needed.
-  * @param target The target JTextArea
-  * @return The formatted header
-  */
- public String processHeader(JTextArea target)
- {
-     //TODO: Implement processHeader
-     return "";
- }
+ 
  /**
   * Takes the text from the target text field/Area, processes it for the correct
   * format, and then sets the text back to the corrected data. It also returns
@@ -133,90 +118,6 @@ public class FormatUtility {
      return temp;
  }
 
-/**
- * Function checks the input string for the decimal point required
- * by DATCOM, if it is missing it appends it to the end.
- * @param input The input string
- * @return The correctly formatted input string
- */
-public String validate(String input)
-{
-    String temp;
-    // Check for empty fields
-    if(input.isEmpty())
-    {
-        return "";
-    }
-
-    // Remove junk characters
-    input = input.replaceAll(" ", "");
-    input = input.replaceAll("\t", "");
-
-    // Check for comma delimited arrays
-    if(input.contains(","))
-    {
-        return processButtonTextArray(input);
-    }
-
-    // Not an array then check/add decimal
-    if(input.isEmpty())
-    {
-        return "";
-    }
-    else if(input.contains("."))
-    {
-        // Check for leading zeros
-        if(input.toCharArray()[0] == '.')
-        {
-            input = "0" + input;
-        }
-        temp = input;
-    }
-    else
-    {
-        temp = input + ".0";
-    }
-    return temp;
-}
-
-/**
- * Process arrays of strings. Adds the decimal if needed and
- * reassembles the data
- * @param input The input string
- * @return The input string checked and corrected for decimals
- */
-public String processButtonTextArray(String input)
-{
-    // Split the input into arrays based on the comma
-    String arrayHolder[] = input.split(",");
-    input = "";
-
-    // Iterate through and add decimals as necessary
-    for(int i = 0; i < arrayHolder.length; i++)
-    {
-        if(arrayHolder[i].isEmpty())
-        {
-            // Do... nothing
-        }
-        else if(!arrayHolder[i].contains("."))
-        {
-            arrayHolder[i] += ".0";
-        }
-        else
-        {
-            // Check for leading zeros
-            if(arrayHolder[i].toCharArray()[0] == '.')
-            {
-                arrayHolder[i] = "0" + arrayHolder[i];
-            }
-        }
-        // Rebuild the original input
-        input += ",\t" + arrayHolder[i];
-    }
-    // Get rid of the first comma, cause it just has to be done :)
-    input = input.replaceFirst(",\t", "");
-    return input;
-}
 
 /**
  * Removes all comment lines from a block of text.
@@ -438,6 +339,10 @@ public String removeComments(String input)
             {
                 temp += String.valueOf(data.get(i)) + ",";
             }
+            if((i % 3 == 2) &&(!temp.isEmpty()) && ((i + 1) < length))
+            {
+                temp += "\n  ";
+            }
         }
 
         if(!temp.isEmpty())
@@ -464,4 +369,89 @@ public String removeComments(String input)
         temp += "\n";
         return temp;
     }
+
+/**
+ * Function checks the input string for the decimal point required
+ * by DATCOM, if it is missing it appends it to the end.
+ * @param input The input string
+ * @return The correctly formatted input string
+ */
+public String validate(String input)
+{
+    String temp;
+    // Check for empty fields
+    if(input.isEmpty())
+    {
+        return "";
+    }
+
+    // Remove junk characters
+    input = input.replaceAll(" ", "");
+    input = input.replaceAll("\t", "");
+
+    // Check for comma delimited arrays
+    if(input.contains(","))
+    {
+        return processButtonTextArray(input);
+    }
+
+    // Not an array then check/add decimal
+    if(input.isEmpty())
+    {
+        return "";
+    }
+    else if(input.contains("."))
+    {
+        // Check for leading zeros
+        if(input.toCharArray()[0] == '.')
+        {
+            input = "0" + input;
+        }
+        temp = input;
+    }
+    else
+    {
+        temp = input + ".0";
+    }
+    return temp;
+}
+
+/**
+ * Process arrays of strings. Adds the decimal if needed and
+ * reassembles the data
+ * @param input The input string
+ * @return The input string checked and corrected for decimals
+ */
+public String processButtonTextArray(String input)
+{
+    // Split the input into arrays based on the comma
+    String arrayHolder[] = input.split(",");
+    input = "";
+
+    // Iterate through and add decimals as necessary
+    for(int i = 0; i < arrayHolder.length; i++)
+    {
+        if(arrayHolder[i].isEmpty())
+        {
+            // Do... nothing
+        }
+        else if(!arrayHolder[i].contains("."))
+        {
+            arrayHolder[i] += ".0";
+        }
+        else
+        {
+            // Check for leading zeros
+            if(arrayHolder[i].toCharArray()[0] == '.')
+            {
+                arrayHolder[i] = "0" + arrayHolder[i];
+            }
+        }
+        // Rebuild the original input
+        input += ",\t" + arrayHolder[i];
+    }
+    // Get rid of the first comma, cause it just has to be done :)
+    input = input.replaceFirst(",\t", "");
+    return input;
+}
 }

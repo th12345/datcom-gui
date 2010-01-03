@@ -59,7 +59,6 @@ public class OAE_LinkedTable extends OAE_DataLink
     public String datcomFormat(String offset)
     {
         String temp = fu.datcomFormat(offset + name + "(1)=", data, data.size());
-        temp = offset + "N" + name + "=" + data.size() + ".0,\n" + temp;
         return temp;
     }
     

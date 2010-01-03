@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package BODY_Component;
+package Views.BodyComponent;
 
 import javax.swing.JTable;
 

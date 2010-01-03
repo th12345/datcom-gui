@@ -1,4 +1,4 @@
-package BODY_Component;
+package Views.BodyComponent;
 
 
 import Core.OAE_DrawPane;
@@ -116,9 +116,8 @@ public class BodyView extends OAE_ViewComponent{
             }
         });
         jBodyTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jBodyTable.setCellSelectionEnabled(true);
         jBodyTable.setName("jBodyTable"); // NOI18N
-        jBodyTable.setRowSelectionAllowed(false);
-        jBodyTable.setUpdateSelectionOnSort(false);
         jScrollPane2.setViewportView(jBodyTable);
 
         jPanel1.setName("jPanel1"); // NOI18N
