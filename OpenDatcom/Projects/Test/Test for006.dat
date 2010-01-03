@@ -1,0 +1,76 @@
+ THIS SOFTWARE AND ANY ACCOMPANYING DOCUMENTATION
+ IS RELEASED "AS IS".  THE U.S. GOVERNMENT MAKES NO
+ WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, CONCERNING
+ THIS SOFTWARE AND ANY ACCOMPANYING DOCUMENTATION,
+ INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OF
+ MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+ IN NO EVENT WILL THE U.S. GOVERNMENT BE LIABLE FOR ANY
+ DAMAGES, INCLUDING LOST PROFITS, LOST SAVINGS OR OTHER
+ INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE 
+ USE, OR INABILITY TO USE, THIS SOFTWARE OR ANY
+ ACCOMPANYING DOCUMENTATION, EVEN IF INFORMED IN ADVANCE
+ OF THE POSSIBILITY OF SUCH DAMAGES.
+
+
+
+
+
+
+
+
+                                        ****************************************************
+                                        *    USAF STABILITY AND CONTROL  DIGITAL DATCOM    *
+                                        *    PROGRAM REV. JAN 96   DIRECT INQUIRIES TO:    *
+                                        *   WRIGHT LABORATORY  (WL/FIGC)  ATTN: W. BLAKE   *
+                                        *         WRIGHT PATTERSON AFB, OHIO  45433        *
+                                        *    PHONE (513) 255-6764,   FAX (513) 258-4054    *
+                                        ****************************************************
+1                         CONERR - INPUT ERROR CHECKING
+0 ERROR CODES - N* DENOTES THE NUMBER OF OCCURENCES OF EACH ERROR
+0 A - UNKNOWN VARIABLE NAME
+0 B - MISSING EQUAL SIGN FOLLOWING VARIABLE NAME
+0 C - NON-ARRAY VARIABLE HAS AN ARRAY ELEMENT DESIGNATION - (N)
+0 D - NON-ARRAY VARIABLE HAS MULTIPLE VALUES ASSIGNED
+0 E - ASSIGNED VALUES EXCEED ARRAY DIMENSION
+0 F - SYNTAX ERROR
+
+0******************************  INPUT DATA CARDS  ******************************
+
+ CASEID default                                                                  
+  $FLTCON                                                                        
+   NMACH=1.0,                                                                    
+   NALPHA=1.0,                                                                   
+   NALT=1.0,                                                                     
+   WT= 15000.0,                                                                  
+   LOOP= 1.0$                                                                    
+ DIM FT                                                                          
+ BUILD                                                                           
+ PLOT                                                                            
+ NEXT CASE                                                                       
+1          THE FOLLOWING IS A LIST OF ALL INPUT CARDS FOR THIS CASE.
+0
+ CASEID default                                                                  
+  $FLTCON                                                                        
+   NMACH=1.0,                                                                    
+   NALPHA=1.0,                                                                   
+   NALT=1.0,                                                                     
+   WT= 15000.0,                                                                  
+   LOOP= 1.0$                                                                    
+ DIM FT                                                                          
+ BUILD                                                                           
+ PLOT                                                                            
+ NEXT CASE                                                                       
+0ERROR-SYNTHESIS DATA MISSING-MISSING NAME*SYNTHS*
+0THIS CASE ABORTED FOR THE ABOVE REASON(S)
+ ALL NAMES REFER TO NAMELIST NAMES
+0 INPUT DIMENSIONS ARE IN FT, SCALE FACTOR IS 1.0000
+
+0*** ERROR *** NO SPEED REFERENCE IS INPUT MACH(1) = VINF(1) = UNUSED
+               THE NEXT CASE WILL BE ATTEMPTED
+
+0*** ERROR *** REYNOLDS NUMBER IS NOT INPUT AND ATMOSPHERIC DATA ARE NOT DEFINED (ALT(1) = PINF(1) = TINF(1) = UNUSED)
+               REYNOLDS NUMBER WILL BE SET TO 5*10**6
+
+1          THE FOLLOWING IS A LIST OF ALL INPUT CARDS FOR THIS CASE.
+0
+1 END OF JOB.
