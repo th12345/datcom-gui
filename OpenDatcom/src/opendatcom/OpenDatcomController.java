@@ -10,7 +10,6 @@ import Services.xmlFilter;
 import Views.BodyComponent.BodyView;
 import Core.DataServer;
 import Core.OAE_LinkInterface;
-import Project.ProjectWizard;
 import Views.FlightConditionsView;
 import Views.FlightSurfaceView;
 import Views.AirfoilView;
@@ -20,6 +19,8 @@ import Services.ImportExportService;
 import Services.ProjectService;
 import Services.FormatUtility;
 import Services.StreamService;
+import Views.Propulsion.Jet;
+import Views.Propulsion.Prop;
 import java.awt.GridLayout;
 import java.io.File;
 import java.util.Vector;
@@ -62,6 +63,8 @@ public class OpenDatcomController extends SingleFrameApplication{
     private AirfoilView             vtSchr;
     private AirfoilView             vfSchr;
     private CheckView               cView;
+    private Prop                    propView;
+    private Jet                     jetView;
 
 
     // Services
@@ -110,6 +113,8 @@ public class OpenDatcomController extends SingleFrameApplication{
         vtSchr      = new AirfoilView(AirfoilView.AIRFOIL_TYPE.VTSCHR);
         vfPlnf      = new FlightSurfaceView(FlightSurfaceView.SURFACE_TYPE.VFPLNF);
         vfSchr      = new AirfoilView(AirfoilView.AIRFOIL_TYPE.VFSCHR);
+        propView    = new Prop();
+        jetView     = new Jet();
         cView       = new CheckView();
 
         caseName = "";

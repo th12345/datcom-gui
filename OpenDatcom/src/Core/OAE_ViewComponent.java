@@ -25,6 +25,7 @@ public abstract class OAE_ViewComponent extends JPanel
         registerLinks();
     }
 
+    @Override
     public String getName(){ return name; }
 
     public abstract void registerLinks();

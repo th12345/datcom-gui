@@ -19,13 +19,16 @@ public class FortranFormat
 {
     HashMap<String, OAE_LinkInterface> mapRef;
     FormatUtility fu;
+    boolean usingProp;
+    
     public FortranFormat()
     {
-        mapRef = DataServer.getInstance().getMap();
+        mapRef = DataServer.getMap();
     }
 
     public String generateForFile()
     {
+        usingProp = false;
         String out = "CASEID TEST\n";
         out += generateFLTCON();
         out += generateSYNTHS();
@@ -33,6 +36,8 @@ public class FortranFormat
         out += generateBODY();
         out += generatePLNFS();
         out += generateSCHRS();
+        out += generatePROPWR();
+        out += generateJETPWR();
         out = out.replaceAll("\t", "");
         return out;
     }
@@ -272,5 +277,64 @@ public class FortranFormat
 
         }
         return out;
+    }
+
+    public String generatePROPWR()
+    {
+        String out = "";
+        String header = " $PROPWR \n";
+        String offset = "  ";
+        out += mapRef.get("AIETLP").datcomFormat(offset);
+        out += mapRef.get("NENGSP").datcomFormat(offset);
+        out += mapRef.get("THSTCP").datcomFormat(offset);
+        out += mapRef.get("PHALOC").datcomFormat(offset);
+        out += mapRef.get("PHVLOC").datcomFormat(offset);
+        out += mapRef.get("PRPRAD").datcomFormat(offset);
+        out += mapRef.get("ENGFCT").datcomFormat(offset);
+        out += mapRef.get("BWAPR3").datcomFormat(offset);
+        out += mapRef.get("BWAPR6").datcomFormat(offset);
+        out += mapRef.get("BWAPR9").datcomFormat(offset);
+        out += mapRef.get("NOPBPE").datcomFormat(offset);
+        out += mapRef.get("BAPR75").datcomFormat(offset);
+        out += mapRef.get("YP").datcomFormat(offset);
+
+        if(!out.isEmpty())
+        {
+            out = out.substring(0, out.length() - 2 );
+            out = header + out + "$\n";
+            usingProp = true;
+        }
+        return out;
+    }
+
+    public String generateJETPWR()
+    {
+        String out = "";
+        String header = " $JETPWR \n";
+        String offset = "  ";
+        out += mapRef.get("AIETLJ").datcomFormat(offset);
+        out += mapRef.get("NENGSJ").datcomFormat(offset);
+        out += mapRef.get("THSTCJ").datcomFormat(offset);
+        out += mapRef.get("JIALOC").datcomFormat(offset);
+        out += mapRef.get("JEVLOC").datcomFormat(offset);
+        out += mapRef.get("JEALOC").datcomFormat(offset);
+        out += mapRef.get("JINLTA").datcomFormat(offset);
+        out += mapRef.get("JEANGL").datcomFormat(offset);
+        out += mapRef.get("JEVELO").datcomFormat(offset);
+        out += mapRef.get("AMBTMP").datcomFormat(offset);
+        out += mapRef.get("JESTMP").datcomFormat(offset);
+        out += mapRef.get("JELLOC").datcomFormat(offset);
+        out += mapRef.get("JETOTP").datcomFormat(offset);
+        out += mapRef.get("AMBSTP").datcomFormat(offset);
+        out += mapRef.get("JERAD").datcomFormat(offset);
+
+        // Make sure a prop namelist hasnt been generated
+        if(!out.isEmpty() & (!usingProp))
+        {
+            out = out.substring(0, out.length() - 2 );
+            out = header + out + "$\n";
+            return out;
+        }
+        return "";
     }
 }
