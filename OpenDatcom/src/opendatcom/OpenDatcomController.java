@@ -9,6 +9,7 @@ import Core.OAE_ViewComponent;
 import Services.xmlFilter;
 import Views.BodyComponent.BodyView;
 import Core.DataServer;
+import Core.GlobalValue;
 import Core.OAE_LinkInterface;
 import Views.FlightConditionsView;
 import Views.FlightSurfaceView;
@@ -99,6 +100,9 @@ public class OpenDatcomController extends SingleFrameApplication{
         view.getFrame().setBounds(0, 0, 1200, 700);
         view.getFrame().setResizable(false);
         views = new Vector<OAE_ViewComponent>();
+
+        addLink(new GlobalValue<String>("PROJECT_NAME", "UNDEFINED", null));
+        addLink(new GlobalValue<String>("CASE_NAME", "UNDEFINED", null));
         
         // Initialize the panels. Note that the order matters here, the initialization
         // order determines the tab order

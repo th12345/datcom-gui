@@ -12,13 +12,17 @@
 package Views;
 
 import Core.DataServer;
+import Core.GlobalValue;
 import Core.OAE_DataLink;
 import Core.OAE_LinkedTable;
 import Core.OAE_ViewComponent;
+import Project.ProjectWizard;
+import Services.ExcelAdapter;
 import Services.ImportExportService;
 import Services.StreamService;
 import java.util.Vector;
 import javax.swing.JTextField;
+import opendatcom.OpenDatcomController;
 
 /**
  *
@@ -43,6 +47,7 @@ public class AirfoilView extends OAE_ViewComponent {
         this.type = type;
         this.name = type.toString();
         jTitle.setText(name + " Parameters");
+        ExcelAdapter ea = new ExcelAdapter(jTable1);
         initView(name);
     }
 
@@ -144,7 +149,6 @@ public class AirfoilView extends OAE_ViewComponent {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 907, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 887, Short.MAX_VALUE)
@@ -152,7 +156,6 @@ public class AirfoilView extends OAE_ViewComponent {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 74, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -515,6 +518,11 @@ public class AirfoilView extends OAE_ViewComponent {
 
         jClearTable.setText(resourceMap.getString("jClearTable.text")); // NOI18N
         jClearTable.setName("jClearTable"); // NOI18N
+        jClearTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jClearTableActionPerformed(evt);
+            }
+        });
 
         jImportAirfoil.setText(resourceMap.getString("jImportAirfoil.text")); // NOI18N
         jImportAirfoil.setName("jImportAirfoil"); // NOI18N
@@ -720,6 +728,12 @@ public class AirfoilView extends OAE_ViewComponent {
         jNPTS.setText(String.valueOf(npts));
         DataServer.getInstance().getLink(prefix + "AIRFOIL").clear();
     }//GEN-LAST:event_jImportAirfoilActionPerformed
+
+    private void jClearTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClearTableActionPerformed
+        // TODO add your handling code here:
+        ProjectWizard p = new ProjectWizard(OpenDatcomController.getInstance().getMainFrame(), true);
+        p.setVisible(true);
+    }//GEN-LAST:event_jClearTableActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

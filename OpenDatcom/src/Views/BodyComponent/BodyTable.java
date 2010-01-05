@@ -7,6 +7,7 @@ package Views.BodyComponent;
 
 import Core.GlobalValue;
 import Core.OAE_Component;
+import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.JTable;
 import opendatcom.OpenDatcomController;
@@ -57,7 +58,6 @@ public class BodyTable implements OAE_Component
     {
         table.clearSelection();
         Double [] temp;
-        clearTable();
         for (BodyTableEntry bodyTableEntry : entries) {
             bodyTableEntry.refresh();
             temp = bodyTableEntry.getData();
@@ -125,6 +125,11 @@ public class BodyTable implements OAE_Component
         p.clear();
         zl.clear();
         zu.clear();
+
+        for (Iterator<BodyTableEntry> it = entries.iterator(); it.hasNext();) {
+            it.next().clear();
+
+        }
     }
 
     public void registerLinks()

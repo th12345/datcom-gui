@@ -18,8 +18,9 @@ import java.util.List;
 public class FortranFormat
 {
     HashMap<String, OAE_LinkInterface> mapRef;
-    FormatUtility fu;
+    public FormatUtility fu;
     boolean usingProp;
+    boolean isJSBSimRun;
     
     public FortranFormat()
     {

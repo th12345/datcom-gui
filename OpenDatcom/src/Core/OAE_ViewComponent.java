@@ -23,6 +23,7 @@ public abstract class OAE_ViewComponent extends JPanel
         parent = OpenDatcomController.getInstance();
         parent.register(this);
         registerLinks();
+        parent.addLink(new GlobalValue<Boolean>(name, true, null));
     }
 
     @Override

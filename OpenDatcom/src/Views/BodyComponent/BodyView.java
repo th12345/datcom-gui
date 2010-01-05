@@ -1,8 +1,10 @@
 package Views.BodyComponent;
 
 
+import Core.GlobalValue;
 import Core.OAE_DrawPane;
 import Core.OAE_ViewComponent;
+import Services.ExcelAdapter;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -42,6 +44,7 @@ public class BodyView extends OAE_ViewComponent{
         initComponents();
         table = new BodyTable(this);
         initView("Body");
+        ExcelAdapter ea = new ExcelAdapter(jBodyTable);
     }
 
     public void registerLinks()
@@ -62,8 +65,6 @@ public class BodyView extends OAE_ViewComponent{
         jScrollPane2 = new javax.swing.JScrollPane();
         jBodyTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jInputMode = new javax.swing.JComboBox();
         jSetValues = new javax.swing.JButton();
         jBLA = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -73,7 +74,6 @@ public class BodyView extends OAE_ViewComponent{
         jLabel5 = new javax.swing.JLabel();
         jBNOSE = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jDraw = new OAE_DrawPane();
 
         jPanel9.setName("jPanel9"); // NOI18N
 
@@ -123,17 +123,6 @@ public class BodyView extends OAE_ViewComponent{
         jPanel1.setName("jPanel1"); // NOI18N
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(opendatcom.OpenDatcomController.class).getContext().getResourceMap(BodyView.class);
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
-        jLabel2.setName("jLabel2"); // NOI18N
-
-        jInputMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Radius", "Perimeter", "Surface Area", "PR", "SR", "SP", "Z Values" }));
-        jInputMode.setName("jInputMode"); // NOI18N
-        jInputMode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jInputModeActionPerformed(evt);
-            }
-        });
-
         jSetValues.setText(resourceMap.getString("jSetValues.text")); // NOI18N
         jSetValues.setName("jSetValues"); // NOI18N
         jSetValues.addActionListener(new java.awt.event.ActionListener() {
@@ -184,11 +173,7 @@ public class BodyView extends OAE_ViewComponent{
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jBLA, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jInputMode, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(264, 264, 264)
                 .addComponent(jSetValues, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -198,8 +183,6 @@ public class BodyView extends OAE_ViewComponent{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSetValues, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jInputMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
                     .addComponent(jBNOSE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jBTAIL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,41 +194,22 @@ public class BodyView extends OAE_ViewComponent{
                 .addContainerGap())
         );
 
-        jDraw.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jDraw.setName("jDraw"); // NOI18N
-
-        javax.swing.GroupLayout jDrawLayout = new javax.swing.GroupLayout(jDraw);
-        jDraw.setLayout(jDrawLayout);
-        jDrawLayout.setHorizontalGroup(
-            jDrawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
-        );
-        jDrawLayout.setVerticalGroup(
-            jDrawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 378, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 941, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addComponent(jDraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -270,12 +234,8 @@ public class BodyView extends OAE_ViewComponent{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSetValuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSetValuesActionPerformed
- 
+        table.clearTable();
 }//GEN-LAST:event_jSetValuesActionPerformed
-
-    private void jInputModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInputModeActionPerformed
-        
-    }//GEN-LAST:event_jInputModeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField jBLA;
@@ -283,9 +243,6 @@ public class BodyView extends OAE_ViewComponent{
     private javax.swing.JTextField jBNOSE;
     private javax.swing.JTextField jBTAIL;
     private javax.swing.JTable jBodyTable;
-    private javax.swing.JPanel jDraw;
-    private javax.swing.JComboBox jInputMode;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -299,80 +256,5 @@ public class BodyView extends OAE_ViewComponent{
 
     public JTable getjBodyTable() {
         return jBodyTable;
-    }
-
-    public String getOutputData() {
-        return outputData;
-    }
-
-    public void setOutputData(String outputData) {
-        this.outputData = outputData;
-    }
-
-    public void setjBodyTable(JTable jBodyTable) {
-        this.jBodyTable = jBodyTable;
-    }
-
-    /**
-     * Returns the currently selected data input mode.
-     * @return BodyController.INPUT_CHOICE 
-     */
-    public INPUT_CHOICE getInputMode()
-    {
-        switch(jInputMode.getSelectedIndex())
-        {
-            case 0:
-            {
-                return INPUT_CHOICE.USING_R;
-            }
-            case 1:
-            {
-                return INPUT_CHOICE.USING_P;
-            }
-            case 2:
-            {
-                return INPUT_CHOICE.USING_S;
-            }
-            case 3:
-            {
-                return INPUT_CHOICE.USING_PR;
-            }
-            case 4:
-            {
-                return INPUT_CHOICE.USING_SR;
-            }
-            case 5:
-            {
-                return INPUT_CHOICE.USING_SP;
-            }
-            case 6:
-            {
-                return INPUT_CHOICE.USING_Z;
-            }
-        }
-
-
-
-        return INPUT_CHOICE.USING_R;
-    }
-
-    public JTextField getjBLA() {
-        return jBLA;
-    }
-
-    public JTextField getjBLN() {
-        return jBLN;
-    }
-
-    public JTextField getjBNOSE() {
-        return jBNOSE;
-    }
-
-    public JTextField getjBTAIL() {
-        return jBTAIL;
-    }
-
-    public OAE_DrawPane getjDraw() {
-        return (OAE_DrawPane)jDraw;
     }
 }

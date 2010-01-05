@@ -89,12 +89,35 @@ public class GlobalValue <T> implements OAE_LinkInterface, OAE_Component{
         String header = offset + name + "=";
         return FormatUtility.getInstance().datcomFormat(header, value, value.size());
     }
-
+    
     public void writeBack() {
         if(view != null)
         {
             view.writeBack();
         }
+    }
+
+    /**
+     * Sets the first value.
+     * @param newValue
+     */
+    public void setFirst(T newValue)
+    {
+        value.clear();
+        value.add(newValue);
+    }
+
+    /**
+     * Gets the first value.
+     * @return The first object/value
+     */
+    public T getFirst()
+    {
+        if(value.size() >= 1)
+        {
+            return value.firstElement();
+        }
+        return null;
     }
 
     public void clear() {

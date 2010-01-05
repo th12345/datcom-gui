@@ -5,6 +5,8 @@
 
 package Services;
 
+import Core.DataServer;
+import Core.GlobalValue;
 import java.io.File;
 import java.io.IOException;
 
@@ -43,6 +45,8 @@ public class ProjectService
     public void startProject()
     {
         projectName = javax.swing.JOptionPane.showInputDialog("Project Name:");
+        ((GlobalValue<String>)DataServer.getLink("PROJECT_NAME")).setFirst(projectName);
+        ((GlobalValue<String>)DataServer.getLink("CASE_NAME")).setFirst(projectName);
         startProject(projectName);
     }
 

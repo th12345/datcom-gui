@@ -78,6 +78,23 @@ public class BodyTableEntry
         zu = (Double) tableGetCheckCast(zuIndex);
     }
 
+    public void clear()
+    {
+        x = null;
+        r = null;
+        s = null;
+        p = null;
+        zl = null;
+        zu = null;
+
+        masterTable.setValueAt(x, tablePosition, xIndex);
+        masterTable.setValueAt(x, tablePosition, rIndex);
+        masterTable.setValueAt(x, tablePosition, sIndex);
+        masterTable.setValueAt(x, tablePosition, pIndex);
+        masterTable.setValueAt(x, tablePosition, zuIndex);
+        masterTable.setValueAt(x, tablePosition, zlIndex);
+    }
+
     private Object tableGetCheckCast(int row)
     {
         Object temp = temp = masterTable.getValueAt(tablePosition, row);

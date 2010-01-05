@@ -10,6 +10,7 @@ import Core.OAE_ViewComponent;
 import Services.DatcomThread;
 import Services.FortranFormat;
 import Services.ImportExportService;
+import Services.JSBSimExporter;
 import Services.ProjectService;
 import java.io.File;
 

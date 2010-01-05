@@ -11,6 +11,7 @@
 
 package Views;
 
+import Core.GlobalValue;
 import Core.OAE_DataLink;
 import Core.OAE_ViewComponent;
 import Services.FortranFormat;

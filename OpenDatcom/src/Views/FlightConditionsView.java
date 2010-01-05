@@ -14,11 +14,7 @@ package Views;
 import Core.OAE_DataLink;
 import Core.OAE_LinkedTable;
 import Core.OAE_ViewComponent;
-import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import opendatcom.OpenDatcomController;
+import Services.ExcelAdapter;
 
 /**
  *
@@ -30,7 +26,8 @@ public class FlightConditionsView extends OAE_ViewComponent
     /** Creates new form FlightConditionsView */
     public FlightConditionsView() {
         initComponents();
-        initView("FCON");
+        ExcelAdapter ea = new ExcelAdapter(jTable);
+        initView("FLTCON");
     }
 
     public void registerLinks()
