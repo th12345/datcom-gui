@@ -58,7 +58,7 @@ public class GlobalValue <T> implements OAE_LinkInterface, OAE_Component{
         return name;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "unchecked"})
     public void load(String target)
     {
         String temp = FormatUtility.getInstance().xmlParse(name, target);
@@ -69,10 +69,17 @@ public class GlobalValue <T> implements OAE_LinkInterface, OAE_Component{
 
         String [] parsedData = temp.split(",");
 
-        for(int i = 0; i < parsedData.length; i++)
-        {
+        try {
+            for(int i = 0; i < parsedData.length; i++)
+            {
             value.add((T) Double.valueOf(parsedData[i]));
+            }
+        } catch (NumberFormatException e)
+        {
+            
         }
+
+
         // Refresh to write back to the view (if required)
         writeBack();
     }
