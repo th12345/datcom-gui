@@ -129,13 +129,13 @@
                           </Group>
                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScale" alignment="0" pref="245" max="32767" attributes="1"/>
-                              <Component id="jZCGText" alignment="1" pref="245" max="32767" attributes="1"/>
-                              <Component id="jXWText" alignment="1" pref="245" max="32767" attributes="1"/>
-                              <Component id="jZWText" alignment="1" pref="245" max="32767" attributes="1"/>
-                              <Component id="jALIWText" alignment="1" pref="245" max="32767" attributes="1"/>
-                              <Component id="jALIHText" alignment="1" pref="245" max="32767" attributes="1"/>
-                              <Component id="jXCGText" alignment="0" pref="245" max="32767" attributes="1"/>
+                              <Component id="jScale" alignment="0" pref="227" max="32767" attributes="1"/>
+                              <Component id="jZCGText" alignment="1" pref="227" max="32767" attributes="1"/>
+                              <Component id="jXWText" alignment="1" pref="227" max="32767" attributes="1"/>
+                              <Component id="jZWText" alignment="1" pref="227" max="32767" attributes="1"/>
+                              <Component id="jALIWText" alignment="1" pref="227" max="32767" attributes="1"/>
+                              <Component id="jALIHText" alignment="1" pref="227" max="32767" attributes="1"/>
+                              <Component id="jXCGText" alignment="0" pref="227" max="32767" attributes="1"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -179,7 +179,7 @@
                               <Component id="jScale" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel244" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="63" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -292,13 +292,13 @@
                           </Group>
                           <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jHINAX" pref="250" max="32767" attributes="1"/>
-                              <Component id="jZHText" alignment="1" pref="250" max="32767" attributes="1"/>
-                              <Component id="jXVFText" alignment="1" pref="250" max="32767" attributes="1"/>
-                              <Component id="jZVFText" alignment="1" pref="250" max="32767" attributes="1"/>
-                              <Component id="jXVText" alignment="1" pref="250" max="32767" attributes="1"/>
-                              <Component id="jZVText" alignment="1" pref="250" max="32767" attributes="1"/>
-                              <Component id="jXHText" alignment="0" pref="250" max="32767" attributes="1"/>
+                              <Component id="jHINAX" pref="232" max="32767" attributes="1"/>
+                              <Component id="jZHText" alignment="1" pref="232" max="32767" attributes="1"/>
+                              <Component id="jXVFText" alignment="1" pref="232" max="32767" attributes="1"/>
+                              <Component id="jZVFText" alignment="1" pref="232" max="32767" attributes="1"/>
+                              <Component id="jXVText" alignment="1" pref="232" max="32767" attributes="1"/>
+                              <Component id="jZVText" alignment="1" pref="232" max="32767" attributes="1"/>
+                              <Component id="jXHText" alignment="0" pref="232" max="32767" attributes="1"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -342,7 +342,7 @@
                               <Component id="jHINAX" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel245" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="63" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -444,7 +444,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="760" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="752" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -466,7 +466,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel240" pref="760" max="32767" attributes="0"/>
+                  <Component id="jLabel240" pref="752" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
