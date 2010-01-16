@@ -52,7 +52,7 @@
                   </Group>
                   <Component id="jPanel13" min="-2" max="-2" attributes="2"/>
               </Group>
-              <EmptySpace pref="111" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,7 +75,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="398" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="365" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -148,7 +148,7 @@
                       <Component id="jLabel238" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel231" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="51" max="32767" attributes="0"/>
+                  <EmptySpace pref="66" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLoop" alignment="0" max="32767" attributes="1"/>
                       <Component id="jWeight" alignment="1" max="32767" attributes="1"/>
@@ -318,7 +318,7 @@
                       <Component id="jRoughness" alignment="1" max="32767" attributes="1"/>
                       <Component id="jSref" alignment="1" max="32767" attributes="1"/>
                       <Component id="jCbarr" alignment="1" max="32767" attributes="1"/>
-                      <Component id="jBlref" alignment="1" min="-2" pref="213" max="-2" attributes="1"/>
+                      <Component id="jBlref" alignment="1" max="32767" attributes="1"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -436,7 +436,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTitle" pref="760" max="32767" attributes="0"/>
+                  <Component id="jTitle" pref="752" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
