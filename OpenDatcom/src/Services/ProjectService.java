@@ -57,9 +57,9 @@ public class ProjectService
                 return;
             }
             projectName = text;
-            projectPath = System.getProperty("user.dir") + "\\Projects\\" + projectName;
+            projectPath = System.getProperty("user.dir") + "/Projects/" + projectName;
             StreamService.print("Path: " + projectPath);
-            projectFile = new File(projectPath + "\\" + projectName + ".od");
+            projectFile = new File(projectPath + "/" + projectName + ".od");
             new File(projectPath).mkdirs();
             projectFile.createNewFile();
             StreamService.print("Project File:" + projectFile.getName());

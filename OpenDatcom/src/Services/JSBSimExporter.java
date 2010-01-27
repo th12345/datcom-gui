@@ -94,7 +94,7 @@ public class JSBSimExporter extends FortranFormat
                     DatcomThread t = new DatcomThread();
                     t.start();
                     t.join();
-                    moveForFiles(outputDir.getAbsolutePath() + "\\" + alt + "\\" + mach);
+                    moveForFiles(outputDir.getAbsolutePath() + "/" + alt + "/" + mach);
 
                 } catch (InterruptedException ex) {
                     StreamService.print("JSBSim Failed");
@@ -124,12 +124,12 @@ public class JSBSimExporter extends FortranFormat
             if(i < 10)
             {
                 moveForSource = new File("for00" + i + ".dat");
-                moveForDest = new File(dest + "\\for00" + i +".dat");
+                moveForDest = new File(dest + "/for00" + i +".dat");
             }
             else
             {
                 moveForSource = new File("for0" + i + ".dat");
-                moveForDest = new File(dest + "\\for0" + i +".dat");
+                moveForDest = new File(dest + "/for0" + i +".dat");
             }
 
             // Delete old files so the move can be executed
@@ -157,7 +157,7 @@ public class JSBSimExporter extends FortranFormat
     {
         String regexHeader = "0 ALPHA     ";
         String regexFooter = "0                                    ALPHA     ";
-        String datcomPath = System.getProperty("user.dir") + "\\Bin\\Datcom\\datcom.exe";
+        String datcomPath = System.getProperty("user.dir") + "/Bin/Datcom/datcom.exe";
         try {
             Vector<Double> CD = new Vector<Double>();
             Vector<Double> CL = new Vector<Double>();
@@ -247,7 +247,7 @@ public class JSBSimExporter extends FortranFormat
     private void writeVector(Vector<Double> in, Vector<Double> alpha,
             String Path, String fileName) throws IOException
     {
-        String output = Path + "\\" + fileName;
+        String output = Path + "/" + fileName;
         File dest = new File(output);
         output = "<tableData breakPoint=\"" + alt + "\">\n";
         dest.createNewFile();
