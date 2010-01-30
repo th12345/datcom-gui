@@ -83,7 +83,8 @@ public class OpenDatcomController extends SingleFrameApplication{
         // Init the file chooser
         fc = new JFileChooser();
         fc.setFileFilter(new xmlFilter());
-        fc.setCurrentDirectory(new java.io.File(".\\Projects"));
+        String currentDirectory = "." + File.separator + "Projects";
+        fc.setCurrentDirectory(new java.io.File(currentDirectory));
     }
 
     private void initServices()
@@ -262,9 +263,9 @@ public class OpenDatcomController extends SingleFrameApplication{
      */
     private void makeDirs()
     {
-        File tempF = new File(System.getProperty("user.dir") + "\\Saves");
+        File tempF = new File(System.getProperty("user.dir"), "Saves");
         tempF.mkdirs();
-        tempF = new File(System.getProperty("user.dir") + "\\Projects");
+        tempF = new File(System.getProperty("user.dir"), "Projects");
         tempF.mkdirs();
     }
 

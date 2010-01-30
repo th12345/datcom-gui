@@ -9,8 +9,6 @@ import Services.ImportExportService;
 import Services.ProjectService;
 import Services.StreamService;
 import java.io.File;
-import java.util.LinkedList;
-import javax.swing.JApplet;
 import javax.swing.JPanel;
 
 /**

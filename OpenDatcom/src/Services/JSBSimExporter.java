@@ -67,8 +67,9 @@ public class JSBSimExporter extends FortranFormat
     @SuppressWarnings("unchecked")
     public void generate()
     {
-        File datFile = new File(OpenDatcomController.getInstance().getWorkingDirectory().getAbsolutePath() +"\\for005.dat");
-        File outputDir = new File(OpenDatcomController.getInstance().getWorkingDirectory().getAbsolutePath() +"\\JSBSim\\");
+        String absolutePath = OpenDatcomController.getInstance().getWorkingDirectory().getAbsolutePath();
+        File datFile = new File(absolutePath, "for005.dat");
+        File outputDir = new File(absolutePath, "JSBSim");
         String outputHeader = "Output_";
         alt = 0;
         mach = 0;
@@ -94,7 +95,15 @@ public class JSBSimExporter extends FortranFormat
                     DatcomThread t = new DatcomThread();
                     t.start();
                     t.join();
-                    moveForFiles(outputDir.getAbsolutePath() + "/" + alt + "/" + mach);
+                    
+                    StringBuilder movePath = new StringBuilder();
+                    movePath.append(outputDir.getAbsolutePath())
+                            .append(File.separator)
+                            .append(alt)
+                            .append(File.separator)
+                            .append(mach);
+                    
+                    moveForFiles(movePath.toString());
 
                 } catch (InterruptedException ex) {
                     StreamService.print("JSBSim Failed");
