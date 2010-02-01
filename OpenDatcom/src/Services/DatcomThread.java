@@ -52,8 +52,11 @@ public class DatcomThread extends Thread{
         Process p = null;
         try {
             String path = System.getProperty("user.dir") + "/Bin/Datcom/datcom";
+
+            File f = new File(path);
+
             // Execute the datcom and wait until it returns
-            p = new ProcessBuilder(path).start();
+            p = new ProcessBuilder(path, "datcom").start();
             p.waitFor();
         } catch (InterruptedException ex) {
             byte [] out = new byte[256];
@@ -87,12 +90,12 @@ public class DatcomThread extends Thread{
             if(i < 10)
             {
                 moveForSource = new File("for00" + i + ".dat");
-                moveForDest = new File(ps.getProjectPath() + "/"+ ps.getProjectName() + "_out" + i +".txt");
+                moveForDest = new File(ps.getProjectPath(), ps.getProjectName() + "_out" + i +".txt");
             }
             else
             {
                 moveForSource = new File("for0" + i + ".dat");
-                moveForDest = new File(ps.getProjectPath() + "/"+ ps.getProjectName() + "_out" + i +".txt");
+                moveForDest = new File(ps.getProjectPath(), ps.getProjectName() + "_out" + i +".txt");
             }
 
             // Delete old files so the move can be executed
