@@ -229,8 +229,7 @@ public class dd2jsbOp extends javax.swing.JPanel {
             String fname = path.substring(i1 + 1, i2);
             String CaseDir = workingPath + "\\" + caseID + "\\" + fname + "\\" + CaseIDtext;
             jTextArea1.append("Creating Files in : " + CaseDir + ":" + newline);
-            String mkDir = "cmd /c mkdir " + CaseDir;
-            execCmd.executeCmd(mkDir);
+            boolean status = new File(CaseDir).mkdirs();
             double[] fMACH = new double[NMACH];
             double[] fALT = new double[NALT];
 
@@ -304,7 +303,6 @@ public class dd2jsbOp extends javax.swing.JPanel {
             for (i = 0; i < NALT; i++) {
                 for (j = 0; j < NMACH; j++) {
                     if (lmachaltend[i][j] > lmachaltstart[i][j]) {
-                        execCmd.executeCmd(mkDir);
                         jTextArea1.append("Processing Mach  :" + MACH[j] + "  Alt  :" + ALT[i] + newline);
                         String aString = Integer.toString(lmachaltstart[i][j]);
                         String bString = Integer.toString(lmachaltend[i][j]);
