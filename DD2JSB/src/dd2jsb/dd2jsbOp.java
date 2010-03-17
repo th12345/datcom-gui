@@ -113,7 +113,7 @@ public class dd2jsbOp extends javax.swing.JPanel {
                 countARRAYnumbersINfield++;
             }
         }
-         String[] ARRAY = new String[countARRAYnumbersINfield];
+        String[] ARRAY = new String[countARRAYnumbersINfield];
 
         for (int k = 0; k < tempFieldArray.length; k++) {
             if (tempFieldArray[k] == ',') {
@@ -144,6 +144,12 @@ public class dd2jsbOp extends javax.swing.JPanel {
         String printALT;
         double fMACHdata = 0.0;
         double fALTdata = 0.0;
+        float FMACH = 0;
+        int NMACH = 0;
+        float FALT = 0;
+        int NALT = 0;
+        float FALPHA = 0;
+        int NALPHA = 0;
         String s = null;
         String CaseIDtext = null;
         aero = null;
@@ -159,49 +165,54 @@ public class dd2jsbOp extends javax.swing.JPanel {
 
 // Now process each case in turn.
 // (Note: "Case 0" is a copy of the Datcom input data for all cases
+
 //Start at "Case 1" which is where the output data starts.
         for (k = 1; k < NCases; k++) {
             lines = Case[k].split("\n");
             Nlines = lines.length;
 
-            //look for NMACH in Case
+            //look for NMACH in Case and update if found
             linePosition = Case[k].lastIndexOf("NMACH");
-            linePosition = Case[k].indexOf("=", linePosition);
-            lineEnd = Case[k].indexOf(",", linePosition);
-            line = Case[k].substring(linePosition + 1, lineEnd);
-            float FMACH = Float.parseFloat(line);
-            int NMACH = (int) FMACH;
-            //look for MACH(1) in Case
-            linePosition = Case[k].indexOf("MACH(1)", lineEnd);
-            linePosition = Case[k].indexOf("=", linePosition);
-            line = Case[k].substring(linePosition + 1, linePosition + 200);
-            line = line.replaceAll("\\$", ",");
-            line = line.replaceAll("[^a-zA-Z0-9.,]", "");
-            MACH = line.split("[,\n]");
-
-            //look for NALT in Case
+            if (linePosition > -1) {
+                linePosition = Case[k].indexOf("=", linePosition);
+                lineEnd = Case[k].indexOf(",", linePosition);
+                line = Case[k].substring(linePosition + 1, lineEnd);
+                FMACH = Float.parseFloat(line);
+                NMACH = (int) FMACH;
+                //look for MACH(1) in Case
+                linePosition = Case[k].indexOf("MACH(1)", lineEnd);
+                linePosition = Case[k].indexOf("=", linePosition);
+                line = Case[k].substring(linePosition + 1, linePosition + 200);
+                line = line.replaceAll("\\$", ",");
+                line = line.replaceAll("[^a-zA-Z0-9.,]", "");
+                MACH = line.split("[,\n]");
+            }
+            //look for NALT in Case and update if found
             linePosition = Case[k].lastIndexOf("NALT");
-            linePosition = Case[k].indexOf("=", linePosition);
-            lineEnd = Case[k].indexOf(",", linePosition);
-            line = Case[k].substring(linePosition + 1, lineEnd);
-            float FALT = Float.parseFloat(line);
-            int NALT = (int) FALT;
-            //look for ALT(1) in Case
-            linePosition = Case[k].indexOf("ALT(1)", lineEnd);
-            linePosition = Case[k].indexOf("=", linePosition);
-            line = Case[k].substring(linePosition + 1, linePosition + 200);
-            line = line.replaceAll("\\$", ",");
-            line = line.replaceAll("[^a-zA-Z0-9.,]", "");
-            ALT = line.split("[,\n]");
+            if (linePosition > -1) {
+                linePosition = Case[k].indexOf("=", linePosition);
+                lineEnd = Case[k].indexOf(",", linePosition);
+                line = Case[k].substring(linePosition + 1, lineEnd);
+                FALT = Float.parseFloat(line);
+                NALT = (int) FALT;
+                //look for ALT(1) in Case
+                linePosition = Case[k].indexOf("ALT(1)", lineEnd);
+                linePosition = Case[k].indexOf("=", linePosition);
+                line = Case[k].substring(linePosition + 1, linePosition + 200);
+                line = line.replaceAll("\\$", ",");
+                line = line.replaceAll("[^a-zA-Z0-9.,]", "");
+                ALT = line.split("[,\n]");
+            }
 
-            //look for NALPHA in Case
+            //look for NALPHA in Case and update if found
             linePosition = Case[k].lastIndexOf("NALPHA");
-            linePosition = Case[k].indexOf("=", linePosition);
-            lineEnd = Case[k].indexOf(",", linePosition);
-            line = Case[k].substring(linePosition + 1, lineEnd);
-            float FALPHA = Float.parseFloat(line);
-            int NALPHA = (int) FALPHA;
-
+            if (linePosition > -1) {
+                linePosition = Case[k].indexOf("=", linePosition);
+                lineEnd = Case[k].indexOf(",", linePosition);
+                line = Case[k].substring(linePosition + 1, lineEnd);
+                FALPHA = Float.parseFloat(line);
+                NALPHA = (int) FALPHA;
+            }
             iline = 0;
             // look for CASEID .
             CaseIDtext = "";
