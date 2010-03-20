@@ -605,15 +605,15 @@ public class dd2jsbAeroData {
             int nALPHA = alphaTab.length;
             print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
             print = print + Path + "\\" + filename + "-->\r\n\r\n";
-            print = print + "<table name=   \"" + varname + "\">\r\n";
+            print = print + "<table name =  \"" + varname + "\">\r\n";
             if (nALPHA > 1) {
-                print = print + "<independantVar lookup = \"row\"> aero/alpha-deg </independantVar>\r\n";
+                print = print + "<independentVar lookup = \"row\"> aero/alpha-deg </independentVar>\r\n";
             }
             if (nMACH > 1) {
-                print = print + "<independantVar lookup = \"column\"> aero/mach </independantVar>\r\n";
+                print = print + "<independentVar lookup = \"column\"> aero/mach </independentVar>\r\n";
             }
             if (nALT > 1) {
-                print = print + "<independantVar lookup = \"table\"> aero/alt </independantVar>\r\n";
+                print = print + "<independentVar lookup = \"table\"> aero/alt </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
                 print = print + "<tabledata breakpoint = " + ALT[iALT] + ">\r\n";
@@ -644,12 +644,12 @@ public class dd2jsbAeroData {
             String print = "";
             print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
             print = print + "\r\n" + Path + "\\" + filename + "-->\r\n\r\n";
-            print = print + "<table name=   \"" + varname + "\">\r\n";
+            print = print + "<table name =  \"" + varname + "\">\r\n";
             if (nMACH > 1) {
-                print = print + "<independantVar lookup = \"row\"> aero/mach</independantVar>\r\n";
+                print = print + "<independentVar lookup = \"row\"> aero/mach</independentVar>\r\n";
             }
             if (nALT > 1) {
-                print = print + "<independantVar lookup = \"column\"> aero/alt</independantVar>\r\n";
+                print = print + "<independentVar lookup = \"column\"> aero/alt</independentVar>\r\n";
             }
             for (int iA = 0; iA < nALT; iA++) {
                 print = print + "\t" + ALT[iA];
@@ -678,15 +678,15 @@ public class dd2jsbAeroData {
             print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
             print = print + "\r\n" + Path + "\\" + filename + "-->\r\n\r\n";
             int nDelta = DeltaTab.length;
-            print = print + "<table name=   \"" + varname + "\">\r\n";
+            print = print + "<table name = \"" + varname + "\">\r\n";
             if (nDelta > 1) {
-                print = print + "<independantVar lookup = \"row\"> aero/deltacontrol </independantVar>\r\n";
+                print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
             }
             if (nMACH > 1) {
-                print = print + "<independantVar lookup = \"column\"> aero/mach </independantVar>\r\n";
+                print = print + "<independentVar lookup = \"column\"> aero/mach </independentVar>\r\n";
             }
             if (nALT > 1) {
-                print = print + "<independantVar lookup = \"table\"> aero/alt </independantVar>\r\n";
+                print = print + "<independentVar lookup = \"table\"> aero/alt </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
                 print = print + "<tabledata breakpoint = " + ALT[iALT] + ">\r\n";
@@ -718,15 +718,15 @@ public class dd2jsbAeroData {
             print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
             print = print + Path + "\\" + filename + "-->\r\n\r\n";
             int nDelta = DeltaLTab.length;
-            print = print + "<table name=   \"" + varname + "\">\r\n";
+            print = print + "<table name =  \"" + varname + "\">\r\n";
             if (nDelta > 1) {
-                print = print + "<independantVar lookup = \"row\"> aero/deltacontrol </independantVar>\r\n";
+                print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
             }
             if (nMACH > 1) {
-                print = print + "<independantVar lookup = \"column\"> aero/mach </independantVar>\r\n";
+                print = print + "<independentVar lookup = \"column\"> aero/mach </independentVar>\r\n";
             }
             if (nALT > 1) {
-                print = print + "<independantVar lookup = \"table\"> aero/alt </independantVar>\r\n";
+                print = print + "<independentVar lookup = \"table\"> aero/alt </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
                 print = print + "<tabledata breakpoint = " + ALT[iALT] + ">\r\n";
@@ -762,15 +762,15 @@ public class dd2jsbAeroData {
                 String filenameAlt = filename.substring(0, lfname - 4) + ALT[iALT] + ".txt";
                 print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
                 print = print + Path + "\\" + filenameAlt + "-->\r\n\r\n";
-                print = print + "<table name=   \"" + varname + "\">\r\n";
+                print = print + "<table name =  \"" + varname + "\">\r\n";
                 if (nDelta > 1) {
-                    print = print + "<independantVar lookup = \"row\"> aero/deltacontrol </independantVar>\r\n";
+                    print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
                 }
                 if (nALPHA > 1) {
-                    print = print + "<independantVar lookup = \"column\"> aero/alpha-deg </independantVar>\r\n";
+                    print = print + "<independentVar lookup = \"column\"> aero/alpha-deg </independentVar>\r\n";
                 }
                 if (nMACH > 1) {
-                    print = print + "<independantVar lookup = \"table\"> aero/mach </independantVar>\r\n";
+                    print = print + "<independentVar lookup = \"table\"> aero/mach </independentVar>\r\n";
                 }
                 for (int iMACH = 0; iMACH < nMACH; iMACH++) {
                     print = print + "<tabledata breakpoint = " + MACH[iMACH] + ">\r\n";
@@ -808,15 +808,15 @@ public class dd2jsbAeroData {
                 String filenameAlt = filename.substring(0, lfname - 4) + ALT[iALT] + ".txt";
                 print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
                 print = print + Path + "\\" + filenameAlt + "-->\r\n\r\n";
-                print = print + "<table name=   \"" + varname + "\">\r\n";
+                print = print + "<table name =  \"" + varname + "\">\r\n";
                 if (nDelta > 1) {
-                    print = print + "<independantVar lookup = \"row\"> aero/deltacontrol </independantVar>\r\n";
+                    print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
                 }
                 if (nALPHA > 1) {
-                    print = print + "<independantVar lookup = \"column\"> aero/alpha-deg </independantVar>\r\n";
+                    print = print + "<independentVar lookup = \"column\"> aero/alpha-deg </independentVar>\r\n";
                 }
                 if (nMACH > 1) {
-                    print = print + "<independantVar lookup = \"table\"> aero/mach </independantVar>\r\n";
+                    print = print + "<independentVar lookup = \"table\"> aero/mach </independentVar>\r\n";
                 }
                 for (int iMACH = 0; iMACH < nMACH; iMACH++) {
                     print = print + "<tabledata breakpoint = " + MACH[iMACH] + ">\r\n";
