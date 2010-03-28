@@ -616,7 +616,7 @@ public class dd2jsbAeroData {
                 print = print + "<independentVar lookup = \"table\"> ic/h-sl-ft </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
-                print = print + "<tabledata breakpoint = " + ALT[iALT] + ">\r\n";
+                print = print + "<tableData breakpoint = " + ALT[iALT] + ">\r\n";
                 print = print + "\t";
                 for (int iM = 0; iM < nMACH; iM++) {
                     print = print + "\t" + MACH[iM];
@@ -629,7 +629,7 @@ public class dd2jsbAeroData {
                     }
                     print = print + "\r\n";
                 }
-                print = print + "</tabledata>\r\n";
+                print = print + "</tableData>\r\n";
             }
             print = print + "</table>\r\n";
             print = print + "<!-- ******************************* -->";
@@ -689,7 +689,7 @@ public class dd2jsbAeroData {
                 print = print + "<independentVar lookup = \"table\"> ic/h-sl-ft </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
-                print = print + "<tabledata breakpoint = " + ALT[iALT] + ">\r\n";
+                print = print + "<tableData breakpoint = " + ALT[iALT] + ">\r\n";
                 print = print + "\t";
                 for (int iM = 0; iM < nMACH; iM++) {
                     print = print + "\t" + MACH[iM];
@@ -702,7 +702,7 @@ public class dd2jsbAeroData {
                     }
                     print = print + "\r\n";
                 }
-                print = print + "</tabledata>\r\n";
+                print = print + "</tableData>\r\n";
             }
             print = print + "</table>\r\n";
             print = print + "<!-- ******************************* -->";
@@ -729,7 +729,7 @@ public class dd2jsbAeroData {
                 print = print + "<independentVar lookup = \"table\"> ic/h-sl-ft </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
-                print = print + "<tabledata breakpoint = " + ALT[iALT] + ">\r\n";
+                print = print + "<tableData breakpoint = " + ALT[iALT] + ">\r\n";
                 print = print + "\t";
                 for (int iM = 0; iM < nMACH; iM++) {
                     print = print + "\t" + MACH[iM];
@@ -742,7 +742,7 @@ public class dd2jsbAeroData {
                     }
                     print = print + "\r\n";
                 }
-                print = print + "</tabledata>\r\n";
+                print = print + "</tableData>\r\n";
             }
             print = print + "</table>\r\n";
             print = print + "<!-- ******************************* -->";
@@ -773,7 +773,7 @@ public class dd2jsbAeroData {
                     print = print + "<independentVar lookup = \"table\"> velocities/mach </independentVar>\r\n";
                 }
                 for (int iMACH = 0; iMACH < nMACH; iMACH++) {
-                    print = print + "<tabledata breakpoint = " + MACH[iMACH] + ">\r\n";
+                    print = print + "<tableData breakpoint = " + MACH[iMACH] + ">\r\n";
                     print = print + "\t";
                     for (int iA = 0; iA < nALPHA; iA++) {
                         print = print + "\t" + alphaTab[iA];
@@ -786,7 +786,7 @@ public class dd2jsbAeroData {
                         }
                         print = print + "\r\n";
                     }
-                    print = print + "</tabledata>\r\n";
+                    print = print + "</tableData>\r\n";
                 }
                 print = print + "</table>\r\n";
                 print = print + "<!-- ******************************* -->";
@@ -819,7 +819,7 @@ public class dd2jsbAeroData {
                     print = print + "<independentVar lookup = \"table\"> velocities/mach </independentVar>\r\n";
                 }
                 for (int iMACH = 0; iMACH < nMACH; iMACH++) {
-                    print = print + "<tabledata breakpoint = " + MACH[iMACH] + ">\r\n";
+                    print = print + "<tableData breakpoint = " + MACH[iMACH] + ">\r\n";
                     print = print + "\t";
                     for (int iA = 0; iA < nALPHA; iA++) {
                         print = print + "\t" + alphaTab[iA];
@@ -832,7 +832,7 @@ public class dd2jsbAeroData {
                         }
                         print = print + "\r\n";
                     }
-                    print = print + "</tabledata>\r\n";
+                    print = print + "</tableData>\r\n";
                 }
                 print = print + "</table>\r\n";
                 print = print + "<!-- ******************************* -->";
