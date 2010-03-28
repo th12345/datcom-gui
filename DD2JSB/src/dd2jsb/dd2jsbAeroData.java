@@ -610,10 +610,10 @@ public class dd2jsbAeroData {
                 print = print + "<independentVar lookup = \"row\"> aero/alpha-deg </independentVar>\r\n";
             }
             if (nMACH > 1) {
-                print = print + "<independentVar lookup = \"column\"> aero/mach </independentVar>\r\n";
+                print = print + "<independentVar lookup = \"column\"> velocities/mach </independentVar>\r\n";
             }
             if (nALT > 1) {
-                print = print + "<independentVar lookup = \"table\"> aero/alt </independentVar>\r\n";
+                print = print + "<independentVar lookup = \"table\"> ic/h-sl-ft </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
                 print = print + "<tabledata breakpoint = " + ALT[iALT] + ">\r\n";
@@ -646,10 +646,10 @@ public class dd2jsbAeroData {
             print = print + "\r\n" + Path + "\\" + filename + "-->\r\n\r\n";
             print = print + "<table name =  \"" + varname + "\">\r\n";
             if (nMACH > 1) {
-                print = print + "<independentVar lookup = \"row\"> aero/mach</independentVar>\r\n";
+                print = print + "<independentVar lookup = \"row\"> velocities/mach</independentVar>\r\n";
             }
             if (nALT > 1) {
-                print = print + "<independentVar lookup = \"column\"> aero/alt</independentVar>\r\n";
+                print = print + "<independentVar lookup = \"column\"> ic/h-sl-ft</independentVar>\r\n";
             }
             for (int iA = 0; iA < nALT; iA++) {
                 print = print + "\t" + ALT[iA];
@@ -683,10 +683,10 @@ public class dd2jsbAeroData {
                 print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
             }
             if (nMACH > 1) {
-                print = print + "<independentVar lookup = \"column\"> aero/mach </independentVar>\r\n";
+                print = print + "<independentVar lookup = \"column\"> velocities/mach </independentVar>\r\n";
             }
             if (nALT > 1) {
-                print = print + "<independentVar lookup = \"table\"> aero/alt </independentVar>\r\n";
+                print = print + "<independentVar lookup = \"table\"> ic/h-sl-ft </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
                 print = print + "<tabledata breakpoint = " + ALT[iALT] + ">\r\n";
@@ -723,10 +723,10 @@ public class dd2jsbAeroData {
                 print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
             }
             if (nMACH > 1) {
-                print = print + "<independentVar lookup = \"column\"> aero/mach </independentVar>\r\n";
+                print = print + "<independentVar lookup = \"column\"> velocities/mach </independentVar>\r\n";
             }
             if (nALT > 1) {
-                print = print + "<independentVar lookup = \"table\"> aero/alt </independentVar>\r\n";
+                print = print + "<independentVar lookup = \"table\"> ic/h-sl-ft </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
                 print = print + "<tabledata breakpoint = " + ALT[iALT] + ">\r\n";
@@ -770,7 +770,7 @@ public class dd2jsbAeroData {
                     print = print + "<independentVar lookup = \"column\"> aero/alpha-deg </independentVar>\r\n";
                 }
                 if (nMACH > 1) {
-                    print = print + "<independentVar lookup = \"table\"> aero/mach </independentVar>\r\n";
+                    print = print + "<independentVar lookup = \"table\"> velocities/mach </independentVar>\r\n";
                 }
                 for (int iMACH = 0; iMACH < nMACH; iMACH++) {
                     print = print + "<tabledata breakpoint = " + MACH[iMACH] + ">\r\n";
@@ -816,7 +816,7 @@ public class dd2jsbAeroData {
                     print = print + "<independentVar lookup = \"column\"> aero/alpha-deg </independentVar>\r\n";
                 }
                 if (nMACH > 1) {
-                    print = print + "<independentVar lookup = \"table\"> aero/mach </independentVar>\r\n";
+                    print = print + "<independentVar lookup = \"table\"> velocities/mach </independentVar>\r\n";
                 }
                 for (int iMACH = 0; iMACH < nMACH; iMACH++) {
                     print = print + "<tabledata breakpoint = " + MACH[iMACH] + ">\r\n";
