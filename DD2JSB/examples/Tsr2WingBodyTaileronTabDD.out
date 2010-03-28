@@ -182,8 +182,7 @@
    CHRDFI=1.67,  CHRDFO=1.67,                                                    
    SPANFI=4.0,  SPANFO=5.2,                                                      
    NTYPE=1.0$                                                                    
-                                                                                    ** ERROR ** NO NAMELIST NAME FOLLOWING $ 
- CASEID TOTAL AIRCRAFT                                                           
+ CASEID TSR2 TAILERON FLAP PITCH                                                 
 1          THE FOLLOWING IS A LIST OF ALL INPUT CARDS FOR THIS CASE.
 0
  DIM FT                                                                          
@@ -332,8 +331,7 @@
    CHRDFI=1.67,  CHRDFO=1.67,                                                    
    SPANFI=4.0,  SPANFO=5.2,                                                      
    NTYPE=1.0$                                                                    
-                                                                                 
- CASEID TOTAL AIRCRAFT                                                           
+ CASEID TSR2 TAILERON FLAP PITCH                                                 
 0 INPUT DIMENSIONS ARE IN FT, SCALE FACTOR IS 1.0000
 
 1                             AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM   
@@ -560,7 +558,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                     TSR2 TAILERON FLAP PITCH
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -615,7 +613,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                     TSR2 TAILERON FLAP PITCH
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -651,7 +649,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                                             TAIL PLAIN TRAILING-EDGE FLAP CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                     TSR2 TAILERON FLAP PITCH
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -700,7 +698,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                     TSR2 TAILERON FLAP PITCH
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -755,7 +753,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                     TSR2 TAILERON FLAP PITCH
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -791,7 +789,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                                             TAIL PLAIN TRAILING-EDGE FLAP CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                     TSR2 TAILERON FLAP PITCH
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -840,7 +838,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                     TSR2 TAILERON FLAP PITCH
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -895,7 +893,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                     TSR2 TAILERON FLAP PITCH
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -932,7 +930,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                                             TAIL PLAIN TRAILING-EDGE FLAP CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                     TSR2 TAILERON FLAP PITCH
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT

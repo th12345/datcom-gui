@@ -180,8 +180,7 @@
     -0.042556,-0.045697,-0.047905,-0.049300,-0.049946,-0.049862,-0.049027,       
     -0.047363,-0.044650,-0.040438,-0.035331,-0.029708,-0.023819,-0.017864,       
     -0.011910,-0.008932,-0.005955,-0.002977,-0.001489,0.000000$                  
-                                                                                    ** ERROR ** NO NAMELIST NAME FOLLOWING $ 
- CASEID TOTAL AIRCRAFT                                                           
+ CASEID TSR2 WING BODY DIFFERENTIAL TAIL                                         
 1          THE FOLLOWING IS A LIST OF ALL INPUT CARDS FOR THIS CASE.
 0
  DIM FT                                                                          
@@ -328,8 +327,7 @@
     -0.042556,-0.045697,-0.047905,-0.049300,-0.049946,-0.049862,-0.049027,       
     -0.047363,-0.044650,-0.040438,-0.035331,-0.029708,-0.023819,-0.017864,       
     -0.011910,-0.008932,-0.005955,-0.002977,-0.001489,0.000000$                  
-                                                                                 
- CASEID TOTAL AIRCRAFT                                                           
+ CASEID TSR2 WING BODY DIFFERENTIAL TAIL                                         
 0 INPUT DIMENSIONS ARE IN FT, SCALE FACTOR IS 1.0000
 
 1                             AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM   
@@ -578,7 +576,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -633,7 +631,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -669,7 +667,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -704,7 +702,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -759,7 +757,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -795,7 +793,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -830,7 +828,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -885,7 +883,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -922,7 +920,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -957,7 +955,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1012,7 +1010,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1048,7 +1046,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1083,7 +1081,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1139,7 +1137,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1176,7 +1174,7 @@
 1                             AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                              CONFIGURATION AUXILIARY AND PARTIAL OUTPUT
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1216,7 +1214,7 @@
 1                             AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                              CONFIGURATION AUXILIARY AND PARTIAL OUTPUT
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1227,7 +1225,7 @@
 1                             AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                              CONFIGURATION AUXILIARY AND PARTIAL OUTPUT
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1288,7 +1286,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1311,7 +1309,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1367,7 +1365,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1404,7 +1402,7 @@
 1                             AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                              CONFIGURATION AUXILIARY AND PARTIAL OUTPUT
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1444,7 +1442,7 @@
 1                             AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                              CONFIGURATION AUXILIARY AND PARTIAL OUTPUT
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1455,7 +1453,7 @@
 1                             AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                              CONFIGURATION AUXILIARY AND PARTIAL OUTPUT
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1516,7 +1514,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1539,7 +1537,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1594,7 +1592,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1631,7 +1629,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1666,7 +1664,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1721,7 +1719,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1758,7 +1756,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1793,7 +1791,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1848,7 +1846,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1885,7 +1883,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -1920,7 +1918,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -1975,7 +1973,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -2012,7 +2010,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -2047,7 +2045,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -2102,7 +2100,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -2139,7 +2137,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -2174,7 +2172,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -2229,7 +2227,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -2266,7 +2264,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
@@ -2301,7 +2299,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS AT ANGLE OF ATTACK AND IN SIDESLIP
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -2356,7 +2354,7 @@
 1                               AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                                          DYNAMIC DERIVATIVES
                                         WING-BODY-VERTICAL TAIL-HORIZONTAL TAIL CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
@@ -2393,7 +2391,7 @@
 1                            AUTOMATED STABILITY AND CONTROL METHODS PER APRIL 1976 VERSION OF DATCOM
                                          CHARACTERISTICS OF HIGH LIFT AND CONTROL DEVICES
                               DIFFERENTIALLY DEFLECTED HORIZONTAL STABILIZER CONFIGURATION
-                                                          TOTAL AIRCRAFT
+                                                 TSR2 WING BODY DIFFERENTIAL TAIL
  -----------------------  FLIGHT CONDITIONS  ------------------------           --------------  REFERENCE DIMENSIONS  ------------
   MACH    ALTITUDE   VELOCITY    PRESSURE    TEMPERATURE     REYNOLDS             REF.      REFERENCE LENGTH   MOMENT REF. CENTER
  NUMBER                                                       NUMBER              AREA       LONG.     LAT.     HORIZ      VERT
