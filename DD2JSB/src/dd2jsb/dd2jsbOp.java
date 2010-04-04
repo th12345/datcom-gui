@@ -9,6 +9,8 @@ package dd2jsb;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import javax.swing.JPanel;
 import java.io.*;
 
@@ -160,7 +162,12 @@ public class dd2jsbOp extends javax.swing.JPanel {
             Logger.getLogger(dd2jsbAeroData.class.getName()).log(Level.SEVERE, null, ex);
         }
 // Spilt datcom output file into cases (i.e. one for each CASEID)
-        Case = aero.split("1          THE FOLLOWING IS A LIST OF ALL INPUT CARDS FOR THIS CASE.");
+// change all scientific numbers to E+00 format instead of the +000 format pruduced by some Fortran ompilers.
+    String REGEX = "([0-9])([-\\+])([0-9])([0-9])";
+    String REPLACE = "$1E$2$4";
+    Pattern p = Pattern.compile(REGEX);
+    String newaero = aero.replaceAll (REGEX,REPLACE);
+        Case = newaero.split("1          THE FOLLOWING IS A LIST OF ALL INPUT CARDS FOR THIS CASE.");
         NCases = Case.length;
 
 // Now process each case in turn.

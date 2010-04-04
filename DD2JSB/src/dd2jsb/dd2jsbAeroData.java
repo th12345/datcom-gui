@@ -20,22 +20,22 @@ public class dd2jsbAeroData {
     private String Lines[];
     int Nlines;
     private dd2jsbUtils DUtil;
-    String[] alphaTab;
-    String[][][] CdTab;
-    String[][][] ClTab;
-    String[][][] CmTab;
-    String[][][] CnTab;
-    String[][][] CaTab;
+    String[] AlphaTab;
+    String[][][] CDTab;
+    String[][][] CLTab;
+    String[][][] CMTab;
+    String[][][] CNTab;
+    String[][][] CATab;
     String[][][] XcpTab;
-    String[][][] ClaTab;
-    String[][][] CmaTab;
+    String[][][] CLaTab;
+    String[][][] CMaTab;
     String[][][] CybTab;
     String[][][] CnbTab;
     String[][][] ClbTab;
-    String[][][] ClqTab;
-    String[][][] CmqTab;
-    String[][][] CladTab;
-    String[][][] CmadTab;
+    String[][][] CLqTab;
+    String[][][] CMqTab;
+    String[][][] CLadTab;
+    String[][][] CMadTab;
     String[][][] ClpTab;
     String[][][] CypTab;
     String[][][] CnpTab;
@@ -45,14 +45,14 @@ public class dd2jsbAeroData {
     String[] DeltaLTab;
     String[] DeltaRTab;
     String[] DeltaLRTab;
-    String[][][] ClFlapTab;
-    String[][][] CmFlapTab;
-    String[][][] ClMaxFlapTab;
-    String[][][] CdMinFlapTab;
-    String[][][] ClaFlapTab;
+    String[][][] CLFlapTab;
+    String[][][] CMFlapTab;
+    String[][][] CLMaxFlapTab;
+    String[][][] CDMinFlapTab;
+    String[][][] CLaFlapTab;
     String[][][] ChaFlapTab;
     String[][][] ChdFlapTab;
-    String[][][][] CdiFlapTab;
+    String[][][][] CDiFlapTab;
     String[][][][] CnAilTab;
     String[][][] ClAilTab;
     String[][][][] ClDiffTailTab;
@@ -62,23 +62,23 @@ public class dd2jsbAeroData {
     }
 
     public void AllocateArrays(int nAlpha, int nMach, int nAlt) {
-        alphaTab = new String[nAlpha];
-        CdTab = new String[nAlt][nMach][nAlpha];
-        ClTab = new String[nAlt][nMach][nAlpha];
-        CmTab = new String[nAlt][nMach][nAlpha];
-        CnTab = new String[nAlt][nMach][nAlpha];
-        CaTab = new String[nAlt][nMach][nAlpha];
+        AlphaTab = new String[nAlpha];
+        CDTab = new String[nAlt][nMach][nAlpha];
+        CLTab = new String[nAlt][nMach][nAlpha];
+        CMTab = new String[nAlt][nMach][nAlpha];
+        CNTab = new String[nAlt][nMach][nAlpha];
+        CATab = new String[nAlt][nMach][nAlpha];
         XcpTab = new String[nAlt][nMach][nAlpha];
-        ClaTab = new String[nAlt][nMach][nAlpha];
-        CmaTab = new String[nAlt][nMach][nAlpha];
+        CLaTab = new String[nAlt][nMach][nAlpha];
+        CMaTab = new String[nAlt][nMach][nAlpha];
         CybTab = new String[nAlt][nMach][nAlpha];
         CnbTab = new String[nAlt][nMach][nAlpha];
 
         ClbTab = new String[nAlt][nMach][nAlpha];
-        ClqTab = new String[nAlt][nMach][nAlpha];
-        CmqTab = new String[nAlt][nMach][nAlpha];
-        CladTab = new String[nAlt][nMach][nAlpha];
-        CmadTab = new String[nAlt][nMach][nAlpha];
+        CLqTab = new String[nAlt][nMach][nAlpha];
+        CMqTab = new String[nAlt][nMach][nAlpha];
+        CLadTab = new String[nAlt][nMach][nAlpha];
+        CMadTab = new String[nAlt][nMach][nAlpha];
         ClpTab = new String[nAlt][nMach][nAlpha];
         CypTab = new String[nAlt][nMach][nAlpha];
         CnpTab = new String[nAlt][nMach][nAlpha];
@@ -89,14 +89,14 @@ public class dd2jsbAeroData {
         DeltaLTab = new String[9];
         DeltaRTab = new String[9];
         DeltaLRTab = new String[9];
-        ClFlapTab = new String[nAlt][nMach][9];
-        CmFlapTab = new String[nAlt][nMach][9];
-        ClMaxFlapTab = new String[nAlt][nMach][9];
-        CdMinFlapTab = new String[nAlt][nMach][9];
-        ClaFlapTab = new String[nAlt][nMach][9];
+        CLFlapTab = new String[nAlt][nMach][9];
+        CMFlapTab = new String[nAlt][nMach][9];
+        CLMaxFlapTab = new String[nAlt][nMach][9];
+        CDMinFlapTab = new String[nAlt][nMach][9];
+        CLaFlapTab = new String[nAlt][nMach][9];
         ChaFlapTab = new String[nAlt][nMach][9];
         ChdFlapTab = new String[nAlt][nMach][9];
-        CdiFlapTab = new String[nAlt][nMach][nAlpha][9];
+        CDiFlapTab = new String[nAlt][nMach][nAlpha][9];
         CnAilTab = new String[nAlt][nMach][nAlpha][9];
         ClAilTab = new String[nAlt][nMach][9];
         ClDiffTailTab = new String[nAlt][nMach][nAlpha][9];
@@ -161,7 +161,7 @@ public class dd2jsbAeroData {
             // now advance to start of derivative data
             if (iline < Nlines) {
                 if (temp.length() > 40) {
-                    if (temp.contains("ALPHA     CD       CL")) {
+                    if (temp.contains("Alpha     CD       CL")) {
                         // Have found start of derivative data
                         // read lines and extract derivatives
                         // each line should have 12 colums of data
@@ -171,15 +171,15 @@ public class dd2jsbAeroData {
                     }
                     if (derivsfound && temp.startsWith(" ")) {
                         int ntemp = temp.length();
-                        alphaTab[nAlpha] = temp.substring(1, 7);
-                        CdTab[iA][jM][nAlpha] = temp.substring(8, 17);
-                        ClTab[iA][jM][nAlpha] = temp.substring(18, 26);
-                        CmTab[iA][jM][nAlpha] = temp.substring(27, 36);
-                        CnTab[iA][jM][nAlpha] = temp.substring(37, 44);
-                        CaTab[iA][jM][nAlpha] = temp.substring(45, 53);
+                        AlphaTab[nAlpha] = temp.substring(1, 7);
+                        CDTab[iA][jM][nAlpha] = temp.substring(8, 17);
+                        CLTab[iA][jM][nAlpha] = temp.substring(18, 26);
+                        CMTab[iA][jM][nAlpha] = temp.substring(27, 36);
+                        CNTab[iA][jM][nAlpha] = temp.substring(37, 44);
+                        CATab[iA][jM][nAlpha] = temp.substring(45, 53);
                         XcpTab[iA][jM][nAlpha] = temp.substring(54, 62);
-                        ClaTab[iA][jM][nAlpha] = temp.substring(63, 75);
-                        CmaTab[iA][jM][nAlpha] = temp.substring(76, 88);
+                        CLaTab[iA][jM][nAlpha] = temp.substring(63, 75);
+                        CMaTab[iA][jM][nAlpha] = temp.substring(76, 88);
                         CybTab[iA][jM][nAlpha] = temp.substring(89, 101);
                         CnbTab[iA][jM][nAlpha] = temp.substring(102, 114);
                         ClbTab[iA][jM][nAlpha] = temp.substring(115, ntemp);
@@ -219,7 +219,7 @@ public class dd2jsbAeroData {
             // now advance to start of derivative data
             if (iline < Nlines) {
                 if (temp.length() > 40) {
-                    if (temp.contains("ALPHA       CLQ          CMQ ")) {
+                    if (temp.contains("Alpha       CLQ          CMQ ")) {
                         // Have found start of derivative data
                         // read lines and extract derivatives
                         // each line should have 12 colums of data
@@ -229,10 +229,10 @@ public class dd2jsbAeroData {
                     }
                     if (derivsfound && temp.startsWith(" ")) {
                         int ntemp = temp.length();
-                        ClqTab[iA][jM][nAlpha] = temp.substring(11, 23);
-                        CmqTab[iA][jM][nAlpha] = temp.substring(24, 36);
-                        CladTab[iA][jM][nAlpha] = temp.substring(37, 50);
-                        CmadTab[iA][jM][nAlpha] = temp.substring(51, 63);
+                        CLqTab[iA][jM][nAlpha] = temp.substring(11, 23);
+                        CMqTab[iA][jM][nAlpha] = temp.substring(24, 36);
+                        CLadTab[iA][jM][nAlpha] = temp.substring(37, 50);
+                        CMadTab[iA][jM][nAlpha] = temp.substring(51, 63);
                         ClpTab[iA][jM][nAlpha] = temp.substring(64, 76);
                         CypTab[iA][jM][nAlpha] = temp.substring(77, 89);
                         CnpTab[iA][jM][nAlpha] = temp.substring(90, 102);
@@ -293,11 +293,11 @@ public class dd2jsbAeroData {
                     if (derivs1found && temp.startsWith("  ")) {
                         int ntemp = temp.length();
                         DeltaTab[ind] = temp.substring(5, 12);
-                        ClFlapTab[iA][jM][ind] = temp.substring(13, 22);
-                        CmFlapTab[iA][jM][ind] = temp.substring(23, 33);
-                        ClMaxFlapTab[iA][jM][ind] = temp.substring(34, 43);
-                        CdMinFlapTab[iA][jM][ind] = temp.substring(44, 56);
-                        ClaFlapTab[iA][jM][ind] = temp.substring(57, 81);
+                        CLFlapTab[iA][jM][ind] = temp.substring(13, 22);
+                        CMFlapTab[iA][jM][ind] = temp.substring(23, 33);
+                        CLMaxFlapTab[iA][jM][ind] = temp.substring(34, 43);
+                        CDMinFlapTab[iA][jM][ind] = temp.substring(44, 56);
+                        CLaFlapTab[iA][jM][ind] = temp.substring(57, 81);
                         ChaFlapTab[iA][jM][ind] = temp.substring(82, 93);
                         ChdFlapTab[iA][jM][ind] = temp.substring(94, ntemp);
                         ind++;
@@ -332,14 +332,14 @@ public class dd2jsbAeroData {
                     }
                     if (derivs2found && temp.startsWith(" ")) {
                         int ntemp = temp.length();
-                        alphaTab[nAlpha] = temp.substring(1, 7);
+                        AlphaTab[nAlpha] = temp.substring(1, 7);
                         for (ind = 0; ind < ndelta; ind++) {
                             int ipos = 10 * ind + 15;
                             int ipos2 = ipos + 10;
                             if (ipos2 > ntemp) {
                                 ipos2 = ntemp;
                             }
-                            CdiFlapTab[iA][jM][nAlpha][ind] = temp.substring(ipos, ipos2);
+                            CDiFlapTab[iA][jM][nAlpha][ind] = temp.substring(ipos, ipos2);
                         }
                         nAlpha++;
                     } else {
@@ -394,7 +394,7 @@ public class dd2jsbAeroData {
                 }
                 if (derivs1found && temp.startsWith(" ")) {
                     int ntemp = temp.length();
-                    alphaTab[nAlpha] = temp.substring(1, 7);
+                    AlphaTab[nAlpha] = temp.substring(1, 7);
                     for (ind = 0; ind < ndelta; ind++) {
                         int ipos = 12 * ind + 12;
                         int ipos2 = ipos + 12;
@@ -485,9 +485,9 @@ public class dd2jsbAeroData {
                     iline = iline + 3;
                     temp = Lines[iline];
                 }
-                if (derivs1found && temp.startsWith(" ") && nAlpha < alphaTab.length) {
+                if (derivs1found && temp.startsWith(" ") && nAlpha < AlphaTab.length) {
                     int ntemp = temp.length();
-                    alphaTab[nAlpha] = temp.substring(1, 7);
+                    AlphaTab[nAlpha] = temp.substring(1, 7);
                     for (ind = 0; ind < ndelta; ind++) {
                         int ipos = 12 * ind + 12;
                         int ipos2 = ipos + 12;
@@ -534,80 +534,80 @@ public class dd2jsbAeroData {
         return 0;
     }
 
-    public void writemaster(String Path, String[] ALT, String[] MACH, int nALT, int nMACH, int NALPHA) {
+    public void writemaster(String Path, String[] ALT, String[] MACH, int nALT, int nMACH, int NAlpha) {
 
-        wrAlphaData(Path, "Cdtab.txt", "cdalpha", CdTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Cltab.txt", "clalpha", ClTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Cdtab.txt", "cdalpha", CdTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Cmtab.txt", "cmalpha", CmTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Cntab.txt", "cnalpha", CnTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Catab.txt", "caalpha", CaTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Xcptab.txt", "Xcpalpha", XcpTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Clatab.txt", "claalpha", ClaTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Cmatab.txt", "cmaalpha", CmaTab, ALT, MACH, nALT, nMACH, NALPHA);
+        wrAlphaData(Path, "CDTab.txt", "CDAlpha", CDTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "CLTab.txt", "CLAlpha", CLTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "CDTab.txt", "CDAlpha", CDTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "CMTab.txt", "CMAlpha", CMTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "CNTab.txt", "CNAlpha", CNTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "CATab.txt", "CAAlpha", CATab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "XcpTab.txt", "XcpAlpha", XcpTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "CLaTab.txt", "CLaAlpha", CLaTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "CMaTab.txt", "CMaAlpha", CMaTab, ALT, MACH, nALT, nMACH, NAlpha);
         if (CybTab[0][0][0] != null) {
             if ((!CybTab[0][0][0].trim().equals("")) && (CybTab[0][0][1].trim().equals(""))) {
-                wrMachAltData(Path, "Cybtab1.txt", "cybalpha", CybTab, ALT, MACH, nALT, nMACH, NALPHA);
+                wrMachAltData(Path, "CybTab1.txt", "CybAlpha", CybTab, ALT, MACH, nALT, nMACH, NAlpha);
             }
         }
         if (CnbTab[0][0][0] != null) {
-            wrAlphaData(Path, "Cybtab.txt", "cybalpha", CybTab, ALT, MACH, nALT, nMACH, NALPHA);
+            wrAlphaData(Path, "Cybtab.txt", "CybAlpha", CybTab, ALT, MACH, nALT, nMACH, NAlpha);
             if ((!CnbTab[0][0][0].trim().equals("")) && (CnbTab[0][0][1].trim().equals(""))) {
-                wrMachAltData(Path, "Cnbtab1.txt", "cnbalpha", CnbTab, ALT, MACH, nALT, nMACH, NALPHA);
+                wrMachAltData(Path, "CnbTab1.txt", "CnbAlpha", CnbTab, ALT, MACH, nALT, nMACH, NAlpha);
             }
         }
-        wrAlphaData(Path, "Cnbtab.txt", "cnbalpha", CnbTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Clbtab.txt", "clbalpha", ClbTab, ALT, MACH, nALT, nMACH, NALPHA);
+        wrAlphaData(Path, "Cnbtab.txt", "CnbAlpha", CnbTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "Clbtab.txt", "ClbAlpha", ClbTab, ALT, MACH, nALT, nMACH, NAlpha);
 
-        if (ClqTab[0][0][0] != null) {
-            if ((!ClqTab[0][0][0].trim().equals("")) && (ClqTab[0][0][1].trim().equals(""))) {
-                wrMachAltData(Path, "Clqtab1.txt", "clqalpha", ClqTab, ALT, MACH, nALT, nMACH, NALPHA);
+        if (CLqTab[0][0][0] != null) {
+            if ((!CLqTab[0][0][0].trim().equals("")) && (CLqTab[0][0][1].trim().equals(""))) {
+                wrMachAltData(Path, "CLqTab1.txt", "CLqAlpha", CLqTab, ALT, MACH, nALT, nMACH, NAlpha);
             }
         }
-        wrAlphaData(Path, "Clqtab.txt", "clqalpha", ClqTab, ALT, MACH, nALT, nMACH, NALPHA);
-        if (CmqTab[0][0][0] != null) {
-            if ((!CmqTab[0][0][0].trim().equals("")) && (CmqTab[0][0][1].trim().equals(""))) {
-                wrMachAltData(Path, "Cmqtab1.txt", "cmqalpha", CmqTab, ALT, MACH, nALT, nMACH, NALPHA);
+        wrAlphaData(Path, "CLqTab.txt", "CLqAlpha", CLqTab, ALT, MACH, nALT, nMACH, NAlpha);
+        if (CMqTab[0][0][0] != null) {
+            if ((!CMqTab[0][0][0].trim().equals("")) && (CMqTab[0][0][1].trim().equals(""))) {
+                wrMachAltData(Path, "CMqTab1.txt", "CMqAlpha", CMqTab, ALT, MACH, nALT, nMACH, NAlpha);
             }
         }
-        wrAlphaData(Path, "Cmqtab.txt", "cmqalpha", CmqTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Cladtab.txt", "cladalpha", CladTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Cmadtab.txt", "cmadalpha", CmadTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Clptab.txt", "clpalpha", ClpTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Cnptab.txt", "cnpalpha", CnpTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaData(Path, "Cnrtab.txt", "cnralpha", CnrTab, ALT, MACH, nALT, nMACH, NALPHA);
+        wrAlphaData(Path, "CMqTab.txt", "CMqAlpha", CMqTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "CLadTab.txt", "CLadAlpha", CLadTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "CMadTab.txt", "CMadAlpha", CMadTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "Clptab.txt", "ClpAlpha", ClpTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "Cnptab.txt", "CnpAlpha", CnpTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "Cnrtab.txt", "CnrAlpha", CnrTab, ALT, MACH, nALT, nMACH, NAlpha);
         if (ClrTab[0][0][0] != null) {
             if ((!ClrTab[0][0][0].trim().equals("")) && (ClrTab[0][0][1].trim().equals(""))) {
-                wrMachAltData(Path, "Clrtab1.txt", "clralpha", ClrTab, ALT, MACH, nALT, nMACH, NALPHA);
+                wrMachAltData(Path, "ClrTab1.txt", "ClrAlpha", ClrTab, ALT, MACH, nALT, nMACH, NAlpha);
             }
         }
-        wrAlphaData(Path, "Clrtab.txt", "clralpha", ClrTab, ALT, MACH, nALT, nMACH, NALPHA);
+        wrAlphaData(Path, "Clrtab.txt", "ClrAlpha", ClrTab, ALT, MACH, nALT, nMACH, NAlpha);
 
-        wrDeltaData(Path, "ClFlapTab.txt", "ClFlapDelta", ClFlapTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrDeltaData(Path, "CmFlapTab.txt", "CmFlapDelta", CmFlapTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrDeltaData(Path, "ClMaxFlapTab.txt", "ClMaxFlapDelta", ClMaxFlapTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrDeltaData(Path, "CdMinFlapTab.txt", "CdMinDelta", CdMinFlapTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrDeltaData(Path, "ClaFlapTab.txt", "ClaFlapDelta", ClaFlapTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrDeltaData(Path, "ChaFlapTab.txt", "ChaFlapDelta", ChaFlapTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrDeltaData(Path, "ChdFlapTab.txt", "ChdFlapDelta", ChdFlapTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrDeltaLData(Path, "ClAilTab.txt", "ClAilDelta", ClAilTab, ALT, MACH, nALT, nMACH, NALPHA);
+        wrDeltaData(Path, "CLFlapTab.txt", "ClFlapDelta", CLFlapTab,"fcs/flap-pos-deg", ALT, MACH, nALT, nMACH, NAlpha);
+        wrDeltaData(Path, "CMFlapTab.txt", "CmFlapDelta", CMFlapTab,"fcs/flap-pos-deg", ALT, MACH, nALT, nMACH, NAlpha);
+        wrDeltaData(Path, "CLMaxFlapTab.txt", "ClMaxFlapDelta", CLMaxFlapTab,"fcs/flap-pos-deg", ALT, MACH, nALT, nMACH, NAlpha);
+        wrDeltaData(Path, "CDMinFlapTab.txt", "CdMinDelta", CDMinFlapTab,"fcs/flap-pos-deg", ALT, MACH, nALT, nMACH, NAlpha);
+        wrDeltaData(Path, "CLaFlapTab.txt", "ClaFlapDelta", CLaFlapTab,"fcs/flap-pos-deg", ALT, MACH, nALT, nMACH, NAlpha);
+        wrDeltaData(Path, "ChaFlapTab.txt", "ChaFlapDelta", ChaFlapTab,"fcs/flap-pos-deg", ALT, MACH, nALT, nMACH, NAlpha);
+        wrDeltaData(Path, "ChdFlapTab.txt", "ChdFlapDelta", ChdFlapTab,"fcs/flap-pos-deg", ALT, MACH, nALT, nMACH, NAlpha);
+        wrDeltaLData(Path, "ClAilTab.txt", "ClAilDelta", ClAilTab, ALT, MACH, nALT, nMACH, NAlpha);
 
-        wrAlphaDeltaData(Path, "CdiFlapTab.txt", "CdiFlapAlphaDelta", CdiFlapTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaDeltaLData(Path, "CnAilTab.txt", "CnAilAlphaDelta", CnAilTab, ALT, MACH, nALT, nMACH, NALPHA);
-        wrAlphaDeltaLData(Path, "ClDiffTailTab.txt", "ClDiffTailAlphaDelta", ClDiffTailTab, ALT, MACH, nALT, nMACH, NALPHA);
+        wrAlphaDeltaData(Path, "CDiFlapTab.txt", "CDiFlapAlphaDelta", CDiFlapTab,"fcs/flap-pos-deg", ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaDeltaLData(Path, "CnAilTab.txt", "CnAilAlphaDelta", CnAilTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaDeltaLData(Path, "ClDiffTailTab.txt", "ClDiffTailAlphaDelta", ClDiffTailTab, ALT, MACH, nALT, nMACH, NAlpha);
     }
 
     private void wrAlphaData(String Path, String filename, String varname,
             String[][][] derivtable, String[] ALT, String[] MACH,
-            int nALT, int nMACH, int NALPHA) {
+            int nALT, int nMACH, int NAlpha) {
         if (derivtable[0][0][0] != null) {
             String print = "";
-            int nALPHA = alphaTab.length;
-            print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
-            print = print + Path + "\\" + filename + "-->\r\n\r\n";
+            int nAlpha = AlphaTab.length;
+            print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + " -->\r\n" ;
+            print = print + "<!-- " + Path + "\\" + filename + "-->\r\n\r\n";
             print = print + "<table name =  \"" + varname + "\">\r\n";
-            if (nALPHA > 1) {
-                print = print + "<independentVar lookup = \"row\"> aero/alpha-deg </independentVar>\r\n";
+            if (nAlpha > 1) {
+                print = print + "<independentVar lookup = \"row\"> aero/Alpha-deg </independentVar>\r\n";
             }
             if (nMACH > 1) {
                 print = print + "<independentVar lookup = \"column\"> velocities/mach </independentVar>\r\n";
@@ -622,8 +622,8 @@ public class dd2jsbAeroData {
                     print = print + "\t" + MACH[iM];
                 }
                 print = print + "\r\n";
-                for (int i = 0; i < nALPHA; i++) {
-                    print = print + alphaTab[i] + "  ";
+                for (int i = 0; i < nAlpha; i++) {
+                    print = print + AlphaTab[i] + "  ";
                     for (int iMACH = 0; iMACH < nMACH; iMACH++) {
                         print = print + derivtable[iALT][iMACH][i];
                     }
@@ -639,11 +639,11 @@ public class dd2jsbAeroData {
 
     private void wrMachAltData(String Path, String filename, String varname,
             String[][][] derivtable, String[] ALT, String[] MACH,
-            int nALT, int nMACH, int NALPHA) {
+            int nALT, int nMACH, int NAlpha) {
         if (derivtable[0][0][0] != null) {
             String print = "";
-            print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
-            print = print + "\r\n" + Path + "\\" + filename + "-->\r\n\r\n";
+            print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + " -->\r\n" ;
+            print = print + "<!-- " + Path + "\\" + filename + "-->\r\n\r\n";
             print = print + "<table name =  \"" + varname + "\">\r\n";
             if (nMACH > 1) {
                 print = print + "<independentVar lookup = \"row\"> velocities/mach</independentVar>\r\n";
@@ -671,16 +671,16 @@ public class dd2jsbAeroData {
     }
 
     private void wrDeltaData(String Path, String filename, String varname,
-            String[][][] derivtable, String[] ALT, String[] MACH,
-            int nALT, int nMACH, int NALPHA) {
+            String[][][] derivtable,  String deltaname, String[] ALT, String[] MACH,
+            int nALT, int nMACH, int NAlpha) {
         if (derivtable[0][0][0] != null) {
             String print = "";
-            print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
-            print = print + "\r\n" + Path + "\\" + filename + "-->\r\n\r\n";
+            print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + " -->\r\n" ;
+            print = print + "<!-- " + Path + "\\" + filename + "-->\r\n\r\n";
             int nDelta = DeltaTab.length;
             print = print + "<table name = \"" + varname + "\">\r\n";
             if (nDelta > 1) {
-                print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
+                print = print + "<independentVar lookup = \"row\"> "+ deltaname +" </independentVar>\r\n";
             }
             if (nMACH > 1) {
                 print = print + "<independentVar lookup = \"column\"> velocities/mach </independentVar>\r\n";
@@ -712,11 +712,11 @@ public class dd2jsbAeroData {
 
     private void wrDeltaLData(String Path, String filename, String varname,
             String[][][] derivtable, String[] ALT, String[] MACH,
-            int nALT, int nMACH, int NALPHA) {
+            int nALT, int nMACH, int NAlpha) {
         if (derivtable[0][0][0] != null) {
             String print = "";
-            print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
-            print = print + Path + "\\" + filename + "-->\r\n\r\n";
+            print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + " -->\r\n" ;
+            print = print + "<!-- " + Path + "\\" + filename + "-->\r\n\r\n";
             int nDelta = DeltaLTab.length;
             print = print + "<table name =  \"" + varname + "\">\r\n";
             if (nDelta > 1) {
@@ -751,23 +751,23 @@ public class dd2jsbAeroData {
     }
 
     private void wrAlphaDeltaData(String Path, String filename, String varname,
-            String[][][][] derivtable, String[] ALT, String[] MACH,
-            int nALT, int nMACH, int NALPHA) {
+            String[][][][] derivtable, String deltaname, String[] ALT, String[] MACH,
+            int nALT, int nMACH, int NAlpha) {
         if (derivtable[0][0][0][0] != null) {
-            int nALPHA = alphaTab.length;
+            int nAlpha = AlphaTab.length;
             int nDelta = DeltaTab.length;
             for (int iALT = 0; iALT < nALT; iALT++) {
                 int lfname = filename.length();
                 String print = "";
                 String filenameAlt = filename.substring(0, lfname - 4) + ALT[iALT] + ".txt";
-                print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
-                print = print + Path + "\\" + filenameAlt + "-->\r\n\r\n";
+                print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + " -->\r\n" ;
+                print = print +"<!-- " + Path + "\\" + filenameAlt + "-->\r\n";
                 print = print + "<table name =  \"" + varname + "\">\r\n";
                 if (nDelta > 1) {
-                    print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
+                    print = print + "<independentVar lookup = \"row\"> "+ deltaname +" </independentVar>\r\n";
                 }
-                if (nALPHA > 1) {
-                    print = print + "<independentVar lookup = \"column\"> aero/alpha-deg </independentVar>\r\n";
+                if (nAlpha > 1) {
+                    print = print + "<independentVar lookup = \"column\"> aero/Alpha-deg </independentVar>\r\n";
                 }
                 if (nMACH > 1) {
                     print = print + "<independentVar lookup = \"table\"> velocities/mach </independentVar>\r\n";
@@ -775,13 +775,13 @@ public class dd2jsbAeroData {
                 for (int iMACH = 0; iMACH < nMACH; iMACH++) {
                     print = print + "<tableData breakpoint = " + MACH[iMACH] + ">\r\n";
                     print = print + "\t";
-                    for (int iA = 0; iA < nALPHA; iA++) {
-                        print = print + "\t" + alphaTab[iA];
+                    for (int iA = 0; iA < nAlpha; iA++) {
+                        print = print + "\t" + AlphaTab[iA];
                     }
                     print = print + "\r\n";
                     for (int i = 0; i < nDelta; i++) {
                         print = print + DeltaTab[i] + "  ";
-                        for (int iAlpha = 0; iAlpha < nALPHA; iAlpha++) {
+                        for (int iAlpha = 0; iAlpha < nAlpha; iAlpha++) {
                             print = print + "\t" + derivtable[iALT][iMACH][iAlpha][i];
                         }
                         print = print + "\r\n";
@@ -797,23 +797,23 @@ public class dd2jsbAeroData {
 
     private void wrAlphaDeltaLData(String Path, String filename, String varname,
             String[][][][] derivtable, String[] ALT, String[] MACH,
-            int nALT, int nMACH, int NALPHA) {
+            int nALT, int nMACH, int NAlpha) {
         if (derivtable[0][0][0][0] != null) {
             String print;
-            int nALPHA = alphaTab.length;
+            int nAlpha = AlphaTab.length;
             int nDelta = DeltaLTab.length;
             for (int iALT = 0; iALT < nALT; iALT++) {
                 print = "";
                 int lfname = filename.length();
                 String filenameAlt = filename.substring(0, lfname - 4) + ALT[iALT] + ".txt";
-                print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + "\r\n";
-                print = print + Path + "\\" + filenameAlt + "-->\r\n\r\n";
+                print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + " -->\r\n" ;
+                print = print + "<!-- " + Path + "\\" + filenameAlt + "-->\r\n";
                 print = print + "<table name =  \"" + varname + "\">\r\n";
                 if (nDelta > 1) {
                     print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
                 }
-                if (nALPHA > 1) {
-                    print = print + "<independentVar lookup = \"column\"> aero/alpha-deg </independentVar>\r\n";
+                if (nAlpha > 1) {
+                    print = print + "<independentVar lookup = \"column\"> aero/Alpha-deg </independentVar>\r\n";
                 }
                 if (nMACH > 1) {
                     print = print + "<independentVar lookup = \"table\"> velocities/mach </independentVar>\r\n";
@@ -821,13 +821,13 @@ public class dd2jsbAeroData {
                 for (int iMACH = 0; iMACH < nMACH; iMACH++) {
                     print = print + "<tableData breakpoint = " + MACH[iMACH] + ">\r\n";
                     print = print + "\t";
-                    for (int iA = 0; iA < nALPHA; iA++) {
-                        print = print + "\t" + alphaTab[iA];
+                    for (int iA = 0; iA < nAlpha; iA++) {
+                        print = print + "\t" + AlphaTab[iA];
                     }
                     print = print + "\r\n";
                     for (int i = 0; i < nDelta; i++) {
                         print = print + DeltaLTab[i] + "  ";
-                        for (int iAlpha = 0; iAlpha < nALPHA; iAlpha++) {
+                        for (int iAlpha = 0; iAlpha < nAlpha; iAlpha++) {
                             print = print + "\t" + derivtable[iALT][iMACH][iAlpha][i];
                         }
                         print = print + "\r\n";
