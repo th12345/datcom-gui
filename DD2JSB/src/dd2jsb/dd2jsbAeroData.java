@@ -607,7 +607,7 @@ public class dd2jsbAeroData {
             print = print + "<!-- " + Path + "\\" + filename + "-->\r\n\r\n";
             print = print + "<table name =  \"" + varname + "\">\r\n";
             if (nAlpha > 1) {
-                print = print + "<independentVar lookup = \"row\"> aero/Alpha-deg </independentVar>\r\n";
+                print = print + "<independentVar lookup = \"row\"> aero/alpha-deg </independentVar>\r\n";
             }
             if (nMACH > 1) {
                 print = print + "<independentVar lookup = \"column\"> velocities/mach </independentVar>\r\n";
@@ -767,7 +767,7 @@ public class dd2jsbAeroData {
                     print = print + "<independentVar lookup = \"row\"> "+ deltaname +" </independentVar>\r\n";
                 }
                 if (nAlpha > 1) {
-                    print = print + "<independentVar lookup = \"column\"> aero/Alpha-deg </independentVar>\r\n";
+                    print = print + "<independentVar lookup = \"column\"> aero/alpha-deg </independentVar>\r\n";
                 }
                 if (nMACH > 1) {
                     print = print + "<independentVar lookup = \"table\"> velocities/mach </independentVar>\r\n";
@@ -813,7 +813,7 @@ public class dd2jsbAeroData {
                     print = print + "<independentVar lookup = \"row\"> aero/deltacontrol </independentVar>\r\n";
                 }
                 if (nAlpha > 1) {
-                    print = print + "<independentVar lookup = \"column\"> aero/Alpha-deg </independentVar>\r\n";
+                    print = print + "<independentVar lookup = \"column\"> aero/alpha-deg </independentVar>\r\n";
                 }
                 if (nMACH > 1) {
                     print = print + "<independentVar lookup = \"table\"> velocities/mach </independentVar>\r\n";
