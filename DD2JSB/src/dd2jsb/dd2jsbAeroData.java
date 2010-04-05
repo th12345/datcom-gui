@@ -161,7 +161,7 @@ public class dd2jsbAeroData {
             // now advance to start of derivative data
             if (iline < Nlines) {
                 if (temp.length() > 40) {
-                    if (temp.contains("Alpha     CD       CL")) {
+                    if (temp.contains("ALPHA     CD       CL")) {
                         // Have found start of derivative data
                         // read lines and extract derivatives
                         // each line should have 12 colums of data
@@ -219,7 +219,7 @@ public class dd2jsbAeroData {
             // now advance to start of derivative data
             if (iline < Nlines) {
                 if (temp.length() > 40) {
-                    if (temp.contains("Alpha       CLQ          CMQ ")) {
+                    if (temp.contains("ALPHA       CLQ          CMQ ")) {
                         // Have found start of derivative data
                         // read lines and extract derivatives
                         // each line should have 12 colums of data
