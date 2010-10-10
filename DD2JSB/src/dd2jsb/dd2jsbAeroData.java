@@ -606,26 +606,32 @@ public class dd2jsbAeroData {
             print = print + "<!-- Table produced from Datcom output by DD2JSB " + getDateTime() + " -->\r\n" ;
             print = print + "<!-- " + Path + "\\" + filename + "-->\r\n\r\n";
             print = print + "<table name =  \"" + varname + "\">\r\n";
-            if (nAlpha > 1) {
-                print = print + "<independentVar lookup = \"row\"> aero/alpha-deg </independentVar>\r\n";
-            }
             if (nMACH > 1) {
-                print = print + "<independentVar lookup = \"column\"> velocities/mach </independentVar>\r\n";
+                print = print + "<independentVar lookup = \"row\"> velocities/mach </independentVar>\r\n";
+            }
+            if (nAlpha > 1) {
+                print = print + "<independentVar lookup = \"column\"> aero/alpha-deg </independentVar>\r\n";
             }
             if (nALT > 1) {
                 print = print + "<independentVar lookup = \"table\"> ic/h-sl-ft </independentVar>\r\n";
             }
             for (int iALT = 0; iALT < nALT; iALT++) {
+
+            if (nALT > 1) {
                 print = print + "<tableData breakpoint = " + ALT[iALT] + ">\r\n";
+                }
+               else {
+                print = print + "<tableData>\r\n";          
+                }
                 print = print + "\t";
-                for (int iM = 0; iM < nMACH; iM++) {
-                    print = print + "\t" + MACH[iM];
+                for (int iA = 0; iA < nAlpha; iA++) {
+                    print = print + "\t" + AlphaTab[iA];
                 }
                 print = print + "\r\n";
-                for (int i = 0; i < nAlpha; i++) {
-                    print = print + AlphaTab[i] + "  ";
-                    for (int iMACH = 0; iMACH < nMACH; iMACH++) {
-                        print = print + derivtable[iALT][iMACH][i];
+                for (int iM = 0; iM < nMACH; iM++) {
+                    print = print + MACH[iM] + "  ";
+                    for (int iAlpha = 0; iAlpha < nAlpha; iAlpha++) {
+                        print = print + derivtable[iALT][iM][iAlpha];
                     }
                     print = print + "\r\n";
                 }

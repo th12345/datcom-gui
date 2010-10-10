@@ -22,6 +22,8 @@ Each of these subdirectories will contain a set of aerodynamic derivative tables
 
 It is suggested that Aeromatic (http://jsbsim.sourceforge.net/aeromatic.html)is used to provide a suitable template file. 
 
+At this stage of development some of the XML statements are not generated correctly. Please check the syntax, especially tabledata, when importing to your Jsbsim file.
+
 For many derivatives Datcom only outputs values for the first Alpha value. In this case DD2JSB produces two output tables. The first is the direct output, which has a lot of empty cells. The second assumes that the derivative is constant for all Alpha values, and thus is printed for variation in Mach and Altitude only. In the case of Clq these tables are Clqtab.txt and Clqtab1.txt.
 
 The user is advised to look carefully at the values in these tables. If they are constant (or nearly so) for all Altitudes (or Mach or Alpha) then he should edit out the Altitude (or Mach or Alpha) table entries before using them in JSBSim. Alternatively re-run Datcom with NALT (or NMACH or NALPHA) set to 1.0 .
