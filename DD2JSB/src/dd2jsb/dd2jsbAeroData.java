@@ -182,7 +182,7 @@ public class dd2jsbAeroData {
                         CMaTab[iA][jM][nAlpha] = temp.substring(76, 88);
                         CybTab[iA][jM][nAlpha] = temp.substring(89, 101);
                         CnbTab[iA][jM][nAlpha] = temp.substring(102, 114);
-                        ClbTab[iA][jM][nAlpha] = temp.substring(115, ntemp-1);
+                        ClbTab[iA][jM][nAlpha] = temp.substring(115, ntemp);
                         nAlpha++;
                     } else {
                         derivsfound = false;
@@ -237,7 +237,7 @@ public class dd2jsbAeroData {
                         CypTab[iA][jM][nAlpha] = temp.substring(77, 89);
                         CnpTab[iA][jM][nAlpha] = temp.substring(90, 102);
                         CnrTab[iA][jM][nAlpha] = temp.substring(103, 115);
-                        ClrTab[iA][jM][nAlpha] = temp.substring(116, ntemp-1);
+                        ClrTab[iA][jM][nAlpha] = temp.substring(116, ntemp);
                         nAlpha++;
                     } else {
                         derivsfound = false;
@@ -299,7 +299,7 @@ public class dd2jsbAeroData {
                         CDMinFlapTab[iA][jM][ind] = temp.substring(44, 56);
                         CLaFlapTab[iA][jM][ind] = temp.substring(57, 81);
                         ChaFlapTab[iA][jM][ind] = temp.substring(82, 93);
-                        ChdFlapTab[iA][jM][ind] = temp.substring(94, ntemp-1);
+                        ChdFlapTab[iA][jM][ind] = temp.substring(94, ntemp);
                         ind++;
                     } else {
                         if (derivs1found) {
@@ -427,7 +427,7 @@ public class dd2jsbAeroData {
                         int ntemp = temp.length();
                         DeltaLTab[ind] = temp.substring(41, 51);
                         DeltaRTab[ind] = temp.substring(57, 67);
-                        ClAilTab[iA][jM][ind] = temp.substring(77, ntemp-1);
+                        ClAilTab[iA][jM][ind] = temp.substring(77, ntemp);
                         ind++;
                     } else {
                         derivs2found = false;
@@ -518,7 +518,7 @@ public class dd2jsbAeroData {
                         int ntemp = temp.length();
                         DeltaLTab[ind] = temp.substring(41, 51);
                         DeltaRTab[ind] = temp.substring(57, 67);
-                        ClDiffTailTab[iA][jM][0][ind] = temp.substring(77, ntemp-1);
+                        ClDiffTailTab[iA][jM][0][ind] = temp.substring(77, ntemp);
                         ind++;
                     } else {
                         derivs2found = false;
@@ -574,6 +574,7 @@ public class dd2jsbAeroData {
         wrAlphaData(Path, "CLadTab.txt", "CLadAlpha", CLadTab, ALT, MACH, nALT, nMACH, NAlpha);
         wrAlphaData(Path, "CMadTab.txt", "CMadAlpha", CMadTab, ALT, MACH, nALT, nMACH, NAlpha);
         wrAlphaData(Path, "Clptab.txt", "ClpAlpha", ClpTab, ALT, MACH, nALT, nMACH, NAlpha);
+        wrAlphaData(Path, "Cyptab.txt", "CypAlpha", CypTab, ALT, MACH, nALT, nMACH, NAlpha);        
         wrAlphaData(Path, "Cnptab.txt", "CnpAlpha", CnpTab, ALT, MACH, nALT, nMACH, NAlpha);
         wrAlphaData(Path, "Cnrtab.txt", "CnrAlpha", CnrTab, ALT, MACH, nALT, nMACH, NAlpha);
         if (ClrTab[0][0][0] != null) {

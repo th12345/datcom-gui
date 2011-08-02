@@ -188,6 +188,10 @@ public class dd2jsbOp extends javax.swing.JPanel {
                 NMACH = (int) FMACH;
                 //look for MACH(1) in Case
                 linePosition = Case[k].indexOf("MACH(1)", lineEnd);
+                 if (linePosition == -1) {
+                 //look for just MACH in Case
+                 linePosition = Case[k].indexOf("MACH", lineEnd);   
+                 }
                 linePosition = Case[k].indexOf("=", linePosition);
                 line = Case[k].substring(linePosition + 1, linePosition + 200);
                 line = line.replaceAll("\\$", ",");
@@ -204,6 +208,10 @@ public class dd2jsbOp extends javax.swing.JPanel {
                 NALT = (int) FALT;
                 //look for ALT(1) in Case
                 linePosition = Case[k].indexOf("ALT(1)", lineEnd);
+                 if (linePosition == -1) {                
+                 //look for just ALT in Case
+                 linePosition = Case[k].indexOf("ALT", lineEnd);   
+                 }                
                 linePosition = Case[k].indexOf("=", linePosition);
                 line = Case[k].substring(linePosition + 1, linePosition + 200);
                 line = line.replaceAll("\\$", ",");
@@ -225,7 +233,8 @@ public class dd2jsbOp extends javax.swing.JPanel {
             CaseIDtext = "";
             while (CaseIDtext.length() < 1) {
                 iline++;
-                if (lines[iline].length() > 40) {
+                if (iline <= Nlines) {
+                  if (lines[iline].length() > 40) {
                     if (lines[iline].contains("CASEID")) {
                         CaseIDtext = (lines[iline].trim());
                         jTextArea1.append("Processing Case: ");
@@ -236,8 +245,12 @@ public class dd2jsbOp extends javax.swing.JPanel {
                         CaseIDtext = CaseIDtext.replaceAll("CASEID", "");
                     }
                 }
-            }
+              }
 
+            else {
+                jTextArea1.append("dd2jsbOp warning: iline less than Nlines" + newline);
+                }
+            }
             //create a new instance of dd2jsbAeroData
 
             aerodat = new dd2jsbAeroData(Case[k]);
